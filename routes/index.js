@@ -6,5 +6,7 @@ var router = express.Router();
 router.get('/', function(req, res) {
     res.sendFile('index.html');
 });
-
+router.get('/orcsun', function(req, res) {
+    res.render('orcsun');
+});
 module.exports = router;
