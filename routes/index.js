@@ -9,4 +9,8 @@ router.get('/', function(req, res) {
 router.get('/orcsun', function(req, res) {
     res.render('orcsun');
 });
+
+router.get('/tour', function(req, res) {
+    res.render('tour');
+});
 module.exports = router;
