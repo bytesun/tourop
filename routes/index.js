@@ -9,7 +9,9 @@ router.get('/', function(req, res) {
 router.get('/orcsun', function(req, res) {
     res.render('orcsun');
 });
-
+router.get('/blog', function(req, res) {
+    res.render('blog');
+});
 router.get('/tour', function(req, res) {
     res.render('tour');
 });
