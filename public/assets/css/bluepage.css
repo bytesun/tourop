@@ -1,0 +1,22 @@
+.main{
+	height:100%;
+}
+.space_title{
+	margin-top:100px;
+
+}
+
+.hpbg_waive {
+  background-image: url('../img/hpbg.jpg') ;
+  width: 100%;
+  height: 350px; 
+ 
+}
+
+.blur {
+    -webkit-filter: blur(5px) grayscale(50%);
+  -moz-filter: blur(3px);
+  -o-filter: blur(3px);
+  -ms-filter: blur(3px);
+  filter: blur(3px); 
+}
