@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" data-framework="marionettejs">
 <head>
 
   <title>CAPTOP TOUR SYSTEM</title>
@@ -8,16 +8,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="keywords" content="professional, consultant,solution, expert,troubleshooting,project">
    <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-
-    
-</head>
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+	</head>
 <body>
 
-<div class="container top-container">
+
 		<nav class="navbar navbar-default">
 		  <div class="container-fluid">
 		    <!-- Brand and toggle get grouped for better mobile display -->
@@ -28,49 +32,59 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		      <a class="navbar-brand" href="#"></a>
+		      <a class="navbar-brand" href="#"><b><text class="text-success">CANTOP-OP System</text></b></a>
 		    </div>
 		
 		    <!-- Collect the nav links, forms, and other content for toggling -->
 		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 		      <ul class="nav navbar-nav">
-		        <li class=""><a href="#home">Home <span class="sr-only">(current)</span></a></li>
+		        <li class=""><a class="glyphicon glyphicon-home" href="#home">-Home <span class="sr-only">(current)</span></a></li>
 		        <li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Tour  <span class="caret"></span></a>
+		          <a href="#" class="dropdown-toggle glyphicon glyphicon-globe" data-toggle="dropdown" role="button" aria-expanded="false">-Operation  <span class="caret"></span></a>
 		          <ul class="dropdown-menu" role="menu">
-		            <li><a href="#voucher">Voucher</a></li>
-		            <li><a href="#invoice">Invoice</a></li>
+		           	<li><a href="#tour" class="glyphicon glyphicon-leaf">-Tour</a></li>
+		            <li><a href="#voucher" class="glyphicon glyphicon-ok-sign">-Voucher</a></li>
+		            <li><a href="#invoice" class="glyphicon glyphicon-usd">-Invoice</a></li>
 		          </ul>
 		        </li>
 		
 		        <li class="dropdown">
-		          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Information <span class="caret"></span></a>
+		          <a href="#" class="dropdown-toggle glyphicon glyphicon-th-list" data-toggle="dropdown" role="button" aria-expanded="false">-Information <span class="caret"></span></a>
 		          <ul class="dropdown-menu" role="menu">
-		            <li><a href="#route">Route</a></li>
-		            <li><a href="#agency">Agency</a></li>
-					<li><a href="#hotel">Hotel</a></li>
-		            <li><a href="#restaurant">Restaurant</a></li>					
+		            <li><a href="#route" class="glyphicon glyphicon-option-vertical">Route</a></li>
+		            <li><a href="#agency" class="glyphicon glyphicon-option-vertical">Agency</a></li>
+					<li><a href="#hotel" class="glyphicon glyphicon-option-vertical">Hotel</a></li>
+		            <li><a href="#restaurant" class="glyphicon glyphicon-option-vertical">Restaurant</a></li>					
 		          </ul>
 		        </li>
 		
 				</ul>
     
+			     <ul class="nav navbar-nav navbar-right">
+
+			        <li class="dropdown">
+			          <a href="#" class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown" role="button" aria-expanded="false">-CANTOP<span class="caret"></span></a>
+			          <ul class="dropdown-menu" role="menu">
+			            <li><a href="#">Logout</a></li>
+			          </ul>
+			        </li>
+			      </ul>    
         				
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 		</nav>
+<div class="container">
 
 
-	<div class="row">
-		<div class="col-md-12">
-		<script src="/assets/lib/require.js" data-main="/config.js"></script>
-		<div class="row">
-		  <div id="main-panel"> 
-		
-			</div>
-	   </div>
-	</div>
-	</div>
+			<div id="notification"></div><!-- /#notification -->
+		 	 <div id="main" class="row"></div>
+	        
+	  		<div class="modal fade" id="dialog" tabindex="-1" role="dialog" aria-hidden="true"></div><!-- /.modal -->	
+            <div class="footer" id="footer"> </div>            
+
 </div>
+		<script src="/assets/lib/require.js" data-main="/main.js"></script>
+	  
+		
 </body>
 </html>

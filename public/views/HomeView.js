@@ -1,44 +1,49 @@
-define(["jquery", "backbone", "models/Tour", "text!templates/tour-list-page.html"],
+/*global define */
 
-    function($, Backbone, Tour, template){
+define([
+	'marionette',
+	'templates',
+    'underscore',
+], function (Marionette, templates, _) {
+	'use strict';
 
-        var View = Backbone.View.extend({
+	return Marionette.ItemView.extend({
+		template: templates.home,
 
-            // The DOM Element associated with this view
-            el: "#main-panel",
+        events: {
+            'click #notify' : 'notify',
+            'click #confirm' : 'showSampleConfirm'
+        },
 
-            // View constructor
-            initialize: function() {
 
-                // Calls the view's render method
-                this.render();
+        notify: function(e) {
+            app.commands.execute('app:notify', {
+                type: 'warning',
+                title: 'A Warning',
+                description: 'Something important happened! Let the user know it.'
+            });
+        },
+        showSampleConfirm: function(e) {
+            app.commands.execute("app:dialog:confirm", {
+                icon: 'info-sign',
+                title: 'Action confirmation!',
+                message: 'Are you sure to perform this serious action?',
+                confirmNo: function() {
+                    app.commands.execute('app:notify', {
+                        type: 'warning',
+                        title: 'You\'ve choosed No',
+                        description: 'No problem. No action was taken.'
+                    }
+                )},
+                confirmYes: function() {
+                    app.commands.execute('app:notify', {
+                        type: 'success',
+                        title: 'You\'ve choosed Yes',
+                        description: 'You\'ve agreed! Thanks :)'
+                    }
+                )}
+            });
+        }
 
-            },
-
-            // View Event Handlers
-            events: {
-
-            },
-
-            // Renders the view's template to the UI
-            render: function() {
-
-                // Setting the view's template property using the Underscore template method
-                this.template = _.template(template, {});
-
-                // Dynamically updates the UI with the view's template
-                this.$el.html(this.template);
-
-                // Maintains chainability
-                return this;
-
-            }
-
-        });
-
-        // Returns the View class
-        return View;
-
-    }
-
-);
+	});
+});

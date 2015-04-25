@@ -1,41 +1,51 @@
+require.config({
+	paths: {
+        'jquery'                : 'assets/lib/jquery.min',
+        //'jquery-ui'             : '//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min',
+        'underscore'            : 'assets/lib/underscore-min',         // load lodash instead of underscore (faster + bugfixes)
+        'backbone'              : 'assets/lib/backbone',
+        'marionette'            : 'assets/lib/backbone.marionette',
+        'bootstrap'             : 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min',
+        'text'                  : 'assets/lib/text',
+        'tpl'                   : 'assets/lib/tpl',
+        'parsley'               : 'assets/lib/parsley'
+	},
+
+	shim: {
+		underscore: {
+			exports: '_'
+		},
+
+		backbone: {
+			exports: 'Backbone',
+			deps: ['jquery', 'underscore']
+		},
+
+		marionette: {
+			exports: 'Backbone.Marionette',
+			deps: ['backbone']
+		},
+
+        bootstrap: {
+            deps: ['jquery']
+        }
+
+	},
+    waitSeconds: 60
+});
+
 require([
-    "app",
-    "router",
-    "models/SessionModel"
-],
-function(app, WebRouter, SessionModel) {
+	'app',
+    'modules/Pages',
+    'jquery',
+	'bootstrap'
+], function (app, PagesModule) {
+	'use strict';
 
-    // Just use GET and POST to support all browsers
-    Backbone.emulateHTTP = true;
-
-    app.router = new WebRouter();
-
-    // Create a new session model and scope it to the app global
-    // This will be a singleton, which other modules can access
-    app.session = new SessionModel({});
-    console.log('new session...');
-    // Check the auth status upon initialization,
-    // before rendering anything or matching routes
-//    app.session.checkAuth({
-//    	// Start the backbone routing once we have captured a user's auth status
-//        complete: function(){
-//        	console.log('check auth...');
-//            // HTML5 pushState for URLs without hashbangs
-//            var hasPushstate = !!(window.history && history.pushState);
-//            if(hasPushstate) Backbone.history.start({ pushState: true, root: '/profile' });
-//            else Backbone.history.start();
-//
-//        }
-//    });
-
-    Backbone.history.start();
-    // All navigation that is relative should be passed through the navigate
-    // method, to be processed by the router. If the link has a `data-bypass`
-    // attribute, bypass the delegation completely.
-    $('#content-app').on("click", "a:not([data-bypass])", function(evt) {
-        evt.preventDefault();
-        var href = $(this).attr("href");
-        app.router.navigate(href, { trigger : true, replace : false });
-
+    app.addInitializer(function() {
+    	console.log('start module');
+        PagesModule.start();
     });
+
+	app.start();
 });
