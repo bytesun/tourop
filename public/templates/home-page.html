@@ -1,5 +1,36 @@
 <div id="home-template" class="container">
-      <div>
+	<div role="tabpanel">
+	
+	  <!-- Nav tabs -->
+	  <ul class="nav nav-tabs" role="tablist">
+	    <li role="presentation" class="active"><a href="#log" aria-controls="home" role="tab" data-toggle="tab">Trace Log</a></li>
+	    <li role="presentation"><a href="#tourlist" aria-controls="profile" role="tab" data-toggle="tab">Current Tour List</a></li>
+	
+	  </ul>
+	
+	  <!-- Tab panes -->
+	  <div class="tab-content">
+	    <div role="tabpanel" class="tab-pane active" id="log">
+	    	<span class="text text-danger">*Note: this is only for development tracking, so it will be removed after deployment.</span>
+			<h2>Schedule</h2>
+			<span class="text text-success">Week-1 : User Interface development</span><BR>
+			Week-2 : Basic Information(agency/hotel/restaurant/route) input functions<br>
+			Week-3/4 : Core business logic (order input, generate voucher/invoice)<br>
+			Week-5 : System deployment and defects fix <br>
+			
+			<hr>
+			<h2>Development Trace</h2>
+			[2015/4/25] - create a sample page for <a href="#voucher_info">voucher</a><br>
+			[2015/4/24] - create basic information UI<br>
+			[2015/4/23] - initialize project : environment setup<br>
+			[2015/4/22] - draft design documents
+		
+		</div>
+	    
+	    
+	    <!--  -->
+	    <div role="tabpanel" class="tab-pane" id="tourlist">
+		
        <h3 class="text text-lg text-primary">Current Tour List</h3>
 
       
@@ -48,5 +79,11 @@
 				</tr>		
 			</table>     
       
-       </div>
+       </div>		
+		
+		</div>
+	
+	  </div>
+	
+	</div>      
 </div>

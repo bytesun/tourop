@@ -6,7 +6,7 @@ define([
 	'use strict';
 
 	return Marionette.ItemView.extend({
-		template: templates.route,
+		template: templates.route_list,
 
         events: {
 //            'click #notify' : 'notify',

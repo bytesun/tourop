@@ -3,16 +3,21 @@
 define([
     'backbone',
 	'marionette',
+	'models/SessionModel',
     'regions/notification',
     'regions/dialog',
-
-], function (Backbone, Marionette, NotifyRegion, DialogRegion) {
+    'views/HomeView',
+    'views/LoginView'
+], function (Backbone, Marionette,SessionModel, NotifyRegion, DialogRegion,
+		HomeView,
+		LoginView) {
 	'use strict';
 
 	var app = new Marionette.Application();
 
+	
 	app.addRegions({
-//		header: '#header',
+		top: '#toplayer',
 		main: '#main',
 		footer: '#footer',
         notification: {
@@ -24,17 +29,30 @@ define([
             regionType: DialogRegion
         }
 	});
+	app.session = new SessionModel({});
+	   // Check the auth status upon initialization,
+    // before rendering anything or matching routes
+    app.session.checkAuth({
 
+        // Start the backbone routing once we have captured a user's auth status
+        complete: function(){
+
+            // HTML5 pushState for URLs without hashbangs
+//            var hasPushstate = !!(window.history && history.pushState);
+//            if(hasPushstate) Backbone.history.start({ pushState: true, root: '/tour' });
+//            else Backbone.history.start();
+
+        }
+    });	
 	app.addInitializer(function () {
-		console.log('initialzer');
+		app.main.show(new HomeView());
+//		app.main.show(new LoginView());
 //        app.header.show(new Header());
 //		app.footer.show(new Footer());
 	});
 
     app.on("start", function(options){
-    	console.log('trigger initialize:after');
         if (Backbone.history){
-        	console.log('start history');
             Backbone.history.start();
         }
     });

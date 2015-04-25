@@ -2,6 +2,8 @@
 
 define([
 	'app',
+	'templates',
+	'views/CommonView',
 	'views/HomeView',
 	'views/TourView',
 	'views/RouteView',
@@ -10,10 +12,16 @@ define([
 	'views/RestaurantView',
 	'views/VoucherView',
 	'views/InvoiceView',
-	'views/TourInfoView'
-], function (app,HomeView,TourView,RouteView,AgencyView,HotelView,RestaurantView,
-		VoucherView,InvoiceView,
-		TourInfoView) {
+	'views/TourInfoView',
+	'views/LoginView'
+], function (app,
+		templates,
+		CommonView,
+		HomeView,TourView,RouteView,AgencyView,HotelView,RestaurantView,
+		VoucherView,
+		InvoiceView,
+		TourInfoView,
+		LoginView) {
 	'use strict';
 
 	return {
@@ -38,11 +46,17 @@ define([
 	        voucher_list : function(view,options){
 	        	app.main.show(new VoucherView());
 	        },
+	        voucher_info : function(view,options){
+	        	app.main.show(new CommonView({template:templates.voucher_info}));
+	        },	        
 	        invoice_list : function(view,options){
 	        	app.main.show(new InvoiceView());
 	        },
 	        tour_info: function(view,options){
 	        	app.main.show(new TourInfoView());
+	        },
+	        logout: function(view,options){
+	        	app.main.show(new LoginView());
 	        }
 
 

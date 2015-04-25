@@ -8,15 +8,19 @@ define([
 	return Marionette.AppRouter.extend({
 		appRoutes: {
             "home" : "home",
-            "tour":"tour_list",
-            "route":"route_list",
-            "agency":"agency_list",
-            "hotel":"hotel_list",
-            "restaurant":"restaurant_list",
-            "voucher":"voucher_list",
-            "invoice":"invoice_list",
+            "tourlist":"tour_list",
+            "route_list":"route_list",
+            "agency_list":"agency_list",
+            "hotel_list":"hotel_list",
+            "restaurant_list":"restaurant_list",
+            "voucher_list":"voucher_list",
+            "voucher_info":"voucher_info",
+            "invoice_list":"invoice_list",
             
-            "tour_info":"tour_info"
+            "tour_info":"tour_info",
+            
+            
+            "logout" : "logout"
 
 		}
 	});

@@ -5,7 +5,7 @@ require.config({
         'underscore'            : 'assets/lib/underscore-min',         // load lodash instead of underscore (faster + bugfixes)
         'backbone'              : 'assets/lib/backbone',
         'marionette'            : 'assets/lib/backbone.marionette',
-        'bootstrap'             : 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min',
+        'bootstrap'             : 'assets/lib/bootstrap.min',
         'text'                  : 'assets/lib/text',
         'tpl'                   : 'assets/lib/tpl',
         'parsley'               : 'assets/lib/parsley'
@@ -43,7 +43,7 @@ require([
 	'use strict';
 
     app.addInitializer(function() {
-    	console.log('start module');
+
         PagesModule.start();
     });
 

@@ -6,7 +6,7 @@ define([
 	'use strict';
 
 	return Marionette.ItemView.extend({
-		template: templates.voucher,
+		template: templates.voucher_list,
 
         events: {
 //            'click #notify' : 'notify',

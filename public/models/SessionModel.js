@@ -25,7 +25,8 @@ define([
 
 
         url: function(){
-            return app.API + '/auth';
+            //return app.API + '/auth';
+        	return '/api/auth';
         },
 
         // Fxn to update user attributes after recieving API response

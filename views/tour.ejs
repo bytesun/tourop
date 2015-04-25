@@ -20,7 +20,7 @@
         <![endif]-->
 	</head>
 <body>
-
+	<div  id="toplayer">
 
 		<nav class="navbar navbar-default">
 		  <div class="container-fluid">
@@ -32,7 +32,7 @@
 		        <span class="icon-bar"></span>
 		        <span class="icon-bar"></span>
 		      </button>
-		      <a class="navbar-brand" href="#"><b><text class="text-success">CANTOP-OP System</text></b></a>
+		      <a class="navbar-brand" href="#home"><b><text class="text-success">CANTOP-OP System</text></b></a>
 		    </div>
 		
 		    <!-- Collect the nav links, forms, and other content for toggling -->
@@ -42,19 +42,19 @@
 		        <li class="dropdown">
 		          <a href="#" class="dropdown-toggle glyphicon glyphicon-globe" data-toggle="dropdown" role="button" aria-expanded="false">-Operation  <span class="caret"></span></a>
 		          <ul class="dropdown-menu" role="menu">
-		           	<li><a href="#tour" class="glyphicon glyphicon-leaf">-Tour</a></li>
-		            <li><a href="#voucher" class="glyphicon glyphicon-ok-sign">-Voucher</a></li>
-		            <li><a href="#invoice" class="glyphicon glyphicon-usd">-Invoice</a></li>
+		           	<li><a href="#tourlist" class="glyphicon glyphicon-leaf">-Tour</a></li>
+		            <li><a href="#voucher_list" class="glyphicon glyphicon-ok-sign">-Voucher</a></li>
+		            <li><a href="#invoice_list" class="glyphicon glyphicon-usd">-Invoice</a></li>
 		          </ul>
 		        </li>
 		
 		        <li class="dropdown">
 		          <a href="#" class="dropdown-toggle glyphicon glyphicon-th-list" data-toggle="dropdown" role="button" aria-expanded="false">-Information <span class="caret"></span></a>
 		          <ul class="dropdown-menu" role="menu">
-		            <li><a href="#route" class="glyphicon glyphicon-option-vertical">Route</a></li>
-		            <li><a href="#agency" class="glyphicon glyphicon-option-vertical">Agency</a></li>
-					<li><a href="#hotel" class="glyphicon glyphicon-option-vertical">Hotel</a></li>
-		            <li><a href="#restaurant" class="glyphicon glyphicon-option-vertical">Restaurant</a></li>					
+		            <li><a href="#route_list" class="glyphicon glyphicon-option-vertical">Route</a></li>
+		            <li><a href="#agency_list" class="glyphicon glyphicon-option-vertical">Agency</a></li>
+					<li><a href="#hotel_list" class="glyphicon glyphicon-option-vertical">Hotel</a></li>
+		            <li><a href="#restaurant_list" class="glyphicon glyphicon-option-vertical">Restaurant</a></li>					
 		          </ul>
 		        </li>
 		
@@ -65,7 +65,7 @@
 			        <li class="dropdown">
 			          <a href="#" class="dropdown-toggle glyphicon glyphicon-user" data-toggle="dropdown" role="button" aria-expanded="false">-CANTOP<span class="caret"></span></a>
 			          <ul class="dropdown-menu" role="menu">
-			            <li><a href="#">Logout</a></li>
+			            <li><a href="#logout">Logout</a></li>
 			          </ul>
 			        </li>
 			      </ul>    
@@ -73,18 +73,20 @@
 		    </div><!-- /.navbar-collapse -->
 		  </div><!-- /.container-fluid -->
 		</nav>
-<div class="container">
-
-
-			<div id="notification"></div><!-- /#notification -->
-		 	 <div id="main" class="row"></div>
-	        
-	  		<div class="modal fade" id="dialog" tabindex="-1" role="dialog" aria-hidden="true"></div><!-- /.modal -->	
-            <div class="footer" id="footer"> </div>            
-
-</div>
+		<div class="container">
+		
+		
+					<div id="notification"></div><!-- /#notification -->
+				 	 <div id="main" class="row">
+				 	 		
+				 	 </div>
+			        
+			  		<div class="modal fade" id="dialog" tabindex="-1" role="dialog" aria-hidden="true"></div><!-- /.modal -->	
+		            <div class="footer" id="footer"> </div>            
+		
+		</div>
 		<script src="/assets/lib/require.js" data-main="/main.js"></script>
-	  
+	</div><!-- top layer-->  
 		
 </body>
 </html>
