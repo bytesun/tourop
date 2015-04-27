@@ -9,13 +9,14 @@ define([
 		template: templates.tour_info,
 
         events: {
-            'click .btn_tour_new' : 'startTour',
+            
             'click .passenger_edit' : 'editPassenger',
             'click .passenger_delete' : 'deletePassenger',
             'click .passenger_add': 'addPassenger',
-            'click .bus_add' : 'addBus'
-//            'click #modal' : 'showSampleModal',
-//            'click #confirm' : 'showSampleConfirm'
+            'click .bus_add' : 'addBus',
+            'click .btn_tour_save' : 'saveTour',
+            'click .btn_tour_confirm' : 'confirmTour',
+            'click .btn_tour_close' : 'closeTour'  
         },
         addPassenger : function(e){
 
@@ -48,13 +49,31 @@ define([
         	},templates.editPassenger);
         },
         
-        startTour: function(e){
-        	console.log('start tour');
+        saveTour: function(e){
+        	app.execute("app:notify",{
+        		title:'',
+        		description : 'All information has been saved!'
+        	});
+//        	console.log('start tour');
+//            app.execute("app:dialog:simple", {
+//                title: 'Start a new tour', // Optional
+//                message: 'Input new tour information'
+//            },
+//            templates.newTour);
+        },
+        confirmTour: function(e){
+        	app.execute("app:dialog:confirm",{
+        		title:'',
+        		message : 'Are you sure all information are correct?'
+        	});
+        },        
+        closeTour: function(e){
+        	console.log('close tour');
             app.execute("app:dialog:simple", {
-                title: 'Start a new tour', // Optional
-                message: 'Input new tour information'
+                title: 'Input memo information to close this tour', // Optional
+                message: 'Input close information'
             },
-            templates.newTour);
+            templates.tour_memo);
         }
 
 	});
