@@ -5,7 +5,7 @@ define([
 
     return  Marionette.Region.extend({
         onShow: function(view){
-        	console.log('onshow dialog');
+
             this.listenTo(view, "dialog:close", this.closeDialog);
 
             var self = this;

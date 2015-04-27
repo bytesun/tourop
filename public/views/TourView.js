@@ -2,7 +2,8 @@ define([
 	'marionette',
 	'templates',
     'underscore',
-], function (Marionette, templates, _) {
+    'controllers/tour'
+], function (Marionette, templates, _,tour) {
 	'use strict';
 
 	return Marionette.ItemView.extend({
@@ -10,12 +11,12 @@ define([
 
         events: {
             'click #btn_startTour' : 'startTour',
-            'click #btn_tour_save' : 'saveTour',
+            'click #btn_tour_new' : 'newTour',
 //            'click #modal' : 'showSampleModal',
 //            'click #confirm' : 'showSampleConfirm'
         },
-        saveTour: function(e){
-        	
+        newTour: function(e){
+        	tour.newTour();
         },
         startTour: function(e){
         	console.log('start tour');

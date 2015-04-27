@@ -52,6 +52,9 @@ define([
 	        invoice_list : function(view,options){
 	        	app.main.show(new InvoiceView());
 	        },
+	        invoice_info: function(view,options){
+	        	app.main.show(new CommonView({template:templates.invoice_info}));
+	        },
 	        tour_info: function(view,options){
 	        	app.main.show(new TourInfoView());
 	        },

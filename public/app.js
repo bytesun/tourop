@@ -17,7 +17,7 @@ define([
 
 	
 	app.addRegions({
-		top: '#toplayer',
+		top: 'body',
 		main: '#main',
 		footer: '#footer',
         notification: {
@@ -29,26 +29,24 @@ define([
             regionType: DialogRegion
         }
 	});
-	app.session = new SessionModel({});
+//	app.session = new SessionModel({});
 	   // Check the auth status upon initialization,
     // before rendering anything or matching routes
-    app.session.checkAuth({
-
-        // Start the backbone routing once we have captured a user's auth status
-        complete: function(){
-
-            // HTML5 pushState for URLs without hashbangs
+//    app.session.checkAuth({
+//
+//        // Start the backbone routing once we have captured a user's auth status
+//        complete: function(){
+//
+//            // HTML5 pushState for URLs without hashbangs
 //            var hasPushstate = !!(window.history && history.pushState);
 //            if(hasPushstate) Backbone.history.start({ pushState: true, root: '/tour' });
 //            else Backbone.history.start();
-
-        }
-    });	
+//
+//        }
+//    });	
 	app.addInitializer(function () {
 		app.main.show(new HomeView());
-//		app.main.show(new LoginView());
-//        app.header.show(new Header());
-//		app.footer.show(new Footer());
+
 	});
 
     app.on("start", function(options){
