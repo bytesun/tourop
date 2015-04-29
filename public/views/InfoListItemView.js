@@ -2,7 +2,7 @@ define([
 	'marionette',
 	'templates',
     'underscore',
-    'models/information'
+    'models/Information'
     
 ], function (Marionette, templates, _,InfoModel) {
 	'use strict';

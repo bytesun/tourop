@@ -2,8 +2,8 @@ define([
 	'marionette',
 	'templates',
     'underscore',
-    'models/information',
-    'collections/informations',
+    'models/Information',
+    'collections/Informations',
     'views/InfoListItemView'
     
 ], function (Marionette, templates, _,infoModel,Informations,InfoListItemView) {

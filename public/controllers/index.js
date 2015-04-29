@@ -9,7 +9,7 @@ define([
 	'views/RouteView',
 	'views/InfoCollectionView',
 	'views/InfoAuthorView',
-	'views/confirmationView',
+	'views/ConfirmationView',
 	'views/InvoiceView',
 	'views/TourInfoView',
 	'views/LoginView',
@@ -24,7 +24,7 @@ define([
 		RouteView,
 		InfoCollectionView,
 		InfoAuthorView,
-		confirmationView,
+		ConfirmationView,
 		InvoiceView,
 		TourInfoView,
 		LoginView,
@@ -79,7 +79,7 @@ define([
 	        	app.main.show(infoView);
 	        },
 	        confirmation : function(view,options){
-	        	app.main.show(new confirmationView());
+	        	app.main.show(new ConfirmationView());
 	        },
 	        confirmation_info : function(view,options){
 	        	app.main.show(new CommonView({template:templates.confirmation_info}));
