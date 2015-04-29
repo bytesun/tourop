@@ -2,7 +2,7 @@ define([
 	'marionette',
 	'templates',
     'underscore',
-    'collections/informations',
+    'collections/Informations',
     'views/InfoCollectionView'
 ], function (Marionette, templates, _,
 		Informations,
