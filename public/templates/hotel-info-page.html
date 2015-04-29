@@ -1,4 +1,4 @@
-<div id="login-template" class="container">
+<div id="hotel-new-template" class="container">
         <h3  class="text text-lg text-primary">Hotel Information</h3>
 		<hr>	
 
@@ -6,42 +6,42 @@
 			  <div class="form-group">
 			    <label for="inputEmail3" class="col-sm-2 control-label">Code:</label>
 			    <div class="col-sm-2">
-			      <input type="email" class="form-control" id="inputEmail3" placeholder="A001" required>
+			      <input type="text" class="form-control" name="code" value="A001" placeholder="A001" required>
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="inputPassword3" class="col-sm-2 control-label">Name:</label>
 			    <div class="col-sm-7">
-			      <input type="text" class="form-control" id="inputPassword3" placeholder="Sample Hotel" required>
+			      <input type="text" class="form-control" name="name" value="Test hotel" placeholder="Sample Hotel" required>
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="inputPassword3" class="col-sm-2 control-label">Address:</label>
 			    <div class="col-sm-7">
-			      <input type="text" class="form-control" id="inputPassword3" placeholder="201 25th ST Langley" required>
+			      <input type="text" class="form-control" name="address" value="201 25th ST Langley" placeholder="" required>
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="inputPassword3" class="col-sm-2 control-label">Telephone:</label>
 			    <div class="col-sm-7">
-			      <input type="tel" class="form-control" id="inputPassword3" placeholder="">
+			      <input type="tel" class="form-control" name="telphone" value="604-254-2569" placeholder="">
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="inputPassword3" class="col-sm-2 control-label">Contact:</label>
 			    <div class="col-sm-7">
-			      <input type="text" class="form-control" id="inputPassword3" placeholder="Matt">
+			      <input type="text" class="form-control" name="contact" value="sun" placeholder="Matt">
 			    </div>
 			  </div>	
 			  <div class="form-group">
 			    <label for="inputPassword3" class="col-sm-2 control-label">Note:</label>
 			    <div class="col-sm-7">
-			      <textarea type="textarea" class="form-control" id="inputPassword3" ></textarea>
+			      <textarea type="textarea" class="form-control" name="note" >test hotel note</textarea>
 			    </div>
 			  </div>			  		  			  
 			  <div class="form-group">
 			    <div class="col-sm-offset-5 col-sm-10">
-			      <button type="submit" class="btn btn-primary .hotel_new">Save</button>
+			      <input type="submit" class="btn btn-primary btn_hotel_save" value="Save" name="btn_hotel_save"></input>
 			    </div>
 			  </div>
 			</form>	    

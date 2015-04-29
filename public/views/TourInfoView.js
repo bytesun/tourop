@@ -19,7 +19,7 @@ define([
             'click .btn_tour_close' : 'closeTour'  
         },
         addPassenger : function(e){
-
+        	console.log('click add passenger');
         	app.execute("app:dialog:simple",{
         		title:'Add Passenger',
         		message : ''
@@ -39,14 +39,14 @@ define([
         	app.execute("app:dialog:confirm",{
         		title:'',
         		message : 'Are you sure deleting this passenger information?'
-        	},templates.editPassenger);
+        	});
         },        
         addBus : function(e){
 
         	app.execute("app:dialog:simple",{
         		title:'Add Bus',
         		message : ''
-        	},templates.editPassenger);
+        	},templates.editBus);
         },
         
         saveTour: function(e){
@@ -54,12 +54,7 @@ define([
         		title:'',
         		description : 'All information has been saved!'
         	});
-//        	console.log('start tour');
-//            app.execute("app:dialog:simple", {
-//                title: 'Start a new tour', // Optional
-//                message: 'Input new tour information'
-//            },
-//            templates.newTour);
+
         },
         confirmTour: function(e){
         	app.execute("app:dialog:confirm",{

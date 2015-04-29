@@ -13,17 +13,21 @@ define([
             'click .route_new' : 'newRoute',
             'click .a_route_code' : 'newRoute',
             'click .btn_route_start':'startRoute',
-            'click .route_delete' : 'deleteRoute'
-            	
-//            'click #modal' : 'showSampleModal',
-//            'click #confirm' : 'showSampleConfirm'
+            'click .a_route_edit' : 'editRoute',
+            'click .a_route_delete' : 'deleteRoute'
         },
         newRoute: function(){
         	route.newRoute();
         },
-        startRoute: function(){
-        	route.startTour();
+        editRoute: function(){
+        	route.editRoute();
         },
+        
+        startRoute: function(){
+        	
+        	app.navigate("tour_new",true);
+        },
+        
         deleteRoute:function(){
         	app.execute("app:dialog:confirm",{
         		title:'',

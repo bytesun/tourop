@@ -7,57 +7,90 @@ define([
 	'views/HomeView',
 	'views/TourView',
 	'views/RouteView',
-	'views/AgencyView',
-	'views/HotelView',
-	'views/RestaurantView',
-	'views/VoucherView',
+	'views/InfoCollectionView',
+	'views/InfoAuthorView',
+	'views/confirmationView',
 	'views/InvoiceView',
 	'views/TourInfoView',
-	'views/LoginView'
+	'views/LoginView',
+	'models/Information',
+	'collections/Informations',
+	'layouts/InfoLayout'
 ], function (app,
 		templates,
 		CommonView,
-		HomeView,TourView,RouteView,AgencyView,HotelView,RestaurantView,
-		VoucherView,
+		HomeView,
+		TourView,
+		RouteView,
+		InfoCollectionView,
+		InfoAuthorView,
+		confirmationView,
 		InvoiceView,
 		TourInfoView,
-		LoginView) {
+		LoginView,
+		InfoModel,
+		InfoCollection,
+		InfoLayout) {
 	'use strict';
 
 	return {
 	      home : function(view,options){
 	        	app.main.show(new HomeView());
 	        },
-	      tour_list : function(view,options){
+	      tour : function(view,options){
 	        	app.main.show(new TourView());
 	        },	        
-	        route_list : function(view,options){
+	        route : function(view,options){
 	        	app.main.show(new RouteView());
 	        },
-	        agency_list : function(view,options){
-	        	app.main.show(new AgencyView());
+	        tour_info: function(view,options){
+	        	app.main.show(new TourInfoView());
 	        },
-	        hotel_list : function(view,options){
-	        	app.main.show(new HotelView());
+	        tour_new: function(view,options){
+	        	
+	        	app.main.show(new CommonView({template:templates.tour_new}));
 	        },
-	        restaurant_list : function(view,options){
-	        	app.main.show(new RestaurantView());
+	        info : function(view,options){
+	        	var infoLayout = new InfoLayout();
+	        	var fetchingocases = app.request("entities:informations");
+	        	$.when(fetchingocases).done(function(infos){
+		        	var infoCollectionView = new InfoCollectionView({
+		        		collection:infos
+		        	});
+		        	infoLayout.on("show",function(){	        		
+		        		infoLayout.InfoListRegion.show(infoCollectionView);
+		        		
+		        	});
+		        	app.main.show(infoLayout);
+	        	});
 	        },
-	        voucher_list : function(view,options){
-	        	app.main.show(new VoucherView());
+	        info_info : function(view,options){
+	        	var infoView = new InfoAuthorView({
+	        		model : new InfoModel()
+	        	}); 
+	        	
+	        	app.main.show(infoView);
 	        },
-	        voucher_info : function(view,options){
-	        	app.main.show(new CommonView({template:templates.voucher_info}));
+	        info_new : function(view,options){
+	        	var infoView = new InfoAuthorView({
+	        		model : new InfoModel()
+	        	}); 
+	        	
+	        	app.main.show(infoView);
+	        },
+	        confirmation : function(view,options){
+	        	app.main.show(new confirmationView());
+	        },
+	        confirmation_info : function(view,options){
+	        	app.main.show(new CommonView({template:templates.confirmation_info}));
 	        },	        
-	        invoice_list : function(view,options){
+	        invoice : function(view,options){
 	        	app.main.show(new InvoiceView());
 	        },
 	        invoice_info: function(view,options){
 	        	app.main.show(new CommonView({template:templates.invoice_info}));
 	        },
-	        tour_info: function(view,options){
-	        	app.main.show(new TourInfoView());
-	        },
+
 	        logout: function(view,options){
 	        	app.main.show(new LoginView());
 	        }

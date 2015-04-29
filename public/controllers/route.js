@@ -16,7 +16,7 @@ define([
 	        	app.main.show(new CommonView({template:templates.route_info}));
 	        },
 	        startTour: function(){
-	        	app.main.show(new CommonView({template:templates.tour_list}));
+	        	app.main.show(new CommonView({template:templates.tour_info}));
 	        }
 
 

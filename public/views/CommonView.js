@@ -6,6 +6,5 @@ define([
 	'use strict';
 
 	return Marionette.ItemView.extend({
-		template: templates.common,
 	});
 });

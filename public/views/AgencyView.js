@@ -14,8 +14,8 @@ define([
             'click .btn_agency_add' : 'addAgency',
             'click .a_agency_edit' : 'editAgency',
             'click btn_agency_save' : 'saveAgency',
-            'click .a_agency_delete' : 'delAgency',
-//            'click #confirm' : 'showSampleConfirm'
+            'click .a_agency_delete' : 'delAgency'
+
         },
         searchAgency: function(){
         	
@@ -23,6 +23,9 @@ define([
         addAgency: function(){
         	app.main.show(new CommonView({template:templates.agency_info}))
         },
+        editAgency: function(){
+        	app.main.show(new CommonView({template:templates.agency_info}))
+        },        
         saveAgency: function(){
         	app.execute("app:notify",{
         		title:'',

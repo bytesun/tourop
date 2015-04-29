@@ -8,14 +8,12 @@ define(function (require) {
 		 home: require('tpl!templates/home-page.html'),
 		 route_list: require('tpl!templates/route-list-page.html'),
 		 route_info: require('tpl!templates/route-info-page.html'),
-		 agency_list: require('tpl!templates/agency-list-page.html'),
-		 agency_info: require('tpl!templates/agency-info-page.html'),
-		 hotel_list: require('tpl!templates/hotel-list-page.html'),
-		 hotel_info: require('tpl!templates/hotel-info-page.html'),
-		 restaurant_list: require('tpl!templates/restaurant-list-page.html'),
-		 restaurant_info: require('tpl!templates/restaurant-info-page.html'),
-		 voucher_list: require('tpl!templates/voucher-list-page.html'),
-		 voucher_info: require('tpl!templates/voucher-info-page.html'),
+		 info: require('tpl!templates/information-page.html'),
+		 info_list: require('tpl!templates/information-list-page.html'),
+		 info_item: require('tpl!templates/information-item-page.html'),
+		 info_info: require('tpl!templates/information-info-page.html'),
+		 confirmation_list: require('tpl!templates/confirmation-list-page.html'),
+		 confirmation_info: require('tpl!templates/confirmation-info-page.html'),
 		 invoice_list: require('tpl!templates/invoice-list-page.html'),
 		 invoice_info: require('tpl!templates/invoice-info-page.html'),
 		 tour_list: require('tpl!templates/tour-list-page.html'),		 
@@ -23,6 +21,7 @@ define(function (require) {
 		 tour_info:require('tpl!templates/tour-info-page.html'),
 		 tour_memo:require('tpl!templates/tour-memo-page.html'),
 		 editPassenger:require('tpl!templates/passenger-edit.html'),
+		 editBus:require('tpl!templates/bus-edit.html'),
 		 common: require('tpl!templates/common-page.html')
 		 
 	};

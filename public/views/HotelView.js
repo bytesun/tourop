@@ -1,9 +1,8 @@
 define([
 	'marionette',
 	'templates',
-    'underscore',
-    'controllers/hotel'
-], function (Marionette, templates, _, hotel) {
+    'underscore'
+], function (Marionette, templates, _) {
 	'use strict';
 
 	return Marionette.ItemView.extend({
@@ -16,13 +15,15 @@ define([
         	'click .a_hotel_delete': 'delHotel'
         },
         newHotel: function(e){
-        	hotel.newHotel();
+        	app.navigate("hotel_new",true);
         },
-        searchHotel : function(){
-        	hotel.searchHotel();
+        searchHotel : function(e){
+        	app.navigate("hotel_search",true);
+
         },
-        editHotel : function(){
-        	hotel.editHotel();
+        editHotel : function(e){
+        	app.navigate("hotel_edit",true);
+        	 
         },
         delHotel:function(){
         	app.execute("app:dialog:confirm",{

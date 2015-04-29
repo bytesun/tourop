@@ -10,31 +10,48 @@ var Blog = new Schema({
 });
 
 var Route = new Schema({
-	
-});
-
-var Agency = new Schema({
-	
-});
-
-var Restaurant = new Schema({
-	
-});
-
-var Hotel = new Schema({
 	code : String,
 	name : String,
-	address : String,
-	phone : String,
-	contact : String
+	days: Number,
+	
 });
 
+var Information = new Schema({
+	type : String, //1-agency/2-hotel/3-restaurant/4-admission
+	code : String,
+	name : String,
+	telphone : String,
+	contact : String,
+	address : String,
+	city: String,
+	province: String,
+	country :String,
+	postcode:String,
+	note: String
+});
+
+var Passenger = new Schema({
+	tour:String,
+	group:Number,
+	name:String,
+	gender:String,
+	age:Number,
+	phone:String,
+	meal:Boolean,
+	admission:Boolean,
+	pickup:String,	
+	confirmation:String,
+	invoice:String,
+	agency:String
+	
+	
+});
 
 mongoose.model( 'Blog', Blog );
 mongoose.model( 'Route', Route );
-mongoose.model( 'Agency', Agency );
-mongoose.model( 'Restaurant', Restaurant );
-mongoose.model( 'Hotel', Hotel );
+mongoose.model( 'Information', Information );
+mongoose.model( 'Passenger', Passenger );
+
 
 var host = process.env.OPENSHIFT_MONGODB_DB_HOST||"localhost";
 var port = process.env.OPENSHIFT_MONGODB_DB_PORT||'27017';

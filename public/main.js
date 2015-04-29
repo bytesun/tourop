@@ -1,10 +1,11 @@
 require.config({
 	paths: {
         'jquery'                : 'assets/lib/jquery.min',
-        //'jquery-ui'             : '//cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min',
         'underscore'            : 'assets/lib/underscore-min',         // load lodash instead of underscore (faster + bugfixes)
-        'backbone'              : 'assets/lib/backbone',
-        'marionette'            : 'assets/lib/backbone.marionette',
+        'backbone'              : 'assets/lib/backbone.min',
+        'marionette'            : 'assets/lib/backbone.marionette.min',
+        'syphon'                : 'assets/lib/backbone.syphon.min',
+        'wreqr'                 : 'assets/lib/backbone.wreqr.min',
         'bootstrap'             : 'assets/lib/bootstrap.min',
         'text'                  : 'assets/lib/text',
         'tpl'                   : 'assets/lib/tpl',
@@ -25,7 +26,10 @@ require.config({
 			exports: 'Backbone.Marionette',
 			deps: ['backbone']
 		},
-
+		syphon: {
+			exports: 'Backbone.Syphon',
+			deps: ['backbone']
+		},
         bootstrap: {
             deps: ['jquery']
         }
@@ -43,7 +47,6 @@ require([
 	'use strict';
 
     app.addInitializer(function() {
-
         PagesModule.start();
     });
 
