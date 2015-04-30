@@ -17,6 +17,42 @@ router.post('/api/infos', function(req, res) {
 });
 
 /**
+ * 	type : String, //A-agency/H-hotel/R-restaurant/S-admission
+	code : String,
+	name : String,
+	telphone : String,
+	contact : String,
+	address : String,
+	city: String,
+	province: String,
+	country :String,
+	postcode:String,
+	note: String
+ */
+router.put('/api/infos/:id', function(req, res) {
+	Information.findByIdAndUpdate(
+			req.params.id,
+			{$set:{
+				type:req.body.type,
+				code:req.body.code,
+				name:req.body.name,
+				telphone:req.body.telphone,
+				contact:req.body.contact,
+				address:req.body.address,
+				city:req.body.city,
+				province:req.body.province,
+				country:req.body.country,
+				postcode:req.body.postcode,
+				note:req.body.note
+				}},
+			function( err, info){
+		if(err){
+			return res.send({error:err});
+		}
+		res.send(info);
+	  });
+});
+/**
  * get a case by id
  */
 router.get('/api/infos/:id',function(req,res){
@@ -27,7 +63,14 @@ router.get('/api/infos/:id',function(req,res){
 
 router.get('/api/infos',function(req,res){
 	res.set('Content-Type', 'application/json');
-	Information.find(null,
+
+	var c = req.query.c;
+	var t = req.query.t;
+	var query = {};
+	if(c != 0)query.code = new RegExp('^'+c, "i");
+	if(t != 'ALL') query.type=t;
+	
+	Information.find(query,
 				null,
 				null,function(err,infos){
 			res.send(infos);
@@ -36,8 +79,8 @@ router.get('/api/infos',function(req,res){
 
 });
 
-router.delete('/api/infos',function(req,res){
-	Information.remove(null,function(err,count){
+router.delete('/api/infos/:id',function(req,res){
+	Information.remove({_id:req.params.id},function(err,count){
 		res.send({error:err,count:count});
 	});
 });

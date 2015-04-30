@@ -6,8 +6,10 @@ define(function (require) {
 	return {
 		 login:require('tpl!templates/login-page.html'),
 		 home: require('tpl!templates/home-page.html'),
-		 route_list: require('tpl!templates/route-list-page.html'),
+		 route: require('tpl!templates/route-page.html'),
 		 route_info: require('tpl!templates/route-info-page.html'),
+		 route_list: require('tpl!templates/route-list-page.html'),
+		 route_item: require('tpl!templates/route-item-page.html'),
 		 info: require('tpl!templates/information-page.html'),
 		 info_list: require('tpl!templates/information-list-page.html'),
 		 info_item: require('tpl!templates/information-item-page.html'),

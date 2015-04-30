@@ -3,6 +3,7 @@
 define([
     'backbone',
 	'marionette',
+	//'wreqr',
 	'models/SessionModel',
     'regions/notification',
     'regions/dialog',
@@ -69,6 +70,7 @@ define([
      *           description: 'We are going to remove Team state!'
      *       });
      */
+//    app.commands = Wreqr.Commands();
     app.commands.setHandler("app:notify", function(jsonData) {
         require(['views/NotificationView'], function(NotifyView) {
             app.notification.show(new NotifyView({

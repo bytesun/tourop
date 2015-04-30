@@ -1,5 +1,5 @@
 <div id="info-info-template" class="container">
-        <h3  class="text text-lg text-primary">Base Information</h3>
+        <h3  class="text text-lg text-primary">Partner Information</h3>
 		<hr>	
 
 			<form class="form-horizontal">
@@ -7,56 +7,75 @@
 			    <label for="inputEmail3" class="col-sm-2 control-label">Type:</label>
 			    <div class="col-sm-2">
 		      		<select class="form-control" name="type">
-					  <option value="A">Agency</option>
-					  <option value="H">Hotel</option>
-					  <option value="R">Restaurant</option>
-					  <option value="S">Admission</option>
+		      		  <% if(type == 'A'){ %>
+					  	<option value="A" selected>Agency</option>
+					  	<option value="H" >Hotel</option>
+					  	<option value="R">Restaurant</option>
+					  	<option value="S">Admission</option>
+					  <%}else if(type == 'H'){%>
+					   	<option value="A">Agency</option>
+					  	<option value="H" selected>Hotel</option>
+					  	<option value="R">Restaurant</option>
+					  	<option value="S">Admission</option>
+					  <%}else if(type == 'R'){%>
+					  	<option value="A" >Agency</option>
+					  	<option value="H" >Hotel</option>
+					  	<option value="R" selected>Restaurant</option>
+					  	<option value="S">Admission</option>					  
+					  <%}else if(type == 'S'){%>
+					  	<option value="A" >Agency</option>
+					  	<option value="H" >Hotel</option>
+					  	<option value="R">Restaurant</option>
+					  	<option value="S" selected>Admission</option>					  	
+					  <%}%>
+					
+
 					</select>
 			    </div>
 			  </div>			
 			  <div class="form-group">
 			    <label for="inputEmail3" class="col-sm-2 control-label">Code:</label>
 			    <div class="col-sm-2">
-			      <input type="text" class="form-control" name="code" value="A001" placeholder="A001" required>
+			      <input type="text" class="form-control" name="code" value="<%=code%>" placeholder="" required>
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="inputPassword3" class="col-sm-2 control-label">Name:</label>
 			    <div class="col-sm-7">
-			      <input type="text" class="form-control" name="name" value="Test hotel" placeholder="Sample Hotel" required>
+			      <input type="text" class="form-control" name="name" value="<%=name%>" placeholder="" required>
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="inputPassword3" class="col-sm-2 control-label">Telephone:</label>
 			    <div class="col-sm-7">
-			      <input type="tel" class="form-control" name="telphone" value="604-254-2569" placeholder="">
+			      <input type="tel" class="form-control" name="telphone" value="<%=telphone%>" placeholder="">
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="inputPassword3" class="col-sm-2 control-label">Contact:</label>
 			    <div class="col-sm-7">
-			      <input type="text" class="form-control" name="contact" value="sun" placeholder="Matt">
+			      <input type="text" class="form-control" name="contact" value="<%=contact%>" placeholder="">
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="inputPassword3" class="col-sm-2 control-label">Address:</label>
 			    <div class="col-sm-7">
-			      <input type="text" class="form-control" name="address" value="201 25th ST Langley" placeholder="">
+			      <input type="text" class="form-control" name="address" value="<%=address%>" placeholder="">
 			    </div>
 			  </div>
 
 			  <div class="form-group">
 			  	<label for="inputPassword3" class="col-sm-2 control-label"></label>
-			    <div class="col-sm-2"><input type="text" class="form-control col-sm-3" name="city" value="Vancouver" placeholder="city"></div>	
-			    <div class="col-sm-1"><input type="text" class="form-control col-sm-3" name="province" value="BC" placeholder="province"></div>
-			    <div class="col-sm-2"><input type="text" class="form-control col-sm-3" name="country" value="Canada" placeholder="country">	</div>
-			    <div class="col-sm-2"><input type="text" class="form-control col-sm-3" name="postcode" value="V2W3D3" placeholder="postcode"></div>
+			    <div class="col-sm-2"><input type="text" class="form-control col-sm-3" name="city" value="<%=city%>" placeholder="city"></div>	
+			    <div class="col-sm-1"><input type="text" class="form-control col-sm-3" name="province" value="<%=province%>" placeholder="province"></div>
+			    <div class="col-sm-2"><input type="text" class="form-control col-sm-3" name="country" value="<%=country%>" placeholder="country">	</div>
+			    <div class="col-sm-2"><input type="text" class="form-control col-sm-3" name="postcode" value="<%=postcode%>" placeholder="postcode"></div>
 			  </div>
 	
 			  <div class="form-group">
 			    <label for="inputPassword3" class="col-sm-2 control-label">Note:</label>
 			    <div class="col-sm-7">
-			      <textarea type="textarea" class="form-control" name="note" >test hotel note</textarea>
+			      <textarea type="textarea" class="form-control" name="note" ><%=note%></textarea>
 			    </div>
 			  </div>			  		  			  
 			  <div class="form-group">

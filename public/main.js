@@ -5,7 +5,7 @@ require.config({
         'backbone'              : 'assets/lib/backbone.min',
         'marionette'            : 'assets/lib/backbone.marionette.min',
         'syphon'                : 'assets/lib/backbone.syphon.min',
-        'wreqr'                 : 'assets/lib/backbone.wreqr.min',
+//        'wreqr'                 : '/backbone.wreqr',
         'bootstrap'             : 'assets/lib/bootstrap.min',
         'text'                  : 'assets/lib/text',
         'tpl'                   : 'assets/lib/tpl',
@@ -30,6 +30,11 @@ require.config({
 			exports: 'Backbone.Syphon',
 			deps: ['backbone']
 		},
+//		wreqr : {
+//			exports: 'Backbone.Wreqr',
+//			deps: ['backbone']
+//			
+//		},
         bootstrap: {
             deps: ['jquery']
         }

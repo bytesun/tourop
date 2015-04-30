@@ -2,8 +2,16 @@ define([
     'app',
     'marionette',
     'routers/index',
-    'controllers/index'
-], function(app, Marionette, Router, Controller){
+    'controllers/index',
+    'models/Information',
+    'collections/Informations',
+    'models/Route',
+    'collections/Routes'
+], function(app, Marionette, Router, Controller,
+		Information,
+		Informations,
+		Route,
+		Routes){
  
     var PagesModule = app.module("Pages", function(Pages) {
         this.startWithParent = false;
@@ -14,43 +22,14 @@ define([
             this.router = new Router({ controller: Controller });
         });
         
-        Information = Backbone.Model.extend({
-  	       urlRoot: '/api/infos',
-	       idAttribute: '_id',
-
-            // Model Constructor
-            initialize: function() {
-
-            },
-
-            // Default values for all of the Model attributes
-            defaults: {
-
-            },
-
-            // Gets called automatically by Backbone when the set and/or save methods are called (Add your own logic)
-            validate: function(attrs) {
-
-            }
-
-        });
- 	
- 	
- 	  // Creates a new Backbone Collection class object
- 	Collection = Backbone.Collection.extend({
- 	      url: '/api/infos',
- 	      // Tells the Backbone Collection that all of it's models will be of type Model (listed up top as a dependency)
- 	      model: Information
-
- 	    });
- 	
  	
  	var API = {
- 		getInformations:function(){
+ 		getInformations:function(query){
  			console.log('calling API.getInforamtions');
- 			var infos = new Collection();
+ 			var infos = new Informations();
  			var defer = $.Deferred();
  			infos.fetch({
+ 				data:$.param(query),
  				success:function(data){
  					defer.resolve(data);
  				}
@@ -64,7 +43,7 @@ define([
  			return promise;
  		},
  		getInformation:function(id){
- 			var info = new Model({'_id':id});
+ 			var info = new Information({'_id':id});
  			var defer = $.Deferred();
  			//setTimeout(function(){
  				info.fetch({
@@ -80,18 +59,61 @@ define([
  			//ocase.fetch().done(function(){
  	//		});
  			return defer.promise();
- 		}
+ 		},
+		getRoutes:function(query){
+ 			console.log('calling API.getRoutes');
+ 			var routes = new Routes();
+ 			var defer = $.Deferred();
+ 			routes.fetch({
+ 				data:$.param(query),
+ 				success:function(data){
+ 					defer.resolve(data);
+ 				}
+ 			});	
+ 			var promise = defer.promise();
+ 			$.when(promise).done(function(infos){
+ 				if(infos.length === 0){
+ 					
+ 				}
+ 			});
+ 			return promise;
+ 		},
+ 		getRoute:function(id){
+ 			var route = new Route({'_id':id});
+ 			var defer = $.Deferred();
+ 			//setTimeout(function(){
+ 				route.fetch({
+ 					success:function(data){
+ 						defer.resolve(data);
+ 					},
+ 					error:function(data){
+ 						defer.resolve(undefined);
+ 					}
+ 				
+ 				});
+ 			//},2000);		
+ 			//ocase.fetch().done(function(){
+ 	//		});
+ 			return defer.promise();
+ 		} 		
  	};
  	
- 	app.reqres.setHandler("entities:informations", function(){
- 		console.log('calling app request info');
- 		 return API.getInformations();
+ 	app.reqres.setHandler("entities:informations", function(query){
+ 		console.log('calling app request info'+query);
+ 		 return API.getInformations(query);
  	 });
  	
  	app.reqres.setHandler("information:entity",function(id){
  		return API.getInformation(id);
  	});
-
+ 	app.reqres.setHandler("entities:routes", function(query){
+ 		console.log('calling app request info'+query);
+ 		 return API.getRoutes(query);
+ 	 });
+ 	
+ 	app.reqres.setHandler("route:entity",function(id){
+ 		return API.getRoute(id);
+ 	});
 
     });
 

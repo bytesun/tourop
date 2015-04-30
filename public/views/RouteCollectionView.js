@@ -2,18 +2,18 @@ define([
 	'marionette',
 	'templates',
     'underscore',
-    'models/Information',
-    'collections/Informations',
-    'views/InfoListItemView'
+    'models/Route',
+    'collections/Routes',
+    'views/RouteListItemView'
     
-], function (Marionette, templates, _,infoModel,Informations,InfoListItemView) {
+], function (Marionette, templates, _,RouteModel,Routes,RouteListItemView) {
 	'use strict';
 
 	return Marionette.CompositeView.extend({
 	
-	  childView: InfoListItemView,
+	  childView: RouteListItemView,
 	  childViewContainer: "tbody",
-	  template: templates.info_list,
+	  template: templates.route_list,
 	  modelEvents: {
 		  },
 

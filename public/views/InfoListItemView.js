@@ -2,9 +2,10 @@ define([
 	'marionette',
 	'templates',
     'underscore',
-    'models/Information'
+    'models/Information',
+    'views/InfoAuthorView'
     
-], function (Marionette, templates, _,InfoModel) {
+], function (Marionette, templates, _,InfoModel,InfoAuthorView) {
 	'use strict';
 
 	return Marionette.ItemView.extend({
@@ -12,20 +13,15 @@ define([
 		model:InfoModel,
 		tagName:'tr',
         events: {
-        	'click .a_info_edit': 'editInfo',
-        	'click .a_info_delete': 'delInfo'
+        	'click .a_info_edit': 'editInfo'        	
         },
         editInfo : function(e){
-        	console.log('edit info :'+this.model.get("code"));
-        	this.trigger("information:edit",this.model);
+        	app.navigate("info_new");
+        	var infoView = new InfoAuthorView({
+        		model:this.model
+        	});
+        	app.main.show(infoView);
         	 
-        },
-        delInfo:function(){
-        	console.log('delet info');
-        	app.execute("app:dialog:confirm",{
-        		title:'',
-        		message : 'Are you sure deleting this information?'
-        	});        	
         }
 
 	});

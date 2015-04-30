@@ -10,10 +10,11 @@ define([
 		appRoutes: {
             "home" : "home",
             "tour":"tour",
-            "info":"info",
+            "info(/:code/:type)":"info",
             "info_new":"info_new",
             "info_info":"info_info",
-            "route":"route",
+            "route(/:query)":"route",
+            "route_info/:id":"route_info",            
             "confirmation":"confirmation",
             "confirmation_info":"confirmation_info",
             "invoice":"invoice",

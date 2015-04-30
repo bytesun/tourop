@@ -15,9 +15,17 @@ define([
 			InfoListRegion:"#info-list-region"
 		},
 	 events: {
-     	'change .search_code' : "searchInfoByCode",
-     	'click .btn_info_add': 'newInfo',
-     	'click .btn_info_search': 'searchInfo'
+//		 'change #partner_types': 'listByType',
+//     	'change .search_code' : "searchInfoByCode",
+		 'click .btn_info_search': 'searchInfo',
+     	'click .btn_info_add': 'newInfo'
+     },
+     listByType: function(e){
+//     	console.log('change partner type :'+$("#partner_types").val());
+//     	console.log($(".search_code").val());
+//     	console.log($("#partner_types").val());
+//     	app.navigate("info/"+$(".search_code").val()+"/"+$("#partner_types").val(),true);
+     	
      },
      searchInfoByCode: function(e){
      	var searchCode = $("search_code").val();
@@ -32,7 +40,10 @@ define([
      	app.navigate("info_new",true);
      },
      searchInfo : function(e){
-//     	app.navigate("info_search",true);
+    	var c =  $(".search_code").val();
+    	if(c == "")c = 0;
+    	app.navigate("info/"+c+"/"+$("#partner_types").val(),true);
+//     	
 
      }
 	

@@ -9,12 +9,20 @@ define(["jquery", "backbone"],
   	       urlRoot: '/api/infos',
 	       idAttribute: '_id',
 	       defaults:{
-	    	 code:"H001",
-	    	 name:"Sample Hotel"
+	
 	       },
             // Model Constructor
             initialize: function() {
-
+	           	 this.type="";
+	           	this.code="";
+	           	this.name="";
+	           	this.telphone="";
+	           	this.address="";
+	           	this.contact="";
+	           	this.province="";
+	           	this.country="";
+	           	this.postcode="";
+	           	this.note="";
             },
 
             // Default values for all of the Model attributes

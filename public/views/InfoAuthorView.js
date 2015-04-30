@@ -18,11 +18,12 @@ define([
        	 
     	    var data = Syphon.serialize(this);
     	    this.model.set(data);
-    	    console.log('save info: '+data);
+
     	    this.model.save();
-    	    
+    	    console.log('code:'+this.model.get("code"));
+    	    console.log('type:'+this.model.get("type"));
     	    //redirect list page
-    	    app.navigate("info",true);        	
+    	    app.navigate("info/"+this.model.get("code")+"/"+this.model.get("type"),true);        	
         }
 	});
 });

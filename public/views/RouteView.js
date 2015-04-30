@@ -2,37 +2,38 @@ define([
 	'marionette',
 	'templates',
     'underscore',
-    'controllers/route'
-], function (Marionette, templates, _,route) {
+    'controllers/route',
+    'syphon'
+], function (Marionette, templates, _,route,
+		Syphon) {
 	'use strict';
 
-	return Marionette.ItemView.extend({
-		template: templates.route_list,
-
+	return Marionette.LayoutView.extend({
+		template: templates.route,
+		regions:{
+			routeListRegion:"#route-list-region"
+		},
         events: {
-            'click .route_new' : 'newRoute',
-            'click .a_route_code' : 'newRoute',
-            'click .btn_route_start':'startRoute',
-            'click .a_route_edit' : 'editRoute',
-            'click .a_route_delete' : 'deleteRoute'
+        	"submit form": "saveRoute",
+        	"change .search_code" : "searchByCode",
+        	"click .btn_route_search":"searchByCode"
         },
-        newRoute: function(){
-        	route.newRoute();
+        saveRoute: function(e){
+        	e.preventDefault();
+          	
+    	    var data = Syphon.serialize(this);
+    	    this.model.save(data,{
+    	    	success:function(model, response, options){
+    	    		app.navigate("route_info/"+model.get("_id"),true);    
+    	    	}
+    	    });
+
+    	    
         },
-        editRoute: function(){
-        	route.editRoute();
-        },
-        
-        startRoute: function(){
-        	
-        	app.navigate("tour_new",true);
-        },
-        
-        deleteRoute:function(){
-        	app.execute("app:dialog:confirm",{
-        		title:'',
-        		message : 'Are you sure deleting this route information?'
-        	});        	
+        searchByCode: function(e){
+        	var searchcode = $(".search_code").val();
+        	console.log("searching code:"+searchcode);
+        	app.navigate("route/"+searchcode,true);
         }
 
 	});
