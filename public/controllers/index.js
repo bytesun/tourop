@@ -48,7 +48,7 @@ define([
 	        },	        
 	        route : function(query){
 	        	console.log("query :"+query);
-//	        	if(query == undefined)query=0;
+
 	        	var routeView = new RouteView({
 	        		model:new RouteModel({
 	        			code:"",
@@ -66,35 +66,44 @@ define([
 		        	});	        		
 	        		app.main.show(routeView);
 	        	}else{
-	        	var fetchingitems = app.request("entities:routes",{c:query});
-	        	$.when(fetchingitems).done(function(routes){
-	        			        		
-		        	var routeCollectionView = new RouteCollectionView({
-		        		collection:routes
-		        	});
-		        	routeView.on("show",function(){	        		
-		        		routeView.routeListRegion.show(routeCollectionView);
-		        		
-		        	});
-		        	app.main.show(routeView);
-	        	});	
+	        		var fetchingitems = app.request("entities:routes",{c:query});
+		        	$.when(fetchingitems).done(function(routes){
+		        			        		
+			        	var routeCollectionView = new RouteCollectionView({
+			        		collection:routes
+			        	});
+			        	routeView.on("show",function(){	        		
+			        		routeView.routeListRegion.show(routeCollectionView);
+			        		
+			        	});
+			        	app.main.show(routeView);
+		        	});	
 	        	
 	        	}   
 	        	
-	        	
-	        	
 	        },
 	        route_info : function(id){
-	        	console.log('show route info view'+id);
-	        	var fetchingRoute = app.request("route:entity",id);
-				$.when(fetchingRoute).done(function(route){
-					var routeView = new RouteInfoView({
-		        		model: route
-		        	});
-		        	
+	        	if(id == null){
+	        		var routeView = new RouteInfoView({
+		        		model: new RouteModel()
+		        	});		        	
 		        	app.main.show(routeView);
-				});
+	        	}else{
+		        	var fetchingRoute = app.request("route:entity",id);
+					$.when(fetchingRoute).done(function(route){
+						var routeView = new RouteInfoView({
+			        		model: route
+			        	});			        	
+			        	app.main.show(routeView);
+					});
+	        	}
 	        	
+	        },
+	        route_itinerary: function(id){
+	        	console.log('list itinerary for route :'+id);
+	        	var routeItineraryView = new RouteItinerary();        	
+	        	
+	        	app.main.show(routeItineraryView);
 	        },
 	        tour_info: function(view,options){
 	        	app.main.show(new TourInfoView());

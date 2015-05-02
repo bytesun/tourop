@@ -79,6 +79,7 @@ define([
  			return promise;
  		},
  		getRoute:function(id){
+ 			console.log('fetching route :'+id);
  			var route = new Route({'_id':id});
  			var defer = $.Deferred();
  			//setTimeout(function(){

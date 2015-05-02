@@ -9,14 +9,6 @@ define([
 	return Marionette.ItemView.extend({
 		template: templates.route_item,
 		model:RouteModel,
-		tagName:'tr',
-        events: {
-        	'click .a_info_edit': 'editInfo'        	
-        },
-        editInfo : function(e){
-
-        	 
-        }
-
+		tagName:'tr'
 	});
 });

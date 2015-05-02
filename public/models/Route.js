@@ -12,7 +12,7 @@ define(["jquery", "backbone"],
             initialize: function() {            	
               	this.code =  '';
               	this.name = '';
-              	this.days= 0;
+              	this.days= 1;
               	this.fee_tour_adult=0;
               	this.fee_tour_senior=0;
               	this.fee_tour_youth=0;
@@ -30,6 +30,13 @@ define(["jquery", "backbone"],
               	this.fee_adm_youth=0;
               	this.fee_adm_child=0;
               	this.fee_adm_infant=0;
+              	this.itinerary=[{
+              		day:1,
+              		from:'',
+              		via:'',
+              		to:'',
+              		itinerary:''
+              	}];
               	this.note = '';
             },
 
@@ -37,7 +44,7 @@ define(["jquery", "backbone"],
             defaults: {
             	code : '',
             	name : '',
-            	days: 0,
+            	days: 1,
             	fee_tour_adult:0,
             	fee_tour_senior:0,
             	fee_tour_youth:0,
@@ -55,6 +62,14 @@ define(["jquery", "backbone"],
             	fee_adm_youth:0,
             	fee_adm_child:0,
             	fee_adm_infant:0,
+            	itinerary:
+            		[{
+            			day:1,
+            			from:'',
+            			via:'',
+            			to:'',
+            			itinerary:''
+            		}]	,
             	note : ''
             },
 

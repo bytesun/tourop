@@ -30,6 +30,15 @@ var Route = new Schema({
 	fee_adm_youth:Number,
 	fee_adm_child:Number,
 	fee_adm_infant:Number,
+	itinerary:
+		[{
+			day:Number,
+			from:String,
+			via:String,
+			to:String,
+			itinerary:String
+		}]
+	,
 	note : String
 });
 

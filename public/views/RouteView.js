@@ -3,9 +3,11 @@ define([
 	'templates',
     'underscore',
     'controllers/route',
-    'syphon'
+    'syphon',
+    'views/RouteCollectionView'
 ], function (Marionette, templates, _,route,
-		Syphon) {
+		Syphon,
+		RouteCollectionView) {
 	'use strict';
 
 	return Marionette.LayoutView.extend({
@@ -14,26 +16,25 @@ define([
 			routeListRegion:"#route-list-region"
 		},
         events: {
-        	"submit form": "saveRoute",
         	"change .search_code" : "searchByCode",
-        	"click .btn_route_search":"searchByCode"
+        	"click .btn_route_search":"searchByCode",
+        	"click .btn_route_new":"newRoute",
         },
-        saveRoute: function(e){
-        	e.preventDefault();
-          	
-    	    var data = Syphon.serialize(this);
-    	    this.model.save(data,{
-    	    	success:function(model, response, options){
-    	    		app.navigate("route_info/"+model.get("_id"),true);    
-    	    	}
-    	    });
-
-    	    
-        },
+       
         searchByCode: function(e){
-        	var searchcode = $(".search_code").val();
-        	console.log("searching code:"+searchcode);
-        	app.navigate("route/"+searchcode,true);
+        	var query = $("#search_code").val();
+//        	var fetchingitems = app.request("entities:routes",{c:query});
+//        	$.when(fetchingitems).done(function(routes){
+//        			        		
+//	        	var routeCollectionView = new RouteCollectionView({
+//	        		collection:routes
+//	        	});
+//        		this.routeListRegion.show(routeCollectionView);
+//        	});	        	
+        	app.navigate('route/'+query,true);
+        },
+        newRoute: function(e){
+        	app.navigate("route_info",true);
         }
 
 	});

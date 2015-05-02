@@ -64,7 +64,7 @@ define([
         },        
         closeTour: function(e){
         	console.log('close tour');
-            app.execute("app:dialog:simple", {
+        	app.request("app:dialog:simple", {
                 title: 'Input memo information to close this tour', // Optional
                 message: 'Input close information'
             },

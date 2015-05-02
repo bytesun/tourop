@@ -3,19 +3,22 @@
 define([
     'backbone',
 	'marionette',
-	//'wreqr',
+//	'wreqr',
+
 	'models/SessionModel',
     'regions/notification',
     'regions/dialog',
     'views/HomeView',
     'views/LoginView'
-], function (Backbone, Marionette,SessionModel, NotifyRegion, DialogRegion,
+], function (Backbone, Marionette,
+//		Wreqr,
+		SessionModel, NotifyRegion, DialogRegion,
 		HomeView,
 		LoginView) {
 	'use strict';
 
 	var app = new Marionette.Application();
-
+//	var commands = new Backbone.Wreqr.Commands();
 	
 	app.addRegions({
 		top: 'body',
@@ -55,6 +58,7 @@ define([
 	});
 
     app.on("start", function(options){
+    	
         if (Backbone.history){
             Backbone.history.start();
         }

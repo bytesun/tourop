@@ -4,11 +4,11 @@ var mongoose = require( 'mongoose' );
 var Route     = mongoose.model('Route');
 
 /**
- * create a new case
+ * create a new ROUTE
  */
 router.post('/api/routes', function(req, res) {
-	console.log('post route data'+ req.body);
-	
+	console.log('post route data'+JSON.stringify(req.body));
+
 	new Route(req.body).save( function( err, route){
 		if(err){
 			return res.send({error:err});
@@ -22,9 +22,11 @@ router.post('/api/routes', function(req, res) {
 
 
 router.put('/api/routes/:id', function(req, res) {
-	console.log('put route data:'+req.body);
+	var itinerarys = req.body.itinerary;
+//	console.log('itinerary : '+JSON.stringify(itinerarys));
 	Route.findByIdAndUpdate(
 			req.params.id,
+//			req.body,
 			{$set:{
 				code:req.body.code,
 				name:req.body.name,
@@ -47,7 +49,7 @@ router.put('/api/routes/:id', function(req, res) {
 				fee_adm_youth:req.body.fee_adm_youth,
 				fee_adm_child:req.body.fee_adm_child,
 				fee_adm_infant:req.body.fee_tour_infant,			
-
+				itinerary:req.body.itinerary,
 				
 				note:req.body.note
 				}},
@@ -79,7 +81,7 @@ router.get('/api/routes',function(req,res){
 	Route.find(query,
 				null,
 				null,function(err,routes){
-		console.log(routes);
+//		console.log(routes);
 			res.send(routes);
 	});
 	

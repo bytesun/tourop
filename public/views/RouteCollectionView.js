@@ -14,14 +14,6 @@ define([
 	  childView: RouteListItemView,
 	  childViewContainer: "tbody",
 	  template: templates.route_list,
-	  modelEvents: {
-		  },
 
-	  collectionEvents: {
-		  'click .a_info_delete': 'delInfo'
-	  },
-	    delInfo:function(){
-	    	console.log('delet info');
-	    }
 	});
 });
