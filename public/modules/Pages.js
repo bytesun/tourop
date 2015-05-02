@@ -60,6 +60,7 @@ define([
  	//		});
  			return defer.promise();
  		},
+ 		
 		getRoutes:function(query){
  			console.log('calling API.getRoutes');
  			var routes = new Routes();
@@ -107,6 +108,7 @@ define([
  	app.reqres.setHandler("information:entity",function(id){
  		return API.getInformation(id);
  	});
+ 	
  	app.reqres.setHandler("entities:routes", function(query){
  		console.log('calling app request info'+query);
  		 return API.getRoutes(query);
