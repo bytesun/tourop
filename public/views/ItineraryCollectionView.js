@@ -2,13 +2,13 @@ define([
 	'marionette',
 	'templates',
     'underscore',
-    'views/RouteItineraryItemView'
+    'views/ItineraryItemView'
     
-], function (Marionette, templates, _,RouteItineraryItemView) {
+], function (Marionette, templates, _,ItineraryItemView) {
 	'use strict';
 
 	return Marionette.CompositeView.extend({	
-	  childView: RouteItineraryItemView,
+	  childView: ItineraryItemView,
 	  childViewContainer: "#itinerary_list_item",
 	  template: templates.route_itinerary_list,
 	  events:{

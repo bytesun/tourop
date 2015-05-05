@@ -6,6 +6,7 @@ define([
 	'views/CommonView',
 	'views/HomeView',
 	'views/TourView',
+	'models/Tour',
 	'views/RouteView',
 	'views/RouteInfoView',
 	'views/RouteCollectionView',
@@ -24,6 +25,7 @@ define([
 		CommonView,
 		HomeView,
 		TourView,
+		TourModel,
 		RouteView,
 		RouteInfoView,
 		RouteCollectionView,
@@ -45,7 +47,19 @@ define([
 	        },
 	      tour : function(view,options){
 	        	app.main.show(new TourView());
-	        },	        
+	        },	    
+	        tour_info: function(id){
+	        	 
+	        	if(id == null){
+	        		app.main.show(new TourInfoView({
+		        		model: new TourModel()
+		        	}));
+	        	}else{
+	        		//fetch tour information
+	        	}
+	        	
+	        },
+	        
 	        route : function(query){
 	        	console.log("query :"+query);
 
@@ -105,13 +119,6 @@ define([
 	        	
 	        	app.main.show(routeItineraryView);
 	        },
-	        tour_info: function(view,options){
-	        	app.main.show(new TourInfoView());
-	        },
-	        tour_new: function(view,options){
-	        	
-	        	app.main.show(new CommonView({template:templates.tour_new}));
-	        },
 	        info : function(code,type){
 	        	console.log('code:type:'+code+":"+type);
 	        	
@@ -137,19 +144,7 @@ define([
 	        },
 	        info_new : function(view,options){
 	        	var infoView = new InfoAuthorView({
-	        		model : new InfoModel({
-	       	    	 type:"A",
-	    	    	 code:"",
-	    	    	 name:"",
-	    	    	 telphone:"",
-	    	    	 address:"",
-	    	    	 contact:"",
-	    	    	 city:"",
-	    	    	 province:"",
-	    	    	 country:"",
-	    	    	 postcode:"",
-	    	    	 note:""
-	        		})
+	        		model : new InfoModel()
 	        	}); 
 	        	
 	        	app.main.show(infoView);

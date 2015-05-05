@@ -43,7 +43,7 @@ define(["jquery", "backbone"],
             // Default values for all of the Model attributes
             defaults: {
             	code : '',
-            	name : '',
+            	name : 'Route Information',
             	days: 1,
             	fee_tour_adult:0,
             	fee_tour_senior:0,

@@ -13,21 +13,21 @@ define(["jquery", "backbone"],
 	       },
             // Model Constructor
             initialize: function() {
-	           	 this.type="";
-	           	this.code="";
-	           	this.name="";
-	           	this.telphone="";
-	           	this.address="";
-	           	this.contact="";
-	           	this.province="";
-	           	this.country="";
-	           	this.postcode="";
-	           	this.note="";
             },
 
             // Default values for all of the Model attributes
             defaults: {
-
+      	    	 type:"A",
+    	    	 code:"",
+    	    	 name:"Partner Information",
+    	    	 telphone:"",
+    	    	 address:"",
+    	    	 contact:"",
+    	    	 city:"",
+    	    	 province:"",
+    	    	 country:"",
+    	    	 postcode:"",
+    	    	 note:""	
             },
 
             // Gets called automatically by Backbone when the set and/or save methods are called (Add your own logic)

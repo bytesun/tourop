@@ -9,6 +9,45 @@ var Blog = new Schema({
 	time : Date	
 });
 
+var Tour = new Schema({
+	routecode:String,
+	code:String,
+	name:String,
+	days:Number,
+	op:String,
+	guide:String,
+	departuredate:Date,
+	note:String,
+	passenger:[{
+		group:Number,
+		name:String,
+		gender:String,
+		age:Number,
+		phone:String,
+		meal:Boolean,
+		admission:Boolean,
+		pickup:String,	
+		confirmation:String,
+		invoice:String,
+		agency:String
+	}],
+	itinerary:[{
+		day:Number,
+		from:String,
+		via:String,
+		to:String,
+		hotel:String,
+		breakfast:String,
+		lunch:String,
+		dinner:String,
+		itinerary:String
+		
+	}],
+	bus:[{
+		
+	}]
+});
+
 var Route = new Schema({
 	code : String,
 	name : String,

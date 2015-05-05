@@ -13,16 +13,18 @@ define(["jquery", "backbone"],
 
             // Default values for all of the Model attributes
             defaults: {
-            			day:1,
-            			from:'',
-            			via:'',
-            			to:'',
-            			hotel:'',
-            			breakfast:'',
-            			lunch:'',
-            			dinner:'',
-            			itinerary:''
-
+       			group:1,
+    			name:'',
+    			gender:'',
+    			age:0,
+    			phone:'',
+    			meal:false,
+    			admission:false,
+    			pickup:'',	
+    			confirmation:'',
+    			invoice:'',
+    			agency:''
+            	
             },
 
             // Gets called automatically by Backbone when the set and/or save methods are called (Add your own logic)

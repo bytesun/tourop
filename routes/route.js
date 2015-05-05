@@ -73,25 +73,23 @@ router.get('/api/routes',function(req,res){
 	res.set('Content-Type', 'application/json');
 
 	var c = req.query.c;
-//	var t = req.query.t;
 	var query = {};
 	if(c != 0)query.code = new RegExp('^'+c, "i");
-//	if(t != 'ALL') query.type=t;
+//	else query=null,
 	
 	Route.find(query,
 				null,
 				null,function(err,routes){
-//		console.log(routes);
 			res.send(routes);
 	});
 	
 
 });
-router.delete('/api/routes',function(req,res){
-	Route.remove(function(err,count){
-		res.send({error:err,count:count});
-	});
-});
+//router.delete('/api/routes',function(req,res){
+//	Route.remove(function(err,count){
+//		res.send({error:err,count:count});
+//	});
+//});
 
 router.delete('/api/routes/:id',function(req,res){
 	Route.remove({_id:req.params.id},function(err,count){

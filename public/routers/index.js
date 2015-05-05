@@ -10,6 +10,7 @@ define([
 		appRoutes: {
             "home" : "home",
             "tour":"tour",
+            "tour_info(/:tour_id)":"tour_info",
             "info(/:code/:type)":"info",
             "info_new":"info_new",
             "info_info":"info_info",
@@ -19,9 +20,7 @@ define([
             "confirmation":"confirmation",
             "confirmation_info":"confirmation_info",
             "invoice":"invoice",
-            "invoice_info":"invoice_info",
-            "tour_info/:tour_id":"tour_info",            
-            "tour_new":"tour_new",
+            "invoice_info":"invoice_info",            
             
             "logout" : "logout"
 

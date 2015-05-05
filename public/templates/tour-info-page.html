@@ -2,202 +2,38 @@
 
 	 <div class="row">	
 	 	<div class="col-md-12">
-	 	 <div class="col-md-12">
-	 	 <div class="row">	
-	      <h2 class="text text-primary">4 days Canada tour </h2>
+	      <h2 class="text text-primary"><%=name%></h2>
 		 	<hr>
-				  <form role="form" class="form-horizontal">
-				    <div class="form-group">
-				      <div class="col-sm-1"><label>Code:</label><input type="text" class="form-control" value="T001" disabled></div>	
-				      <div class="col-sm-3"><label>OP:</label><input type="text" class="form-control"  value="Helen" placeholder="Helen"></div>
-				      <div class="col-sm-3"><label>Guide:</label><input type="text" class="form-control"  value="Jack" placeholder="Jack"></div>
-				      <div class="col-sm-2"><label>Days:</label><input type="number" class="form-control"  value="4" placeholder="4" disabled></div>
-				      <div class="col-sm-3"><label>Departure Date:</label><input type="date" class="form-control"  value="2015-05-10" placeholder=""></div>
-				    </div>	
-
-				    
-				    <div class="form-group">
-				      <div class="col-sm-12"><label>Note:</label><textarea  class="form-control" ></textarea></div>
-				    </div>		
-					    	    			    
-				  </form>
-				<hr>
-				</div>
-				</div>
-		</div><!-- end of col -->
- 	  </div>	
+			  <form role="form" class="form-horizontal">
+			    <div class="form-group">
+			      <div class="col-sm-2"><label>Route Code:</label><input type="text" class="form-control route_code" name="routecode" value="<%=routecode%>" placeholder="Route code" autofocus></div>
+			      <div class="col-sm-2"><label>Tour Code:</label><input type="text" class="form-control" name="code" value="<%=code%>"></div>	
+			      <div class="col-sm-8"><label>Name:</label><input type="text" class="form-control" name="name" value="<%=name%>"><br>	</div>	
+				  
+			      <div class="col-sm-3"><label>OP:</label><input type="text" class="form-control" name="op" value="<%=op%>" placeholder=""></div>
+			      <div class="col-sm-3"><label>Guide:</label><input type="text" class="form-control" name="guide"  value="<%=guide%>" placeholder=""></div>
+			      <div class="col-sm-3"><label>Departure Date:</label><input type="date" class="form-control" name="departuredate" value="<%=departuredate%>" placeholder=""></div>
+			      <div class="col-sm-3"><label>Days:</label><input type="number" class="form-control" name="days" value="<%=days%>" placeholder="4" disabled></div>
+			    </div>	
+			  </form>
+			<hr>
  		
- 	 <div class="row">
- 	 	<div class="col-md-6">
- 	 	  <div class="col-md-12">
-
- 	 		<div class="row">
-
-			<!-- itinerary -->
-			
-			<div role="tabpanel">
-			
-			  <!-- Nav tabs -->
-			  <ul class="nav nav-tabs" role="tablist">
-			    <li role="presentation" class="active"><a href="#day1" aria-controls="home" role="tab" data-toggle="tab">Day-1</a></li>
-			    <li role="presentation"><a href="#day2" aria-controls="profile" role="tab" data-toggle="tab">Day-2</a></li>
-			    <li role="presentation"><a href="#day3" aria-controls="messages" role="tab" data-toggle="tab">Day-3</a></li>
-			    <li role="presentation"><a href="#day4" aria-controls="settings" role="tab" data-toggle="tab">Day-4</a></li>
-			  </ul>
-			
-			  <!-- Tab panes -->
-			  <div class="tab-content">
-			    <div role="tabpanel" class="tab-pane active" id="day1">
-				<BR>
-					  <form role="form" class="form-horizontal">
-					    <div class="form-group">
-					      <div class="col-sm-4"><label>From:</label><input type="text" class="form-control" placeholder="Vancouver"></div>
-					      <div class="col-sm-4"><label>Via:</label><input type="text" class="form-control" placeholder="Banff"></div>
-					      <div class="col-sm-4"><label>To:</label><input type="text" class="form-control" placeholder="Calgary"></div>
-					    </div>
-				       <div class="form-group">
-					      <label class="col-sm-2" for="inputEmail1">Hotel:</label>
-					      <div class="col-sm-10"><input type="text" class="form-control" id="inputEmail1" placeholder="Vancouver hotel"></div>
-					    </div>					    			  
-					    <div class="form-group">
-					      <label class="col-sm-2" for="inputEmail1">Breakfast:</label>
-					      <div class="col-sm-10"><input type="text" class="form-control" id="inputEmail1" placeholder="Vancouver hotel"></div>
-					    </div>
-					    <div class="form-group">
-					      <label class="col-sm-2" for="inputPassword1">Lunch:</label>
-					      <div class="col-sm-10"><input type="text" class="form-control" id="inputPassword1" placeholder="Hope restaurant"></div>
-					    </div>
-					    <div class="form-group">
-					      <label class="col-sm-2" for="inputPassword1">Dinner:</label>
-					      <div class="col-sm-10"><input type="text" class="form-control" id="inputPassword1" placeholder="Banff hotel"></div>
-					    </div>			
-					    <div class="form-group">
-					      <label class="col-sm-2" for="inputPassword1">Itinerary:  </label>
-					      <div class="col-sm-8"><input type="text" class="form-control" id="inputPassword1" placeholder="9:00AM Departure from Vancouver airport"></div>
-					      <div class="col-sm-1"><button class="btn btn-default glyphicon glyphicon-plus glyphicon "></button></div>
-					    </div>	
-		
-						    			    			    
-					  </form>
-
-
-
-			    	
-				</div>
-			    <div role="tabpanel" class="tab-pane" id="day2">
-				<BR>
-					  <form role="form" class="form-horizontal">
-					    <div class="form-group">
-					      <div class="col-sm-4"><label>From:</label><input type="text" class="form-control" placeholder="Vancouver"></div>
-					      <div class="col-sm-4"><label>Via:</label><input type="text" class="form-control" placeholder="Banff"></div>
-					      <div class="col-sm-4"><label>To:</label><input type="text" class="form-control" placeholder="Calgary"></div>
-					    </div>			  
-					    <div class="form-group">
-					      <label class="col-sm-2" for="inputEmail1">Breakfast:</label>
-					      <div class="col-sm-10"><input type="text" class="form-control" id="inputEmail1" placeholder="Vancouver hotel"></div>
-					    </div>
-					    <div class="form-group">
-					      <label class="col-sm-2" for="inputPassword1">Lunch:</label>
-					      <div class="col-sm-10"><input type="text" class="form-control" id="inputPassword1" placeholder="Hope restaurant"></div>
-					    </div>
-					    <div class="form-group">
-					      <label class="col-sm-2" for="inputPassword1">Dinner:</label>
-					      <div class="col-sm-10"><input type="text" class="form-control" id="inputPassword1" placeholder="Banff hotel"></div>
-					    </div>			
-					    <div class="form-group">
-					      <label class="col-sm-2" for="inputPassword1">Itinerary:</label>
-					      <div class="col-sm-10"><input type="text" class="form-control" id="inputPassword1" placeholder="9:00AM Departure from Vancouver airport"></div>
-					    </div>	
-					    <div class="form-group">
-					      <label class="col-sm-2" for="inputPassword1"></label>
-					      <div class="col-sm-10"><input type="text" class="form-control" id="inputPassword1" placeholder="12:00PM Kelowna"></div>
-					    </div>	
-					    <div class="form-group">
-					      <label class="col-sm-2" for="inputPassword1"></label>
-					      <div class="col-sm-10"><input type="text" class="form-control" id="inputPassword1" placeholder="18:00PM Banff"></div>
-					    </div>	
-						    			    			    
-					  </form>
-				
-				</div>
-			    <div role="tabpanel" class="tab-pane" id="day3">
-				<BR>
-					  <form role="form" class="form-horizontal">
-					    <div class="form-group">
-					      <div class="col-sm-4"><label>From:</label><input type="text" class="form-control" placeholder="Vancouver"></div>
-					      <div class="col-sm-4"><label>Via:</label><input type="text" class="form-control" placeholder="Banff"></div>
-					      <div class="col-sm-4"><label>To:</label><input type="text" class="form-control" placeholder="Calgary"></div>
-					    </div>			  
-					    <div class="form-group">
-					      <label class="col-sm-2" for="inputEmail1">Breakfast:</label>
-					      <div class="col-sm-10"><input type="text" class="form-control" id="inputEmail1" placeholder="Vancouver hotel"></div>
-					    </div>
-					    <div class="form-group">
-					      <label class="col-sm-2" for="inputPassword1">Lunch:</label>
-					      <div class="col-sm-10"><input type="text" class="form-control" id="inputPassword1" placeholder="Hope restaurant"></div>
-					    </div>
-					    <div class="form-group">
-					      <label class="col-sm-2" for="inputPassword1">Dinner:</label>
-					      <div class="col-sm-10"><input type="text" class="form-control" id="inputPassword1" placeholder="Banff hotel"></div>
-					    </div>			
-					    <div class="form-group">
-					      <label class="col-sm-2" for="inputPassword1">Itinerary: </label>
-					      <div class="col-sm-10"><input type="text" class="form-control" id="inputPassword1" placeholder="9:00AM Departure from Vancouver airport"></div>
-					    </div>	
-
-						    			    			    
-					  </form>			
-				</div>
-			    <div role="tabpanel" class="tab-pane" id="day4">
-				<BR>
-					  <form role="form" class="form-horizontal">
-					    <div class="form-group">
-					      <div class="col-sm-4"><label>From:</label><input type="text" class="form-control" placeholder="Vancouver"></div>
-					      <div class="col-sm-4"><label>Via:</label><input type="text" class="form-control" placeholder="Banff"></div>
-					      <div class="col-sm-4"><label>To:</label><input type="text" class="form-control" placeholder="Calgary"></div>
-					    </div>			  
-					    <div class="form-group">
-					      <label class="col-sm-2" for="inputEmail1">Breakfast:</label>
-					      <div class="col-sm-10"><input type="text" class="form-control" id="inputEmail1" placeholder="Vancouver hotel"></div>
-					    </div>
-					    <div class="form-group">
-					      <label class="col-sm-2" for="inputPassword1">Lunch:</label>
-					      <div class="col-sm-10"><input type="text" class="form-control" id="inputPassword1" placeholder="Hope restaurant"></div>
-					    </div>
-					    <div class="form-group">
-					      <label class="col-sm-2" for="inputPassword1">Dinner:</label>
-					      <div class="col-sm-10"><input type="text" class="form-control" id="inputPassword1" placeholder="Banff hotel"></div>
-					    </div>			
-					    <div class="form-group">
-					      <label class="col-sm-2" for="inputPassword1">Itinerary:</label>
-					      <div class="col-sm-10"><input type="text" class="form-control" id="inputPassword1" placeholder="9:00AM Departure from Vancouver airport"></div>
-					    </div>	
-					    <div class="form-group">
-					      <label class="col-sm-2" for="inputPassword1"></label>
-					      <div class="col-sm-10"><input type="text" class="form-control" id="inputPassword1" placeholder="12:00PM Kelowna"></div>
-					    </div>	
-					    <div class="form-group">
-					      <label class="col-sm-2" for="inputPassword1"></label>
-					      <div class="col-sm-10"><input type="text" class="form-control" id="inputPassword1" placeholder="18:00PM Banff"></div>
-					    </div>	
-						    			    			    
-					  </form>		    
-			    </div>
-			  </div>
-			
-			</div>
-			</div>   	 	
- 	 	</div><!-- col 12 -->
-		</div><!-- col 6 -->
- 	 	<div class="col-md-6">
- 	 		<div class="col-md-12">
- 	 		<div class="row">
-		  		<!-- buses -->
-		
-						<div class="panel panel-default">
-						  <div class="panel-heading">Passengers <a class="passenger_add glyphicon glyphicon-plus"></a></div>
-						  <div class="panel-body">
-							  <table width="100%">
+	<div role="tabpanel">
+	  <!-- Nav tabs -->
+	  <ul class="nav nav-tabs" role="tablist">
+	     <li role="presentation" class="active"><a href="#passenger" aria-controls="passenger" role="tab" data-toggle="tab">Passenger</a></li>
+	     <li role="presentation"><a href="#itinerary" aria-controls="itinerary" role="tab" data-toggle="tab">Itinerary</a></li>
+	     <li role="presentation"><a href="#bus" aria-controls="bus" role="tab" data-toggle="tab">Bus</a></li>
+	  </ul>
+	  
+	 <div class="tab-content">
+	 <!-- passenger -->
+	  
+	   <div role="tabpanel" class="tab-pane active" id="passenger">
+	   	<div id="passenger_list_region"></div>
+	   	
+	   <!-- 
+						  <table width="100%">
 						  		<tr>
 						  		<th>Name</th><th>Type</th><th>Pickup</th><th>Dropoff</th> <th></th><th></th>
 						  		</tr>
@@ -227,16 +63,19 @@
 						  		<td><a class="glyphicon glyphicon-edit"></a></td><td><a  class="glyphicon glyphicon-remove"></a></td>
 						  		</tr>
 	
-							</table>			  		
-						  </div>
-						</div>   	 		
- 	 		</div>
-			<div class="row">
-  		<!-- passenger -->
-			
-  			<div class="panel panel-default">
-				  <div class="panel-heading">Buses <a class="bus_add glyphicon glyphicon-plus"></a></div>
-				  <div class="panel-body">
+							</table>	
+				 -->				   
+	   </div>
+	 <!-- itinerary -->
+	   <div role="tabpanel" class="tab-pane" id="itinerary">
+	   <br>
+	   <div id="itinerary_list_region"></div>
+	 
+	   </div>	 
+	 <!-- bus -->
+	   <div role="tabpanel" class="tab-pane" id="bus">
+	   	<div id="bus_list_region"></div>
+	   	<!-- 
 					  <table width="100%">
 				  		<tr>
 				  		<th>ID</th><th>Seats</th><th>Driver</th><th>Phone</th>
@@ -250,31 +89,25 @@
 				  		<td>002</td><td>15</td><td>Tom</td><td>778-877-9123</td>
 				  		<td><a class="glyphicon glyphicon-edit"></a></td><td><a class="glyphicon glyphicon-remove"></a></td>
 				  		</tr> 
-					</table>			  		
-				  </div>
-				</div>  	 		
- 	 		</div> 	 		
- 	 	</div>
- 	 </div>
- 	 
- 	 
- 	 <div class="row">
- 	 <hr>
- 	 	<table width=100%><tr><td align=center>
- 	 	<!-- 
-				    <div class="form-group">
-				      <div class="col-sm-4"><label>Amount($):</label><input type="number" class="form-control" placeholder="" disabled></div>
-				      <div class="col-sm-4"><label>GST($):</label><input type="number" class="form-control" placeholder="" disabled></div>
-				      <div class="col-sm-4"><label>Total($):</label><input type="number" class="form-control" placeholder="599" disabled></div>
-				    </div>	 
-				    --> 	 
-		    	
- 	 			  <div class="form-group">
-			           <button type="submit" class="btn btn-primary btn_tour_save" id="btn_tour_save" >Save</button>
-			           <button type="submit" class="btn btn-primary btn_tour_confirm" id="btn_tour_confirm" >Confirm</button>
-			           <button type="submit" class="btn btn-primary btn_tour_close" id="btn_tour_close" >Close</button>
-			    </div>
- 	 	</td></tr></table>
+				</table>
+				 -->	   
+	   </div>	 
+	 	</div>
+	 </div> 
+	    	
+ 
+	  <hr>
+      <div class="col-md-12"><label>Note:</label><textarea  class="form-control" rows="6">
+      <%=note%>
+      </textarea></div>
+ 	  
+
+	  <div class="form-group">
+           <button type="submit" class="btn btn-primary btn_tour_save" id="btn_tour_save" >Save</button>
+           <button type="submit" class="btn btn-primary btn_tour_confirm" id="btn_tour_confirm" >Confirm</button>
+           <button type="submit" class="btn btn-primary btn_tour_close" id="btn_tour_close" >Close</button>
+    </div>
+
  	 </div> 
  	 </div><!-- end of row -->	
 	

@@ -12,7 +12,7 @@ define([
             'click .btn_tour_add' : 'newTour'
         },
         newTour: function(e){
-        	app.navigate("tour_new",true);
+        	app.navigate("tour_info",true);
         }
 
 	});

@@ -6,6 +6,15 @@ define(function (require) {
 	return {
 		 login:require('tpl!templates/login-page.html'),
 		 home: require('tpl!templates/home-page.html'),
+		 tour_info:require('tpl!templates/tour-info-page.html'),
+		 tour_memo:require('tpl!templates/tour-memo-page.html'),
+		 tour_list: require('tpl!templates/tour-list-page.html'),		 
+		 tour_itinerary_list: require('tpl!templates/tour-itinerary-list-page.html'),
+		 tour_itinerary_item: require('tpl!templates/tour-itinerary-item-page.html'),
+		 passenger_item:require('tpl!templates/passenger-item-page.html'),
+		 passenger_list:require('tpl!templates/passenger-list-page.html'),
+		 bus_item:require('tpl!templates/bus-item-page.html'),
+		 bus_list:require('tpl!templates/bus-list-page.html'),
 		 route: require('tpl!templates/route-page.html'),
 		 route_info: require('tpl!templates/route-info-page.html'),
 		 route_list: require('tpl!templates/route-list-page.html'),
@@ -20,10 +29,8 @@ define(function (require) {
 		 confirmation_info: require('tpl!templates/confirmation-info-page.html'),
 		 invoice_list: require('tpl!templates/invoice-list-page.html'),
 		 invoice_info: require('tpl!templates/invoice-info-page.html'),
-		 tour_list: require('tpl!templates/tour-list-page.html'),		 
-		 tour_new:require('tpl!templates/tour-new-page.html'),		 
-		 tour_info:require('tpl!templates/tour-info-page.html'),
-		 tour_memo:require('tpl!templates/tour-memo-page.html'),
+		 
+
 		 editPassenger:require('tpl!templates/passenger-edit.html'),
 		 editBus:require('tpl!templates/bus-edit.html'),
 		 common: require('tpl!templates/common-page.html')

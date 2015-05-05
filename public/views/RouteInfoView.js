@@ -5,13 +5,13 @@ define([
     'controllers/route',
     'syphon',
     'collections/Itinerarys',
-    'views/RouteItineraryCollectionView',
-    'views/RouteItineraryItemView'
+    'views/ItineraryCollectionView',
+    'views/ItineraryItemView'
 ], function (Marionette, templates, _,route,
 		Syphon,
 		Itinerarys,
-		RouteItineraryCollectionView,
-		RouteItineraryItemView) {
+		ItineraryCollectionView,
+		ItineraryItemView) {
 	'use strict';
 
 	return Marionette.LayoutView.extend({
@@ -19,17 +19,24 @@ define([
 		regions:{
 			itineraryRegion:"#itinerary-list-region"
 		},
+	   initialize: function () {
+//	        _.bindAll(this,this.render);		   
+//	        this.model.bind('change', this.render);
+//	        this.model.bind('change', _.bind(this.render, this));
+	    },
         events: {
+//        	'change .code_input': "fetchRoute",
         	"click .btn_route_save": "saveRoute",
         	"click .btn_route_itinerary":"listItinerary"     	
         		
         },
+        
         onShow: function(e){
         	
         	var collection = new Itinerarys();
         	collection.reset(this.model.get("itinerary"));        	
         	
-        	var collectionView = new RouteItineraryCollectionView({
+        	var collectionView = new ItineraryCollectionView({
     			collection:collection
     		});
         	
@@ -37,6 +44,26 @@ define([
         	this.itineraryRegion.show(collectionView);
     		
         },
+//        fetchRoute:function(e){
+//        	var that = this;
+//        	var inputstr = $(".code_input").val();
+//        	var fetchingroutes = app.request("entities:routes",{c:inputstr});
+//        	$.when(fetchingroutes).done(function(routes){
+//        		if(routes.length >= 1){
+//        			console.log('that model before :'+JSON.stringify(that.model));
+//        			var route = routes.at(0);
+//        			that.model.set({
+//        				code:route.get("code"),
+//        				name:route.get("name"),
+//        				days:route.get("days"),
+//        				
+//        			});
+//        			console.log('that model :'+JSON.stringify(that.model));
+//        			
+//        		}
+//        	});
+//        	
+//        },
         saveRoute: function(e){
         	e.preventDefault();
           	
