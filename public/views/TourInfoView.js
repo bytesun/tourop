@@ -49,31 +49,31 @@ define([
         	
         	
         },
-        fetchRoute:function(e){
-        	
-        	var inputstr = $(".route_code").val();
-        	var fetchingroutes = app.request("entities:routes",{c:inputstr});
-        	var tour = this.model;
-        	var collectionView = this.itineraryRegion.
-
-        	console.log('oritianl TOUR: '+JSON.stringify(this.model));
-        	$.when(fetchingroutes).done(function(routes){
-        		if(routes.length >= 1){
-        			var route = routes.at(0);
-        			console.log('fetch a route'+JSON.stringify(route));
-        			tour.set({
-        				routecode:route.get("code"),
-        				name:route.get("name"),
-        				days:route.get("days"),
-        				itinerary:route.get("itinerary")
-        				
-        			});
-        			//update itinerary collection 
-        			
-        		}
-        	});
-        	
-        },
+//        fetchRoute:function(e){
+//        	
+//        	var inputstr = $(".route_code").val();
+//        	var fetchingroutes = app.request("entities:routes",{c:inputstr});
+//        	var tour = this.model;
+//        	var collectionView = this.itineraryRegion.
+//
+//        	console.log('oritianl TOUR: '+JSON.stringify(this.model));
+//        	$.when(fetchingroutes).done(function(routes){
+//        		if(routes.length >= 1){
+//        			var route = routes.at(0);
+//        			console.log('fetch a route'+JSON.stringify(route));
+//        			tour.set({
+//        				routecode:route.get("code"),
+//        				name:route.get("name"),
+//        				days:route.get("days"),
+//        				itinerary:route.get("itinerary")
+//        				
+//        			});
+//        			//update itinerary collection 
+//        			
+//        		}
+//        	});
+//        	
+//        },
         saveTour: function(e){
         	app.execute("app:notify",{
         		title:'',
@@ -90,7 +90,7 @@ define([
         closeTour: function(e){
         	console.log('close tour');
         	app.request("app:dialog:simple", {
-                title: 'Input memo information to close this tour', // Optional
+                title: 'Input memo information to close this tour',
                 message: 'Input close information'
             },
             templates.tour_memo);

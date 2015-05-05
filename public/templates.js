@@ -31,8 +31,6 @@ define(function (require) {
 		 invoice_info: require('tpl!templates/invoice-info-page.html'),
 		 
 
-		 editPassenger:require('tpl!templates/passenger-edit.html'),
-		 editBus:require('tpl!templates/bus-edit.html'),
 		 common: require('tpl!templates/common-page.html')
 		 
 	};

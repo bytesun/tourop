@@ -13,20 +13,24 @@ var Tour = new Schema({
 	routecode:String,
 	code:String,
 	name:String,
+	status:String,
 	days:Number,
 	op:String,
 	guide:String,
 	departuredate:Date,
 	note:String,
 	passenger:[{
+		no:Number,
 		group:Number,
 		name:String,
 		gender:String,
 		age:Number,
 		phone:String,
-		meal:Boolean,
-		admission:Boolean,
+		fee:Number,
+		meal:Number,
+		admission:Number,
 		pickup:String,	
+		dropoff:String,
 		confirmation:String,
 		invoice:String,
 		agency:String
@@ -44,7 +48,11 @@ var Tour = new Schema({
 		
 	}],
 	bus:[{
-		
+		no:Number,
+		plateno:String,
+		driver:String,
+		seats:Number,
+		note:String
 	}]
 });
 
@@ -85,6 +93,7 @@ var Information = new Schema({
 	type : String, //1-agency/2-hotel/3-restaurant/4-admission
 	code : String,
 	name : String,
+	payment:String, //credit card/voucher/cheque/cash
 	telphone : String,
 	contact : String,
 	address : String,

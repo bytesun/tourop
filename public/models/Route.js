@@ -10,35 +10,7 @@ define(["jquery", "backbone"],
 	       idAttribute: '_id',
             // Model Constructor
             initialize: function() {            	
-              	this.code =  '';
-              	this.name = '';
-              	this.days= 1;
-              	this.fee_tour_adult=0;
-              	this.fee_tour_senior=0;
-              	this.fee_tour_youth=0;
-              	this.fee_tour_child=0;
-              	this.fee_tour_infant=0;
-
-              	this.fee_meal_adult=0;
-              	this.fee_meal_senior=0;
-              	this.fee_meal_youth=0;
-              	this.fee_meal_child=0;
-              	this.fee_meal_infant=0;
-
-              	this.fee_adm_adult=0;
-              	this.fee_adm_senior=0;
-              	this.fee_adm_youth=0;
-              	this.fee_adm_child=0;
-              	this.fee_adm_infant=0;
-              	this.itinerary=[{
-              		day:1,
-              		from:'',
-              		via:'',
-              		to:'',
-              		itinerary:''
-              	}];
-              	this.note = '';
-            },
+             },
 
             // Default values for all of the Model attributes
             defaults: {

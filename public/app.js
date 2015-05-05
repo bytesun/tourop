@@ -12,7 +12,8 @@ define([
     'views/LoginView'
 ], function (Backbone, Marionette,
 //		Wreqr,
-		SessionModel, NotifyRegion, DialogRegion,
+		SessionModel, NotifyRegion, 
+		DialogRegion,
 		HomeView,
 		LoginView) {
 	'use strict';
@@ -92,10 +93,10 @@ define([
      *       });
      */
     app.commands.setHandler("app:dialog:simple", function(data,ModalTemplate) {
-    	
+
         require(['views/DialogView', 'models/Dialog'],
             function(DialogView, DialogModel) {
-
+        		
                 app.dialog.show(new DialogView({
                     template: ModalTemplate,
                     model: new DialogModel(data)

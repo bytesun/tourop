@@ -12,21 +12,31 @@
 					  	<option value="H" >Hotel</option>
 					  	<option value="R">Restaurant</option>
 					  	<option value="S">Admission</option>
+					  	<option value="B">Bus Company</option>
 					  <%}else if(type == 'H'){%>
 					   	<option value="A">Agency</option>
 					  	<option value="H" selected>Hotel</option>
 					  	<option value="R">Restaurant</option>
 					  	<option value="S">Admission</option>
+					  	<option value="B">Bus Company</option>
 					  <%}else if(type == 'R'){%>
 					  	<option value="A" >Agency</option>
 					  	<option value="H" >Hotel</option>
 					  	<option value="R" selected>Restaurant</option>
-					  	<option value="S">Admission</option>					  
+					  	<option value="S">Admission</option>	
+					  	<option value="B">Bus Company</option>				  
 					  <%}else if(type == 'S'){%>
 					  	<option value="A" >Agency</option>
 					  	<option value="H" >Hotel</option>
 					  	<option value="R">Restaurant</option>
-					  	<option value="S" selected>Admission</option>					  	
+					  	<option value="S" selected>Admission</option>	
+					  	<option value="B">Bus Company</option>					  	
+					  <%}else if(type == 'B'){%>
+					  	<option value="A" >Agency</option>
+					  	<option value="H" >Hotel</option>
+					  	<option value="R" >Restaurant</option>
+					  	<option value="S">Admission</option>					  
+					  	<option value="B" selected>Bus Company</option>	
 					  <%}%>
 					
 
@@ -45,6 +55,37 @@
 			      <input type="text" class="form-control" name="name" value="<%=name%>" placeholder="" required>
 			    </div>
 			  </div>
+			  
+			  <div class="form-group">
+			    <label for="inputEmail3" class="col-sm-2 control-label">Payment:</label>
+			    <div class="col-sm-2">
+		      		<select class="form-control" name="payment">
+		      		  <% if(payment == 'CREC'){ %>
+					  	<option value="CREC" selected>Credit Card</option>
+					  	<option value="VOUC" >Voucher</option>
+					  	<option value="CHEQ">Cheque</option>
+					  	<option value="CASH">Cash</option>
+		      		  <%}else  if(payment == 'VOUC'){ %>
+					  	<option value="CREC" >Credit Card</option>
+					  	<option value="VOUC" selected>Voucher</option>
+					  	<option value="CHEQ">Cheque</option>
+					  	<option value="CASH">Cash</option>
+		      		  <%}else  if(payment == 'CHEQ'){ %>
+					  	<option value="CREC" >Credit Card</option>
+					  	<option value="VOUC" >Voucher</option>
+					  	<option value="CHEQ" selected>Cheque</option>
+					  	<option value="CASH">Cash</option>					  
+		      		  <%}else  if(payment == 'CASH'){ %>
+					  	<option value="CREC" >Credit Card</option>
+					  	<option value="VOUC" >Voucher</option>
+					  	<option value="CHEQ">Cheque</option>
+					  	<option value="CASH" selected>Cash</option>				  	
+					  <%}%>					
+
+					</select>
+			    </div>
+			  </div>						  
+			  
 			  <div class="form-group">
 			    <label for="inputPassword3" class="col-sm-2 control-label">Telephone:</label>
 			    <div class="col-sm-7">

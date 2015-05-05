@@ -18,21 +18,21 @@ define([
 			'click .start_tour': 'startTour'
 		},
 		startTour: function(e){
-			console.log('start a tour with '+JSON.stringify(this.model));
-			var tourModel = new TourModel();
-			tourModel.set({
-				routecode:this.model.get('code'),
-				name:this.model.get('name'),
-				days:this.model.get("days"),
-				itinerary:this.model.get('itinerary'),
-				note:this.model.get('note')
-				
-			});
-			console.log('start a tour with '+JSON.stringify(tourModel));
-			app.main.show(new TourInfoView({
-        		model: tourModel
-        	}));
-			
+//			console.log('start a tour with '+JSON.stringify(this.model));
+//			var tourModel = new TourModel();
+//			tourModel.set({
+//				routecode:this.model.get('code'),
+//				name:this.model.get('name'),
+//				days:this.model.get("days"),
+//				itinerary:this.model.get('itinerary'),
+//				note:this.model.get('note')
+//				
+//			});
+//			console.log('start a tour with '+JSON.stringify(tourModel));
+//			app.main.show(new TourInfoView({
+//        		model: tourModel
+//        	}));
+			app.navigate("/tour_new/"+this.model.get("code"),true);
 		}
 	});
 });

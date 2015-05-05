@@ -17,19 +17,23 @@ define(["jquery", "backbone"],
         		routecode:'',
         		code:'',
         		name:'Tour Information',
+        		status:'New', //new, confirm ,close
         		op:'',
         		guide:'',
         		departuredate:'',
         		days:'',
         		passenger:[{
+        			no:'',
         			group:1,
         			name:'',
         			gender:'',
         			age:0,
         			phone:'',
-        			meal:false,
-        			admission:false,
-        			pickup:'',	
+        			fee:0.0,
+        			meal:0.0,
+        			admission:0.0,
+        			pickup:'',
+        			dropoff:'',
         			confirmation:'',
         			invoice:'',
         			agency:''
@@ -45,7 +49,13 @@ define(["jquery", "backbone"],
         			dinner:'',
         			itinerary:''
         		}],
-        		bus:[],
+        		bus:[{
+        			no:'',
+        			plateno:'',
+        			driver:'',
+        			seats:Number,        			
+        			note:''
+        		}],
         		note:''
             },
 

@@ -59,16 +59,28 @@ define([
 	        	}
 	        	
 	        },
-	        
+	        tour_new: function(routecode){
+
+	        	var fetchingroutes = app.request("entities:routes",{c:routecode});
+	        	$.when(fetchingroutes).done(function(routes){
+	        		if(routes.length >= 1){
+	        			var route = routes.at(0);
+		        		app.main.show(new TourInfoView({
+			        		model: new TourModel({
+			        			routecode:route.get("code"),
+		        				name:route.get("name"),
+		        				days:route.get("days"),
+		        				itinerary:route.get("itinerary")
+			        		})
+			        	}));
+	        			
+	        		}
+	        	});
+	        },
 	        route : function(query){
-	        	console.log("query :"+query);
 
 	        	var routeView = new RouteView({
-	        		model:new RouteModel({
-	        			code:"",
-	        			name:"",
-	        			days:1
-	        		})
+	        		model:new RouteModel()
 	        	});
 	        	if(query == null){
 		        	var routeCollectionView = new RouteCollectionView({
@@ -112,12 +124,6 @@ define([
 					});
 	        	}
 	        	
-	        },
-	        route_itinerary: function(id){
-	        	console.log('list itinerary for route :'+id);
-	        	var routeItineraryView = new RouteItinerary();        	
-	        	
-	        	app.main.show(routeItineraryView);
 	        },
 	        info : function(code,type){
 	        	console.log('code:type:'+code+":"+type);

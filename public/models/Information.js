@@ -20,6 +20,7 @@ define(["jquery", "backbone"],
       	    	 type:"A",
     	    	 code:"",
     	    	 name:"Partner Information",
+    	    	 payment:'CREC',//CREC,VOUC/CASH/CHEQ
     	    	 telphone:"",
     	    	 address:"",
     	    	 contact:"",

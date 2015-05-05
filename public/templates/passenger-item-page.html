@@ -1,29 +1,67 @@
-    <div class="form-group">
-      <label for="contact-firstName" class="control-label">Name:</label>
-      <input id="passenger_name" class="form-control input-default" name="subject" type="text"  value="" required/>
-    </div>
-    <div class="form-group">
-      <label for="contact-firstName" class="control-label">Type:</label>
-    <select class="form-control">
-	  <option>Adult</option>
-	  <option>Child</option>
-	  <option>Senior</option>
-	</select>
-
-    </div>
-    <div class="form-group">
-      <label for="contact-phoneNumber" class="control-label">Phone:</label>
-      <input id="passenger_phone" class="form-control input-default" name="tags" size="40" type="tel" value=""/>
-    </div>
-    <div class="form-group">
-      <label for="contact-phoneNumber" class="control-label">Pickup:</label>
-      <input id="case-tags" class="form-control input-default" name="tags" size="40" type="text" value=""/>
-    </div>
-    <div class="form-group">
-      <label for="contact-phoneNumber" class="control-label">Dropoff:</label>
-      <input id="case-tags" class="form-control input-default" name="tags" size="40" type="text" value=""/>
-    </div>
-    <div class="form-group">
-      <label for="contact-phoneNumber" class="control-label">Agency:</label>
-      <input id="case-tags" class="form-control input-default" name="tags" size="40" type="text" value=""/>
-    </div>		        	        	
+  <input type="hidden" name="no" value="<%=no%>">     	        	
+  <div class="col-sm-1">
+  <label>Group</label>
+   <input class="form-control"  id="day<%=day%>" value="<%=day%>" type="hidden">
+  </div>
+  <div class="col-sm-3">
+  <label>Name</label>
+   <input class="form-control" value="<%=from%>" id="from<%=day%>" placeholder="from">
+  </div>
+  <div class="col-sm-1">
+  <label>Age</label>
+   <input class="form-control" value="<%=via%>"  id="via<%=day%>" placeholder="via">
+  </div>
+  <div class="col-sm-1">
+  <label>Gender</label>
+    <select>
+    	<option>Male</option>
+    	<option>Female</option>
+    </select>
+  </div>
+  <div class="col-sm-2">
+  <label>Phone</label>
+    <input class="form-control" value="<%=to%>" id="to<%=day%>" placeholder="to">
+  </div>  
+   <div class="col-sm-1">
+  <label>Fee</label>
+    <select>
+    	<option>Adult</option>
+    	<option>Senior</option>
+    	<option>Youth</option>
+    	<option>Child</option>
+    	<option>Infant</option>
+    </select>
+  </div>   
+   <div class="col-sm-1">
+  <label>Meal</label>
+    <select>
+    	<option>Adult</option>
+    	<option>Senior</option>
+    	<option>Youth</option>
+    	<option>Child</option>
+    	<option>Infant</option>
+    </select>
+  </div>
+   <div class="col-sm-1">
+  <label>Admission</label>
+    <select>
+    	<option>Adult</option>
+    	<option>Senior</option>
+    	<option>Youth</option>
+    	<option>Child</option>
+    	<option>Infant</option>
+    </select>
+  </div>
+   <div class="col-sm-1">
+  <label>Agency</label>
+    <input class="form-control" value="<%=to%>" id="to<%=day%>" placeholder="Agency">
+  </div>  
+   <div class="col-sm-12">
+  <label>Pick Up</label>
+    <input class="form-control" value="<%=to%>" id="to<%=day%>" placeholder="to">
+  </div>  
+   <div class="col-sm-12">
+  <label>Drop Off</label>
+    <input class="form-control" value="<%=to%>" id="to<%=day%>" placeholder="to">
+  </div>  
+              
