@@ -45,10 +45,12 @@ define(["jquery", "backbone"],
         			itinerary:''
         		}] ,
         		bus:[{
-        			no:'',
+        			no:1,
         			plateno:'',
         			driver:'',
-        			seats:Number,        			
+        			phone:'',
+        			seats:10,
+        			buscom:'',
         			note:''
         		}],
         		note:''

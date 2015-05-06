@@ -14,12 +14,11 @@ define(["jquery", "backbone"],
             // Default values for all of the Model attributes
             defaults: {
             	no:1,
-            	tour:'',
             	plateno:'',
             	driver:'',
-            	seats:'',
+            	seats:10,
             	phone:'',
-    			agency:'',
+    			buscom:'',
     			note:''
             	
             },

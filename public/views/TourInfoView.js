@@ -4,22 +4,30 @@ define([
     'underscore',
     'syphon',
     'models/Passenger',
+    'models/Bus',
     'collections/Passengers',
+    'collections/Buses',
     'collections/Itinerarys',
     'views/ItineraryItemView',
     'views/ItineraryCollectionView',
     'views/PassengerItemView',
-    'views/PassengerCollectionView'
+    'views/PassengerCollectionView',
+    'views/BusItemView',
+    'views/BusCollectionView'
     
 ], function (Marionette, templates, _,
 		Syphon,
 		Passenger,
+		Bus,
 		Passengers,
+		Buses,
 		Itinerarys,
 		ItineraryItemView,
 		ItineraryCollectionView,
 		PassengerItemView,
-		PassengerCollectionView) {
+		PassengerCollectionView,
+		BusItemView,
+		BusCollectionView) {
 	'use strict';
 
 	return Marionette.LayoutView.extend({
@@ -63,7 +71,17 @@ define([
         	
         	this.itineraryRegion.show(collectionView);        	
         	//bus list
+        	var buses = new Buses(new Bus());
+        	var loadBuses = this.model.get("bus");
+        	console.log('loadbuses is '+JSON.stringify(loadBuses));
+        	if(loadBuses != undefined && loadBuses.length>0){
+        		buses.reset(loadBuses);
+        	}
         	
+        	var busCollectionView = new BusCollectionView({
+        		collection:buses
+        	});
+        	this.busRegion.show(busCollectionView);        	
         	
         },
 
@@ -74,7 +92,7 @@ define([
     	    this.model.set(data);
     	    console.log("setting data: "+JSON.stringify(this.model));
     	    
-    	    //save passenger data
+    	    //------------------save passenger data-------------------
     	    var pn = $("#pn").val();
     	    console.log('pn is '+pn);
     	    var passenger = new Array();
@@ -108,7 +126,7 @@ define([
     	    	this.model.unset("agency"+i);
     	    }
     	    this.model.set("passenger",passenger);
-    	    //save itinerary data
+    	    //----------------save itinerary data---------------
     	    var days=$("#days").val();
     	    var itinerary = new Array();
     	    for(var day=1;day<=days;day++){
@@ -148,8 +166,30 @@ define([
     	    }
     	    this.model.set({'itinerary':itinerary});
     	    
-    	    //save bus data
-    	    
+    	    //---------------------save bus data----------------------
+    	    var bn = $("#bn").val();
+    	    console.log('bn is '+bn);
+    	    var bus = new Array();
+    	    for(var i=1;i<=bn;i++){
+    	    	bus[i-1]={
+    	    			no:$("#bno"+i).val(),
+    	    			plateno:$("#plateno"+i).val(),
+    	    			driver:$("#driver"+i).val(),
+    	    			seats:$("#seats"+i).val(),
+    	    			phone:$("#bphone"+i).val(),
+    	    			buscom:$("#buscom"+i).val(),
+    	    			
+    	    	}
+
+    	    	this.model.unset("bno"+i);
+    	    	this.model.unset("plateno"+i);
+    	    	this.model.unset("driver"+i);
+    	    	this.model.unset("seats"+i);
+    	    	this.model.unset("bphone"+i);
+    	    	this.model.unset("buscom"+i);
+
+    	    }
+    	    this.model.set("bus",bus);    	    
     	    
     	    console.log("ready to save data: "+JSON.stringify(this.model));
     	    this.model.save();

@@ -1,13 +1,28 @@
-<input type="hidden" name="no" value="<%=no%>">
-	  <div class="col-sm-3">
-	   <input class="form-control"  id="plateno<%=no%>" value="<%=plateno%>" placeholder="plate number">
-	  </div>
-	  <div class="col-sm-3">
-	   <input class="form-control" value="<%=driver%>" id="dirver<%=no%>" placeholder="driver">
-	  </div>
-	  <div class="col-sm-3">
-	   <input class="form-control" value="<%=seats%>"  id="seats<%=no%>" placeholder="seats">
-	  </div>
-	  <div class="col-sm-3">
-	    <input class="form-control" value="<%=note%>"  id="note<%=no%>" placeholder="note">	    
-	  </div>
+  <div class="row">
+  <br>
+ <div class="col-sm-1">
+  <label>No.</label>
+  <input class="form-control"  id="bno<%=no%>" value="<%=no%>" disabled>
+ </div>
+
+ <div class="col-sm-3">
+  <label>Plate Number</label>
+  <input class="form-control" value="<%=plateno%>"  id="plateno<%=no%>" >
+ </div>
+ <div class="col-sm-4">
+  <label>Driver</label>
+  <input class="form-control" value="<%=driver%>" id="driver<%=no%>" >
+ </div>
+ <div class="col-sm-3">
+  <label>Phone</label>
+  <input class="form-control" value="<%=phone%>" id="bphone<%=no%>" type="tel">
+ </div>
+ <div class="col-sm-1">
+  <label>Seats</label>
+  <input class="form-control" value="<%=seats%>"  id="seats<%=no%>" type="number">
+ </div>
+ <div class="col-sm-offset-1  col-sm-11">
+  <label>Bus Company</label>
+   <input class="form-control" value="<%=buscom%>"  id="buscom<%=no%>">	    
+ </div>
+  </div>   

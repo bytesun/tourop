@@ -51,7 +51,8 @@ var Tour = new Schema({
 		plateno:String,
 		driver:String,
 		seats:Number,
-		agency:String,
+		phone:String,
+		buscom:String,
 		note:String
 	}]
 });
