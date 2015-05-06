@@ -2,9 +2,12 @@ define([
 	'marionette',
 	'templates',
     'underscore',
+    'models/Itinerary',
     'views/ItineraryItemView'
     
-], function (Marionette, templates, _,ItineraryItemView) {
+], function (Marionette, templates, _,
+		Itinerary,
+		ItineraryItemView) {
 	'use strict';
 
 	return Marionette.CompositeView.extend({	
@@ -17,14 +20,8 @@ define([
 	  addItinerary: function(e){
 
 		var size = this.collection.length;
-		console.log('before collection size :'+size);
-		this.collection.push({
-			day:size+1,
-			from:'',
-			via:'',
-			to:'',
-			itinerary:[]
-		});
+
+		this.collection.push(new Itinerary({day:size+1}));
 		$("#days").val(this.collection.length);
 				
 	  }

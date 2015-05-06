@@ -73,6 +73,7 @@ define([
     	    this.model.set(data);
     	    
     	    var days=$("#days").val();
+    	   
     	    var itinerary = new Array();
     	    for(var day=1;day<=days;day++){
     	    	//get itinerary string
@@ -102,7 +103,7 @@ define([
     	    	this.model.unset('adm_'+day);
     	    }
     	    this.model.set({'itinerary':itinerary});
-    	    console.log("ready to save data: "+JSON.stringify(this.model));
+//    	    console.log("ready to save data: "+JSON.stringify(this.model));
     	    this.model.save();
 
     	    app.navigate("route/"+this.model.get("code"),true); 

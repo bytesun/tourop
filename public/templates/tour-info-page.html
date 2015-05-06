@@ -1,10 +1,10 @@
 <div id="tour-info-template" class="container">
-
+<form role="form" class="form-horizontal">
 	 <div class="row">	
 	 	<div class="col-md-12">
 	      <h2 class="text text-primary"><%=name%></h2>
 		 	<hr>
-			  <form role="form" class="form-horizontal">
+
 			    <div class="form-group">
 			      <div class="col-sm-2"><label>Route Code:</label><input type="text" class="form-control route_code" name="routecode" value="<%=routecode%>" placeholder="Route code" autofocus></div>
 			      <div class="col-sm-2"><label>Tour Code:</label><input type="text" class="form-control" name="code" value="<%=code%>"></div>	
@@ -12,10 +12,10 @@
 				  
 			      <div class="col-sm-3"><label>OP:</label><input type="text" class="form-control" name="op" value="<%=op%>" placeholder=""></div>
 			      <div class="col-sm-3"><label>Guide:</label><input type="text" class="form-control" name="guide"  value="<%=guide%>" placeholder=""></div>
-			      <div class="col-sm-3"><label>Departure Date:</label><input type="date" class="form-control" name="departuredate" value="<%=departuredate%>" placeholder=""></div>
-			      <div class="col-sm-3"><label>Days:</label><input type="number" class="form-control" name="days" value="<%=days%>" placeholder="4" disabled></div>
+			      <div class="col-sm-3"><label>Departure Date:</label><input type="date" class="form-control" id="departuredate" name="departuredate" value="<%=departuredate%>" placeholder=""></div>
+			      <div class="col-sm-3"><label>Days:</label><input type="number" class="form-control" id="days"  name="days" value="<%=days%>" placeholder="4" disabled></div>
 			    </div>	
-			  </form>
+
 			<hr>
  		
 	<div role="tabpanel">
@@ -97,7 +97,7 @@
 	    	
  
 	  <hr>
-      <div class="col-md-12"><label>Note:</label><textarea  class="form-control" rows="6">
+      <div class="col-md-12"><label>Note:</label><textarea name="note" class="form-control" rows="6">
       <%=note%>
       </textarea></div>
  	  
@@ -110,5 +110,5 @@
 
  	 </div> 
  	 </div><!-- end of row -->	
-	
+				  </form>
 </div>

@@ -1,16 +1,17 @@
 require.config({
 	paths: {
         'jquery'                : 'assets/lib/jquery.min',
-        'underscore'            : 'assets/lib/underscore-min',         // load lodash instead of underscore (faster + bugfixes)
+        'underscore'            : 'assets/lib/underscore-min',         
         'backbone'              : 'assets/lib/backbone.min',
         'marionette'            : 'assets/lib/backbone.marionette.min',
         'syphon'                : 'assets/lib/backbone.syphon.min',
-        'backbone.wreqr'                 : 'assets/lib/backbone.wreqr.min',
-        'backbone.babysitter'            : 'assets/lib/backbone.babysitter',
+        'backbone.wreqr'        : 'assets/lib/backbone.wreqr.min',
+        'backbone.babysitter'   : 'assets/lib/backbone.babysitter',
         'bootstrap'             : 'assets/lib/bootstrap.min',
         'text'                  : 'assets/lib/text',
         'tpl'                   : 'assets/lib/tpl',
-        'parsley'               : 'assets/lib/parsley'
+        'parsley'               : 'assets/lib/parsley',
+        'moment'                : 'assets/lib/moment.min'
 	},
 
 	shim: {

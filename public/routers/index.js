@@ -9,7 +9,7 @@ define([
 	return Marionette.AppRouter.extend({
 		appRoutes: {
             "home" : "home",
-            "tour":"tour",
+            "tour(/:query)":"tour",
             "tour_new/:routecode":"tour_new",
             "tour_info(/:tour_id)":"tour_info",
             "info(/:code/:type)":"info",

@@ -2,13 +2,24 @@ define([
 	'marionette',
 	'templates',
     'underscore',
+    'syphon',
+    'models/Passenger',
+    'collections/Passengers',
     'collections/Itinerarys',
     'views/ItineraryItemView',
-    'views/ItineraryCollectionView'
+    'views/ItineraryCollectionView',
+    'views/PassengerItemView',
+    'views/PassengerCollectionView'
+    
 ], function (Marionette, templates, _,
+		Syphon,
+		Passenger,
+		Passengers,
 		Itinerarys,
 		ItineraryItemView,
-		ItineraryCollectionView) {
+		ItineraryCollectionView,
+		PassengerItemView,
+		PassengerCollectionView) {
 	'use strict';
 
 	return Marionette.LayoutView.extend({
@@ -18,11 +29,6 @@ define([
 			itineraryRegion:"#itinerary_list_region",
 			busRegion:"#bus_list_region"
 		},
-		   initialize: function () {
-//		        _.bindAll(this,this.render);		   
-//		        this.model.bind('change', this.render);
-//		        this.model.bind('change', _.bind(this.render, this));
-		    },
         events: {
 //            'change .route_code'	: 'fetchRoute',
             'click .btn_tour_save' : 'saveTour',
@@ -31,6 +37,17 @@ define([
         },
         onShow: function(e){
         	//passenger list
+        	var passengers = new Passengers(new Passenger());
+        	var loadPassengers = this.model.get("passenger");
+        	if(loadPassengers.length>0){
+
+        		passengers.reset(loadPassengers);
+        	}
+        	
+        	var passengerCollectionView = new PassengerCollectionView({
+        		collection:passengers
+        	});
+        	this.passengerRegion.show(passengerCollectionView);
         	
         	//itinerary list
         	var collection = new Itinerarys();
@@ -75,10 +92,56 @@ define([
 //        	
 //        },
         saveTour: function(e){
-        	app.execute("app:notify",{
-        		title:'',
-        		description : 'All information has been saved!'
-        	});
+        	e.preventDefault();
+          	
+    	    var data = Syphon.serialize(this);
+    	    this.model.set(data);
+
+    	    //save passenger data
+    	    
+    	    //save itinerary data
+    	    var days=$("#days").val();
+    	    var itinerary = new Array();
+    	    for(var day=1;day<=days;day++){
+    	    	//get itinerary string
+    	    	var adm = "";
+    	    	var index = 1;
+    	    	while($("#adm"+day+"_"+index).val() != undefined ){
+    	    		if(index == 1)
+    	    			adm = $("#adm"+day+"_"+index).val();
+    	    		else
+    	    			adm = adm+"|"+$("#adm"+day+"_"+index).val();
+    	    		index++;
+    	    	}
+    	    	console.log('adm is :'+adm);
+    	    	itinerary[day-1]={
+    	    			day:$("#day"+day).val(),
+    	    			from:$("#from"+day).val(),
+    	    			via:$("#via"+day).val(),
+    	    			to:$("#to"+day).val(),
+    	    			breakfast:$("#breakfast"+day).val(),
+    	    			lunch:$("#lunch"+day).val(),
+    	    			dinner:$("#dinner"+day).val(),
+    	    			hotel:$("#hotel"+day).val(),
+    	    			itinerary:adm
+
+    	    	};
+    	    	//remove duplicate fields
+    	    	this.model.unset('day'+day);
+    	    	this.model.unset('from'+day);
+    	    	this.model.unset('via'+day);
+    	    	this.model.unset('to'+day);
+    	    	this.model.unset('adm_'+day);
+    	    }
+    	    this.model.set({'itinerary':itinerary});
+    	    
+    	    //save bus data
+    	    
+    	    
+    	    console.log("ready to save data: "+JSON.stringify(this.model));
+    	    this.model.save();
+
+    	    app.navigate("tour/"+this.model.get("code"),true);         	
 
         },
         confirmTour: function(e){
@@ -95,6 +158,7 @@ define([
             },
             templates.tour_memo);
         }
+
 
 	});
 });

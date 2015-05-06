@@ -5,15 +5,19 @@ define([
 ], function (Marionette, templates, _) {
 	'use strict';
 
-	return Marionette.ItemView.extend({
-		template: templates.tour_list,
-
+	return Marionette.LayoutView.extend({
+		template: templates.tour,
+		regions:{
+			tourListRegion:"#tour-list-region"
+		},
         events: {
-            'click .btn_tour_add' : 'newTour'
+        	"change .search_code" : "searchByCode",
+        	"click .btn_route_search":"searchByCode",
         },
-        newTour: function(e){
-//        	app.navigate("tour_new/"+$(""),true);
-        }
+        searchByCode: function(e){
+        	var query = $("#search_code").val();
+        	app.navigate('tour/'+query,true);
+        },
 
 	});
 });

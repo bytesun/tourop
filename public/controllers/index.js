@@ -6,6 +6,7 @@ define([
 	'views/CommonView',
 	'views/HomeView',
 	'views/TourView',
+	'views/TourCollectionView',
 	'models/Tour',
 	'views/RouteView',
 	'views/RouteInfoView',
@@ -25,6 +26,7 @@ define([
 		CommonView,
 		HomeView,
 		TourView,
+		TourCollectionView,
 		TourModel,
 		RouteView,
 		RouteInfoView,
@@ -45,17 +47,51 @@ define([
 	      home : function(view,options){
 	        	app.main.show(new HomeView());
 	        },
-	      tour : function(view,options){
-	        	app.main.show(new TourView());
+	      tour : function(query){
+
+	        	var tourView = new TourView({
+	        		model:new TourModel()
+	        	});
+	        	if(query == null){
+		        	var tourCollectionView = new TourCollectionView({
+		        		collection:null
+		        	});
+		        	tourView.on("show",function(){	        		
+		        		tourView.tourListRegion.show(tourCollectionView);
+		        		
+		        	});	        		
+	        		app.main.show(tourView);
+	        	}else{
+	        		var fetchingitems = app.request("entities:tours",{c:query});
+		        	$.when(fetchingitems).done(function(tours){
+		        			        		
+			        	var tourCollectionView = new TourCollectionView({
+			        		collection:tours
+			        	});
+			        	tourView.on("show",function(){	        		
+			        		tourView.tourListRegion.show(tourCollectionView);
+			        		
+			        	});
+			        	app.main.show(tourView);
+		        	});	
+	        	
+	        	}   
+	        	
 	        },	    
 	        tour_info: function(id){
-	        	 
-	        	if(id == null){
-	        		app.main.show(new TourInfoView({
+	           	if(id == null){
+	        		var tourView = new TourInfoView({
 		        		model: new TourModel()
-		        	}));
+		        	});		        	
+		        	app.main.show(tourView);
 	        	}else{
-	        		//fetch tour information
+		        	var fetchingTour = app.request("tour:entity",id);
+					$.when(fetchingTour).done(function(tour){
+						var tourView = new TourInfoView({
+			        		model: tour
+			        	});			        	
+			        	app.main.show(tourView);
+					});
 	        	}
 	        	
 	        },

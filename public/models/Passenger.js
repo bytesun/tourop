@@ -13,7 +13,9 @@ define(["jquery", "backbone"],
 
             // Default values for all of the Model attributes
             defaults: {
+            	no:1,
        			group:1,
+       			tour:'',
     			name:'',
     			gender:'',
     			age:0,
@@ -21,6 +23,7 @@ define(["jquery", "backbone"],
     			meal:false,
     			admission:false,
     			pickup:'',	
+    			dropoff:'',
     			confirmation:'',
     			invoice:'',
     			agency:''

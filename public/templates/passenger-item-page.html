@@ -1,67 +1,80 @@
-  <input type="hidden" name="no" value="<%=no%>">     	        	
+  <div class="row">
+  <br>
+  <div class="col-sm-1">
+  <label>No.</label>
+   <input class="form-control"  id="pno<%=no%>" value="<%=no%>" type="number" disabled>
+  </div>     	        	
   <div class="col-sm-1">
   <label>Group</label>
-   <input class="form-control"  id="day<%=day%>" value="<%=day%>" type="hidden">
+   <input class="form-control"  id="group<%=no%>" value="<%=group%>" type="number">
   </div>
-  <div class="col-sm-3">
+  <div class="col-sm-4">
   <label>Name</label>
-   <input class="form-control" value="<%=from%>" id="from<%=day%>" placeholder="from">
+   <input class="form-control" value="<%=name%>" id="name<%=no%>" >
   </div>
   <div class="col-sm-1">
   <label>Age</label>
-   <input class="form-control" value="<%=via%>"  id="via<%=day%>" placeholder="via">
+   <input class="form-control" value="<%=age%>"  id="age<%=no%>" type="number">
   </div>
-  <div class="col-sm-1">
+  <div class="col-sm-2">
   <label>Gender</label>
-    <select>
+    <select class="form-control">
     	<option>Male</option>
     	<option>Female</option>
     </select>
   </div>
   <div class="col-sm-2">
   <label>Phone</label>
-    <input class="form-control" value="<%=to%>" id="to<%=day%>" placeholder="to">
+    <input class="form-control" value="<%=phone%>" id="phone<%=no%>" >
+    <br>
   </div>  
-   <div class="col-sm-1">
+  
+  
+   <div class="col-sm-offset-1 col-sm-3">
   <label>Fee</label>
-    <select>
-    	<option>Adult</option>
-    	<option>Senior</option>
-    	<option>Youth</option>
-    	<option>Child</option>
-    	<option>Infant</option>
+    <select class="form-control">
+    	<option value="adult">Adult</option>
+    	<option value="senior">Senior</option>
+    	<option value="youth">Youth</option>
+    	<option value="child">Child</option>
+    	<option value="infant">Infant</option>
     </select>
   </div>   
-   <div class="col-sm-1">
+   <div class="col-sm-3">
   <label>Meal</label>
-    <select>
-    	<option>Adult</option>
-    	<option>Senior</option>
-    	<option>Youth</option>
-    	<option>Child</option>
-    	<option>Infant</option>
+    <select class="form-control" >
+    	<option value="adult">Adult</option>
+    	<option value="senior">Senior</option>
+    	<option value="youth">Youth</option>
+    	<option value="child">Child</option>
+    	<option value="infant">Infant</option>
     </select>
   </div>
-   <div class="col-sm-1">
+   <div class="col-sm-3">
   <label>Admission</label>
-    <select>
-    	<option>Adult</option>
-    	<option>Senior</option>
-    	<option>Youth</option>
-    	<option>Child</option>
-    	<option>Infant</option>
+    <select class="form-control" >
+    	<option value="adult">Adult</option>
+    	<option value="senior">Senior</option>
+    	<option value="youth">Youth</option>
+    	<option value="child">Child</option>
+    	<option value="infant">Infant</option>
     </select>
+    <br>
   </div>
-   <div class="col-sm-1">
+   <div class="col-sm-offset-1 col-sm-10">
   <label>Agency</label>
-    <input class="form-control" value="<%=to%>" id="to<%=day%>" placeholder="Agency">
+    <input class="form-control" value="<%=agency%>" id="agency<%=no%>" >
+    <br>
   </div>  
-   <div class="col-sm-12">
+   <div class="col-sm-offset-1 col-sm-10">
   <label>Pick Up</label>
-    <input class="form-control" value="<%=to%>" id="to<%=day%>" placeholder="to">
+    <input class="form-control" value="<%=pickup%>" id="pickup<%=no%>">
+    <br>
   </div>  
-   <div class="col-sm-12">
+   <div class="col-sm-offset-1 col-sm-10">
   <label>Drop Off</label>
-    <input class="form-control" value="<%=to%>" id="to<%=day%>" placeholder="to">
+    <input class="form-control" value="<%=dropoff%>" id="dropoff<%=no%>">
+    <br>
   </div>  
+ </div>        
               

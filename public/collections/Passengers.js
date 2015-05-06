@@ -1,15 +1,13 @@
 // Collection.js
 // -------------
-define(["jquery","backbone","models/Tour"],
+define(["jquery","backbone","models/Passenger"],
 
   function($, Backbone, Model) {
 
     // Creates a new Backbone Collection class object
     var Collection = Backbone.Collection.extend({
-    	url: '/api/tours',
       // Tells the Backbone Collection that all of it's models will be of type Model (listed up top as a dependency)
       model: Model
-
     });
 
     // Returns the Model class

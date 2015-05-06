@@ -1,15 +1,16 @@
 // Model.js
 // --------
-define(["jquery", "backbone"],
+define(["jquery", "backbone",'moment',],
 
-    function($, Backbone) {
+    function($, Backbone,Moment) {
 
         // Creates a new Backbone Model class object
         var Model = Backbone.Model.extend({
-
+        	 urlRoot: '/api/tours',
+  	       idAttribute: '_id',
             // Model Constructor
             initialize: function() {
-
+//         	   this.formatDepartureDate();
             },
 
             // Default values for all of the Model attributes
@@ -23,7 +24,7 @@ define(["jquery", "backbone"],
         		departuredate:'',
         		days:'',
         		passenger:[{
-        			no:'',
+        			no:1,
         			group:1,
         			name:'',
         			gender:'',
@@ -34,8 +35,8 @@ define(["jquery", "backbone"],
         			admission:0.0,
         			pickup:'',
         			dropoff:'',
-        			confirmation:'',
-        			invoice:'',
+//        			confirmation:'',
+//        			invoice:'',
         			agency:''
         		}],        		
         		itinerary:[{
@@ -48,7 +49,7 @@ define(["jquery", "backbone"],
         			lunch:'',
         			dinner:'',
         			itinerary:''
-        		}],
+        		}] ,
         		bus:[{
         			no:'',
         			plateno:'',
@@ -62,7 +63,20 @@ define(["jquery", "backbone"],
             // Gets called automatically by Backbone when the set and/or save methods are called (Add your own logic)
             validate: function(attrs) {
 
-            }
+            },
+            formatDepartureDate: function() {
+           	 
+                var val = this.get( 'departuredate' );
+           
+                if ( val ) {
+                   val = Moment( val );
+                   this.set( 'departuredate', val.format('MM/DD/YYYY') );
+                   console.log('formated date is :'+this.get('departuredate'));
+//                   this.set( 'when_fmt_long', val.format('MM/DD/YYYY h:mm:ss a') );
+//                   this.set( 'when_fmt_duration_ago', val.fromNow() );
+//                   this.set( 'when_fmt_ellapsed_seconds', moment.duration( moment() - val ).as('seconds') + ' seconds' );
+                }
+             }
 
         });
 

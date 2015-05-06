@@ -17,6 +17,7 @@ var index = require('./routes/index');
 var blog = require('./routes/blog');
 var information = require('./routes/information');
 var route = require('./routes/route');
+var tour = require('./routes/tour');
 
 //view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -48,6 +49,7 @@ app.use('/', index);
 app.use('/', blog);
 app.use('/', information);
 app.use('/', route);
+app.use('/', tour);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

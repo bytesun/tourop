@@ -17,7 +17,7 @@ var Tour = new Schema({
 	days:Number,
 	op:String,
 	guide:String,
-	departuredate:Date,
+	departuredate:String,
 	note:String,
 	passenger:[{
 		no:Number,
@@ -31,8 +31,6 @@ var Tour = new Schema({
 		admission:Number,
 		pickup:String,	
 		dropoff:String,
-		confirmation:String,
-		invoice:String,
 		agency:String
 	}],
 	itinerary:[{
@@ -46,12 +44,14 @@ var Tour = new Schema({
 		dinner:String,
 		itinerary:String
 		
-	}],
+	}]
+,
 	bus:[{
 		no:Number,
 		plateno:String,
 		driver:String,
 		seats:Number,
+		agency:String,
 		note:String
 	}]
 });
@@ -105,15 +105,18 @@ var Information = new Schema({
 });
 
 var Passenger = new Schema({
-	tour:String,
+	no:Number,
 	group:Number,
+	tour:String,
 	name:String,
 	gender:String,
 	age:Number,
 	phone:String,
-	meal:Boolean,
-	admission:Boolean,
+	fee:Number,
+	meal:Number,
+	admission:Number,
 	pickup:String,	
+	dropoff:String,
 	confirmation:String,
 	invoice:String,
 	agency:String
@@ -121,10 +124,23 @@ var Passenger = new Schema({
 	
 });
 
+var Bus = new Schema({
+	no:Number,
+	tour:String,
+	plateno:String,
+	driver:String,
+	phone:String,
+	seats:Number,	
+	agency:String,
+	note:String
+});
+
 mongoose.model( 'Blog', Blog );
 mongoose.model( 'Route', Route );
+mongoose.model( 'Tour', Tour );
 mongoose.model( 'Information', Information );
 mongoose.model( 'Passenger', Passenger );
+mongoose.model( 'Bus', Bus );
 
 
 var host = process.env.OPENSHIFT_MONGODB_DB_HOST||"localhost";
