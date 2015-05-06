@@ -1,0 +1,114 @@
+<div id="tour-info-template" class="container">
+<form role="form" class="form-horizontal">
+	 <div class="row">	
+	 	<div class="col-md-12">
+	      <h2 class="text text-primary"><%=name%></h2>
+		 	<hr>
+
+			    <div class="form-group">
+			      <div class="col-sm-2"><label>Route Code:</label><input type="text" class="form-control route_code" name="routecode" value="<%=routecode%>" placeholder="Route code" autofocus></div>
+			      <div class="col-sm-2"><label>Tour Code:</label><input type="text" class="form-control" name="code" value="<%=code%>"></div>	
+			      <div class="col-sm-8"><label>Name:</label><input type="text" class="form-control" name="name" value="<%=name%>"><br>	</div>	
+				  
+			      <div class="col-sm-3"><label>OP:</label><input type="text" class="form-control" name="op" value="<%=op%>" placeholder=""></div>
+			      <div class="col-sm-3"><label>Guide:</label><input type="text" class="form-control" name="guide"  value="<%=guide%>" placeholder=""></div>
+			      <div class="col-sm-3"><label>Departure Date:</label><input type="date" class="form-control" id="departuredate" name="departuredate" value="<%=departuredate%>" placeholder=""></div>
+			      <div class="col-sm-3"><label>Days:</label><input type="number" class="form-control" id="days"  name="days" value="<%=days%>" placeholder="4" disabled></div>
+			    </div>	
+
+			<hr>
+ 		
+	<div role="tabpanel">
+	  <!-- Nav tabs -->
+	  <ul class="nav nav-tabs" role="tablist">
+	     <li role="presentation" class="active"><a href="#passenger" aria-controls="passenger" role="tab" data-toggle="tab">Passenger</a></li>
+	     <li role="presentation"><a href="#itinerary" aria-controls="itinerary" role="tab" data-toggle="tab">Itinerary</a></li>
+	     <li role="presentation"><a href="#bus" aria-controls="bus" role="tab" data-toggle="tab">Bus</a></li>
+	  </ul>
+	  
+	 <div class="tab-content">
+	 <!-- passenger -->
+	  
+	   <div role="tabpanel" class="tab-pane active" id="passenger">
+	   	<div id="passenger_list_region"></div>
+	   	
+	   <!-- 
+						  <table width="100%">
+						  		<tr>
+						  		<th>Name</th><th>Type</th><th>Pickup</th><th>Dropoff</th> <th></th><th></th>
+						  		</tr>
+						  		<tr>
+						  		<td>Tim</td><td>Adult</td><td>41th ST, Vancouver </td><td>23 AVE, Richmond</td>
+						  		<td><a id="a_passenger_edit" class="passenger_edit glyphicon glyphicon-edit" ></a></td><td>
+						  		<a class="passenger_delete glyphicon glyphicon-remove"></a></td>
+						  		</tr>  	
+						  		<tr>
+						  		<td>Byran</td><td>Adult</td><td>41th ST, Vancouver </td><td>23 AVE, Richmond</td>
+						  		<td><a class="glyphicon glyphicon-edit"></a></td><td><a class="passenger_delete glyphicon glyphicon-remove"></a></td>
+						  		</tr> 
+						  		<tr>
+						  		<td>Lily</td><td>Adult</td><td>41th ST, Burnaby </td><td>23 AVE, Richmond</td>
+						  		<td><a class="glyphicon glyphicon-edit"></a></td><td><a  class="passenger_delete glyphicon glyphicon-remove"></a></td>
+						  		</tr>  	
+						  		<tr>
+						  		<td>Julia</td><td>Adult</td><td>41th ST, Vancouver </td><td>23 AVE, Richmond</td>
+						  		<td><a class="glyphicon glyphicon-edit"></a></td><td><a  class="passenger_delete glyphicon glyphicon-remove"></a></td>
+						  		</tr>
+						  		<tr>
+						  		<td>Carl</td><td>Child</td><td>42th ST, Langley </td><td>23 AVE, Richmond</td>
+						  		<td><a class="glyphicon glyphicon-edit"></a></td><td><a class="passenger_delete glyphicon glyphicon-remove"></a></td>
+						  		</tr>  	
+						  		<tr>
+						  		<td>Kelly</td><td>Adult</td><td>41th ST, Surrey </td><td>23 AVE, Richmond</td>
+						  		<td><a class="glyphicon glyphicon-edit"></a></td><td><a  class="glyphicon glyphicon-remove"></a></td>
+						  		</tr>
+	
+							</table>	
+				 -->				   
+	   </div>
+	 <!-- itinerary -->
+	   <div role="tabpanel" class="tab-pane" id="itinerary">
+	   <br>
+	   <div id="itinerary_list_region"></div>
+	 
+	   </div>	 
+	 <!-- bus -->
+	   <div role="tabpanel" class="tab-pane" id="bus">
+	   	<div id="bus_list_region"></div>
+	   	<!-- 
+					  <table width="100%">
+				  		<tr>
+				  		<th>ID</th><th>Seats</th><th>Driver</th><th>Phone</th>
+				  		<th></th><th></th>
+				  		</tr>
+				  		<tr>
+				  		<td>001</td><td>20</td><td>Bruce</td><td>778-877-9090</td>
+				  		<td><a class="glyphicon glyphicon-edit"></a></td><td><a class="glyphicon glyphicon-remove"></a></td>
+				  		</tr>  	
+				  		<tr>
+				  		<td>002</td><td>15</td><td>Tom</td><td>778-877-9123</td>
+				  		<td><a class="glyphicon glyphicon-edit"></a></td><td><a class="glyphicon glyphicon-remove"></a></td>
+				  		</tr> 
+				</table>
+				 -->	   
+	   </div>	 
+	 	</div>
+	 </div> 
+	    	
+ 
+	  <hr>
+      <div class="col-md-12"><label>Note:</label><textarea name="note" class="form-control" rows="6">
+      <%=note%>
+      </textarea></div>
+ 	  
+
+	  <div class="form-group">
+           <button type="submit" class="btn btn-primary btn_tour_save" id="btn_tour_save" >Save</button>
+           <button type="submit" class="btn btn-primary btn_tour_confirm" id="btn_tour_confirm" >Confirm</button>
+           <button type="submit" class="btn btn-primary btn_tour_close" id="btn_tour_close" >Close</button>
+    </div>
+
+ 	 </div> 
+ 	 </div><!-- end of row -->	
+				  </form>
+</div>

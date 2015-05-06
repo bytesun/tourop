@@ -1,0 +1,39 @@
+<%- include header %>
+	<div class="row">
+		<div class="col-md-12">
+				<!-- Nav tabs -->
+			<ul class="nav nav-tabs" role="tablist">
+			  <li class="active"><a href="#blog" role="tab" data-toggle="tab">Blog</a></li>
+
+			</ul>
+
+			<!-- Tab panes -->
+			<div class="tab-content">
+			<!-- Blog -->	
+			  <div class="tab-pane active" id="blog">
+				<!-- new blog --->
+				<form method="post" action="/blogs">
+				  Title:<br />
+				  <input type="text" name="title" size=100/><br />
+				  Blog Content: <br />
+				  <textarea class="richtextarea" name="content" rows="20" cols="100"></textarea><br />
+				  
+				  Tags:
+				  <input type="text" name="tag" />
+				  
+				  <input type="submit" value="Publish" />
+				</form>	
+					
+			  </div>
+
+
+			</div>
+				
+		</div> <!--end of col-4
+		
+		
+		
+		<div class="col-md-8">
+		</div><!-- col -->
+	</div><!--row-->	
+ <%- include footer %>
