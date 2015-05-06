@@ -1,7 +1,7 @@
 {
-  "name": "Sunorth",
+  "name": "TourOP",
   "version": "1.0.0",
-  "description": "Informaton Solution",
+  "description": "a tour operation system",
   "keywords": [
     "sunorth",
     "solution"
@@ -39,5 +39,5 @@
   "bundleDependencies": [],
 
   "private": true,
-  "main": "app.js"
+  "main": "server.js"
 }
