@@ -1,8 +1,7 @@
 // Model.js
 // --------
 define(["jquery", "backbone"],
-
-    function($, Backbone) {
+		function($, Backbone) {
 
         // Creates a new Backbone Model class object
         var Model = Backbone.Model.extend({
@@ -63,6 +62,7 @@ define(["jquery", "backbone"],
             // Gets called automatically by Backbone when the set and/or save methods are called (Add your own logic)
             validate: function(attrs) {
 
+<<<<<<< HEAD
             }
 //            formatDepartureDate: function() {
 //           	 
@@ -77,6 +77,22 @@ define(["jquery", "backbone"],
 ////                   this.set( 'when_fmt_ellapsed_seconds', moment.duration( moment() - val ).as('seconds') + ' seconds' );
 //                }
 //             }
+=======
+            },
+            formatDepartureDate: function() {
+           	 
+                var val = this.get( 'departuredate' );
+           
+                if ( val ) {
+                   val = Moment( val );
+                   this.set( 'departuredate', val.format('MM/DD/YYYY') );
+                   console.log('formated date is :'+this.get('departuredate'));
+//                   this.set( 'when_fmt_long', val.format('MM/DD/YYYY h:mm:ss a') );
+//                   this.set( 'when_fmt_duration_ago', val.fromNow() );
+//                   this.set( 'when_fmt_ellapsed_seconds', moment.duration( moment() - val ).as('seconds') + ' seconds' );
+                }
+             }
+>>>>>>> c06b8d7fa5a5911bb5b2422db847d4e23003ed5a
 
         });
 
