@@ -148,4 +148,4 @@ var port = process.env.OPENSHIFT_MONGODB_DB_PORT||'27017';
 var username = process.env.OPENSHIFT_MONGODB_DB_USERNAME||'';
 var password = process.env.OPENSHIFT_MONGODB_DB_PASSWORD||'';
  
-mongoose.connect( 'mongodb://'+username+':'+password+'@'+host+':'+port+'/sunorth' );
+mongoose.connect( 'mongodb://'+username+':'+password+'@'+host+':'+port+'/tour' );
