@@ -1,9 +1,24 @@
-
-	<div class="row">
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="dayhead<%=day%>">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#passenger_list_item" href="#daycollapse<%=day%>" aria-expanded="true" aria-controls="daycollapse<%=day%>">
+         <span class="text text-primary"> [Day-<%=day%>]</span>    
+        </a>
+          <%=from%> - <%=via%> - <%=to%>
+      </h4>
+    </div>
+    <%if(day == 1){%>
+    <div id="daycollapse<%=day%>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="dayhead<%=day%>">
+    <%}else{%>
+    <div id="daycollapse<%=day%>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="dayhead<%=day%>">
+    <%}%>    
+    
+      <div class="panel-body">
+	  <div class="row">
 	  <div class="col-sm-1">
-	  <label>DAY</label>
+	  
 	   <input class="form-control" name="day<%=day%>" id="day<%=day%>" value="<%=day%>" type="hidden">
-	   <div><%=day%></div>
+	   
 	  </div>
 	  <div class="col-sm-3">
 	  <label>From</label>
@@ -20,26 +35,26 @@
 	  </div>
 	  
 
-	  <div class="col-sm-offset-1 col-sm-11">  	   
+	  <div class="col-sm-offset-1 col-sm-10">  	   
 	  <br>
 	    <input class="form-control" value="<%=breakfast%>" name="breakfast<%=day%>" id="breakfast<%=day%>" placeholder="breakfast">
 	    <br>
 	  </div>
-	  <div class="col-sm-offset-1 col-sm-11">  	   
+	  <div class="col-sm-offset-1 col-sm-10">  	   
 	   <input class="form-control" value="<%=lunch%>" name="lunch<%=day%>" id="lunch<%=day%>" placeholder="lunch">
 	   <br>
 	  </div>
-	  <div class="col-sm-offset-1 col-sm-11">  	    
+	  <div class="col-sm-offset-1 col-sm-10">  	    
 	    <input class="form-control" value="<%=dinner%>" name="dinner<%=day%>" id="dinner<%=day%>" placeholder="dinner">
 	    <br>
   	  </div>	  
-	  <div class="col-sm-offset-1 col-sm-11">  
+	  <div class="col-sm-offset-1 col-sm-10">  
 	    <input class="form-control" value="<%=hotel%>" name="hotel<%=day%>" id="hotel<%=day%>" placeholder="hotel">
   	  </div>
 
 	  	  
 	  <br>
-	  <div class="col-sm-offset-1 col-sm-11">
+	  <div class="col-sm-offset-1 col-sm-10">
 	  <br>
 	  <%	
 	  		var index = 1;
@@ -61,4 +76,7 @@
 	  </div>
 	 
 	</div>
-	<hr>
+	
+      </div>
+    </div>
+  </div>  

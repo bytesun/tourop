@@ -1,28 +1,49 @@
-  <div class="row">
-  <br>
- <div class="col-sm-1">
-  <label>No.</label>
-  <input class="form-control"  id="bno<%=no%>" value="<%=no%>" disabled>
- </div>
 
- <div class="col-sm-3">
-  <label>Plate Number</label>
-  <input class="form-control" value="<%=plateno%>"  id="plateno<%=no%>" >
- </div>
- <div class="col-sm-4">
-  <label>Driver</label>
-  <input class="form-control" value="<%=driver%>" id="driver<%=no%>" >
- </div>
- <div class="col-sm-3">
-  <label>Phone</label>
-  <input class="form-control" value="<%=phone%>" id="bphone<%=no%>" type="tel">
- </div>
- <div class="col-sm-1">
-  <label>Seats</label>
-  <input class="form-control" value="<%=seats%>"  id="seats<%=no%>" type="number">
- </div>
- <div class="col-sm-offset-1  col-sm-11">
-  <label>Bus Company</label>
-   <input class="form-control" value="<%=buscom%>"  id="buscom<%=no%>">	    
- </div>
-  </div>   
+  
+
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="bushead<%=no%>">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#bus_list_item" href="#bus<%=no%>" aria-expanded="true" aria-controls="bus<%=no%>">
+         <span class="text text-primary"> [<%=plateno%>] </span>
+        </a>
+        / <%=driver%> / <%=phone%> / <%=buscom%>
+      </h4>
+    </div>
+    <%if(no == 1){%>
+    <div id="bus<%=no%>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="bushead<%=no%>">
+    <%}else{%>
+    <div id="bus<%=no%>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="bushead<%=no%>">
+    <%}%>
+      <div class="panel-body">
+		  <div class="row">
+
+		 <div class="col-sm-1">
+
+		  <input class="form-control"  id="bno<%=no%>" value="<%=no%>" type="hidden">
+		 </div>
+		
+		 <div class="col-sm-2">
+		  <label>Plate Number</label>
+		  <input class="form-control" value="<%=plateno%>"  id="plateno<%=no%>" >
+		 </div>
+		 <div class="col-sm-4">
+		  <label>Driver</label>
+		  <input class="form-control" value="<%=driver%>" id="driver<%=no%>" >
+		 </div>
+		 <div class="col-sm-3">
+		  <label>Phone</label>
+		  <input class="form-control" value="<%=phone%>" id="bphone<%=no%>" type="tel">
+		 </div>
+		 <div class="col-sm-1">
+		  <label>Seats</label>
+		  <input class="form-control" value="<%=seats%>"  id="seats<%=no%>" type="number">
+		 </div>
+		 <div class="col-sm-offset-1  col-sm-10">
+		  <label>Bus Company</label>
+		   <input class="form-control" value="<%=buscom%>"  id="buscom<%=no%>">	    
+		 </div>
+		  </div> 
+      </div>
+    </div>
+  </div>    

@@ -1,8 +1,25 @@
-  <div class="row">
-  <br>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="passengerhead<%=no%>">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#passenger_list_item" href="#passenger<%=no%>" aria-expanded="true" aria-controls="passenger<%=no%>">
+         <span class="text text-primary"> [<%=no%>] <%=name%> </span>
+        </a>
+         / <%=gender%>/ <%=phone %> / <%=pickup%>
+      </h4>
+    </div>
+    <%if(no == 1){%>
+    <div id="passenger<%=no%>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="passengerhead<%=no%>">
+    <%}else{%>
+    <div id="passenger<%=no%>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="passengerhead<%=no%>">
+    <%}%>
+    
+    
+      <div class="panel-body">
+ <div class="row">
+
   <div class="col-sm-1">
-  <label>No.</label>
-   <input class="form-control"  id="pno<%=no%>" value="<%=no%>" type="number" disabled>
+
+   <input class="form-control"  id="pno<%=no%>" value="<%=no%>" type="hidden" disabled>
   </div>     	        	
   <div class="col-sm-1">
   <label>Group</label>
@@ -96,5 +113,7 @@
     <input class="form-control" value="<%=dropoff%>" id="dropoff<%=no%>">
     <br>
   </div>  
- </div>        
-              
+ </div>
+      </div>
+    </div>
+  </div>              
