@@ -5,9 +5,9 @@
     <div class="panel-heading" role="tab" id="bushead<%=no%>">
       <h4 class="panel-title">
         <a data-toggle="collapse" data-parent="#bus_list_item" href="#bus<%=no%>" aria-expanded="true" aria-controls="bus<%=no%>">
-         <span class="text text-primary"> [<%=plateno%>] </span>
+         <span class="text text-primary"> [<%=no%>] </span>
         </a>
-        / <%=driver%> / <%=phone%> / <%=buscom%>
+        / <%=plateno%>/ <%=driver%> / <%=phone%> / <%=buscom%>
       </h4>
     </div>
     <%if(no == 1){%>
@@ -41,7 +41,7 @@
 		 </div>
 		 <div class="col-sm-offset-1  col-sm-10">
 		  <label>Bus Company</label>
-		   <input class="form-control" value="<%=buscom%>"  id="buscom<%=no%>">	    
+		   <input class="form-control buscom_input" value="<%=buscom%>"  id="buscom<%=no%>">	    
 		 </div>
 		  </div> 
       </div>

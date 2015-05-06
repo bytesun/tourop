@@ -103,12 +103,7 @@ define([
 	        		if(routes.length >= 1){
 	        			var route = routes.at(0);
 		        		app.main.show(new TourInfoView({
-			        		model: new TourModel({
-			        			routecode:route.get("code"),
-		        				name:route.get("name"),
-		        				days:route.get("days"),
-		        				itinerary:route.get("itinerary")
-			        		})
+			        		model: new TourModel()
 			        	}));
 	        			
 	        		}
