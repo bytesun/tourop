@@ -26,9 +26,9 @@ var Tour = new Schema({
 		gender:String,
 		age:Number,
 		phone:String,
-		fee:Number,
-		meal:Number,
-		admission:Number,
+		fee:String,
+		meal:String,
+		admission:String,
 		pickup:String,	
 		dropoff:String,
 		agency:String

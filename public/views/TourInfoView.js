@@ -30,7 +30,7 @@ define([
 			busRegion:"#bus_list_region"
 		},
         events: {
-//            'change .route_code'	: 'fetchRoute',
+
             'click .btn_tour_save' : 'saveTour',
             'click .btn_tour_confirm' : 'confirmTour',
             'click .btn_tour_close' : 'closeTour'  
@@ -39,8 +39,8 @@ define([
         	//passenger list
         	var passengers = new Passengers(new Passenger());
         	var loadPassengers = this.model.get("passenger");
-        	if(loadPassengers.length>0){
-
+        	console.log('loadPassengers is '+JSON.stringify(loadPassengers));
+        	if(loadPassengers != undefined && loadPassengers.length>0){
         		passengers.reset(loadPassengers);
         	}
         	
@@ -66,39 +66,48 @@ define([
         	
         	
         },
-//        fetchRoute:function(e){
-//        	
-//        	var inputstr = $(".route_code").val();
-//        	var fetchingroutes = app.request("entities:routes",{c:inputstr});
-//        	var tour = this.model;
-//        	var collectionView = this.itineraryRegion.
-//
-//        	console.log('oritianl TOUR: '+JSON.stringify(this.model));
-//        	$.when(fetchingroutes).done(function(routes){
-//        		if(routes.length >= 1){
-//        			var route = routes.at(0);
-//        			console.log('fetch a route'+JSON.stringify(route));
-//        			tour.set({
-//        				routecode:route.get("code"),
-//        				name:route.get("name"),
-//        				days:route.get("days"),
-//        				itinerary:route.get("itinerary")
-//        				
-//        			});
-//        			//update itinerary collection 
-//        			
-//        		}
-//        	});
-//        	
-//        },
+
         saveTour: function(e){
         	e.preventDefault();
           	
     	    var data = Syphon.serialize(this);
     	    this.model.set(data);
-
-    	    //save passenger data
+    	    console.log("setting data: "+JSON.stringify(this.model));
     	    
+    	    //save passenger data
+    	    var pn = $("#pn").val();
+    	    console.log('pn is '+pn);
+    	    var passenger = new Array();
+    	    for(var i=1;i<=pn;i++){
+    	    	passenger[i-1]={
+    	    			no:$("#pno"+i).val(),
+    	    			group:$("#group"+i).val(),
+    	    			name:$("#pname"+i).val(),
+    	    			gender:$("#gender"+i).val(),
+    	    			age:$("#age"+i).val(),
+    	    			phone:$("#pphone"+i).val(),
+    	    			fee:$("#fee"+i).val(),
+    	    			meal:$("#meal"+i).val(),
+    	    			admission:$("#admission"+i).val(),
+    	    			pickup:$("#pickup"+i).val(),	
+    	    			dropoff:$("#dropoff"+i).val(),
+    	    			agency:$("#agency"+i).val()
+    	    			
+    	    	}
+    	    	this.model.unset("pno"+i);
+    	    	this.model.unset("group"+i);
+    	    	this.model.unset("pname"+i);
+    	    	this.model.unset("gender"+i);
+    	    	this.model.unset("age"+i);
+    	    	this.model.unset("pphone"+i);
+    	    	this.model.unset("fee"+i);
+    	    	this.model.unset("meal"+i);
+    	    	this.model.unset("admission"+i);
+    	    	this.model.unset("pickup"+i);
+    	    	this.model.unset("dropoff"+i);
+    	    	this.model.unset("agency"+i);
+    	    }
+    	    this.model.set("passenger",passenger);
     	    //save itinerary data
     	    var days=$("#days").val();
     	    var itinerary = new Array();
@@ -132,6 +141,10 @@ define([
     	    	this.model.unset('via'+day);
     	    	this.model.unset('to'+day);
     	    	this.model.unset('adm_'+day);
+    	    	this.model.unset('breakfast'+day);
+    	    	this.model.unset('lunch'+day);
+    	    	this.model.unset('dinner'+day);
+    	    	this.model.unset('hotel'+day);
     	    }
     	    this.model.set({'itinerary':itinerary});
     	    
@@ -145,10 +158,7 @@ define([
 
         },
         confirmTour: function(e){
-        	app.execute("app:dialog:confirm",{
-        		title:'',
-        		message : 'Are you sure all information are correct?'
-        	});
+
         },        
         closeTour: function(e){
         	console.log('close tour');

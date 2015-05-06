@@ -36,7 +36,9 @@ router.put('/api/tours/:id', function(req, res) {
 				departuredate:req.body.departuredate,
 				status:req.body.status,
 				note:req.body.note,
-				itinerary:req.body.itinerary
+				itinerary:req.body.itinerary,
+				passenger:req.body.passenger,
+				bus:req.body.bus
 				}},
 			function( err, tour){
 		if(err){

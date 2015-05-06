@@ -10,7 +10,7 @@
   </div>
   <div class="col-sm-4">
   <label>Name</label>
-   <input class="form-control" value="<%=name%>" id="name<%=no%>" >
+   <input class="form-control" value="<%=name%>" id="pname<%=no%>" >
   </div>
   <div class="col-sm-1">
   <label>Age</label>
@@ -18,46 +18,66 @@
   </div>
   <div class="col-sm-2">
   <label>Gender</label>
-    <select class="form-control">
-    	<option>Male</option>
-    	<option>Female</option>
+    <select class="form-control" id="gender<%=no%>">
+    <%
+    	var genders = ['Male','Female'];
+    	for(var i=0;i<2;i++){
+    		if(genders[i] == gender){
+    %>
+    	<option selected><%=gender%></option>
+    <%}else{%>
+    	<option><%=genders[i]%></option>
+    <%}}%>
+    	
+    	
     </select>
   </div>
   <div class="col-sm-2">
   <label>Phone</label>
-    <input class="form-control" value="<%=phone%>" id="phone<%=no%>" >
+    <input class="form-control" value="<%=phone%>" id="pphone<%=no%>" >
     <br>
   </div>  
   
   
    <div class="col-sm-offset-1 col-sm-3">
   <label>Fee</label>
-    <select class="form-control">
-    	<option value="adult">Adult</option>
-    	<option value="senior">Senior</option>
-    	<option value="youth">Youth</option>
-    	<option value="child">Child</option>
-    	<option value="infant">Infant</option>
+    <select class="form-control" id="fee<%=no%>">
+    <%
+    	var feetypes = ['Adult','Senior','Youth','Child','Infant'];
+    	for(var i=0;i<5;i++){
+    		if(feetypes[i] == fee){
+    %>
+    	<option selected><%=fee%></option>
+    <%}else{%>
+    	<option><%=feetypes[i]%></option>
+    <%}}%>    
+
     </select>
   </div>   
    <div class="col-sm-3">
   <label>Meal</label>
-    <select class="form-control" >
-    	<option value="adult">Adult</option>
-    	<option value="senior">Senior</option>
-    	<option value="youth">Youth</option>
-    	<option value="child">Child</option>
-    	<option value="infant">Infant</option>
+    <select class="form-control" id="meal<%=no%>">
+    <%
+    	for(var i=0;i<5;i++){
+    		if(feetypes[i] == meal){
+    %>
+    	<option selected><%=meal%></option>
+    <%}else{%>
+    	<option><%=feetypes[i]%></option>
+    <%}}%>  
     </select>
   </div>
    <div class="col-sm-3">
   <label>Admission</label>
-    <select class="form-control" >
-    	<option value="adult">Adult</option>
-    	<option value="senior">Senior</option>
-    	<option value="youth">Youth</option>
-    	<option value="child">Child</option>
-    	<option value="infant">Infant</option>
+    <select class="form-control" id="admission<%=no%>">
+    <%
+    	for(var i=0;i<5;i++){
+    		if(feetypes[i] == admission){
+    %>
+    	<option selected><%=admission%></option>
+    <%}else{%>
+    	<option><%=feetypes[i]%></option>
+    <%}}%>  
     </select>
     <br>
   </div>
