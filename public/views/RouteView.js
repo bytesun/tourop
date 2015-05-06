@@ -2,10 +2,9 @@ define([
 	'marionette',
 	'templates',
     'underscore',
-    'controllers/route',
     'syphon',
     'views/RouteCollectionView'
-], function (Marionette, templates, _,route,
+], function (Marionette, templates, _,
 		Syphon,
 		RouteCollectionView) {
 	'use strict';

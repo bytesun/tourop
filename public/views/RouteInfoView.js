@@ -2,12 +2,11 @@ define([
 	'marionette',
 	'templates',
     'underscore',
-    'controllers/route',
     'syphon',
     'collections/Itinerarys',
     'views/ItineraryCollectionView',
     'views/ItineraryItemView'
-], function (Marionette, templates, _,route,
+], function (Marionette, templates, _,
 		Syphon,
 		Itinerarys,
 		ItineraryCollectionView,

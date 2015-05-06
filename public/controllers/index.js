@@ -87,6 +87,7 @@ define([
 	        	}else{
 		        	var fetchingTour = app.request("tour:entity",id);
 					$.when(fetchingTour).done(function(tour){
+						tour.set({pn:tour.passenger.length})
 						var tourView = new TourInfoView({
 			        		model: tour
 			        	});			        	

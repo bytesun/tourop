@@ -8,11 +8,5 @@ router.get('/', function(req, res) {
 router.get('/login', function(req, res) {
     res.render('login');
 });
-router.get('/orcsun', function(req, res) {
-    res.render('orcsun');
-});
-router.get('/blog', function(req, res) {
-    res.render('blog');
-});
 
 module.exports = router;

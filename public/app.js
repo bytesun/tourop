@@ -54,7 +54,7 @@ define([
 		Backbone.history.navigate(route, options);
 	}	
 	app.addInitializer(function () {
-		app.main.show(new HomeView());
+//		app.main.show(new HomeView());
 
 	});
 
@@ -62,6 +62,7 @@ define([
     	
         if (Backbone.history){
             Backbone.history.start();
+            app.navigate("tour",true);
         }
     });
 

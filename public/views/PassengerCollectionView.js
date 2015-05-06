@@ -18,6 +18,11 @@ define([
 	  events:{
 		  'click .btn_add_passenger': 'addPassenger'
 	  },
+     templateHelpers:function(){
+            return {
+                pn: this.collection.length
+            }
+        },	  
 	  addPassenger: function(e){
 		var size = this.collection.length;
 		this.collection.push(new Passenger({no:size+1}));
