@@ -61,8 +61,13 @@ router.get('/api/tours',function(req,res){
 
 	var c = req.query.c;
 	var query = {};
-	if(c != 0)query.code = new RegExp('^'+c, "i");
-//	else query=null,
+	if(c != 0){
+		query.code = new RegExp('^'+c, "i");
+	}else{
+		query.status={$in:['New','Confirm']};
+	}
+	
+	console.log('query is '+JSON.stringify(query));
 	
 	Tour.find(query,
 				null,

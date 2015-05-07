@@ -52,17 +52,7 @@ define([
 	        	var tourView = new TourView({
 	        		model:new TourModel()
 	        	});
-	        	if(query == null){
-		        	var tourCollectionView = new TourCollectionView({
-		        		collection:null
-		        	});
-		        	tourView.on("show",function(){	        		
-		        		tourView.tourListRegion.show(tourCollectionView);
-		        		
-		        	});	        		
-	        		app.main.show(tourView);
-	        	}else{
-	        		var fetchingitems = app.request("entities:tours",{c:query});
+	        	var fetchingitems = app.request("entities:tours",{c:query});
 		        	$.when(fetchingitems).done(function(tours){
 		        			        		
 			        	var tourCollectionView = new TourCollectionView({
@@ -75,7 +65,6 @@ define([
 			        	app.main.show(tourView);
 		        	});	
 	        	
-	        	}   
 	        	
 	        },	    
 	        tour_info: function(id){
@@ -96,18 +85,20 @@ define([
 	        	}
 	        	
 	        },
-	        tour_new: function(routecode){
+	        tour_new: function(routeid){
+	        	console.log('route code:'+routeid);
+	        	var fetchingRoute = app.request("route:entity",routeid);
+				$.when(fetchingRoute).done(function(route){
+		       		app.main.show(new TourInfoView({
+		        		model: new TourModel({
+		        			routecode:route.get("code"),
+		        			name:route.get("name"),
+		        			days:route.get("days"),
+		        			itinerary:route.get("itinerary")
+		        		})
+		        	}));
+				});
 
-	        	var fetchingroutes = app.request("entities:routes",{c:routecode});
-	        	$.when(fetchingroutes).done(function(routes){
-	        		if(routes.length >= 1){
-	        			var route = routes.at(0);
-		        		app.main.show(new TourInfoView({
-			        		model: new TourModel()
-			        	}));
-	        			
-	        		}
-	        	});
 	        },
 	        route : function(query){
 

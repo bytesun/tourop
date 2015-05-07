@@ -194,7 +194,7 @@ define([
     	    console.log("ready to save data: "+JSON.stringify(this.model));
     	    this.model.save();
 
-    	    app.navigate("tour/"+this.model.get("code"),true);         	
+    	    app.navigate("tour",true);         	
 
         },
         confirmTour: function(e){

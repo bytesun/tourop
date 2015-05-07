@@ -32,7 +32,7 @@ define([
 //			app.main.show(new TourInfoView({
 //        		model: tourModel
 //        	}));
-			app.navigate("/tour_new/"+this.model.get("code"),true);
+			app.navigate("/tour_new/"+this.model.get("_id"),true);
 		}
 	});
 });
