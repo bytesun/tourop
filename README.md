@@ -1,16 +1,17 @@
-A TOUR OPERATION SYSTEM
-
+Tour Operation System
 =======================
+Manage partner, route information, and create tour  
+
 	    	*Note: this is only for development tracking, so it will be removed after deployment.
-----
-			<h2>Schedule</h2>
+
+			Schedule
 			Week-1 : User Interface development
 			Week-2 : Basic Information(agency/hotel/restaurant/route) input functions
 			Week-3/4 : Core business logic (order input, generate voucher/invoice)
 			Week-5 : System deployment and defects fix 
 			
-			
-			<h2>Development Trace</h2>
+			----------------------------------------------------------------------
+			Development Trace
 			[2015/5/6] Done new/edit tour 
 			[2015/5/5] Add payment and bus company for partner input 
 			 [2015/5/1] Finish create/query/update routes functions 
