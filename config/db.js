@@ -1,14 +1,6 @@
 var mongoose = require( 'mongoose' );
 var Schema   = mongoose.Schema;
 
-//blog
-var Blog = new Schema({
-	title : String,
-	content : String,
-	tag : String,
-	time : Date	
-});
-
 var Tour = new Schema({
 	routecode:String,
 	code:String,
@@ -136,12 +128,28 @@ var Bus = new Schema({
 	note:String
 });
 
-mongoose.model( 'Blog', Blog );
+var Setting = new Schema({
+	COM:{
+		name:String,
+		address:String,
+		city:String,
+		province:String,
+		country:String,
+		postcode:String,
+		phone:String,
+		fax:String,
+		email:String,
+		regno:String
+	},
+	commission:Number
+});
+
 mongoose.model( 'Route', Route );
 mongoose.model( 'Tour', Tour );
 mongoose.model( 'Information', Information );
 mongoose.model( 'Passenger', Passenger );
 mongoose.model( 'Bus', Bus );
+mongoose.model( 'Setting', Setting );
 
 
 var host = process.env.OPENSHIFT_MONGODB_DB_HOST||"localhost";

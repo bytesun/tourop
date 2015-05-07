@@ -32,6 +32,7 @@ define(function (require) {
 		 invoice_list: require('tpl!templates/invoice-list-page.html'),
 		 invoice_info: require('tpl!templates/invoice-info-page.html'),
 		 
+		 setting:require('tpl!templates/setting-page.html'),
 
 		 common: require('tpl!templates/common-page.html')
 		 

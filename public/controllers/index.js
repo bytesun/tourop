@@ -20,7 +20,9 @@ define([
 	'views/LoginView',
 	'models/Information',
 	'collections/Informations',
-	'views/InfoLayout'
+	'views/InfoLayout',
+	'models/Setting',
+	'views/SettingView'
 ], function (app,
 		templates,
 		CommonView,
@@ -40,7 +42,9 @@ define([
 		LoginView,
 		InfoModel,
 		InfoCollection,
-		InfoLayout) {
+		InfoLayout,
+		Setting,
+		SettingView) {
 	'use strict';
 
 	return {
@@ -190,7 +194,11 @@ define([
 	        invoice_info: function(view,options){
 	        	app.main.show(new CommonView({template:templates.invoice_info}));
 	        },
-
+	        setting: function(){
+	        	app.main.show(new SettingView({
+	        		model:new Setting()
+	        	}));
+	        },
 	        logout: function(view,options){
 	        	app.main.show(new LoginView());
 	        }

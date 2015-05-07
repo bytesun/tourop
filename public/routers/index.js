@@ -22,7 +22,7 @@ define([
             "confirmation_info":"confirmation_info",
             "invoice":"invoice",
             "invoice_info":"invoice_info",            
-            
+            "setting":"setting",
             "logout" : "logout"
 
 		}
