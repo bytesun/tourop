@@ -129,7 +129,6 @@ var Bus = new Schema({
 });
 
 var Setting = new Schema({
-	COM:{
 		name:String,
 		address:String,
 		city:String,
@@ -139,8 +138,8 @@ var Setting = new Schema({
 		phone:String,
 		fax:String,
 		email:String,
-		regno:String
-	},
+		contact:String,
+		regno:String,
 	commission:Number
 });
 

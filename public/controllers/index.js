@@ -195,9 +195,21 @@ define([
 	        	app.main.show(new CommonView({template:templates.invoice_info}));
 	        },
 	        setting: function(){
-	        	app.main.show(new SettingView({
-	        		model:new Setting()
-	        	}));
+	        	var fetchingitems = app.request("entities:settings");
+	        	$.when(fetchingitems).done(function(items){
+	        		if(items.length>0){
+						var settingView = new SettingView({
+			        		model: items.at(0)
+			        	});			        	
+			        	app.main.show(settingView);
+	        		}else{
+						var settingView = new SettingView({
+			        		model: new Setting()
+			        	});			        	
+			        	app.main.show(settingView);
+	        		}
+	        	});	        	
+        	
 	        },
 	        logout: function(view,options){
 	        	app.main.show(new LoginView());

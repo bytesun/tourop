@@ -8,7 +8,8 @@ define([
     'models/Route',
     'collections/Routes',
     'models/Tour',
-    'collections/Tours'
+    'collections/Tours',
+    'collections/Settings'
     
 ], function(app, Marionette, Router, Controller,
 		Information,
@@ -16,7 +17,8 @@ define([
 		Route,
 		Routes,
 		Tour,
-		Tours){
+		Tours,
+		Settings){
  
     var PagesModule = app.module("Pages", function(Pages) {
         this.startWithParent = false;
@@ -139,7 +141,24 @@ define([
  			//ocase.fetch().done(function(){
  	//		});
  			return defer.promise();
- 		} 	 		
+ 		} ,
+ 		getSettings:function(){
+ 			console.log('calling API.getSettings');
+ 			var settings = new Settings();
+ 			var defer = $.Deferred();
+ 			settings.fetch({
+ 				success:function(data){
+ 					defer.resolve(data);
+ 				}
+ 			});	
+ 			var promise = defer.promise();
+ 			$.when(promise).done(function(infos){
+ 				if(infos.length === 0){
+ 					
+ 				}
+ 			});
+ 			return promise;
+ 		},
  	};
  	
  	app.reqres.setHandler("entities:informations", function(query){
@@ -168,6 +187,10 @@ define([
  	app.reqres.setHandler("tour:entity",function(id){
  		return API.getTour(id);
  	});
+ 	
+ 	app.reqres.setHandler("entities:settings",function(){
+ 		return API.getSettings();
+ 	}); 	
     });
 
     return PagesModule;

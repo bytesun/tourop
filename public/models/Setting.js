@@ -6,14 +6,14 @@ define(["jquery", "backbone"],
 
         // Creates a new Backbone Model class object
         var Model = Backbone.Model.extend({
-            // Model Constructor
+   	       urlRoot: '/api/setting',
+	       idAttribute: '_id',
             initialize: function() {            	
 
             },
 
             // Default values for all of the Model attributes
             defaults: {
-            	COM:{
             		name:'',
             		address:'',
             		city:'',
@@ -23,8 +23,8 @@ define(["jquery", "backbone"],
             		phone:'',
             		fax:'',
             		email:'',
-            		regno:''
-            	},
+            		contact:'',
+            		regno:'',
             	commission:0.1
             	
             },
