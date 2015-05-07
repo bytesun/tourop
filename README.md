@@ -11,7 +11,7 @@ A TOUR OPERATION SYSTEM
 			
 			
 			<h2>Development Trace</h2>
-			
+			[2015/5/6] Done new/edit tour 
 			[2015/5/5] Add payment and bus company for partner input 
 			 [2015/5/1] Finish create/query/update routes functions 
 			 [2015/4/30] Create new route with itinerary 
