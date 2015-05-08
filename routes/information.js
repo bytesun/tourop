@@ -38,6 +38,7 @@ router.put('/api/infos/:id', function(req, res) {
 				name:req.body.name,
 				payment:req.body.payment,
 				telphone:req.body.telphone,
+				fax:req.body.fax,
 				contact:req.body.contact,
 				address:req.body.address,
 				city:req.body.city,

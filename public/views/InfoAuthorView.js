@@ -11,7 +11,14 @@ define([
 		template: templates.info_info,
 
         events: {
-        	"submit form": "saveInfo"
+        	"keyup .telphone":"formatTel",
+        	"click .btn_info_save": "saveInfo"
+        },
+        formatTel: function(e){
+        	console.log('fire keyup event');
+//        	var input = $("#telphone").val();
+//        	
+//        	$(".telphone").val("hello");
         },
         saveInfo: function(e){
         	e.preventDefault();

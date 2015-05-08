@@ -1,7 +1,5 @@
 <div class="alert alert-<%= _.isUndefined(obj.type)? 'info' : type %>">
     <button type="button" class="close dismiss" data-dismiss="alert" aria-hidden="true">×</button>
-    <% if(!_.isUndefined(obj.title)) { %>
-    <h4><%= title %></h4>
-    <% } %>
     <%= description %>
 </div>
+

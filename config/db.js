@@ -88,6 +88,7 @@ var Information = new Schema({
 	name : String,
 	payment:String, //credit card/voucher/cheque/cash
 	telphone : String,
+	fax:String,
 	contact : String,
 	address : String,
 	city: String,
