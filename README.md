@@ -12,6 +12,8 @@ Manage partner, route information, and create tour
 			
 			----------------------------------------------------------------------
 			Development Trace
+			[2015/5/6] 1. add fax field in information 
+						  2. format telephone input with '(_ _ _)_ _ _ - _ _ _ _ '
 			[2015/5/6] Done new/edit tour 
 			[2015/5/5] Add payment and bus company for partner input 
 			 [2015/5/1] Finish create/query/update routes functions 
