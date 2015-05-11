@@ -21,6 +21,7 @@ var Tour = new Schema({
 		fee:String,
 		meal:String,
 		admission:String,
+		bookdate:String,
 		pickup:String,	
 		dropoff:String,
 		agency:String
@@ -179,7 +180,28 @@ var Confirmation = new Schema({
 		admission:String,
 		meal:String,
 		pickup:String
-	}
+	},
+	remark:String
+});
+
+var Invoice = new Schema({
+	no:String,
+	issuedate:String,
+	cfmno:String,
+	agency:String,
+	issueby:String,
+	tourcode:String,
+	tourname:String,
+	departuredate:String,
+	passenger:{
+		no:Number,
+		name:String,
+		rate:String,
+		meal:String,
+		
+	},
+	remark:String
+	
 });
 
 mongoose.model( 'Route', Route );
@@ -189,6 +211,8 @@ mongoose.model( 'Passenger', Passenger );
 mongoose.model( 'Bus', Bus );
 mongoose.model( 'Setting', Setting );
 mongoose.model( 'Confirmation', Confirmation );
+mongoose.model( 'Invoice', Invoice );
+
 
 
 var host = process.env.OPENSHIFT_MONGODB_DB_HOST||"localhost";

@@ -107,6 +107,7 @@ define([
     	    			fee:$("#fee"+i).val(),
     	    			meal:$("#meal"+i).val(),
     	    			admission:$("#admission"+i).val(),
+    	    			bookdate:$("#bookdate"+i).val(),
     	    			pickup:$("#pickup"+i).val(),	
     	    			dropoff:$("#dropoff"+i).val(),
     	    			agency:$("#agency"+i).val()
@@ -121,6 +122,7 @@ define([
     	    	this.model.unset("fee"+i);
     	    	this.model.unset("meal"+i);
     	    	this.model.unset("admission"+i);
+    	    	this.model.unset("bookdate"+i);
     	    	this.model.unset("pickup"+i);
     	    	this.model.unset("dropoff"+i);
     	    	this.model.unset("agency"+i);
