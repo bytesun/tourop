@@ -198,7 +198,11 @@ define([
 
         },
         confirmTour: function(e){
-
+        	console.log('confirm a tour');
+        	//generate confirmation reports
+        	
+        	
+        	//generate invoice reports
         },        
         closeTour: function(e){
         	console.log('close tour');

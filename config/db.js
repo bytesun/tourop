@@ -144,12 +144,51 @@ var Setting = new Schema({
 	commission:Number
 });
 
+
+var Confirmation = new Schema({
+	no:String,
+	tour:String,
+	departuredate:String,
+	issuedate:String,
+	bookingdate:String,
+	op:String,
+	agencyop:String,
+	issuefrom:{
+		name:String,
+		address:String,
+		city:String,
+		province:String,
+		country:String,
+		postcode:String,
+		telephone:String,
+		fax:String,
+		regno:String
+	},
+	issueto:{
+		name:String,
+		address:String,
+		city:String,
+		province:String,
+		country:String,
+		postcode:String,
+		telephone:String,
+		fax:String
+	},
+	passenger:{
+		name:String,
+		admission:String,
+		meal:String,
+		pickup:String
+	}
+});
+
 mongoose.model( 'Route', Route );
 mongoose.model( 'Tour', Tour );
 mongoose.model( 'Information', Information );
 mongoose.model( 'Passenger', Passenger );
 mongoose.model( 'Bus', Bus );
 mongoose.model( 'Setting', Setting );
+mongoose.model( 'Confirmation', Confirmation );
 
 
 var host = process.env.OPENSHIFT_MONGODB_DB_HOST||"localhost";

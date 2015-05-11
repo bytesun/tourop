@@ -12,7 +12,12 @@ Manage partner, route information, and create tour
 			
 			----------------------------------------------------------------------
 			Development Trace
-			[2015/5/6] 1. add fax field in information 
+			[2015/5/11] 1. db.copyDatabase('records', 'archive_records')
+						git push https://github.com/bytesun/tourop.git master:master
+						2.bookingdate is the system date or input manually?
+						3. about contact who is from tour's op and agency's contact?
+						
+			[2015/5/8] 1. add fax field in information 
 						  2. format telephone input with '(_ _ _)_ _ _ - _ _ _ _ '
 			[2015/5/6] Done new/edit tour 
 			[2015/5/5] Add payment and bus company for partner input 
