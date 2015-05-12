@@ -93,6 +93,23 @@
     </select>
     <br>
   </div>
+  
+   <div class="col-sm-2">
+  <label>Room Type</label>
+    <select class="form-control" id="roomtype<%=no%>">
+    <%
+    var roomtypes = ['Single','Twin','Triple','Quad'];
+    	for(var i=0;i<4;i++){
+    		if(roomtypes[i] == roomtype){
+    %>
+    	<option selected><%=roomtype%></option>
+    <%}else{%>
+    	<option><%=roomtypes[i]%></option>
+    <%}}%>  
+    </select>
+    <br>
+  </div>
+    
   <div class="col-sm-2">
   <label>Booking Date</label>
     <input type="date" class="form-control" value="<%=bookdate%>" id="bookdate<%=no%>" >
