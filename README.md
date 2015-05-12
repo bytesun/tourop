@@ -16,6 +16,7 @@ Manage partner, route information, and create tour
 						git push https://github.com/bytesun/tourop.git master:master
 						2.bookingdate is the system date or input manually?
 						3. about contact who is from tour's op and agency's contact?
+						4. add "booking date" for passenger in tour.
 						
 			[2015/5/8] 1. add fax field in information 
 						  2. format telephone input with '(_ _ _)_ _ _ - _ _ _ _ '
