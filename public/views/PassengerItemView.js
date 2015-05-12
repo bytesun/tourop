@@ -19,7 +19,7 @@ define([
         	e.preventDefault();
         	
         	var input = $(e.target).val();
-        	var length = input.length>13?13:input.length;
+        	var length = input.length>14?14:input.length;
         	var c = '';
         	var out = '';
         	for(var i=0;i<length;i++){
@@ -27,8 +27,8 @@ define([
         		if(i==0 && c != '('){
         			out = '(';
         		}else if(i == 4 && c != ')'){
-        			out = out+')';
-        		}else if(i == 8 && c != '-'){
+        			out = out+') ';
+        		}else if(i == 9 && c != '-'){
         			out = out+'-';
         		}
         		out = out+c;
