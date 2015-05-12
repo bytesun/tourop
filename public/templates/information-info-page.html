@@ -51,7 +51,7 @@
 			  </div>
 			  <div class="form-group">
 			    <label for="inputPassword3" class="col-sm-2 control-label">Name:</label>
-			    <div class="col-sm-7">
+			    <div class="col-sm-8">
 			      <input type="text" class="form-control" name="name" value="<%=name%>" placeholder="" required>
 			    </div>
 			  </div>
@@ -60,27 +60,40 @@
 			    <label for="inputEmail3" class="col-sm-2 control-label">Payment:</label>
 			    <div class="col-sm-2">
 		      		<select class="form-control" name="payment">
+	      		
 		      		  <% if(payment == 'CREC'){ %>
 					  	<option value="CREC" selected>Credit Card</option>
 					  	<option value="VOUC" >Voucher</option>
 					  	<option value="CHEQ">Cheque</option>
 					  	<option value="CASH">Cash</option>
+					  	<option value="OTHE">Other</option>
 		      		  <%}else  if(payment == 'VOUC'){ %>
 					  	<option value="CREC" >Credit Card</option>
 					  	<option value="VOUC" selected>Voucher</option>
 					  	<option value="CHEQ">Cheque</option>
 					  	<option value="CASH">Cash</option>
+					  	<option value="OTHE">Other</option>
 		      		  <%}else  if(payment == 'CHEQ'){ %>
 					  	<option value="CREC" >Credit Card</option>
 					  	<option value="VOUC" >Voucher</option>
 					  	<option value="CHEQ" selected>Cheque</option>
-					  	<option value="CASH">Cash</option>					  
+					  	<option value="CASH">Cash</option>	
+					  	<option value="OTHE">Other</option>				  
 		      		  <%}else  if(payment == 'CASH'){ %>
 					  	<option value="CREC" >Credit Card</option>
 					  	<option value="VOUC" >Voucher</option>
 					  	<option value="CHEQ">Cheque</option>
-					  	<option value="CASH" selected>Cash</option>				  	
-					  <%}%>					
+					  	<option value="CASH" selected>Cash</option>
+					  	<option value="OTHE">Other</option>				  	
+		      		  <%}else  if(payment == 'OTHE'){ %>
+					  	<option value="CREC" >Credit Card</option>
+					  	<option value="VOUC" >Voucher</option>
+					  	<option value="CHEQ">Cheque</option>
+					  	<option value="CASH" >Cash</option>
+					  	<option value="OTHE" selected>Other</option>				  	
+					  
+					  <%}%>
+					  					
 
 					</select>
 			    </div>
@@ -88,25 +101,25 @@
 			  
 			  <div class="form-group">
 			    <label for="inputPassword3" class="col-sm-2 control-label">Telephone:</label>
-			    <div class="col-sm-7">
+			    <div class="col-sm-8">
 			      <input type="tel" class="form-control telephone" name="telphone" value="<%=telphone%>" placeholder="(_ _ _)  _ _ _ - _ _ _ _">
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="inputPassword3" class="col-sm-2 control-label">Fax:</label>
-			    <div class="col-sm-7">
+			    <div class="col-sm-8">
 			      <input type="tel" class="form-control telephone" name="fax" value="<%=fax%>" placeholder="(_ _ _)  _ _ _ - _ _ _ _">
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="inputPassword3" class="col-sm-2 control-label">Contact:</label>
-			    <div class="col-sm-7">
+			    <div class="col-sm-8">
 			      <input type="text" class="form-control" name="contact" value="<%=contact%>" placeholder="">
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="inputPassword3" class="col-sm-2 control-label">Address:</label>
-			    <div class="col-sm-7">
+			    <div class="col-sm-8">
 			      <input type="text" class="form-control" name="address" value="<%=address%>" placeholder="">
 			    </div>
 			  </div>
@@ -114,19 +127,19 @@
 			  <div class="form-group">
 			  	<label for="inputPassword3" class="col-sm-2 control-label"></label>
 			    <div class="col-sm-2"><input type="text" class="form-control col-sm-3" name="city" value="<%=city%>" placeholder="city"></div>	
-			    <div class="col-sm-1"><input type="text" class="form-control col-sm-3" name="province" value="<%=province%>" placeholder="province"></div>
+			    <div class="col-sm-2"><input type="text" class="form-control col-sm-3" name="province" value="<%=province%>" placeholder="province"></div>
 			    <div class="col-sm-2"><input type="text" class="form-control col-sm-3" name="country" value="<%=country%>" placeholder="country">	</div>
 			    <div class="col-sm-2"><input type="text" class="form-control col-sm-3" name="postcode" value="<%=postcode%>" placeholder="postcode"></div>
 			  </div>
 	
 			  <div class="form-group">
 			    <label for="inputPassword3" class="col-sm-2 control-label">Note:</label>
-			    <div class="col-sm-7">
+			    <div class="col-sm-8">
 			      <textarea type="textarea" class="form-control" name="note" ><%=note%></textarea>
 			    </div>
 			  </div>			  		  			  
 			  <div class="form-group">
-			    <div class="col-sm-offset-5 col-sm-10">
+			    <div class="col-sm-offset-5 col-sm-11">
 			      <input type="button" class="btn btn-primary btn_info_save" value="Save" name="btn_info_save"></input>
 			    </div>
 			  </div>
