@@ -11,6 +11,7 @@ var Tour = new Schema({
 	guide:String,
 	departuredate:String,
 	note:String,
+	feedback:String,
 	group:[{
 		no:Number,
 		passenger:[{no:Number,
@@ -24,6 +25,7 @@ var Tour = new Schema({
 					roomtype:String
 		}],
 		status:String,
+		commission:String,
 //		group:Number,
 //		name:String,
 //		gender:String,

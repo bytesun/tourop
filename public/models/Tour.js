@@ -12,7 +12,7 @@ define(["jquery", "backbone"],
         		routecode:'',
         		code:'',
         		name:'Tour Information',
-        		status:'New', //new, confirm ,close
+        		status:'New', //new, ongoing ,close
         		op:'',
         		guide:'',
         		departuredate:'',
@@ -42,6 +42,7 @@ define(["jquery", "backbone"],
         			pickup:'',
         			dropoff:'',
         			agency:'' , 
+        			commission:0.1,
         			passenger:[{
         				no:1,
             			name:'',
@@ -74,7 +75,8 @@ define(["jquery", "backbone"],
         			buscom:'',
         			note:''
         		}],
-        		note:''
+        		note:'',
+        		feedback:''
             }
         });
         // Returns the Model class

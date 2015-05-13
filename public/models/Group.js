@@ -19,6 +19,7 @@ define(["jquery", "backbone"],
     			pickup:'',	
     			dropoff:'',
     			agency:'',
+    			commission:0.1,
     			passenger:[{
     				    no:1,
 		    			name:'',
