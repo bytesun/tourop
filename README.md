@@ -21,6 +21,7 @@ Manage partner, route information, and create tour
 						4. add "other" payment
 						5. add "room types" in passenger
 						6. set read-only for tour code and name during editing.
+						7. support adding passenger by group
 						
 			[2015/5/11] 1. db.copyDatabase('records', 'archive_records')
 						git push https://github.com/bytesun/tourop.git master:master
