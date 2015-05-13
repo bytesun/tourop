@@ -14,19 +14,22 @@ define(["jquery", "backbone"],
             // Default values for all of the Model attributes
             defaults: {
             	no:1,
-//       			group:1,
-    			name:'',
-    			gender:'',
-    			age:0,
-    			phone:'',
-    			fee:'',
-    			meal:'',
-    			admission:'',
-    			roomtype:'',
-//    			bookdate:'',
-//    			pickup:'',	
-//    			dropoff:'',
-//    			agency:''
+            	status:'New',
+    			bookdate:'',
+    			pickup:'',	
+    			dropoff:'',
+    			agency:'',
+    			passenger:[{
+    				    no:1,
+		    			name:'',
+		    			gender:'',
+		    			age:0,
+		    			phone:'',
+		    			fee:'',
+		    			meal:'',
+		    			admission:'',
+		    			roomtype:''
+    			}]
 //            	
             },
 

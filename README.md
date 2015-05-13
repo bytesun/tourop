@@ -1,4 +1,4 @@
-Tour Operation System
+CANTOP LOCAL TOUR SYSTEM
 =======================
 Manage partner, route information, and create tour  
 
@@ -10,8 +10,18 @@ Manage partner, route information, and create tour
 			Week-3/4 : Core business logic (order input, generate voucher/invoice)
 			Week-5 : System deployment and defects fix 
 			
+			Backlog:
+				1. passenger list for guide and hotel
+			
 			----------------------------------------------------------------------
 			Development Trace
+			[2015/5/12] 1. change "plate no." to "bus no."
+						2. add a space in telephone numbers /postcode
+						3. increase the width of province input field
+						4. add "other" payment
+						5. add "room types" in passenger
+						6. set read-only for tour code and name during editing.
+						
 			[2015/5/11] 1. db.copyDatabase('records', 'archive_records')
 						git push https://github.com/bytesun/tourop.git master:master
 						2.bookingdate is the system date or input manually?

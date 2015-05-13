@@ -27,7 +27,7 @@ define([
 	        		if(i==0 && c != '('){
 	        			out = '(';
 	        		}else if(i == 4 && c != ')'){
-	        			out = out+')';
+	        			out = out+') ';
 	        		}else if(i == 8 && c != '-'){
 	        			out = out+'-';
 	        		}

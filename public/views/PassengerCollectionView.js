@@ -6,7 +6,7 @@ define([
     'views/PassengerItemView'
     
 ], function (Marionette, templates, _,
-		Passenger,
+		Group,
 		PassengerItemView) {
 	'use strict';
 
@@ -17,6 +17,9 @@ define([
 
 	  events:{
 		  'click .btn_add_passenger': 'addPassenger'
+	  },
+	  onShow:function(){
+		  console.log('onshow passenger collection view...');
 	  },
      templateHelpers:function(){
             return {

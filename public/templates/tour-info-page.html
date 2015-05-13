@@ -9,7 +9,6 @@
 		      <div class="col-sm-2"><label>Route Code:</label><input type="text" class="form-control route_code" name="routecode" value="<%=routecode%>" placeholder="Route code" disabled></div>
 		      <% if(code){%>
 		      <div class="col-sm-2"><label>Tour Code:</label><input type="text" class="form-control" name="code" value="<%=code%>" disabled></div>	
-		      <div class="col-sm-8"><label>Name:</label><input type="text" class="form-control" name="name" value="<%=name%>" disabled><br>	</div>
 		      <%}else{%>
 		      <div class="col-sm-2"><label>Tour Code:</label><input type="text" class="form-control" name="code" value="<%=code%>" autofocus></div>
 		      <div class="col-sm-8"><label>Name:</label><input type="text" class="form-control" name="name" value="<%=name%>"><br>	</div>
@@ -27,7 +26,7 @@
 	<div role="tabpanel">
 	  <!-- Nav tabs -->
 	  <ul class="nav nav-tabs" role="tablist">
-	     <li role="presentation" class="active"><a href="#passenger" aria-controls="passenger" role="tab" data-toggle="tab">Passenger</a></li>
+	     <li role="presentation" class="active"><a href="#passenger" aria-controls="passenger" role="tab" data-toggle="tab">Passenger Group</a></li>
 	     <li role="presentation"><a href="#itinerary" aria-controls="itinerary" role="tab" data-toggle="tab">Itinerary</a></li>
 	     <li role="presentation"><a href="#bus" aria-controls="bus" role="tab" data-toggle="tab">Bus</a></li>
 	  </ul>
@@ -37,7 +36,7 @@
 	  
 	   <div role="tabpanel" class="tab-pane active" id="passenger">
 	   <br>
-	   	<div id="passenger_list_region"></div>
+	   	<div id="group_list_region"></div>
 
 	   </div>
 	 <!-- itinerary -->

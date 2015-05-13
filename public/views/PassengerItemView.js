@@ -12,7 +12,8 @@ define([
 		tagName:'div',
         events: {
         	"keyup .telephone":"formatTel",
-        	'change .passenger_agency' :'addAgency'
+        	'change .passenger_agency' :'addAgency',
+        	'click .btn_add_passenger' : 'addPassenger'
         	
         },
         formatTel: function(e){
@@ -52,6 +53,15 @@ define([
 	        	
         	});       	
 
+        },
+        addPassenger: function(e){
+        	console.log('add new passenger');
+        	var gn = $("#gn").val();
+        	var pn = $("#pn_"+gn).val();
+        	console.log("pn_gn:",pn+'_'+gn);
+        	
+        	
+        	$("#pn_"+gn).val(pn+1);
         }
 
 	});

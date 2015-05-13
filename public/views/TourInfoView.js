@@ -4,28 +4,32 @@ define([
     'underscore',
     'syphon',
     'models/Passenger',
+    'models/Group',
     'models/Bus',
     'collections/Passengers',
+    'collections/Groups',
     'collections/Buses',
     'collections/Itinerarys',
     'views/ItineraryItemView',
     'views/ItineraryCollectionView',
-    'views/PassengerItemView',
-    'views/PassengerCollectionView',
+    'views/GroupItemView',
+    'views/GroupCollectionView',
     'views/BusItemView',
     'views/BusCollectionView'
     
 ], function (Marionette, templates, _,
 		Syphon,
 		Passenger,
+		Group,
 		Bus,
 		Passengers,
+		Groups,
 		Buses,
 		Itinerarys,
 		ItineraryItemView,
 		ItineraryCollectionView,
-		PassengerItemView,
-		PassengerCollectionView,
+		GroupItemView,
+		GroupCollectionView,
 		BusItemView,
 		BusCollectionView) {
 	'use strict';
@@ -33,7 +37,7 @@ define([
 	return Marionette.LayoutView.extend({
 		template: templates.tour_info,
 		regions:{
-			passengerRegion:"#passenger_list_region",
+			groupRegion:"#group_list_region",
 			itineraryRegion:"#itinerary_list_region",
 			busRegion:"#bus_list_region"
 		},
@@ -44,18 +48,20 @@ define([
             'click .btn_tour_close' : 'closeTour'  
         },
         onShow: function(e){
-        	//passenger list
-        	var passengers = new Passengers(new Passenger());
-        	var loadPassengers = this.model.get("passenger");
-        	console.log('loadPassengers is '+JSON.stringify(loadPassengers));
-        	if(loadPassengers != undefined && loadPassengers.length>0){
-        		passengers.reset(loadPassengers);
+        	//Group list
+        	
+        	var groups = new Groups(new Group());
+        	var loadGroups = this.model.get("group");
+        	console.log('loadGroups is ',loadGroups);
+        	if(loadGroups != undefined && loadGroups.length>0){
+        		groups.reset(loadGroups);
         	}
         	
-        	var passengerCollectionView = new PassengerCollectionView({
-        		collection:passengers
+        	var groupCollectionView = new GroupCollectionView({
+        		collection:groups
         	});
-        	this.passengerRegion.show(passengerCollectionView);
+        	this.groupRegion.show(groupCollectionView);        	
+
         	
         	//itinerary list
         	var collection = new Itinerarys();
@@ -73,7 +79,7 @@ define([
         	//bus list
         	var buses = new Buses(new Bus());
         	var loadBuses = this.model.get("bus");
-        	console.log('loadbuses is '+JSON.stringify(loadBuses));
+        	console.log('loadbuses is ',loadBuses);
         	if(loadBuses != undefined && loadBuses.length>0){
         		buses.reset(loadBuses);
         	}
@@ -93,43 +99,59 @@ define([
     	    console.log("setting data: "+JSON.stringify(this.model));
     	    
     	    //------------------save passenger data-------------------
-    	    var pn = $("#pn").val();
-    	    console.log('pn is '+pn);
-    	    var passenger = new Array();
-    	    for(var i=1;i<=pn;i++){
-    	    	passenger[i-1]={
-    	    			no:$("#pno"+i).val(),
-    	    			group:$("#group"+i).val(),
-    	    			name:$("#pname"+i).val(),
-    	    			gender:$("#gender"+i).val(),
-    	    			age:$("#age"+i).val(),
-    	    			phone:$("#pphone"+i).val(),
-    	    			fee:$("#fee"+i).val(),
-    	    			meal:$("#meal"+i).val(),
-    	    			admission:$("#admission"+i).val(),
-    	    			roomtype:$("#roomtype"+i).val(),
+    	    var gn = $("#gn").val();
+    	    console.log('gn is '+gn);
+    	    var groups = new Array();
+    	    for(var i=1;i<=gn;i++){
+
+    			var pn=$("#pn_"+i).val();
+    			console.log('pn'+i+' is '+pn);
+    	    	var passengers = new Array();
+    			for(var j=1;j<=pn;j++){
+    				
+    				passengers[j-1]={
+    					no:$("#pno_"+i+"_"+j).val(),
+		    			name:$("#pname_"+i+"_"+j).val(),
+		    			gender:$("#gender_"+i+"_"+j).val(),
+		    			age:$("#age_"+i+"_"+j).val(),
+		    			phone:$("#pphone_"+i+"_"+j).val(),
+		    			fee:$("#fee_"+i+"_"+j).val(),
+		    			meal:$("#meal_"+i+"_"+j).val(),
+		    			admission:$("#admission_"+i+"_"+j).val(),
+		    			roomtype:$("#roomtype_"+i+"_"+j).val(),
+    				}
+    				console.log('passenger'+j+":",passengers[j-1]);
+    				this.model.unset("pno_"+i+"_"+j);
+        	    	this.model.unset("pname_"+i+"_"+j);
+        	    	this.model.unset("gender_"+i+"_"+j);
+        	    	this.model.unset("age_"+i+"_"+j);
+        	    	this.model.unset("pphone_"+i+"_"+j);
+        	    	this.model.unset("fee_"+i+"_"+j);
+        	    	this.model.unset("meal_"+i+"_"+j);
+        	    	this.model.unset("admission_"+i+"_"+j);
+        	    	this.model.unset("roomtype_"+i+"_"+j);
+        	    	
+    			};
+    			
+    	    	groups[i-1]={
+    	    			no:$("#group"+i).val(),
+    	    			status:$("#status"+i).val(),
     	    			bookdate:$("#bookdate"+i).val(),
     	    			pickup:$("#pickup"+i).val(),	
     	    			dropoff:$("#dropoff"+i).val(),
-    	    			agency:$("#agency"+i).val()
+    	    			agency:$("#agency"+i).val(),
+    	    			passenger:passengers
     	    			
     	    	}
-    	    	this.model.unset("pno"+i);
-    	    	this.model.unset("group"+i);
-    	    	this.model.unset("pname"+i);
-    	    	this.model.unset("gender"+i);
-    	    	this.model.unset("age"+i);
-    	    	this.model.unset("pphone"+i);
-    	    	this.model.unset("fee"+i);
-    	    	this.model.unset("meal"+i);
-    	    	this.model.unset("admission"+i);
-    	    	this.model.unset("roomtype"+i);
+    	    	this.model.unset("no"+i);
+    	    	this.model.unset("status"+i);
+
     	    	this.model.unset("bookdate"+i);
     	    	this.model.unset("pickup"+i);
     	    	this.model.unset("dropoff"+i);
     	    	this.model.unset("agency"+i);
     	    }
-    	    this.model.set("passenger",passenger);
+    	    this.model.set("group",groups);
     	    //----------------save itinerary data---------------
     	    var days=$("#days").val();
     	    var itinerary = new Array();

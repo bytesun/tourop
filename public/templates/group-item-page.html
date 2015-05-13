@@ -1,0 +1,147 @@
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="grouphead<%=no%>">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#group_list_item" href="#group<%=no%>" aria-expanded="true" aria-controls="group<%=no%>">
+         <span class="text text-primary"> [<%=status%>][Group - <%=no%>] <%=pickup%> </span>
+         <input class="form-control"  id="group<%=no%>" value="<%=no%>" type="hidden">
+         <input class="form-control"  id="status<%=no%>" value="<%=status%>" type="hidden">
+        </a>
+      </h4>
+    </div>
+    <div id="group<%=no%>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="grouphead<%=no%>">
+      <div class="panel-body">
+		 	
+			<input type="hidden" id="pn_<%=no%>" value="<%=passenger.length%>">
+		 	<%for(var p=0;p<passenger.length;p++){%>
+			<div class="row">		 	
+			  <div class="col-lg-offset-1 col-lg-1">
+			  <label>No.</label>
+			  	<input class="form-control"  value="<%=p+1%>" type="number"  id="pno_<%=no%>_<%=p+1%>" disabled>
+			  </div>		   	        	
+			  <div class="col-lg-3">
+			  <label>Name</label>
+			   <input class="form-control" value="<%=passenger[p].name%>" id="pname_<%=no%>_<%=p+1%>" placeholder="passenger name">
+			  </div>
+			  <div class="col-lg-1">
+			  <label>Age</label>
+			   <input class="form-control" value="<%=passenger[p].age%>"  id="age_<%=no%>_<%=p+1%>" type="number">
+			  </div>
+			  <div class="col-lg-2">
+			  <label>Gender</label>
+			    <select class="form-control" id="gender_<%=no%>_<%=p+1%>">
+			    <%
+			    	var genders = ['Male','Female'];
+			    	for(var i=0;i<2;i++){
+			    		if(genders[i] == passenger[p].gender){
+			    %>
+			    	<option selected><%=passenger[p].gender%></option>
+			    <%}else{%>
+			    	<option><%=genders[i]%></option>
+			    <%}}%>
+			    	
+			    	
+			    </select>
+			  </div>
+			 
+			   <div class="col-lg-2">
+			  <label>Phone</label>
+			    <input class="form-control telephone" value="<%=passenger[p].phone%>" id="pphone_<%=no%>_<%=p+1%>" placeholder="(_ _ _)  _ _ _ - _ _ _ _" >
+			    <br>
+			  </div> 
+			   <div class="col-lg-offset-2 col-lg-2">
+			  <label>Room Type</label>
+			    <select class="form-control" id="roomtype_<%=no%>_<%=p+1%>">
+			    <%
+			    var roomtypes = ['Single','Twin','Triple','Quad'];
+			    	for(var i=0;i<4;i++){
+			    		if(roomtypes[i] == passenger[p].roomtype){
+			    %>
+			    	<option selected><%=passenger[p].roomtype%></option>
+			    <%}else{%>
+			    	<option><%=roomtypes[i]%></option>
+			    <%}}%>  
+			    </select>
+			    <br>
+			  </div> 
+			  
+			   <div class="col-lg-2">
+			  <label>Fee</label>
+			    <select class="form-control" id="fee_<%=no%>_<%=p+1%>">
+			    <%
+			    	var feetypes = ['No','Adult','Senior','Youth','Child','Infant'];
+			    	for(var i=1;i<5;i++){
+			    		if(feetypes[i] == passenger[p].fee){
+			    %>
+			    	<option selected><%=passenger[p].fee%></option>
+			    <%}else{%>
+			    	<option><%=feetypes[i]%></option>
+			    <%}}%>    
+			
+			    </select>
+			  </div>   
+			   <div class="col-lg-2">
+			  <label>Meal</label>
+			    <select class="form-control" id="meal_<%=no%>_<%=p+1%>">
+			    <%
+			    	for(var i=0;i<5;i++){
+			    		if(feetypes[i] == passenger[p].meal){
+			    %>
+			    	<option selected><%=passenger[p].meal%></option>
+			    <%}else{%>
+			    	<option><%=feetypes[i]%></option>
+			    <%}}%>  
+			    </select>
+			  </div>
+			   <div class="col-lg-2">
+			  <label>Admission</label>
+			    <select class="form-control" id="admission_<%=no%>_<%=p+1%>">
+			    <%
+			    	for(var i=0;i<5;i++){
+			    		if(feetypes[i] == passenger[p].admission){
+			    %>
+			    	<option selected><%=passenger[p].admission%></option>
+			    <%}else{%>
+			    	<option><%=feetypes[i]%></option>
+			    <%}}%>  
+			    </select>
+			    <br>
+			  </div>
+				<div class="col-lg-offset-1 col-lg-9">
+			   	<hr>
+			  </div> 			 		  		  
+		 	</div> 
+		 	
+		 	<%}%>
+		   
+		   <div class="row">		
+		   <div class="col-lg-offset-1 col-lg-10">
+		    <a class="btn btn-default btn_add_passenger">+</a>
+		    <br>
+		  </div> 
+		
+		  <div class="col-lg-offset-1 col-lg-2">
+		  <label>Booking Date</label>
+		    <input type="date" class="form-control" value="<%=bookdate%>" id="bookdate<%=no%>" >
+		    <br>
+		  </div>   
+		   <div class=" col-lg-7">
+		  <label>Agency</label>
+		    <input class="form-control passenger_agency" value="<%=agency%>" id="agency<%=no%>" >
+		    <br>
+		  </div>  
+ 
+		   <div class="col-lg-offset-1 col-lg-9">
+		  <label>Pick Up</label>
+		    <input class="form-control" value="<%=pickup%>" id="pickup<%=no%>">
+		    <br>
+		  </div>  
+		   <div class="col-lg-offset-1 col-lg-9">
+		  <label>Drop Off</label>
+		    <input class="form-control" value="<%=dropoff%>" id="dropoff<%=no%>">
+		    <br>
+		  </div>  
+		  </div>
+
+      </div>
+    </div>
+  </div>              
