@@ -90,26 +90,29 @@ define([
 	        	
 	        },
 	        tour_new: function(routeid){
-	        	console.log('route code:'+routeid);
+	        	console.log('route id:'+routeid);
 	        	var fetchingRoute = app.request("route:entity",routeid);
 				$.when(fetchingRoute).done(function(route){
+					console.log("fetch route:",route);
+					var tour = new TourModel({
+	        			route:route.toJSON(),
+	        			name:route.get("name"),
+	        			days:route.get("days"),
+	        			itinerary:route.get("itinerary")
+	        		});
+					console.log("new tour :"+JSON.stringify(tour));
 		       		app.main.show(new TourInfoView({
-		        		model: new TourModel({
-		        			routecode:route.get("code"),
-		        			name:route.get("name"),
-		        			days:route.get("days"),
-		        			itinerary:route.get("itinerary")
-		        		})
+		        		model: tour
 		        	}));
 				});
 
 	        },
-	        route : function(query){
+	        route : function(code){
 
 	        	var routeView = new RouteView({
 	        		model:new RouteModel()
 	        	});
-	        	if(query == null){
+	        	if(code == null){
 		        	var routeCollectionView = new RouteCollectionView({
 		        		collection:null
 		        	});
@@ -119,7 +122,7 @@ define([
 		        	});	        		
 	        		app.main.show(routeView);
 	        	}else{
-	        		var fetchingitems = app.request("entities:routes",{c:query});
+	        		var fetchingitems = app.request("entities:routes",{c:code});
 		        	$.when(fetchingitems).done(function(routes){
 		        			        		
 			        	var routeCollectionView = new RouteCollectionView({

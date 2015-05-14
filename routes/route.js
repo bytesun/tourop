@@ -76,7 +76,7 @@ router.get('/api/routes',function(req,res){
 	var query = {};
 	if(c != 0)query.code = new RegExp('^'+c, "i");
 //	else query=null,
-	
+	console.log("query route: ",query);
 	Route.find(query,
 				null,
 				null,function(err,routes){

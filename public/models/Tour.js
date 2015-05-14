@@ -9,76 +9,129 @@ define(["jquery", "backbone"],
   	       idAttribute: '_id',
             // Default values for all of the Model attributes
             defaults: {
-        		routecode:'',
-        		code:'',
-        		name:'Tour Information',
-        		status:'New', //new, ongoing ,close
-        		op:'',
-        		guide:'',
-        		departuredate:'',
-        		days:'',
-//        		passenger:[{
-//        			no:1,
-//        			group:1,
-//        			name:'',
-//        			gender:'',
-//        			age:0,
-//        			phone:'',
-//        			fee:'',
-//        			meal:'',
-//        			admission:'',
-//        			roomtype:'',
-//        			bookdate:'',
-//        			pickup:'',
-//        			dropoff:'',
-////        			confirmation:'',
-////        			invoice:'',
-//        			agency:''
-//        		}],   
-        		group:[{
-        			no:1,
-        			status:'New',
-           			bookdate:'',
-        			pickup:'',
-        			dropoff:'',
-        			agency:'' , 
-        			commission:0.1,
-        			passenger:[{
-        				no:1,
-            			name:'',
+            	code:'',
+            	name:'',
+            	status:'New',
+            	days:1,
+            	op:'',
+            	guide:'',
+            	departuredate:'',
+            	note:'',
+            	feedback:'',
+            	route:{
+            		code : '',
+            		name : '',
+            		days: 1,
+            		fee_tour_adult:0,
+            		fee_tour_senior:0,
+            		fee_tour_youth:0,
+            		fee_tour_child:0,
+            		fee_tour_infant:0,
+
+            		fee_meal_adult:0,
+            		fee_meal_senior:0,
+            		fee_meal_youth:0,
+            		fee_meal_child:0,
+            		fee_meal_infant:0,
+
+            		fee_adm_adult:0,
+            		fee_adm_senior:0,
+            		fee_adm_youth:0,
+            		fee_adm_child:0,
+            		fee_adm_infant:0,
+            		note : '',
+            		itinerary:
+            			[{
+            				day:1,
+            				from:'',
+            				via:'',
+            				to:'',
+            				itinerary:''
+            			}]
+            	},	
+            	group:[{
+            		no:1,
+            		status:'New',
+            		commission:0.0,
+            		taxablesub:0,
+            		nontaxablesub:0,
+            		tax:0,
+            		total:0,
+            		bookdate:'',
+            		pickup:'',	
+            		dropoff:'',
+            		remark_c:'',
+            		remark_i:'',
+            		passenger:[{no:1,
+                  		name:'',
             			gender:'',
-            			age:0,
+            			age:1,
             			phone:'',
-            			fee:'',
-            			meal:'',
-            			admission:'',
-            			roomtype:'',        				
-        			}]
-        		}],
-        		itinerary:[{
-        			day:1,
-        			from:'',
-        			via:'',
-        			to:'',
-        			hotel:'',
-        			breakfast:'',
-        			lunch:'',
-        			dinner:'',
-        			itinerary:''
-        		}] ,
-        		bus:[{
-        			no:1,
-        			plateno:'',
-        			driver:'',
-        			phone:'',
-        			seats:10,
-        			buscom:'',
-        			note:''
-        		}],
-        		note:'',
-        		feedback:''
+            			roomtype:'',
+            			fare:0,
+            			meal:0,
+            			admission:0,
+            			total:0					
+            		}],
+            		agency:{
+            			type : '', //1-agency/2-hotel/3-restaurant/4-admission
+            			code : '',
+            			name : '',
+            			payment:'', //credit card/voucher/cheque/cash
+            			telphone : '',
+            			fax:'',
+            			contact : '',
+            			address : '',
+            			city: '',
+            			province: '',
+            			country :'',
+            			postcode:'',
+            			note: ''
+            		}
+
+            	}],
+            	itinerary:[{
+            		day:1,
+            		from:'',
+            		via:'',
+            		to:'',
+            		hotel:'',
+            		breakfast:'',
+            		lunch:'',
+            		dinner:'',
+            		itinerary:''
+            		
+            	}]
+            ,
+            	bus:[{
+            		no:1,
+            		plateno:'',
+            		driver:'',
+            		seats:10,
+            		phone:'',
+            		note:'',
+            		buscom:
+            			{
+            			type : '', //1-agency/2-hotel/3-restaurant/4-admission
+            			code : '',
+            			name : '',
+            			payment:'', //credit card/voucher/cheque/cash
+            			telphone : '',
+            			fax:'',
+            			contact : '',
+            			address : '',
+            			city: '',
+            			province: '',
+            			country :'',
+            			postcode:'',
+            			note: ''
+            		}
+            		
+            		
+            	}]
             }
-        });
+        }
+        );
         // Returns the Model class
         return Model;
 

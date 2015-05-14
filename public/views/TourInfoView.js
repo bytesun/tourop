@@ -47,6 +47,12 @@ define([
             'click .btn_tour_confirm' : 'confirmTour',
             'click .btn_tour_close' : 'closeTour'  
         },
+        initialize: function(){
+        	var self = this;
+            app.commands.setHandler("app:tour:save", function() {
+            	self.saveTour();
+            });
+        },
         onShow: function(e){
         	//Group list
         	
@@ -92,8 +98,8 @@ define([
         },
 
         saveTour: function(e){
-        	e.preventDefault();
-          	
+//        	e.preventDefault();
+        	 
     	    var data = Syphon.serialize(this);
     	    this.model.set(data);
     	    console.log("setting data: "+JSON.stringify(this.model));
@@ -115,7 +121,7 @@ define([
 		    			gender:$("#gender_"+i+"_"+j).val(),
 		    			age:$("#age_"+i+"_"+j).val(),
 		    			phone:$("#pphone_"+i+"_"+j).val(),
-		    			fee:$("#fee_"+i+"_"+j).val(),
+		    			fare:$("#fee_"+i+"_"+j).val(),
 		    			meal:$("#meal_"+i+"_"+j).val(),
 		    			admission:$("#admission_"+i+"_"+j).val(),
 		    			roomtype:$("#roomtype_"+i+"_"+j).val(),
@@ -139,7 +145,8 @@ define([
     	    			bookdate:$("#bookdate"+i).val(),
     	    			pickup:$("#pickup"+i).val(),	
     	    			dropoff:$("#dropoff"+i).val(),
-    	    			agency:$("#agency"+i).val(),
+//    	    			agency:$("#agency"+i).val(),
+    	    			commission:$("#commission"+i).val(),
     	    			passenger:passengers
     	    			
     	    	}
@@ -150,6 +157,7 @@ define([
     	    	this.model.unset("pickup"+i);
     	    	this.model.unset("dropoff"+i);
     	    	this.model.unset("agency"+i);
+    	    	this.model.unset("commission"+i);
     	    }
     	    this.model.set("group",groups);
     	    //----------------save itinerary data---------------
@@ -203,7 +211,7 @@ define([
     	    			driver:$("#driver"+i).val(),
     	    			seats:$("#seats"+i).val(),
     	    			phone:$("#bphone"+i).val(),
-    	    			buscom:$("#buscom"+i).val(),
+//    	    			buscom:$("#buscom"+i).val(),
     	    			
     	    	}
 
@@ -220,7 +228,7 @@ define([
     	    console.log("ready to save data: "+JSON.stringify(this.model));
     	    this.model.save();
 
-    	    app.navigate("tour",true);         	
+//    	    app.navigate("tour",true);         	
 
         },
         confirmTour: function(e){

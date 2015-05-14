@@ -21,7 +21,7 @@ define([
         },
        
         searchByCode: function(e){
-        	var query = $("#search_code").val();
+        	var code = $("#search_code").val();
 //        	var fetchingitems = app.request("entities:routes",{c:query});
 //        	$.when(fetchingitems).done(function(routes){
 //        			        		
@@ -30,7 +30,7 @@ define([
 //	        	});
 //        		this.routeListRegion.show(routeCollectionView);
 //        	});	        	
-        	app.navigate('route/'+query,true);
+        	app.navigate('route/'+code,true);
         },
         newRoute: function(e){
         	app.navigate("route_info",true);

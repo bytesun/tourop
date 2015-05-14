@@ -2,7 +2,6 @@ var mongoose = require( 'mongoose' );
 var Schema   = mongoose.Schema;
 
 var Tour = new Schema({
-	routecode:String,
 	code:String,
 	name:String,
 	status:String,
@@ -12,33 +11,79 @@ var Tour = new Schema({
 	departuredate:String,
 	note:String,
 	feedback:String,
+	route:{
+		_id:Schema.Types.ObjectId,
+		code : String,
+		name : String,
+		days: Number,
+		fee_tour_adult:Number,
+		fee_tour_senior:Number,
+		fee_tour_youth:Number,
+		fee_tour_child:Number,
+		fee_tour_infant:Number,
+
+		fee_meal_adult:Number,
+		fee_meal_senior:Number,
+		fee_meal_youth:Number,
+		fee_meal_child:Number,
+		fee_meal_infant:Number,
+
+		fee_adm_adult:Number,
+		fee_adm_senior:Number,
+		fee_adm_youth:Number,
+		fee_adm_child:Number,
+		fee_adm_infant:Number,
+		note : String,
+		itinerary:
+			[{
+				day:Number,
+				from:String,
+				via:String,
+				to:String,
+				itinerary:String
+			}]
+	},	
 	group:[{
 		no:Number,
-		passenger:[{no:Number,
-	          		name:String,
-					gender:String,
-					age:Number,
-					phone:String,
-					fee:String,
-					meal:String,
-					admission:String,
-					roomtype:String
-		}],
 		status:String,
-		commission:String,
-//		group:Number,
-//		name:String,
-//		gender:String,
-//		age:Number,
-//		phone:String,
-//		fee:String,
-//		meal:String,
-//		admission:String,
-//		roomtype:String,
+		commission:Number,
+		taxablesub:Number,
+		nontaxablesub:Number,
+		tax:Number,
+		total:Number,
 		bookdate:String,
 		pickup:String,	
 		dropoff:String,
-		agency:String
+		remark_c:String,
+		remark_i:String,
+		passenger:[{no:Number,
+      		name:String,
+			gender:String,
+			age:Number,
+			phone:String,
+			roomtype:String,
+			fare:Number,
+			meal:Number,
+			admission:Number,
+			total:Number					
+		}],
+		agency:{
+			_id:Schema.Types.ObjectId,
+			type : String, //1-agency/2-hotel/3-restaurant/4-admission
+			code : String,
+			name : String,
+			payment:String, //credit card/voucher/cheque/cash
+			telphone : String,
+			fax:String,
+			contact : String,
+			address : String,
+			city: String,
+			province: String,
+			country :String,
+			postcode:String,
+			note: String
+		}
+
 	}],
 	itinerary:[{
 		day:Number,
@@ -59,8 +104,25 @@ var Tour = new Schema({
 		driver:String,
 		seats:Number,
 		phone:String,
-		buscom:String,
-		note:String
+		note:String,
+		buscom:
+			{
+			_id:Schema.Types.ObjectId,
+			type : String, //1-agency/2-hotel/3-restaurant/4-admission
+			code : String,
+			name : String,
+			payment:String, //credit card/voucher/cheque/cash
+			telphone : String,
+			fax:String,
+			contact : String,
+			address : String,
+			city: String,
+			province: String,
+			country :String,
+			postcode:String,
+			note: String
+		}
+		
 	}]
 });
 
@@ -163,12 +225,19 @@ var Setting = new Schema({
 
 var Confirmation = new Schema({
 	no:String,
-	tour:String,
+	tourcode:String,
+	tourname:String,
 	departuredate:String,
 	issuedate:String,
-	bookingdate:String,
+	bookdate:String,
 	op:String,
 	agencyop:String,
+	taxablesub:Number,
+	nontaxablesub:Number,
+	gst:Number,
+	total:Number,
+	remark_c:String,
+	remark_i:String,
 	issuefrom:{
 		name:String,
 		address:String,
@@ -192,11 +261,14 @@ var Confirmation = new Schema({
 	},
 	passenger:{
 		name:String,
-		admission:String,
-		meal:String,
-		pickup:String
-	},
-	remark:String
+		faretype:String,
+		fare:Number,
+		admission:Number,
+		meal:Number,
+		pickup:String,
+		dropoff:String
+	}
+	
 });
 
 var Invoice = new Schema({

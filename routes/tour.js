@@ -67,9 +67,9 @@ router.get('/api/tours',function(req,res){
 		query.status={$in:['New','Confirm']};
 	}
 	
-	console.log('query is '+JSON.stringify(query));
+	console.log('query tour is ',query);
 	
-	Tour.find(query,
+	Tour.find(null,
 				null,
 				null,function(err,tours){
 			res.send(tours);

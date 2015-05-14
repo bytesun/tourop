@@ -47,6 +47,7 @@ define([
 	        			var buscom = items.at(0);
 	        			inputstr = buscom.get("name")+"  ("+buscom.get("telphone")+")  "+buscom.get("address");
 	        			$("#"+inputid).val(inputstr);
+	        			this.model.set({buscom:buscom});
 	        		}   	
 	        		
 		        	

@@ -24,7 +24,7 @@
 			  </div>
 			  <div class="col-lg-1">
 			  <label>Age</label>
-			   <input class="form-control" value="<%=passenger[p].age%>"  id="age_<%=no%>_<%=p+1%>" type="number">
+			   <input class="form-control" value="<%=passenger[p].age%>"  id="age_<%=no%>_<%=p+1%>" type="number" min="1" max="150">
 			  </div>
 			  <div class="col-lg-2">
 			  <label>Gender</label>
@@ -114,32 +114,47 @@
 		 	<%}%>
 		   
 		   <div class="row">		
-		   <div class="col-lg-offset-1 col-lg-10">
-		    <a class="btn btn-default btn_add_passenger">+</a>
-		    <br>
-		  </div> 
-		
-		  <div class="col-lg-offset-1 col-lg-2">
-		  <label>Booking Date</label>
-		    <input type="date" class="form-control" value="<%=bookdate%>" id="bookdate<%=no%>" >
-		    <br>
-		  </div>   
-		   <div class=" col-lg-7">
-		  <label>Agency</label>
-		    <input class="form-control passenger_agency" value="<%=agency%>" id="agency<%=no%>" >
-		    <br>
-		  </div>  
- 
-		   <div class="col-lg-offset-1 col-lg-9">
-		  <label>Pick Up</label>
-		    <input class="form-control" value="<%=pickup%>" id="pickup<%=no%>">
-		    <br>
-		  </div>  
-		   <div class="col-lg-offset-1 col-lg-9">
-		  <label>Drop Off</label>
-		    <input class="form-control" value="<%=dropoff%>" id="dropoff<%=no%>">
-		    <br>
-		  </div>  
+			   <div class="col-lg-offset-1 col-lg-10">
+			    <a class="btn btn-default btn_add_passenger">+</a>
+			    <br>
+			  </div> 
+		  </div>
+		  
+		  <div class="row">
+ 		   
+			   <div class="col-lg-offset-1 col-lg-9">
+			  <label>Agency</label>
+			    <input class="form-control passenger_agency" value="<%=agency%>" id="agency<%=no%>" >
+			    <br>
+			  </div>  
+	 
+			   <div class="col-lg-offset-1 col-lg-9">
+			  <label>Pick Up</label>
+			    <input class="form-control" value="<%=pickup%>" id="pickup<%=no%>">
+			    <br>
+			  </div>  
+			   <div class="col-lg-offset-1 col-lg-9">
+			  <label>Drop Off</label>
+			    <input class="form-control" value="<%=dropoff%>" id="dropoff<%=no%>">
+			    <br>
+			  </div>
+			  
+			  <div class="col-lg-offset-1 col-lg-2">
+			  <label>Booking Date</label>
+			    <input type="date" class="form-control" value="<%=bookdate%>" id="bookdate<%=no%>" >
+			    <br>
+			  </div>  
+			  <div class="col-lg-1">
+			  <label>Commission</label>
+			    <input type="number" step="0.01" min="0" class="form-control" value="<%=commission%>" id="commission<%=no%>" >
+			    <br>
+			  </div>
+			  
+			  <div class="col-lg-offset-4 col-lg-2">
+			  <label></label>
+			    <input type="button" class="form-control btn btn-default btn_confirm_group" value="Confirm" >
+			    <br>
+			  </div>			  			    
 		  </div>
 
       </div>

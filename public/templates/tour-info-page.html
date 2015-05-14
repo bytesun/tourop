@@ -6,15 +6,16 @@
 		 	<hr>
 	
 		    <div class="form-group">
-		      <div class="col-sm-2"><label>Route Code:</label><input type="text" class="form-control route_code" name="routecode" value="<%=routecode%>" placeholder="Route code" disabled></div>
+		      <div class="col-sm-2"><label>Route Code:</label><input type="text" class="form-control route_code" name="routecode" value="<%=route.code%>" placeholder="Route code" disabled></div>
 		      <% if(code){%>
-		      <div class="col-sm-2"><label>Tour Code:</label><input type="text" class="form-control" name="code" value="<%=code%>" disabled></div>	
+		      <div class="col-sm-2"><label>Tour Code:</label><input type="text" class="form-control" id="code" name="code" value="<%=code%>" disabled></div>	
+		      <input type="hidden" class="form-control" id="name" name="name" value="<%=name%>">
 		      <%}else{%>
-		      <div class="col-sm-2"><label>Tour Code:</label><input type="text" class="form-control" name="code" value="<%=code%>" autofocus></div>
-		      <div class="col-sm-8"><label>Name:</label><input type="text" class="form-control" name="name" value="<%=name%>"><br>	</div>
+		      <div class="col-sm-2"><label>Tour Code:</label><input type="text" class="form-control" id="code" name="code" value="<%=code%>" autofocus></div>
+		      <div class="col-sm-8"><label>Name:</label><input type="text" class="form-control" id="name" name="name" value="<%=name%>"><br>	</div>
 		      <%}%>	
 			  
-			  <div class="col-sm-1"><label>Days:</label><input type="number" class="form-control" id="days"  name="days" value="<%=days%>" placeholder="4" disabled></div>
+			  <div class="col-sm-1"><label>Days:</label><input type="number" min="1" class="form-control" id="days"  name="days" value="<%=days%>" placeholder="4" disabled></div>
 		      <div class="col-sm-3"><label>OP:</label><input type="text" class="form-control" name="op" value="<%=op%>" placeholder=""></div>
 		      <div class="col-sm-3"><label>Guide:</label><input type="text" class="form-control" name="guide"  value="<%=guide%>" placeholder=""></div>
 		      <div class="col-sm-3"><label>Departure Date:</label><input type="date" class="form-control" id="departuredate" name="departuredate" value="<%=departuredate%>" placeholder=""></div>

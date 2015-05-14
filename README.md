@@ -1,6 +1,7 @@
 CANTOP LOCAL TOUR SYSTEM
 =======================
 Manage partner, route information, and create tour  
+[Live demo](http://tour.sunorth.org)
 
 	    	*Note: this is only for development tracking, so it will be removed after deployment.
 
@@ -15,6 +16,8 @@ Manage partner, route information, and create tour
 			
 			----------------------------------------------------------------------
 			Development Trace
+			[2015/5/13] 1. add "feedback" and "commission" in tour db.
+			
 			[2015/5/12] 1. change "plate no." to "bus no."
 						2. add a space in telephone numbers /postcode
 						3. increase the width of province input field

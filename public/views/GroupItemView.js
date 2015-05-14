@@ -6,11 +6,13 @@ define([
     'collections/Passengers',
     'models/Passenger',
     'views/PassengerCollectionView',
+    'models/Confirmation'
 ], function (Marionette, templates, _,
 		Group,
 		Passengers,
 		Passenger,
-		PassengerCollectionView) {
+		PassengerCollectionView,
+		Confirmation) {
 	'use strict';
 
 	return Marionette.ItemView.extend({
@@ -20,10 +22,11 @@ define([
         events: {
         	"keyup .telephone":"formatTel",
         	"change .passenger_agency" :"addAgency",
-        	"click .btn_add_passenger" : "addPassenger"        	
+        	"click .btn_add_passenger" : "addPassenger",
+        	"click .btn_confirm_group" : "confirmGroup"
         },
 		initialize : function() {
-//			  this.listenTo(this.model, 'change', this.render);
+			  this.listenTo(this.model, 'change', this.render);
 		},        
        
         formatTel: function(e){
@@ -95,11 +98,78 @@ define([
         			var agency = items.at(0);
         			inputstr = agency.get("name")+"  ("+agency.get("telphone")+")  "+agency.get("address");
         			$("#"+inputid).val(inputstr);
-
+        			this.model.set({agency:agency});
         		}   	      		
 	        	
         	});       	
 
+        },
+        confirmGroup: function(e){
+
+        	this.model.set({status:'Confirmed'});
+        	app.execute("app:tour:save");
+        	
+        	//generate confirmation and invoice
+        	var routecode=$("#routecode").val();
+        	var self = this;
+        	var fetchingitems = app.request("entities:routes",{c:routecode});
+        	$.when(fetchingitems).done(function(routes){
+        		if(routes.length>0){
+
+        			var route = routes.at(0);
+        			var gn = self.model.get("no");
+        			var cfm = new Confirmation({
+        				no:tourcode+gn,
+        				tourcode:$("#code").val(),
+        				tourname:$("#name").val(),
+        				departuredate:$("#departuredate").val(),
+        				issuedate:new Date()+'',
+                    	bookdate:$("#bookdate"+gn).val(),
+                    	op:$("#op").val(),
+                    	agencyop:'',
+                    	taxablesub:0,
+                    	nontaxablesub:0,
+                    	gst:0,
+                    	total:0,
+                    	remark_c:'',
+                    	remark_i:'',
+                    	issuefrom:{
+                    		name:'',
+                    		address:'',
+                    		city:'',
+                    		province:'',
+                    		country:'',
+                    		postcode:'',
+                    		telephone:'',
+                    		fax:'',
+                    		regno:''
+                    	},
+                    	issueto:{
+                    		name:'',
+                    		address:'',
+                    		city:'',
+                    		province:'',
+                    		country:'',
+                    		postcode:'',
+                    		telephone:'',
+                    		fax:''
+                    	},
+                    	passenger:{
+                    		name:'',
+                    		faretype:'',
+                    		fare:0,
+                    		admission:0,
+                    		meal:0,
+                    		pickup:'',
+                    		dropoff:''
+                    	}
+        			});
+        			
+        		}
+        	});	
+    	        	
+
+        	
         }
         
 
