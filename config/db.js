@@ -225,6 +225,8 @@ var Confirmation = new Schema({
 	issuedate:String,
 	bookdate:String,
 	op:String,
+	pickup:String,
+	dropoff:String,
 	remark:String,
 	tourcom:{
 		name:String,
@@ -253,13 +255,14 @@ var Confirmation = new Schema({
 	},
 	passenger:[{
 		name:String,
+		age:Number,
+		gender:String,		
 		roomtype:String,
 		phone:String,
 		fare:String,
 		admission:String,
-		meal:String,
-		pickup:String,
-		dropoff:String
+		meal:String
+
 	}]
 	
 });

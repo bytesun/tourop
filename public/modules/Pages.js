@@ -9,6 +9,9 @@ define([
     'collections/Routes',
     'models/Tour',
     'collections/Tours',
+    'models/Confirmation',
+    'collections/Confirmations',
+    
     'collections/Settings'
     
 ], function(app, Marionette, Router, Controller,
@@ -18,6 +21,8 @@ define([
 		Routes,
 		Tour,
 		Tours,
+		Confirmation,
+		Confirmations,
 		Settings){
  
     var PagesModule = app.module("Pages", function(Pages) {
@@ -159,6 +164,43 @@ define([
  			});
  			return promise;
  		},
+		getConfirmations:function(query){
+ 			console.log('calling API.getConfirmations');
+ 			var confirmations = new Confirmations();
+ 			var defer = $.Deferred();
+ 			confirmations.fetch({
+ 				data:$.param(query),
+ 				success:function(data){
+ 					defer.resolve(data);
+ 				}
+ 			});	
+ 			var promise = defer.promise();
+ 			$.when(promise).done(function(confirmatons){
+ 				if(confirmatons.length === 0){
+ 					
+ 				}
+ 			});
+ 			return promise;
+ 		},
+ 		getConfirmation:function(id){
+ 			console.log('fetching Confirmation :'+id);
+ 			var confirmation = new Confirmation({'_id':id});
+ 			var defer = $.Deferred();
+ 			//setTimeout(function(){
+ 				confirmation.fetch({
+ 					success:function(data){
+ 						defer.resolve(data);
+ 					},
+ 					error:function(data){
+ 						defer.resolve(undefined);
+ 					}
+ 				
+ 				});
+ 			//},2000);		
+ 			//ocase.fetch().done(function(){
+ 	//		});
+ 			return defer.promise();
+ 		}, 		
  	};
  	
  	app.reqres.setHandler("entities:informations", function(query){
@@ -190,7 +232,15 @@ define([
  	
  	app.reqres.setHandler("entities:settings",function(){
  		return API.getSettings();
- 	}); 	
+ 	}); 
+ 	
+ 	app.reqres.setHandler("confirmation:entity",function(id){
+ 		return API.getConfirmation(id);
+ 	});
+ 	
+ 	app.reqres.setHandler("entities:confirmations",function(query){
+ 		return API.getConfirmations(query);
+ 	});  	
     });
 
     return PagesModule;

@@ -84,7 +84,6 @@ define([
         	};
         	this.model.set({passenger:passengers});        	
         	this.render();
-        	console.log('changed model is:',this.model);
 
         },
         addAgency : function(e){
@@ -110,8 +109,27 @@ define([
         },
         confirmGroup: function(e){
 
+        	//reset lastest passenger info
+           	var gn=this.model.get("no");        	
+        	var pn=parseInt($("#pn_"+gn).val());
+	    	var passengers = new Array();
+			for(var j=1;j<=pn;j++){
+				
+				passengers[j-1]={
+					no:$("#pno_"+gn+"_"+j).val(),
+	    			name:$("#pname_"+gn+"_"+j).val(),
+	    			gender:$("#gender_"+gn+"_"+j).val(),
+	    			age:$("#age_"+gn+"_"+j).val(),
+	    			phone:$("#pphone_"+gn+"_"+j).val(),
+	    			fare:$("#fee_"+gn+"_"+j).val(),
+	    			meal:$("#meal_"+gn+"_"+j).val(),
+	    			admission:$("#admission_"+gn+"_"+j).val(),
+	    			roomtype:$("#roomtype_"+gn+"_"+j).val(),
+				}   	    	
+			};
         	
-        	this.model.set({status:'Confirmed'});
+        	this.model.set({status:'Confirmed',
+        		passenger:passengers});
         	this.trigger("group:confirm",this.model);
 //        	app.execute("app:tour:save");
         	

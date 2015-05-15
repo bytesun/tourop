@@ -22,23 +22,23 @@ router.post('/api/confirmations', function(req, res) {
 
 
 router.put('/api/confirmations/:id', function(req, res) {
-	var itinerarys = req.body.itinerary;
-//	console.log('itinerary : '+JSON.stringify(itinerarys));
 	Confirmation.findByIdAndUpdate(
 			req.params.id,
-//			req.body,
-			{$set:{				
-//				code:req.body.code,
-//				name:req.body.name,
-//				days:req.body.days,
-//				op:req.body.op,
-//				guide:req.body.guide,
-//				departuredate:req.body.departuredate,
-//				status:req.body.status,
-//				note:req.body.note,
-//				itinerary:req.body.itinerary,
-//				group:req.body.group,
-//				bus:req.body.bus
+			{$set:{		
+				no:req.body.no,
+            	tourcode:req.body.tourcode,
+            	groupno:req.body.groupno,
+            	tourname:req.body.tourname,
+            	departuredate:req.body.departuredate,
+            	issuedate:req.body.issuedate,
+            	bookdate:req.body.bookdate,
+            	op:req.body.op,
+        		pickup:req.body.pickup,
+        		dropoff:req.body.dropoff,
+            	remark:req.body.remark,
+            	tourcom:req.body.tourcom,
+            	agency:req.body.agency,
+            	passenger:req.body.passenger
 				}},
 			function( err, confirmation){
 		if(err){
@@ -59,17 +59,15 @@ router.get('/api/confirmations/:id',function(req,res){
 router.get('/api/confirmations',function(req,res){
 	res.set('Content-Type', 'application/json');
 
-	var c = req.query.c;
+	var c = req.query.c;//tour code
 	var query = {};
 	if(c != 0){
-		query.code = new RegExp('^'+c, "i");
-	}else{
-		query.status={$in:['New','Confirm']};
+		query.tourcode = new RegExp('^'+c, "i");
 	}
 	
 	console.log('query is '+JSON.stringify(query));
 	
-	Confirmation.find(null,
+	Confirmation.find(query,
 				null,
 				null,function(err,confirmations){
 			res.send(confirmations);

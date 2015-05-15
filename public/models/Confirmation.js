@@ -19,21 +19,24 @@ define(["jquery", "backbone"],
             	tourcode:'',
             	groupno:1,
             	tourname:'',
-            	departuredate:'',
+            	departuredate:'2015-5-15',
             	issuedate:'',
             	bookdate:'',
             	op:'',
+        		pickup:'',
+        		dropoff:'',
             	remark:'',
             	tourcom:{
-            		name:'',
-            		address:'',
-            		city:'',
-            		province:'',
-            		country:'',
-            		postcode:'',
-            		telephone:'',
-            		fax:'',
-            		regno:''
+            		name:'CANTOP TOUR & TRAVEL LTD',
+            		address:'#202-644 S.W. Marine Drive',
+            		city:'Vancouver',
+            		province:'B.C.',
+            		
+            		country:'Canada',
+            		postcode:'V6P 5Y1',
+            		telephone:'(604) 325-4699',
+            		fax:'(604) 325-7055 ',
+            		regno:'2783'
             	},
             	agency:{
             		code : '',
@@ -50,13 +53,14 @@ define(["jquery", "backbone"],
             	},
             	passenger:[{
             		name:'',
+            		age:1,
+            		gender:'',
             		roomtype:'',
             		phone:'',
             		fare:'',
             		admission:'',
-            		meal:'',
-            		pickup:'',
-            		dropoff:''
+            		meal:''
+
             	}]
             	
             },

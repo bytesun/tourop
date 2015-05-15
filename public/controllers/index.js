@@ -30,6 +30,9 @@ define([
 	'views/InfoCollectionView',
 	'views/InfoAuthorView',
 	'views/ConfirmationView',
+	'views/ConfirmationCollectionView',
+	'views/ConfirmationListItemView',
+	'views/ConfirmationInfoView',
 	'views/InvoiceView',
 	'views/TourInfoView',
 
@@ -72,6 +75,9 @@ define([
 		InfoCollectionView,
 		InfoAuthorView,
 		ConfirmationView,
+		ConfirmationCollectionView,
+		ConfirmationListItemView,
+		ConfirmationInfoView,
 		InvoiceView,
 		TourInfoView,
 		ItineraryItemView,
@@ -166,10 +172,10 @@ define([
 	            	});       	
 	        	});
 	        	groupCollectionView.on("childview:group:confirm",function(childview,group){
-	        		console.log("confirmation group is "+JSON.stringify(group));
-//	        		app.execute("app:tour:save");
+	        		app.execute("tour:save");
 	        		
 	        		//generate confirmation and invoice
+
 	        		var cfm = new Confirmation();
 	        		var date=new Date();
 	        		cfm.set({	        			
@@ -177,18 +183,15 @@ define([
 	        			tourcode:tour.get("code"),
 	        			groupno:group.get("no"),
 	        			tourname:tour.get("name"),
-	        			departuredate:tour.get("depaturedate"),
+	        			departuredate:tour.get("departuredate"),
 	        			issuedate:date.getFullYear()+"-"+(date.getMonth()+1)+"-"+(date.getDate()),
 	        			bookdate:group.get("bookdate"),
 	        			op:tour.get("op"),
+	        			pickup:group.get("pickup"),
+	        			dropoff:group.get("dropoff"),
 	        			
 	        			agency:group.get("agency"),
 	        			passenger:group.get("passenger")
-//	        			tourcom:
-	        			
-	        			
-//	        			
-	        			
 	        			
 	        		});
 	        		console.log("save confirmation: "+JSON.stringify(cfm));
@@ -314,11 +317,48 @@ define([
 	        	
 	        	app.main.show(infoView);
 	        },
-	        confirmation : function(view,options){
-	        	app.main.show(new ConfirmationView());
+	        confirmation : function(code){
+	        	var cfmView = new ConfirmationView();
+	        	
+	        	
+	        	if(code != null){
+	        		var fetchingitems = app.request("entities:confirmations",{c:code});
+		        	$.when(fetchingitems).done(function(confirmations){
+		        		var cfmlistView=new ConfirmationCollectionView({collection:confirmations});
+		        		cfmView.on("show",function(){
+			        		cfmView.confirmationListRegion.show(cfmlistView);
+			        	});
+			        	app.main.show(cfmView);
+		        	});	
+	        	
+	        	}else{
+	        		var cfmlistView = new ConfirmationCollectionView();
+	        		cfmView.on("show",function(){
+		        		cfmView.confirmationListRegion.show(cfmlistView);
+		        	});
+		        	app.main.show(cfmView);
+	        	}
+	        	
+	        	
+	        	
 	        },
-	        confirmation_info : function(view,options){
-	        	app.main.show(new CommonView({template:templates.confirmation_info}));
+	        confirmation_info : function(id){
+	        	if(id == null){
+	        		var cfmView = new ConfirmationInfoView({
+		        		model: new ConfirmationModel()
+		        	});		        	
+		        	app.main.show(cfmView);
+	        	}else{
+		        	var fetchingItem = app.request("confirmation:entity",id);
+					$.when(fetchingItem).done(function(confirmation){
+						var cfmView = new ConfirmationInfoView({
+			        		model: confirmation
+			        	});			        	
+			        	app.main.show(cfmView);
+					});
+	        	}	        	
+	        	
+
 	        },	        
 	        invoice : function(view,options){
 	        	app.main.show(new InvoiceView());

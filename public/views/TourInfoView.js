@@ -49,7 +49,7 @@ define([
         },
         initialize: function(){
         	var self = this;
-            app.commands.setHandler("app:tour:save", function() {
+            app.commands.setHandler("tour:save", function() {
             	self.saveTour();
             });
         },
@@ -249,8 +249,8 @@ define([
     	    this.model.set("bus",bus);    	    
     	    
     	    console.log("ready to save data: "+JSON.stringify(this.model));
-    	    this.trigger("tour:save");
-//    	    this.model.save();
+//    	    this.trigger("tour:save");
+    	    this.model.save();
 
 //    	    app.navigate("tour",true);         	
 
