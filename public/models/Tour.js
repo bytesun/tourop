@@ -53,28 +53,10 @@ define(["jquery", "backbone"],
             		no:1,
             		status:'New',
             		commission:0.0,
-            		taxablesub:0,
-            		nontaxablesub:0,
-            		tax:0,
-            		total:0,
             		bookdate:'',
             		pickup:'',	
             		dropoff:'',
-            		remark_c:'',
-            		remark_i:'',
-            		passenger:[{no:1,
-                  		name:'',
-            			gender:'',
-            			age:1,
-            			phone:'',
-            			roomtype:'',
-            			fare:0,
-            			meal:0,
-            			admission:0,
-            			total:0					
-            		}],
             		agency:{
-            			type : '', //1-agency/2-hotel/3-restaurant/4-admission
             			code : '',
             			name : '',
             			payment:'', //credit card/voucher/cheque/cash
@@ -85,10 +67,19 @@ define(["jquery", "backbone"],
             			city: '',
             			province: '',
             			country :'',
-            			postcode:'',
-            			note: ''
-            		}
-
+            			postcode:''
+            		},
+            		passenger:[{
+            			no:1,
+                  		name:'',
+            			gender:'',
+            			age:1,
+            			phone:'',
+            			roomtype:'',
+            			fare:'',
+            			meal:'',
+            			admission:''
+            		}]
             	}],
             	itinerary:[{
             		day:1,

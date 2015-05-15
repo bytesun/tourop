@@ -3,47 +3,85 @@
 define([
 	'app',
 	'templates',
+	'models/Route',
+	'models/Tour',
+    'models/Passenger',
+    'models/Group',
+    'models/Bus',
+    'models/Confirmation',
+	'models/Information',
+	'models/Setting',
+	
+    'collections/Itinerarys',
+    'collections/Passengers',
+    'collections/Groups',
+    'collections/Buses', 
+    'collections/Confirmations',
+	'collections/Informations',
+	
 	'views/CommonView',
 	'views/HomeView',
 	'views/TourView',
-	'views/TourCollectionView',
-	'models/Tour',
+	'views/TourCollectionView',    
 	'views/RouteView',
 	'views/RouteInfoView',
 	'views/RouteCollectionView',
-	'models/Route',
+
 	'views/InfoCollectionView',
 	'views/InfoAuthorView',
 	'views/ConfirmationView',
 	'views/InvoiceView',
 	'views/TourInfoView',
+
+    'views/ItineraryItemView',
+    'views/ItineraryCollectionView',	
+	'views/GroupItemView',
+    'views/GroupCollectionView',
+    'views/BusItemView',
+    'views/BusCollectionView',	
 	'views/LoginView',
-	'models/Information',
-	'collections/Informations',
+
 	'views/InfoLayout',
-	'models/Setting',
 	'views/SettingView'
 ], function (app,
 		templates,
+		RouteModel,
+		TourModel,
+		Passenger,
+		Group,
+		Bus,
+		Confirmation,
+		InfoModel,
+		Setting,
+		
+		Itinerarys,
+		Passengers,
+		Groups,
+		Buses,	
+		Confirmations,
+		InfoCollection,
+		
 		CommonView,
 		HomeView,
 		TourView,
-		TourCollectionView,
-		TourModel,
+		TourCollectionView,		
 		RouteView,
 		RouteInfoView,
 		RouteCollectionView,
-		RouteModel,
+
 		InfoCollectionView,
 		InfoAuthorView,
 		ConfirmationView,
 		InvoiceView,
 		TourInfoView,
+		ItineraryItemView,
+		ItineraryCollectionView,		
+		GroupItemView,
+		GroupCollectionView,
+		BusItemView,
+		BusCollectionView,		
 		LoginView,
-		InfoModel,
-		InfoCollection,
 		InfoLayout,
-		Setting,
 		SettingView) {
 	'use strict';
 
@@ -72,40 +110,131 @@ define([
 	        	
 	        },	    
 	        tour_info: function(id){
-	           	if(id == null){
-	        		var tourView = new TourInfoView({
-		        		model: new TourModel()
-		        	});		        	
-		        	app.main.show(tourView);
-	        	}else{
+	        	var tour = new TourModel();
+	           	if(id != null){
+	           		var self = this;
 		        	var fetchingTour = app.request("tour:entity",id);
 					$.when(fetchingTour).done(function(tour){
-						
-						var tourView = new TourInfoView({
-			        		model: tour
-			        	});			        	
-			        	app.main.show(tourView);
+						self.tour_show(tour);
 					});
+	        	}else{
+	        		this.tour_show(tour);	
 	        	}
-	        	
 	        },
 	        tour_new: function(routeid){
-	        	console.log('route id:'+routeid);
 	        	var fetchingRoute = app.request("route:entity",routeid);
+	        	var self = this;
 				$.when(fetchingRoute).done(function(route){
-					console.log("fetch route:",route);
 					var tour = new TourModel({
 	        			route:route.toJSON(),
 	        			name:route.get("name"),
 	        			days:route.get("days"),
 	        			itinerary:route.get("itinerary")
 	        		});
-					console.log("new tour :"+JSON.stringify(tour));
-		       		app.main.show(new TourInfoView({
-		        		model: tour
-		        	}));
+
+					self.tour_show(tour);
 				});
 
+	        },
+	        //common function
+	        tour_show: function(tour){
+	        	var route = tour.get("route");//get route information for next fare calculation
+	        	var tourView = new TourInfoView({
+	        		model: tour
+	        	})
+
+	        	//get group list
+	           	var groups = new Groups(new Group());
+	        	var loadGroups = tour.get("group");
+	        	console.log('loadGroups is ',loadGroups);
+	        	if(loadGroups != undefined && loadGroups.length>0){
+	        		groups.reset(loadGroups);
+	        	}
+	        	
+	        	var groupCollectionView = new GroupCollectionView({
+	        		collection:groups
+	        	});
+	        	groupCollectionView.on("childview:group:addagency",function(childview,group,agencycode){
+
+	            	var fetchingoitems = app.request("entities:informations",{c:agencycode,t:'A'});
+	            	$.when(fetchingoitems).done(function(items){
+	            		if(items.length >= 1){
+	            			var agency = items.at(0);
+	            			group.set({agency:agency.toJSON()});
+	            		}   	      		
+	    	        	
+	            	});       	
+	        	});
+	        	groupCollectionView.on("childview:group:confirm",function(childview,group){
+	        		console.log("confirmation group is "+JSON.stringify(group));
+//	        		app.execute("app:tour:save");
+	        		
+	        		//generate confirmation and invoice
+	        		var cfm = new Confirmation();
+	        		var date=new Date();
+	        		cfm.set({	        			
+	        			no:tour.get("code")+group.get("no"),
+	        			tourcode:tour.get("code"),
+	        			groupno:group.get("no"),
+	        			tourname:tour.get("name"),
+	        			departuredate:tour.get("depaturedate"),
+	        			issuedate:date.getFullYear()+"-"+(date.getMonth()+1)+"-"+(date.getDate()),
+	        			bookdate:group.get("bookdate"),
+	        			op:tour.get("op"),
+	        			
+	        			agency:group.get("agency"),
+	        			passenger:group.get("passenger")
+//	        			tourcom:
+	        			
+	        			
+//	        			
+	        			
+	        			
+	        		});
+	        		console.log("save confirmation: "+JSON.stringify(cfm));
+	        		cfm.save();
+	        	});
+	        	
+	        	//itinerary list
+	        	var collection = new Itinerarys();
+	        	collection.reset(tour.get("itinerary"));        	
+
+	        	var collectionView = new ItineraryCollectionView({
+	        		template:templates.tour_itinerary_list,
+	        		childView:ItineraryItemView.extend({
+	        			template: templates.tour_itinerary_item,
+	        		}),
+	    			collection:collection
+	    		});
+	        	
+	        	//bus list
+	        	var buses = new Buses(new Bus());
+	        	var loadBuses = tour.get("bus");
+	        	console.log('loadbuses is ',loadBuses);
+	        	if(loadBuses != undefined && loadBuses.length>0){
+	        		buses.reset(loadBuses);
+	        	}
+	        	
+	        	var busCollectionView = new BusCollectionView({
+	        		collection:buses
+	        	});
+	        	
+	        	
+	        	tourView.on("tour:save",function(){
+	        		console.log('groups is '+JSON.stringify(groups));
+//	        		tour.set({
+//	        			group:groups.toJSON()
+//	        		});
+	        		console.log('tour is '+JSON.stringify(tour));
+	        		tour.save();
+	        	});
+	        	//showing page with regions
+	        	tourView.on("show",function(){
+	        		tourView.groupRegion.show(groupCollectionView);  
+	        		tourView.itineraryRegion.show(collectionView);  
+	        		tourView.busRegion.show(busCollectionView); 
+	        	});
+	        	app.main.show(tourView);
 	        },
 	        route : function(code){
 

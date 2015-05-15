@@ -47,29 +47,11 @@ var Tour = new Schema({
 		no:Number,
 		status:String,
 		commission:Number,
-		taxablesub:Number,
-		nontaxablesub:Number,
-		tax:Number,
-		total:Number,
 		bookdate:String,
 		pickup:String,	
 		dropoff:String,
-		remark_c:String,
-		remark_i:String,
-		passenger:[{no:Number,
-      		name:String,
-			gender:String,
-			age:Number,
-			phone:String,
-			roomtype:String,
-			fare:Number,
-			meal:Number,
-			admission:Number,
-			total:Number					
-		}],
 		agency:{
 			_id:Schema.Types.ObjectId,
-			type : String, //1-agency/2-hotel/3-restaurant/4-admission
 			code : String,
 			name : String,
 			payment:String, //credit card/voucher/cheque/cash
@@ -80,9 +62,20 @@ var Tour = new Schema({
 			city: String,
 			province: String,
 			country :String,
-			postcode:String,
-			note: String
-		}
+			postcode:String
+		},
+		passenger:[{
+			no:Number,
+      		name:String,
+			gender:String,
+			age:Number,
+			phone:String,
+			roomtype:String,
+			fare:String,
+			meal:String,
+			admission:String
+		}]
+		
 
 	}],
 	itinerary:[{
@@ -226,19 +219,14 @@ var Setting = new Schema({
 var Confirmation = new Schema({
 	no:String,
 	tourcode:String,
+	groupno:Number,
 	tourname:String,
 	departuredate:String,
 	issuedate:String,
 	bookdate:String,
 	op:String,
-	agencyop:String,
-	taxablesub:Number,
-	nontaxablesub:Number,
-	gst:Number,
-	total:Number,
-	remark_c:String,
-	remark_i:String,
-	issuefrom:{
+	remark:String,
+	tourcom:{
 		name:String,
 		address:String,
 		city:String,
@@ -249,25 +237,30 @@ var Confirmation = new Schema({
 		fax:String,
 		regno:String
 	},
-	issueto:{
-		name:String,
-		address:String,
-		city:String,
-		province:String,
-		country:String,
-		postcode:String,
-		telephone:String,
-		fax:String
+	agency:{
+		_id:Schema.Types.ObjectId,
+		code : String,
+		name : String,
+		payment:String, //credit card/voucher/cheque/cash
+		telphone : String,
+		fax:String,
+		contact : String,
+		address : String,
+		city: String,
+		province: String,
+		country :String,
+		postcode:String,		
 	},
-	passenger:{
+	passenger:[{
 		name:String,
-		faretype:String,
-		fare:Number,
-		admission:Number,
-		meal:Number,
+		roomtype:String,
+		phone:String,
+		fare:String,
+		admission:String,
+		meal:String,
 		pickup:String,
 		dropoff:String
-	}
+	}]
 	
 });
 

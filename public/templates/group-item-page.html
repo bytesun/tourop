@@ -121,13 +121,33 @@
 		  </div>
 		  
 		  <div class="row">
- 		   
-			   <div class="col-lg-offset-1 col-lg-9">
+ 		   		<input type="hidden" id="agency_code_<%=no%>" value="<%=agency.code%>">
+ 		   		<input type="hidden" id="agency_city_<%=no%>" value="<%=agency.city%>">
+				<input type="hidden" id="agency_province_<%=no%>" value="<%=agency.province%>">
+				<input type="hidden" id="agency_country_<%=no%>" value="<%=agency.country%>">
+				<input type="hidden" id="agency_postcode_<%=no%>" value="<%=agency.postcode%>">
+				<input type="hidden" id="agency_fax_<%=no%>" value="<%=agency.fax%>">
+				<input type="hidden" id="agency_contact_<%=no%>" value="<%=agency.contact%>">
+				<input type="hidden" id="agency_payment_<%=no%>" value="<%=agency.payment%>">	
+							
+			   <div class="col-lg-offset-1 col-lg-2">
 			  <label>Agency</label>
-			    <input class="form-control passenger_agency" value="<%=agency%>" id="agency<%=no%>" >
+				<input  class="form-control passenger_agency" type="text" id="agency_name_<%=no%>" value="<%=agency.name%>">
+				
+				
 			    <br>
 			  </div>  
 	 
+	 		   <div class="col-lg-2">
+	 		   <label>Tel</label>
+			  <input  class="form-control passenger_agency" type="text" id="agency_telphone_<%=no%>" value="<%=agency.telphone%>" disabled>
+				</div>
+
+		  	 <div class="col-lg-5">
+		  	 <label>Address</label>
+			  <input  class="form-control passenger_agency" type="text" id="agency_address_<%=no%>" value="<%=agency.address%>" disabled>
+			  </div>
+			  			  			  
 			   <div class="col-lg-offset-1 col-lg-9">
 			  <label>Pick Up</label>
 			    <input class="form-control" value="<%=pickup%>" id="pickup<%=no%>">

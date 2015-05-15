@@ -17,19 +17,14 @@ define(["jquery", "backbone"],
             defaults: {
             	no:0,
             	tourcode:'',
+            	groupno:1,
             	tourname:'',
             	departuredate:'',
             	issuedate:'',
             	bookdate:'',
             	op:'',
-            	agencyop:'',
-            	taxablesub:0,
-            	nontaxablesub:0,
-            	gst:0,
-            	total:0,
-            	remark_c:'',
-            	remark_i:'',
-            	issuefrom:{
+            	remark:'',
+            	tourcom:{
             		name:'',
             		address:'',
             		city:'',
@@ -40,25 +35,29 @@ define(["jquery", "backbone"],
             		fax:'',
             		regno:''
             	},
-            	issueto:{
-            		name:'',
-            		address:'',
-            		city:'',
-            		province:'',
-            		country:'',
+            	agency:{
+            		code : '',
+            		name : '',
+            		payment:'', //credit card/voucher/cheque/cash
+            		telphone : '',
+            		fax:'',
+            		contact : '',
+            		address : '',
+            		city: '',
+            		province: '',
+            		country :'',
             		postcode:'',
-            		telephone:'',
-            		fax:''
             	},
-            	passenger:{
+            	passenger:[{
             		name:'',
-            		faretype:'',
-            		fare:0,
-            		admission:0,
-            		meal:0,
+            		roomtype:'',
+            		phone:'',
+            		fare:'',
+            		admission:'',
+            		meal:'',
             		pickup:'',
             		dropoff:''
-            	}
+            	}]
             	
             },
 

@@ -22,8 +22,7 @@ router.post('/api/tours', function(req, res) {
 
 
 router.put('/api/tours/:id', function(req, res) {
-	var itinerarys = req.body.itinerary;
-//	console.log('itinerary : '+JSON.stringify(itinerarys));
+
 	Tour.findByIdAndUpdate(
 			req.params.id,
 //			req.body,

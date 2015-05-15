@@ -69,7 +69,7 @@ router.get('/api/confirmations',function(req,res){
 	
 	console.log('query is '+JSON.stringify(query));
 	
-	Confirmation.find(query,
+	Confirmation.find(null,
 				null,
 				null,function(err,confirmations){
 			res.send(confirmations);
