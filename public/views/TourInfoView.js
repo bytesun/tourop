@@ -103,7 +103,7 @@ define([
     	    var data = Syphon.serialize(this);
     	    this.model.set(data);
 //    	    var route = this.model.get("route");
-    	    console.log("setting data: "+JSON.stringify(this.model));
+//    	    console.log("setting data: "+JSON.stringify(this.model));
     	    
     	    //------------------save passenger data-------------------
     	    var gn = $("#gn").val();
@@ -248,7 +248,7 @@ define([
     	    }
     	    this.model.set("bus",bus);    	    
     	    
-    	    console.log("ready to save data: "+JSON.stringify(this.model));
+//    	    console.log("ready to save data: "+JSON.stringify(this.model));
 //    	    this.trigger("tour:save");
     	    this.model.save();
 

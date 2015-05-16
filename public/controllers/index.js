@@ -9,6 +9,7 @@ define([
     'models/Group',
     'models/Bus',
     'models/Confirmation',
+    'models/Invoice',
 	'models/Information',
 	'models/Setting',
 	
@@ -17,6 +18,7 @@ define([
     'collections/Groups',
     'collections/Buses', 
     'collections/Confirmations',
+    'collections/Invoices',
 	'collections/Informations',
 	
 	'views/CommonView',
@@ -34,6 +36,10 @@ define([
 	'views/ConfirmationListItemView',
 	'views/ConfirmationInfoView',
 	'views/InvoiceView',
+	'views/InvoiceCollectionView',
+	'views/InvoiceListItemView',
+	'views/InvoiceInfoView',
+
 	'views/TourInfoView',
 
     'views/ItineraryItemView',
@@ -54,6 +60,7 @@ define([
 		Group,
 		Bus,
 		Confirmation,
+		Invoice,
 		InfoModel,
 		Setting,
 		
@@ -62,6 +69,7 @@ define([
 		Groups,
 		Buses,	
 		Confirmations,
+		Invoices,
 		InfoCollection,
 		
 		CommonView,
@@ -77,8 +85,11 @@ define([
 		ConfirmationView,
 		ConfirmationCollectionView,
 		ConfirmationListItemView,
-		ConfirmationInfoView,
+		ConfirmationInfoView,		
 		InvoiceView,
+		InvoiceCollectionView,
+		InvoiceListItemView,
+		InvoiceInfoView,
 		TourInfoView,
 		ItineraryItemView,
 		ItineraryCollectionView,		
@@ -178,13 +189,14 @@ define([
 
 	        		var cfm = new Confirmation();
 	        		var date=new Date();
+	        		var issuedate = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+(date.getDate());
 	        		cfm.set({	        			
 	        			no:tour.get("code")+group.get("no"),
 	        			tourcode:tour.get("code"),
 	        			groupno:group.get("no"),
 	        			tourname:tour.get("name"),
 	        			departuredate:tour.get("departuredate"),
-	        			issuedate:date.getFullYear()+"-"+(date.getMonth()+1)+"-"+(date.getDate()),
+	        			issuedate:issuedate,
 	        			bookdate:group.get("bookdate"),
 	        			op:tour.get("op"),
 	        			pickup:group.get("pickup"),
@@ -194,9 +206,115 @@ define([
 	        			passenger:group.get("passenger")
 	        			
 	        		});
-	        		console.log("save confirmation: "+JSON.stringify(cfm));
+//	        		console.log("save confirmation: "+JSON.stringify(cfm));
 	        		cfm.save();
+	        		var subtotal = 0;
+	        		
+	        		var pgs = group.get("passenger");
+	        		var passengers = new Array();
+	        		for(var i=0;i<pgs.length;i++){
+	        			var fare = 0;
+	        			switch(pgs[i].fare){
+	        			case 'Adult':
+	        				fare = route.fee_tour_adult;
+	        				break;
+	        			case 'Senior':
+	        				fare = route.fee_tour_senior;
+	        				break;
+	        			case 'Youth':
+	        				fare = route.fee_tour_youth;
+	        				break;
+	        			case 'Child':
+	        				fare = route.fee_tour_child;
+	        				break;
+	        			case 'Infant':
+	        				fare = route.fee_tour_infant;
+	        				break;
+	        			}
+	        			subtotal=subtotal+fare;
+	        			
+	        			var admission = 0;
+	        			switch(pgs[i].admission){
+	        			case 'Adult':
+	        				admission = route.admission_tour_adult;
+	        				break;
+	        			case 'Senior':
+	        				admission = route.admission_tour_senior;
+	        				break;
+	        			case 'Youth':
+	        				admission = route.admission_tour_youth;
+	        				break;
+	        			case 'Child':
+	        				admission = route.admission_tour_child;
+	        				break;
+	        			case 'Infant':
+	        				admission = route.admission_tour_infant;
+	        				break;
+	        			}
+	        			subtotal=subtotal+admission;
+	        			
+	        			var meal = 0;
+	        			switch(pgs[i].meal){
+	        			case 'Adult':
+	        				meal = route.meal_tour_adult;
+	        				break;
+	        			case 'Senior':
+	        				meal = route.meal_tour_senior;
+	        				break;
+	        			case 'Youth':
+	        				meal = route.meal_tour_youth;
+	        				break;
+	        			case 'Child':
+	        				meal = route.meal_tour_child;
+	        				break;
+	        			case 'Infant':
+	        				meal = route.meal_tour_infant;
+	        				break;
+	        			}
+	        			subtotal=subtotal+meal;
+//	        			if(pgs.admission != 'No') faretype=faretype+"-"+
+	        			var commission = -(fare*group.get("commission"));
+	        			var passenger = {
+	        					name:pgs[i].name,
+	        					age:pgs[i].age,
+	        					gender:pgs[i].gender,		
+	        					roomtype:pgs[i].roomtype,
+	        					phone:pgs[i].telephone,
+	        					faretype:'',
+	        					fee:fare,
+	        					admission:admission,
+	        					meal:meal,
+	        					commission:commission,
+	        					amount:(fare+admission+meal+commission)
+	        			}
+	        			passengers[i]=passenger;
+	        		}
+	        		
+	        		var tax = (subtotal*0.05);
+	        		
+		        	var invoice = new Invoice();
+		        	invoice.set({	        			
+	        			no:tour.get("code")+group.get("no"),
+	        			tourcode:tour.get("code"),
+	        			tourname:tour.get("name"),
+	        			departuredate:tour.get("departuredate"),
+	        			issuedate:issuedate,
+	        			bookdate:group.get("bookdate"),
+	        			op:tour.get("op"),
+	        			taxable:subtotal,
+	        	      	nontaxable:0,
+	                	tax:tax,
+	                	total:(subtotal+tax),
+	        			agency:group.get("agency"),
+	        			passenger:passengers
+	        			
+	        		});
+		        	console.log("save invoice: "+JSON.stringify(invoice));
+		        	invoice.save();
+	        		
 	        	});
+	        	
+
 	        	
 	        	//itinerary list
 	        	var collection = new Itinerarys();
@@ -360,12 +478,49 @@ define([
 	        	
 
 	        },	        
-	        invoice : function(view,options){
-	        	app.main.show(new InvoiceView());
+	        invoice : function(code){
+	        	var cfmView = new InvoiceView();
+	        	
+	        	
+	        	if(code != null){
+	        		var fetchingitems = app.request("entities:invoices",{c:code});
+		        	$.when(fetchingitems).done(function(invoices){
+		        		var cfmlistView=new InvoiceCollectionView({collection:invoices});
+		        		cfmView.on("show",function(){
+			        		cfmView.invoiceListRegion.show(cfmlistView);
+			        	});
+			        	app.main.show(cfmView);
+		        	});	
+	        	
+	        	}else{
+	        		var cfmlistView = new InvoiceCollectionView();
+	        		cfmView.on("show",function(){
+		        		cfmView.invoiceListRegion.show(cfmlistView);
+		        	});
+		        	app.main.show(cfmView);
+	        	}
+	        	
+	        	
+	        	
 	        },
-	        invoice_info: function(view,options){
-	        	app.main.show(new CommonView({template:templates.invoice_info}));
-	        },
+	        invoice_info : function(id){
+	        	if(id == null){
+	        		var cfmView = new InvoiceInfoView({
+		        		model: new InvoiceModel()
+		        	});		        	
+		        	app.main.show(cfmView);
+	        	}else{
+		        	var fetchingItem = app.request("invoice:entity",id);
+					$.when(fetchingItem).done(function(invoice){
+						var cfmView = new InvoiceInfoView({
+			        		model: invoice
+			        	});			        	
+			        	app.main.show(cfmView);
+					});
+	        	}	        	
+	        	
+
+	        },	 
 	        setting: function(){
 	        	var fetchingitems = app.request("entities:settings");
 	        	$.when(fetchingitems).done(function(items){

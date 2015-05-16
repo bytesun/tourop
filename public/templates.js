@@ -34,11 +34,12 @@ define(function (require) {
 		 confirmation_list: require('tpl!templates/confirmation-list-page.html'),
 		 confirmation_item: require('tpl!templates/confirmation-item-page.html'),
 		 confirmation_info: require('tpl!templates/confirmation-info-page.html'),
+		 invoice: require('tpl!templates/invoice-page.html'),
 		 invoice_list: require('tpl!templates/invoice-list-page.html'),
+		 invoice_item: require('tpl!templates/invoice-item-page.html'),
 		 invoice_info: require('tpl!templates/invoice-info-page.html'),
 		 
 		 setting:require('tpl!templates/setting-page.html'),
-
 		 common: require('tpl!templates/common-page.html')
 		 
 	};

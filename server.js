@@ -19,6 +19,7 @@ var route = require('./routes/route');
 var tour = require('./routes/tour');
 var setting = require('./routes/setting');
 var confirmation = require('./routes/confirmation');
+var invoice = require('./routes/invoice');
 
 //view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -52,6 +53,7 @@ app.use('/', route);
 app.use('/', tour);
 app.use('/', setting);
 app.use('/', confirmation);
+app.use('/', invoice);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {

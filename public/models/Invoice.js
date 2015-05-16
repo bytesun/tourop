@@ -6,7 +6,8 @@ define(["jquery", "backbone"],
 
         // Creates a new Backbone Model class object
         var Model = Backbone.Model.extend({
-
+       	   urlRoot: '/api/invoices',
+	       idAttribute: '_id',
             // Model Constructor
             initialize: function() {
 
@@ -14,7 +15,57 @@ define(["jquery", "backbone"],
 
             // Default values for all of the Model attributes
             defaults: {
+            	no:'',
+            	cfmno:'',
+            	tourcode:'',
+            	tourname:'',
+            	op:'',
+            	issuedate:'',
+            	departuredate:'',
+            	remark:'',
+            	taxable:0,
+            	nontaxable:0,
+            	tax:0,
+            	total:0,
+            	tourcom:{
+              		name:'CANTOP TOUR & TRAVEL LTD',
+            		address:'#202-644 S.W. Marine Drive',
+            		city:'Vancouver',
+            		province:'B.C.',
+            		
+            		country:'Canada',
+            		postcode:'V6P 5Y1',
+            		telephone:'(604) 325-4699',
+            		fax:'(604) 325-7055 ',
+            		regno:'2783'
+            	},
+            	agency:{
+            		code : '',
+            		name : '',
+            		payment:'', //credit card/voucher/cheque/cash
+            		telphone : '',
+            		fax:'',
+            		contact : '',
+            		address : '',
+            		city: '',
+            		province: '',
+            		country :'',
+            		postcode:'',		
+            	},
+            	passenger:[{
+            		name:'',
+            		age:0,
+            		gender:'',		
+            		roomtype:'',
+            		phone:'',
+            		faretype:'',
+            		fee:0,
+            		admission:0,
+            		meal:0,
+            		commission:0,
+            		amount:0,
 
+            	}]
             },
 
             // Gets called automatically by Backbone when the set and/or save methods are called (Add your own logic)

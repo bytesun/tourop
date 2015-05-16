@@ -7,13 +7,13 @@ var Confirmation     = mongoose.model('Confirmation');
  * create a new ROUTE
  */
 router.post('/api/confirmations', function(req, res) {
-	console.log('post confirmation data'+JSON.stringify(req.body));
+//	console.log('post confirmation data'+JSON.stringify(req.body));
 
 	new Confirmation(req.body).save( function( err, confirmation){
 		if(err){
 			return res.send({error:err});
 		}else{
-			console.log('success save confirmation:'+confirmation);
+//			console.log('success save confirmation:'+confirmation);
 			res.send(confirmation);	
 		}
 		

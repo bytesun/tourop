@@ -16,6 +16,8 @@ Manage partner, route information, and create tour
 			
 			----------------------------------------------------------------------
 			Development Trace
+			[2015-5-15] 1. finish "confirmation" function
+			
 			[2015/5/13] 1. add "feedback" and "commission" in tour db.
 			
 			[2015/5/12] 1. change "plate no." to "bus no."

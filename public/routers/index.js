@@ -20,8 +20,8 @@ define([
             //"route_itinerary(/:id)":"route_itinerary",
             "confirmation(/:code)":"confirmation",
             "confirmation_info(/:id)":"confirmation_info",
-            "invoice":"invoice",
-            "invoice_info":"invoice_info",            
+            "invoice(/:code)":"invoice",
+            "invoice_info(/:id)":"invoice_info",
             "setting":"setting",
             "logout" : "logout"
 

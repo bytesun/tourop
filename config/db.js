@@ -269,22 +269,56 @@ var Confirmation = new Schema({
 
 var Invoice = new Schema({
 	no:String,
-	issuedate:String,
 	cfmno:String,
-	agency:String,
-	issueby:String,
 	tourcode:String,
 	tourname:String,
+	op:String,
+	issuedate:String,
 	departuredate:String,
-	passenger:{
-		no:Number,
+	remark:String,
+	taxable:Number,
+	nontaxable:Number,
+	tax:Number,
+	total:Number,
+	tourcom:{
 		name:String,
-		rate:String,
-		meal:String,
-		
+		address:String,
+		city:String,
+		province:String,
+		country:String,
+		postcode:String,
+		telephone:String,
+		fax:String,
+		regno:String
 	},
-	remark:String
-	
+	agency:{
+		_id:Schema.Types.ObjectId,
+		code : String,
+		name : String,
+		payment:String, //credit card/voucher/cheque/cash
+		telphone : String,
+		fax:String,
+		contact : String,
+		address : String,
+		city: String,
+		province: String,
+		country :String,
+		postcode:String		
+	},
+	passenger:[{
+		name:String,
+		age:Number,
+		gender:String,		
+		roomtype:String,
+		phone:String,
+		faretype:String,
+		fee:Number,
+		admission:Number,
+		meal:Number,
+		commission:Number,
+		amount:Number
+
+	}]
 });
 
 mongoose.model( 'Route', Route );

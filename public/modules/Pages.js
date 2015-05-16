@@ -11,6 +11,8 @@ define([
     'collections/Tours',
     'models/Confirmation',
     'collections/Confirmations',
+    'models/Invoice',
+    'collections/Invoices',
     
     'collections/Settings'
     
@@ -23,6 +25,8 @@ define([
 		Tours,
 		Confirmation,
 		Confirmations,
+		Invoice,
+		Invoices,
 		Settings){
  
     var PagesModule = app.module("Pages", function(Pages) {
@@ -200,7 +204,44 @@ define([
  			//ocase.fetch().done(function(){
  	//		});
  			return defer.promise();
- 		}, 		
+ 		},
+		getInvoices:function(query){
+ 			console.log('calling API.getInvoices');
+ 			var invoices = new Invoices();
+ 			var defer = $.Deferred();
+ 			invoices.fetch({
+ 				data:$.param(query),
+ 				success:function(data){
+ 					defer.resolve(data);
+ 				}
+ 			});	
+ 			var promise = defer.promise();
+ 			$.when(promise).done(function(confirmatons){
+ 				if(confirmatons.length === 0){
+ 					
+ 				}
+ 			});
+ 			return promise;
+ 		},
+ 		getInvoice:function(id){
+ 			console.log('fetching Invoice :'+id);
+ 			var invoice = new Invoice({'_id':id});
+ 			var defer = $.Deferred();
+ 			//setTimeout(function(){
+ 				invoice.fetch({
+ 					success:function(data){
+ 						defer.resolve(data);
+ 					},
+ 					error:function(data){
+ 						defer.resolve(undefined);
+ 					}
+ 				
+ 				});
+ 			//},2000);		
+ 			//ocase.fetch().done(function(){
+ 	//		});
+ 			return defer.promise();
+ 		}, 	 		
  	};
  	
  	app.reqres.setHandler("entities:informations", function(query){
@@ -240,6 +281,14 @@ define([
  	
  	app.reqres.setHandler("entities:confirmations",function(query){
  		return API.getConfirmations(query);
+ 	}); 
+ 	
+ 	app.reqres.setHandler("invoice:entity",function(id){
+ 		return API.getInvoice(id);
+ 	});
+ 	
+ 	app.reqres.setHandler("entities:invoices",function(query){
+ 		return API.getInvoices(query);
  	});  	
     });
 
