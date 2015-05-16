@@ -18,7 +18,7 @@ define([
 //	        this.model.bind('change', _.bind(this.render, this));
 	    },
         events: {
-        	'click .remark_label' : "showRemarkInput",
+        	'click .invoice_remark_label' : "showRemarkInput",
         	'click .btn_remark_save' : "saveRemark"
         		
         },

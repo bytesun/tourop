@@ -236,19 +236,19 @@ define([
 	        			var admission = 0;
 	        			switch(pgs[i].admission){
 	        			case 'Adult':
-	        				admission = route.admission_tour_adult;
+	        				admission = route.fee_adm_adult;
 	        				break;
 	        			case 'Senior':
-	        				admission = route.admission_tour_senior;
+	        				admission = route.fee_adm_senior;
 	        				break;
 	        			case 'Youth':
-	        				admission = route.admission_tour_youth;
+	        				admission = route.fee_adm_youth;
 	        				break;
 	        			case 'Child':
-	        				admission = route.admission_tour_child;
+	        				admission = route.fee_adm_child;
 	        				break;
 	        			case 'Infant':
-	        				admission = route.admission_tour_infant;
+	        				admission = route.fee_adm_infant;
 	        				break;
 	        			}
 	        			subtotal=subtotal+admission;
@@ -256,24 +256,29 @@ define([
 	        			var meal = 0;
 	        			switch(pgs[i].meal){
 	        			case 'Adult':
-	        				meal = route.meal_tour_adult;
+	        				meal = route.fee_meal_adult;
 	        				break;
 	        			case 'Senior':
-	        				meal = route.meal_tour_senior;
+	        				meal = route.fee_meal_senior;
 	        				break;
 	        			case 'Youth':
-	        				meal = route.meal_tour_youth;
+	        				meal = route.fee_meal_youth;
 	        				break;
 	        			case 'Child':
-	        				meal = route.meal_tour_child;
+	        				meal = route.fee_meal_child;
 	        				break;
 	        			case 'Infant':
-	        				meal = route.meal_tour_infant;
+	        				meal = route.fee_meal_infant;
 	        				break;
 	        			}
 	        			subtotal=subtotal+meal;
 //	        			if(pgs.admission != 'No') faretype=faretype+"-"+
 	        			var commission = -(fare*group.get("commission"));
+	        			commission= Math.round(commission * 100) / 100;
+	        			
+	        			var amount = (fare+admission+meal+commission);
+	        			amount= Math.round(amount * 100) / 100;
+	        			subtotal=subtotal+commission;
 	        			var passenger = {
 	        					name:pgs[i].name,
 	        					age:pgs[i].age,
@@ -285,12 +290,17 @@ define([
 	        					admission:admission,
 	        					meal:meal,
 	        					commission:commission,
-	        					amount:(fare+admission+meal+commission)
+	        					amount:amount
 	        			}
 	        			passengers[i]=passenger;
 	        		}
 	        		
 	        		var tax = (subtotal*0.05);
+	        		tax = Math.round(tax * 100) / 100;
+	        		
+	        		subtotal= Math.round(subtotal * 100) / 100;
+	        		var total = (subtotal+tax);
+	        		total= Math.round(total * 100) / 100;
 	        		
 		        	var invoice = new Invoice();
 		        	invoice.set({	        			
@@ -304,7 +314,7 @@ define([
 	        			taxable:subtotal,
 	        	      	nontaxable:0,
 	                	tax:tax,
-	                	total:(subtotal+tax),
+	                	total:total,
 	        			agency:group.get("agency"),
 	        			passenger:passengers
 	        			
