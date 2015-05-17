@@ -169,7 +169,13 @@ define([
 	        	}
 	        	
 	        	var groupCollectionView = new GroupCollectionView({
-	        		collection:groups
+	        		collection:groups,
+	        		templateHelpers:function(){
+	        			return {
+	        				gn:groups.length,
+	        				status:tour.get('status')
+	        			}
+	        		}
 	        	});
 	        	groupCollectionView.on("childview:group:addagency",function(childview,group,agencycode){
 
@@ -347,7 +353,13 @@ define([
 	        	}
 	        	
 	        	var busCollectionView = new BusCollectionView({
-	        		collection:buses
+	        		collection:buses,
+	        		templateHelpers:function(){
+	        			return {
+	        				bn:buses.length,
+	        				status:tour.get('status')
+	        			}
+	        		}
 	        	});
 	        	
 	        	busCollectionView.on("childview:bus:addbuscom",function(childview,bus,agencycode){
