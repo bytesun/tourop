@@ -189,6 +189,8 @@ define([
 	            	});       	
 	        	});
 	        	groupCollectionView.on("childview:group:confirm",function(childview,group){
+	        		
+	        		//save tour information before generating confirmation and invoice
 	        		app.execute("tour:save");
 	        		
 	        		//generate confirmation and invoice
@@ -214,6 +216,8 @@ define([
 	        		});
 //	        		console.log("save confirmation: "+JSON.stringify(cfm));
 	        		cfm.save();
+	        			        		
+	        		
 	        		var subtotal = 0;
 	        		
 	        		var pgs = group.get("passenger");
@@ -327,7 +331,8 @@ define([
 	        		});
 		        	console.log("save invoice: "+JSON.stringify(invoice));
 		        	invoice.save();
-	        		
+
+		        	app.notify('','This group has been confirmed and the relative "Confirmation"/"Invoice" have been created!','alert-info');
 	        	});
 	        	
 

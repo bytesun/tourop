@@ -90,20 +90,7 @@ define([
         	e.preventDefault();
         	var inputid = e.target.id;
         	var inputstr = $("#"+inputid).val();
-//        	var self = this;
-//        	//check admission first
-//        	var fetchingoitems = app.request("entities:informations",{c:inputstr,t:'A'});
-//        	$.when(fetchingoitems).done(function(items){
-//        		if(items.length >= 1){
-//        			var agency = items.at(0);
-//        			self.model.set({agency:agency.toJSON()});
-////        			inputstr = agency.get("name")+" , ("+agency.get("telphone")+") , "+agency.get("address");
-////        			console.log("agency : "+inputstr);
-////        			$("#"+inputid).val(inputstr);
-//        			
-//        		}   	      		
-//	        	
-//        	});    
+  
         	this.trigger("group:addagency",this.model,inputstr);
 
         },
@@ -130,69 +117,8 @@ define([
         	
         	this.model.set({status:'Confirmed',
         		passenger:passengers});
-        	this.trigger("group:confirm",this.model);
-//        	app.execute("app:tour:save");
         	
-        	//generate confirmation and invoice
-//        	var routecode=$("#routecode").val();
-//        	var self = this;
-//        	var fetchingitems = app.request("entities:routes",{c:routecode});
-//        	$.when(fetchingitems).done(function(routes){
-//        		if(routes.length>0){
-//
-//        			var route = routes.at(0);
-//        			var gn = self.model.get("no");
-//        			var cfm = new Confirmation({
-//        				no:tourcode+gn,
-//        				tourcode:$("#code").val(),
-//        				tourname:$("#name").val(),
-//        				departuredate:$("#departuredate").val(),
-//        				issuedate:new Date()+'',
-//                    	bookdate:$("#bookdate"+gn).val(),
-//                    	op:$("#op").val(),
-//                    	agencyop:'',
-//                    	taxablesub:0,
-//                    	nontaxablesub:0,
-//                    	gst:0,
-//                    	total:0,
-//                    	remark_c:'',
-//                    	remark_i:'',
-//                    	issuefrom:{
-//                    		name:'',
-//                    		address:'',
-//                    		city:'',
-//                    		province:'',
-//                    		country:'',
-//                    		postcode:'',
-//                    		telephone:'',
-//                    		fax:'',
-//                    		regno:''
-//                    	},
-//                    	issueto:{
-//                    		name:'',
-//                    		address:'',
-//                    		city:'',
-//                    		province:'',
-//                    		country:'',
-//                    		postcode:'',
-//                    		telephone:'',
-//                    		fax:''
-//                    	},
-//                    	passenger:{
-//                    		name:'',
-//                    		faretype:'',
-//                    		fare:0,
-//                    		admission:0,
-//                    		meal:0,
-//                    		pickup:'',
-//                    		dropoff:''
-//                    	}
-//        			});
-//        			
-//        		}
-//        	});	
-    	        	
-
+        	this.trigger("group:confirm",this.model);        
         	
         }
         

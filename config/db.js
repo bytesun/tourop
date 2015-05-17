@@ -11,6 +11,7 @@ var Tour = new Schema({
 	departuredate:String,
 	note:String,
 	feedback:String,
+
 	route:{
 		_id:Schema.Types.ObjectId,
 		code : String,

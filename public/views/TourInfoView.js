@@ -50,60 +50,18 @@ define([
         initialize: function(){
         	var self = this;
             app.commands.setHandler("tour:save", function() {
-            	self.saveTour();
+            	self._saveTour();
             });
         },
-//        onShow: function(e){
-//        	//Group list
-//        	
-//        	var groups = new Groups(new Group());
-//        	var loadGroups = this.model.get("group");
-//        	console.log('loadGroups is ',loadGroups);
-//        	if(loadGroups != undefined && loadGroups.length>0){
-//        		groups.reset(loadGroups);
-//        	}
-//        	
-//        	var groupCollectionView = new GroupCollectionView({
-//        		collection:groups
-//        	});
-//        	this.groupRegion.show(groupCollectionView);        	
-//
-//        	
-//        	//itinerary list
-//        	var collection = new Itinerarys();
-//        	collection.reset(this.model.get("itinerary"));        	
-//
-//        	var collectionView = new ItineraryCollectionView({
-//        		template:templates.tour_itinerary_list,
-//        		childView:ItineraryItemView.extend({
-//        			template: templates.tour_itinerary_item,
-//        		}),
-//    			collection:collection
-//    		});
-//        	
-//        	this.itineraryRegion.show(collectionView);        	
-//        	//bus list
-//        	var buses = new Buses(new Bus());
-//        	var loadBuses = this.model.get("bus");
-//        	console.log('loadbuses is ',loadBuses);
-//        	if(loadBuses != undefined && loadBuses.length>0){
-//        		buses.reset(loadBuses);
-//        	}
-//        	
-//        	var busCollectionView = new BusCollectionView({
-//        		collection:buses
-//        	});
-//        	this.busRegion.show(busCollectionView);        	
-//        	
-//        },
-
-        saveTour: function(e){
-//        	e.preventDefault();
+        saveTour:function(e){
+        	e.preventDefault();
+        	this._saveTour(e);
+        	app.notify('','Tour information has been saved!','alert-info');
+        },
+        _saveTour: function(e){
         	 
     	    var data = Syphon.serialize(this);
     	    this.model.set(data);
-//    	    var route = this.model.get("route");
-//    	    console.log("setting data: "+JSON.stringify(this.model));
     	    
     	    //------------------save passenger data-------------------
     	    var gn = $("#gn").val();
@@ -278,6 +236,7 @@ define([
     	    console.log("ready to save data: "+JSON.stringify(this.model));
 //    	    this.trigger("tour:save");
     	    this.model.save();
+    	    
 //    	    this.render();
 
 //    	    app.navigate("tour",true);         	
@@ -288,6 +247,7 @@ define([
         	//generate confirmation reports
         	this.model.set({status:"Confirmed"});
         	this.model.save();
+        	app.notify('','Tour information has been confirmed and no information can be changed!','alert-info');        	
         	 app.navigate("tour",true);  
         	//generate invoice reports
         },        
@@ -296,6 +256,7 @@ define([
         	this.model.set({status:"Close",feedback:$("#feedback").val()});
         	console.log("ready to close model: "+JSON.stringify(this.model));
         	this.model.save();
+        	app.notify('','The tour has been closed!','alert-info');
         	app.navigate("tour",true); 
         }
 

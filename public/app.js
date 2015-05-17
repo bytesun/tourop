@@ -34,6 +34,7 @@ define([
             regionType: DialogRegion
         }
 	});
+
 //	app.session = new SessionModel({});
 	   // Check the auth status upon initialization,
     // before rendering anything or matching routes
@@ -84,7 +85,16 @@ define([
             }));
         });
     });
-
+    app.notify = function(title, text, klass) {
+    	console.log("calling notify function");
+        $("#notification").removeClass("alert-danger alert-warning alert-success alert-info");
+        $("#notification").addClass(klass);
+        $("#notification").html('<button class="close" data-dismiss="alert">×</button><strong>' + title + '</strong> ' + text);
+        $("#notification").show('fast');
+        setTimeout(function() {
+            $("#notification").hide();
+        }, 7000 );
+    }	
     /**
      * @example
      * app.commands.execute("app:dialog:simple", {

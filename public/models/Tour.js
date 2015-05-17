@@ -18,6 +18,7 @@ define(["jquery", "backbone"],
             	departuredate:'',
             	note:'',
             	feedback:'',
+
             	route:{
             		code : '',
             		name : '',
@@ -52,7 +53,7 @@ define(["jquery", "backbone"],
             	group:[{
             		no:1,
             		status:'New',
-            		commission:0.0,
+            		commission:0.1,
             		bookdate:'',
             		pickup:'',	
             		dropoff:'',
