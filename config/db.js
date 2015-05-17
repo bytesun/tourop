@@ -1,6 +1,8 @@
 var mongoose = require( 'mongoose' );
 var Schema   = mongoose.Schema;
 
+
+
 var Tour = new Schema({
 	code:String,
 	name:String,
@@ -317,6 +319,7 @@ var Invoice = new Schema({
 
 	}]
 });
+
 
 mongoose.model( 'Route', Route );
 mongoose.model( 'Tour', Tour );

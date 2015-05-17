@@ -16,6 +16,8 @@ Manage partner, route information, and create tour
 			
 			----------------------------------------------------------------------
 			Development Trace
+			[2015-5-17] 1. add notification function for tour operations
+							2. edit logo text.
 			[2015-5-16] 1. finish all tour process.
 			[2015-5-15] 1. finish "confirmation" function
 			
