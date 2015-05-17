@@ -13,15 +13,14 @@ define([
 			passengerRegion:"#passenger-list-region"
 		},
 	   initialize: function () {
-//	        _.bindAll(this,this.render);		   
-//	        this.model.bind('change', this.render);
-//	        this.model.bind('change', _.bind(this.render, this));
+   //	        this.model.bind('change', this.render);
 	    },
         events: {
-        	'click .invoice_remark_label' : "showRemarkInput",
-        	'click .btn_remark_save' : "saveRemark"
+        	'click b#label_remark' : 'showRemarkInput',
+        	'click .btn_remark_save' : 'saveRemark'
         		
         },
+
         showRemarkInput: function(){
         	console.log('show remark input');
         	$("#remark_area").html("<form><div class=\"form-group\"><textarea id=\"remark_area_input\" class=\"form-control\" rows=\"8\" >" +
@@ -37,7 +36,6 @@ define([
         	this.model.set({remark:remark});
         	this.model.save();
         	this.render();
-//        	app.navigate("#confirmation_info/"+this.model.get("_id"),true);
         }
         
 	});

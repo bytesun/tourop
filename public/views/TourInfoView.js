@@ -228,13 +228,27 @@ define([
     	    console.log('bn is '+bn);
     	    var bus = new Array();
     	    for(var i=1;i<=bn;i++){
+    	    	
+    			var buscom={
+    					code:$("#buscom_code_"+i).val(),
+            			name : $("#buscom_name_"+i).val(),
+            			payment:$("#buscom_payment_"+i).val(), //credit card/voucher/cheque/cash
+            			telphone : $("#buscom_telphone_"+i).val(),
+            			fax:$("#buscom_fax_"+i).val(),
+            			contact : $("#buscom_contact_"+i).val(),
+            			address : $("#buscom_address_"+i).val(),
+            			city: $("#buscom_city_"+i).val(),
+            			province: $("#buscom_province_"+i).val(),
+            			country :$("#buscom_country_"+i).val(),
+            			postcode:$("#buscom_postcode_"+i).val()
+    			};    	    	
     	    	bus[i-1]={
     	    			no:$("#bno"+i).val(),
     	    			plateno:$("#plateno"+i).val(),
     	    			driver:$("#driver"+i).val(),
     	    			seats:$("#seats"+i).val(),
     	    			phone:$("#bphone"+i).val(),
-//    	    			buscom:$("#buscom"+i).val(),
+    	    			buscom:buscom
     	    			
     	    	}
 
@@ -243,14 +257,28 @@ define([
     	    	this.model.unset("driver"+i);
     	    	this.model.unset("seats"+i);
     	    	this.model.unset("bphone"+i);
-    	    	this.model.unset("buscom"+i);
+    	    	
+    	    	
+       	    	this.model.unset("buscom_code_"+i);
+    	    	this.model.unset("buscom_name_"+i);
+    	    	this.model.unset("buscom_payment_"+i);
+    	    	this.model.unset("buscom_telphone_"+i);
+    	    	this.model.unset("buscom_fax_"+i);
+    	    	this.model.unset("buscom_contact_"+i);
+    	    	this.model.unset("buscom_address_"+i);
+    	    	this.model.unset("buscom_city_"+i);
+    	    	this.model.unset("buscom_province_"+i);
+    	    	this.model.unset("buscom_country_"+i);
+    	    	this.model.unset("buscom_postcode_"+i);
 
     	    }
     	    this.model.set("bus",bus);    	    
     	    
-//    	    console.log("ready to save data: "+JSON.stringify(this.model));
+    	    this.model.unset("routecode");
+    	    console.log("ready to save data: "+JSON.stringify(this.model));
 //    	    this.trigger("tour:save");
     	    this.model.save();
+//    	    this.render();
 
 //    	    app.navigate("tour",true);         	
 
@@ -258,17 +286,17 @@ define([
         confirmTour: function(e){
         	console.log('confirm a tour');
         	//generate confirmation reports
-        	
-        	
+        	this.model.set({status:"Confirmed"});
+        	this.model.save();
+        	 app.navigate("tour",true);  
         	//generate invoice reports
         },        
         closeTour: function(e){
         	console.log('close tour');
-        	app.request("app:dialog:simple", {
-                title: 'Input memo information to close this tour',
-                message: 'Input close information'
-            },
-            templates.tour_memo);
+        	this.model.set({status:"Close",feedback:$("#feedback").val()});
+        	console.log("ready to close model: "+JSON.stringify(this.model));
+        	this.model.save();
+        	app.navigate("tour",true); 
         }
 
 

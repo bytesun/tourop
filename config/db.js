@@ -100,11 +100,8 @@ var Tour = new Schema({
 		note:String,
 		buscom:
 			{
-			_id:Schema.Types.ObjectId,
-			type : String, //1-agency/2-hotel/3-restaurant/4-admission
 			code : String,
 			name : String,
-			payment:String, //credit card/voucher/cheque/cash
 			telphone : String,
 			fax:String,
 			contact : String,
@@ -112,8 +109,7 @@ var Tour = new Schema({
 			city: String,
 			province: String,
 			country :String,
-			postcode:String,
-			note: String
+			postcode:String
 		}
 		
 	}]

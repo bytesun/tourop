@@ -114,8 +114,7 @@ define(["jquery", "backbone"],
             			city: '',
             			province: '',
             			country :'',
-            			postcode:'',
-            			note: ''
+            			postcode:''
             		}
             		
             		

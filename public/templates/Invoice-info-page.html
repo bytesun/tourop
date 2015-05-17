@@ -142,15 +142,16 @@
 	
 	<div class="row">
 	 	<div class="col-md-12">
-		<!-- remarks -->
-		<div class="row invoice_remark_label">
-		<hr>
-			<b>Remarks:</b>
-		</div>
-
-		<div class="col-md-offset-1 remark_area" id="remark_area">
-			<%=remark%>
-		</div>
+	 		<hr>
+	 		
+			<!-- remarks -->
+			<label class="row invoice_remark_label" id="invoice_remark_label">
+				<b id="label_remark">Remarks:</b>
+			</label>
+	
+			<div class="col-md-offset-1 remark_area" id="remark_area">
+				<%=remark%>
+			</div>
 		</div>
 	</div>
 
@@ -160,14 +161,14 @@
       <div class="container">
       <hr>
              <table  width="100%">
-     	<tr><td align="center">
-     	<%=tourcom.address%>, <%=tourcom.city%> <%=tourcom.province%>, <%=tourcom.country%> <%=tourcom.postcode%> Tel:<%=tourcom.telephone%> Fax:<%=tourcom.fax%><br> 
-			Please verify the details and advise us of any error immediately.<br>
-			Please remit payment within 7 days, interest of 2% per month on overdue account.<br>
-			B.C. Reg.#<%=tourcom.regno%>
-     	
-
-     	</td></tr>
-     </table>  
+		     	<tr><td align="center">
+		     	<%=tourcom.address%>, <%=tourcom.city%> <%=tourcom.province%>, <%=tourcom.country%> <%=tourcom.postcode%> Tel:<%=tourcom.telephone%> Fax:<%=tourcom.fax%><br> 
+					Please verify the details and advise us of any error immediately.<br>
+					Please remit payment within 7 days, interest of 2% per month on overdue account.<br>
+					B.C. Reg.#<%=tourcom.regno%>
+		     	
+		
+		     	</td></tr>
+		     </table>  
       </div>
     </footer>

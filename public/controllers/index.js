@@ -350,7 +350,20 @@ define([
 	        		collection:buses
 	        	});
 	        	
+	        	busCollectionView.on("childview:bus:addbuscom",function(childview,bus,agencycode){
+
+	            	var fetchingoitems = app.request("entities:informations",{c:agencycode,t:'B'});
+	            	$.when(fetchingoitems).done(function(items){
+	            		if(items.length >= 1){
+	            			var agency = items.at(0);
+	            			bus.set({buscom:agency.toJSON()});
+
+	            		}   	      		
+	    	        	
+	            	});       	
+	        	});	        	
 	        	
+	        
 	        	tourView.on("tour:save",function(){
 	        		console.log('groups is '+JSON.stringify(groups));
 //	        		tour.set({

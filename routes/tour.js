@@ -35,6 +35,7 @@ router.put('/api/tours/:id', function(req, res) {
 				departuredate:req.body.departuredate,
 				status:req.body.status,
 				note:req.body.note,
+				feedback:req.body.feedback,
 				itinerary:req.body.itinerary,
 				group:req.body.group,
 				bus:req.body.bus
@@ -63,12 +64,12 @@ router.get('/api/tours',function(req,res){
 	if(c != 0){
 		query.code = new RegExp('^'+c, "i");
 	}else{
-		query.status={$in:['New','Confirm']};
+		query.status={$in:['New','Confirmed']};
 	}
 	
 	console.log('query tour is ',query);
 	
-	Tour.find(null,
+	Tour.find(query,
 				null,
 				null,function(err,tours){
 			res.send(tours);

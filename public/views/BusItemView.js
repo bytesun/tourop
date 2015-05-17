@@ -10,6 +10,10 @@ define([
 		template: templates.tour_bus_item,
 		model:Model,
 		tagName:'div',
+		initialize : function() {
+			  this.listenTo(this.model, 'change', this.render);
+		},        
+     
 		  events: {
 			  "keyup .telephone":"formatTel",
 	        	'change .buscom_input' :'addBuscom'
@@ -40,19 +44,21 @@ define([
 	        	e.preventDefault();
 	        	var inputid = e.target.id;
 	        	var inputstr = $("#"+inputid).val();
+	        	
+	        	
 	        	//check admission first
-	        	var fetchingoitems = app.request("entities:informations",{c:inputstr,t:'B'});
-	        	$.when(fetchingoitems).done(function(items){
-	        		if(items.length >= 1){
-	        			var buscom = items.at(0);
-	        			inputstr = buscom.get("name")+"  ("+buscom.get("telphone")+")  "+buscom.get("address");
-	        			$("#"+inputid).val(inputstr);
-	        			this.model.set({buscom:buscom});
-	        		}   	
-	        		
-		        	
-	        	});       	
-	
+//	        	var fetchingoitems = app.request("entities:informations",{c:inputstr,t:'B'});
+//	        	$.when(fetchingoitems).done(function(items){
+//	        		if(items.length >= 1){
+//	        			var buscom = items.at(0);
+//	        			inputstr = buscom.get("name")+"  ("+buscom.get("telphone")+")  "+buscom.get("address");
+//	        			$("#"+inputid).val(inputstr);
+//	        			this.model.set({buscom:buscom});
+//	        		}   	
+//	        		
+//		        	
+//	        	});       	
+	        	this.trigger("bus:addbuscom",this.model,inputstr);
 	        }        
        
 	});

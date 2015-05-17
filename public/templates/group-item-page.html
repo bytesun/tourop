@@ -10,6 +10,38 @@
     </div>
     <div id="group<%=no%>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="grouphead<%=no%>">
       <div class="panel-body">
+
+		  <div class="row">
+ 		   		<input type="hidden" id="agency_code_<%=no%>" value="<%=agency.code%>">
+ 		   		<input type="hidden" id="agency_city_<%=no%>" value="<%=agency.city%>">
+				<input type="hidden" id="agency_province_<%=no%>" value="<%=agency.province%>">
+				<input type="hidden" id="agency_country_<%=no%>" value="<%=agency.country%>">
+				<input type="hidden" id="agency_postcode_<%=no%>" value="<%=agency.postcode%>">
+				<input type="hidden" id="agency_fax_<%=no%>" value="<%=agency.fax%>">
+				<input type="hidden" id="agency_contact_<%=no%>" value="<%=agency.contact%>">
+				<input type="hidden" id="agency_payment_<%=no%>" value="<%=agency.payment%>">	
+							
+			   <div class="col-lg-offset-1 col-lg-2">
+			  <label>Agency</label>
+				<input  class="form-control passenger_agency" type="text" id="agency_name_<%=no%>" value="<%=agency.name%>">	
+				
+			    <br>
+			  </div>  
+	 
+	 		   <div class="col-lg-2">
+	 		   <label>Tel</label>
+			  <input  class="form-control passenger_agency" type="text" id="agency_telphone_<%=no%>" value="<%=agency.telphone%>" disabled>
+				</div>
+
+		  	 <div class="col-lg-5">
+		  	 <label>Address</label>
+			  <input  class="form-control passenger_agency" type="text" id="agency_address_<%=no%>" value="<%=agency.address%>" disabled>
+			  </div>
+			  			  			  
+
+
+			  		  			    
+		  </div>
 		 	
 			<input type="hidden" id="pn_<%=no%>" value="<%=passenger.length%>">
 		 	<%for(var p=0;p<passenger.length;p++){%>
@@ -112,42 +144,16 @@
 		 	</div> 
 		 	
 		 	<%}%>
-		   
+
+			<%if(status == 'New'){%>
 		   <div class="row">		
-			   <div class="col-lg-offset-1 col-lg-10">
+			   <div class="col-lg-offset-1 col-lg-1">
 			    <a class="btn btn-default btn_add_passenger">+</a>
 			    <br>
 			  </div> 
 		  </div>
-		  
-		  <div class="row">
- 		   		<input type="hidden" id="agency_code_<%=no%>" value="<%=agency.code%>">
- 		   		<input type="hidden" id="agency_city_<%=no%>" value="<%=agency.city%>">
-				<input type="hidden" id="agency_province_<%=no%>" value="<%=agency.province%>">
-				<input type="hidden" id="agency_country_<%=no%>" value="<%=agency.country%>">
-				<input type="hidden" id="agency_postcode_<%=no%>" value="<%=agency.postcode%>">
-				<input type="hidden" id="agency_fax_<%=no%>" value="<%=agency.fax%>">
-				<input type="hidden" id="agency_contact_<%=no%>" value="<%=agency.contact%>">
-				<input type="hidden" id="agency_payment_<%=no%>" value="<%=agency.payment%>">	
-							
-			   <div class="col-lg-offset-1 col-lg-2">
-			  <label>Agency</label>
-				<input  class="form-control passenger_agency" type="text" id="agency_name_<%=no%>" value="<%=agency.name%>">
-				
-				
-			    <br>
-			  </div>  
-	 
-	 		   <div class="col-lg-2">
-	 		   <label>Tel</label>
-			  <input  class="form-control passenger_agency" type="text" id="agency_telphone_<%=no%>" value="<%=agency.telphone%>" disabled>
-				</div>
-
-		  	 <div class="col-lg-5">
-		  	 <label>Address</label>
-			  <input  class="form-control passenger_agency" type="text" id="agency_address_<%=no%>" value="<%=agency.address%>" disabled>
-			  </div>
-			  			  			  
+		  <%}%>		   
+		   <div class="row">	
 			   <div class="col-lg-offset-1 col-lg-9">
 			  <label>Pick Up</label>
 			    <input class="form-control" value="<%=pickup%>" id="pickup<%=no%>">
@@ -168,20 +174,21 @@
 			  <label>Commission</label>
 			    <input type="number" step="0.01" min="0" class="form-control" value="<%=commission%>" id="commission<%=no%>" >
 			    <br>
-			  </div>
-			  <%if(status != 'Confirmed'){%>
-			  <div class="col-lg-offset-4 col-lg-2">
-			  <label></label>
+			  </div>		   
+		   
+		   </div>		   
+		   
+		   <div class="row">		
+
+			  <%if(status == 'New'){%>
+			  <div class="col-lg-offset-1 col-lg-2">	
 			    <input type="button" class="form-control btn btn-default btn_confirm_group" value="Confirm" >
 			    <br>
 			  </div>
-			  <%}%>	
-			  <div class="col-lg-offset-4 col-lg-2">
-			  <label></label>
-			    <input type="button" class="form-control btn btn-default btn_confirm_group" value="Confirm" >
-			    <br>
-			  </div>			  		  			    
+			  <%}%>				  
 		  </div>
+		  
+
 
       </div>
     </div>

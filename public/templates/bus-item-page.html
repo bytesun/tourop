@@ -7,20 +7,38 @@
         <a data-toggle="collapse" data-parent="#bus_list_item" href="#bus<%=no%>" aria-expanded="true" aria-controls="bus<%=no%>">
          <span class="text text-primary"> [<%=no%>] </span>
         </a>
-        / <%=plateno%>/ <%=driver%> / <%=phone%> / <%=buscom%>
+        / <%=plateno%>/ <%=driver%> / <%=phone%> / <%=buscom.name%>
       </h4>
     </div>
     
     <div id="bus<%=no%>" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="bushead<%=no%>">
       <div class="panel-body">
-		  <div class="row">
+		  <div class="row">		
 
-		 <div class="col-sm-1">
+		 <div class="col-sm-offset-1  col-sm-2">
+		  <label>Bus Company</label>
+		   <input class="form-control buscom_input" value="<%=buscom.name%>"  id="buscom_name_<%=no%>" placeholder="search by company code">	    
+		 </div>
+		 <div class="  col-sm-2">
+		  <label>Tel</label>
+		   <input class="form-control buscom_input" value="<%=buscom.telphone%>"  id="buscom_telphone_<%=no%>">	    
+		 </div>
+		 <div class="  col-sm-6">
+		  <label>Address</label>
+		   <input class="form-control buscom_input" value="<%=buscom.address%>"  id="buscom_address_<%=no%>" >	    
+		 </div>		 		 
+  		   		<input type="hidden" id="buscom_code_<%=no%>" value="<%=buscom.code%>">
+ 		   		<input type="hidden" id="buscom_city_<%=no%>" value="<%=buscom.city%>">
+				<input type="hidden" id="buscom_province_<%=no%>" value="<%=buscom.province%>">
+				<input type="hidden" id="buscom_country_<%=no%>" value="<%=buscom.country%>">
+				<input type="hidden" id="buscom_postcode_<%=no%>" value="<%=buscom.postcode%>">
+				<input type="hidden" id="buscom_fax_<%=no%>" value="<%=buscom.fax%>">
+				<input type="hidden" id="buscom_contact_<%=no%>" value="<%=buscom.contact%>">
+				<input type="hidden" id="buscom_payment_<%=no%>" value="<%=buscom.payment%>">
+				
 
 		  <input class="form-control"  id="bno<%=no%>" value="<%=no%>" type="hidden">
-		 </div>
-		
-		 <div class="col-sm-2">
+		 <div class="col-sm-offset-1 col-sm-2">
 		  <label>Bus Number</label>
 		  <input class="form-control" value="<%=plateno%>"  id="plateno<%=no%>" >
 		 </div>
@@ -35,12 +53,11 @@
 		 <div class="col-sm-1">
 		  <label>Seats</label>
 		  <input class="form-control" value="<%=seats%>"  id="seats<%=no%>" type="number">
-		 </div>
-		 <div class="col-sm-offset-1  col-sm-10">
-		  <label>Bus Company</label>
-		   <input class="form-control buscom_input" value="<%=buscom%>"  id="buscom<%=no%>">	    
-		 </div>
+		 </div>					
 		  </div> 
+		  
+		  
+	  
       </div>
     </div>
   </div>    

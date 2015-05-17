@@ -58,7 +58,20 @@
 	  <hr>
       <div class="col-md-12">
       	<div class="form-group">
+      	<%if(status == 'New'){%>
       		<label>Note:</label><textarea name="note" class="form-control" rows="6">  <%=note%>  </textarea>
+      	<%}else if(status == 'Confirmed'){%>
+      		<label>Feedback:</label>
+      		
+      		<textarea id="feedback" name="feedback" class="form-control" rows="6">  <%=feedback%>  </textarea>
+		<%}else if(status == 'Close'){%>
+			 <label><b>Note:</b></label><br>
+			 <%=note%>
+			 <hr>
+		     <label><b>Feedback:</b></label><br>
+		     <%=feedback%>
+      	<%}%>	
+      	
       	</div>
       </div>
  	  
@@ -68,7 +81,7 @@
            <%if(status == 'New'){%>
 	           <button type="button" class="btn btn-primary btn_tour_save" id="btn_tour_save" >Save</button>
 	           <button type="button" class="btn btn-primary btn_tour_confirm" id="btn_tour_confirm" >Confirm</button>
-           <%} else if(status == 'Confirm'){%>
+           <%} else if(status == 'Confirmed'){%>
            		<button type="button" class="btn btn-primary btn_tour_close" id="btn_tour_close" >Close</button>
            <%}%>
         </div>   
