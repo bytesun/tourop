@@ -2,6 +2,7 @@
 
 define([
 	'app',
+	'js-cookie',
 	'templates',
 	'models/Route',
 	'models/Tour',
@@ -12,6 +13,7 @@ define([
     'models/Invoice',
 	'models/Information',
 	'models/Setting',
+	'models/User',
 	
     'collections/Itinerarys',
     'collections/Passengers',
@@ -41,7 +43,6 @@ define([
 	'views/InvoiceInfoView',
 
 	'views/TourInfoView',
-
     'views/ItineraryItemView',
     'views/ItineraryCollectionView',	
 	'views/GroupItemView',
@@ -51,8 +52,10 @@ define([
 	'views/LoginView',
 
 	'views/InfoLayout',
-	'views/SettingView'
+	'views/SettingView',
+	'views/UserView'
 ], function (app,
+		Cookie,
 		templates,
 		RouteModel,
 		TourModel,
@@ -63,6 +66,7 @@ define([
 		Invoice,
 		InfoModel,
 		Setting,
+		User,
 		
 		Itinerarys,
 		Passengers,
@@ -99,13 +103,25 @@ define([
 		BusCollectionView,		
 		LoginView,
 		InfoLayout,
-		SettingView) {
+		SettingView,
+		UserView) {
 	'use strict';
 
 	return {
 	      home : function(view,options){
 	        	app.main.show(new HomeView());
 	        },
+	      user: function(){
+	    	  var user = new User({
+	    		  username:Cookie.get("user.uname"),
+	    		  _id:Cookie.get("user.id"),
+	    		  displayname:Cookie.get("user.displayname"),
+	    		  email:Cookie.get("user.email")
+	    	  });
+	    	  app.main.show(new UserView({
+	    		  model:user
+	    	  }));
+	      },
 	      tour : function(query){
 
 	        	var tourView = new TourView({
@@ -146,6 +162,7 @@ define([
 	        			route:route.toJSON(),
 	        			name:route.get("name"),
 	        			days:route.get("days"),
+	        			op:Cookie.get("user.displayname"),
 	        			itinerary:route.get("itinerary")
 	        		});
 

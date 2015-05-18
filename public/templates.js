@@ -6,6 +6,8 @@ define(function (require) {
 	return {
 		 login:require('tpl!templates/login-page.html'),
 		 home: require('tpl!templates/home-page.html'),
+		 user: require('tpl!templates/user-info-page.html'),
+		 
 		 tour: require('tpl!templates/tour-page.html'),
 		 tour_info:require('tpl!templates/tour-info-page.html'),
 		 tour_memo:require('tpl!templates/tour-memo-page.html'),

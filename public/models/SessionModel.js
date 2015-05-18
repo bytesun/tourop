@@ -3,7 +3,7 @@
  */
 define([
     "app",
-    "models/UserModel"
+    "models/User"
 ], function(app, UserModel){
 
     var SessionModel = Backbone.Model.extend({

@@ -23,6 +23,7 @@ define([
             "invoice(/:code)":"invoice",
             "invoice_info(/:id)":"invoice_info",
             "setting":"setting",
+            "user":"user",
             "logout" : "logout"
 
 		}

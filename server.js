@@ -64,6 +64,7 @@ var tour = require('./routes/tour');
 var setting = require('./routes/setting');
 var confirmation = require('./routes/confirmation');
 var invoice = require('./routes/invoice');
+var user = require('./routes/user');
 
 app.use('/', index);
 app.use('/', information);
@@ -72,7 +73,7 @@ app.use('/', tour);
 app.use('/', setting);
 app.use('/', confirmation);
 app.use('/', invoice);
-
+app.use('/', user);
 
 app.use(function(req, res, next){
 	  var err = req.session.error,

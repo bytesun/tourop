@@ -9,9 +9,6 @@ define(["jquery", "backbone"],
         	 urlRoot: '/api/confirmations',
   	       idAttribute: '_id',
             // Model Constructor
-            initialize: function() {
-
-            },
 
             // Default values for all of the Model attributes
             defaults: {

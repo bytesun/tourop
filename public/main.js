@@ -10,7 +10,8 @@ require.config({
         'bootstrap'             : 'assets/lib/bootstrap.min',
         'text'                  : 'assets/lib/text',
         'tpl'                   : 'assets/lib/tpl',
-        'parsley'               : 'assets/lib/parsley'
+        'parsley'               : 'assets/lib/parsley',
+        'js-cookie'             : 'assets/lib/js.cookie'
 	},
 
 	shim: {

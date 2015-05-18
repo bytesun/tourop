@@ -14,6 +14,10 @@ var isAuthenticated = function (req, res, next) {
 module.exports = function(passport){
 
 	router.get('/', isAuthenticated,function(req, res) {
+		res.cookie('user.uname',req.user.username);
+		res.cookie('user.displayname',req.user.displayname);
+		res.cookie('user.id',req.user._id.toString());
+		res.cookie('user.email',req.user.email);
 		res.render('index',{csrfToken: req.csrfToken(),user:req.user});
 	});	
 	/* GET login page. */
@@ -30,28 +34,7 @@ module.exports = function(passport){
 		failureFlash : true  
 	}));
 
-	
-	router.get('/api/auth',isAuthenticated, function(req, res) {
-    	// Display the Login page with any flash message, if any
-		res.send({ user: req.user });
-		
-		//
-	});	
-	router.post('/api/auth/login', function(req, res, next) {
-		  passport.authenticate('login', function(err, user, info) {
-		    if (err) { return next(err); }
-		    if (!user) { return res.redirect('/login'); }
-		    req.logIn(user, function(err) {
-		      if (err) { return next(err); }
-		      return res.send({user:user});
-		    });
-		  })(req, res, next);
-		});	
-	
-	router.post('/api/auth/logout', function(req, res) {
-		req.logout();
-		res.redirect('/login');
-	});
+
 	/* GET Registration Page */
 	router.get('/signup', function(req, res){
 		res.render('signup',{csrfToken: req.csrfToken(),message: req.flash('message')});
@@ -65,10 +48,7 @@ module.exports = function(passport){
 		failureFlash : true  
 	}));
 
-	/* GET Home Page */
-	router.get('/home', isAuthenticated, function(req, res){
-		res.render('home', { user: req.user });
-	});
+
 
 	/* Handle Logout */
 	router.get('/signout', function(req, res) {

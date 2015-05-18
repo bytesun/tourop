@@ -13,9 +13,13 @@ Manage partner, route information, and create tour
 			
 			Backlog:
 				1. passenger list for guide and hotel
+				2. update user's info(password...)
 			
 			----------------------------------------------------------------------
 			Development Trace
+			[2015-5-18] 1. user information editing.
+							2. default 'op' with user name
+			
 			[2015-5-17] 1. add notification function for tour operations
 							2. edit logo text.
 							3. add authentication support

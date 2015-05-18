@@ -7,15 +7,12 @@ define([
 
 	'models/SessionModel',
     'regions/notification',
-    'regions/dialog',
-    'views/HomeView',
-    'views/LoginView'
+    'regions/dialog'
+
 ], function (Backbone, Marionette,
 //		Wreqr,
 		SessionModel, NotifyRegion, 
-		DialogRegion,
-		HomeView,
-		LoginView) {
+		DialogRegion	) {
 	'use strict';
 
 	var app = new Marionette.Application();
@@ -35,29 +32,11 @@ define([
         }
 	});
 
-//	app.session = new SessionModel({});
-	   // Check the auth status upon initialization,
-    // before rendering anything or matching routes
-//    app.session.checkAuth({
-//
-//        // Start the backbone routing once we have captured a user's auth status
-//        complete: function(){
-//
-//            // HTML5 pushState for URLs without hashbangs
-//            var hasPushstate = !!(window.history && history.pushState);
-//            if(hasPushstate) Backbone.history.start({ pushState: true, root: '/tour' });
-//            else Backbone.history.start();
-//
-//        }
-//    });	
+
 	app.navigate = function(route,options){
 		options || (options = {});
 		Backbone.history.navigate(route, options);
 	}	
-	app.addInitializer(function () {
-//		app.main.show(new HomeView());
-
-	});
 
     app.on("start", function(options){
     	
