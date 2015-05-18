@@ -22,6 +22,7 @@ define([
     	    this.model.set(data);
     	    console.log('save user info :'+JSON.stringify(this.model));
     	    this.model.save();
+    	    app.notify('','New user information has been saved!','alert-info');
         }
 	});
 });

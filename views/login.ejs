@@ -6,7 +6,7 @@
 		<br><br>
 		</td></tr>
 		<tr><td align="center">
-
+			<div class="text text-danger"><%=message%></div>
 			 <form class="form-signin" action="/login" method="post">
 			 	<input type="hidden" name="_csrf" value="<%=csrfToken%>">
 		        <label for="inputEmail" class="sr-only">User Name</label>
@@ -15,7 +15,8 @@
 		        <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>
 		        <input type="submit" id="login-btn_" class="btn btn-lg btn-primary btn-block" value="Login">
 		      </form>
+		      
 		</td></tr>
 		</table>
-
+	
 </div>

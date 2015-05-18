@@ -19,6 +19,7 @@ Manage partner, route information, and create tour
 			Development Trace
 			[2015-5-18] 1. user information editing.
 							2. default 'op' with user name
+							3. add more fields in signup page.
 			
 			[2015-5-17] 1. add notification function for tour operations
 							2. edit logo text.
