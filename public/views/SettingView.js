@@ -41,12 +41,29 @@ define([
 		saveSetting:function(e){
         	e.preventDefault();          	
     	    var data = Syphon.serialize(this);
-    	    this.model.set(data);
+    	    this.model.set({
+    	    	tourcom:{
+    	    		name:data.name,
+    	    		regno:data.regno,
+    	    		contact:data.contact,
+    	    		email:data.email,
+    	    		telephone:data.telephone,
+    	    		fax:data.fax,
+    	    		address:data.address,
+    	    		city:data.city,
+    	    		province:data.province,
+    	    		country:data.country,
+    	    		postcode:data.postcode
+
+    	    	},
+    	    	finance:{
+    	    		commission:data.commission
+    	    	}
+    	    });
     	    this.model.save();
-    	    app.execute("app:notify", {
-                title: '',
-                description: 'Setting information has been saved!'
-            });
+    	    console.log('save setting :'+JSON.stringify(this.model));
+    	    app.notify('','Setting information has been saved!','alert-info');
+
 		}
 	});
 });

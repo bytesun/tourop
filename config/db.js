@@ -200,18 +200,23 @@ var Bus = new Schema({
 });
 
 var Setting = new Schema({
+	tourcom:{
 		name:String,
 		address:String,
 		city:String,
 		province:String,
 		country:String,
 		postcode:String,
-		phone:String,
+		telephone:String,
 		fax:String,
 		email:String,
 		contact:String,
-		regno:String,
-	commission:Number
+		regno:String
+	},
+	finance:{
+		commission:Number	
+	}
+	
 });
 
 

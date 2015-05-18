@@ -13,8 +13,9 @@ define([
     'collections/Confirmations',
     'models/Invoice',
     'collections/Invoices',
+    'models/Setting'
     
-    'collections/Settings'
+
     
 ], function(app, Marionette, Router, Controller,
 		Information,
@@ -27,7 +28,7 @@ define([
 		Confirmations,
 		Invoice,
 		Invoices,
-		Settings){
+		Setting){
  
     var PagesModule = app.module("Pages", function(Pages) {
         this.startWithParent = false;
@@ -151,22 +152,24 @@ define([
  	//		});
  			return defer.promise();
  		} ,
- 		getSettings:function(){
- 			console.log('calling API.getSettings');
- 			var settings = new Settings();
+ 		getSetting:function(){
+ 			console.log('calling API.getSetting');
+ 			var setting = new Setting();
  			var defer = $.Deferred();
- 			settings.fetch({
- 				success:function(data){
- 					defer.resolve(data);
- 				}
- 			});	
- 			var promise = defer.promise();
- 			$.when(promise).done(function(infos){
- 				if(infos.length === 0){
- 					
- 				}
- 			});
- 			return promise;
+ 			//setTimeout(function(){
+ 			setting.fetch({
+ 					success:function(data){
+ 						defer.resolve(data);
+ 					},
+ 					error:function(data){
+ 						defer.resolve(undefined);
+ 					}
+ 				
+ 				});
+ 			//},2000);		
+ 			//ocase.fetch().done(function(){
+ 	//		});
+ 			return defer.promise();
  		},
 		getConfirmations:function(query){
  			console.log('calling API.getConfirmations');
@@ -271,8 +274,8 @@ define([
  		return API.getTour(id);
  	});
  	
- 	app.reqres.setHandler("entities:settings",function(){
- 		return API.getSettings();
+ 	app.reqres.setHandler("setting:entity",function(){
+ 		return API.getSetting();
  	}); 
  	
  	app.reqres.setHandler("confirmation:entity",function(id){

@@ -83,7 +83,7 @@ define([
     			roomtype:''
         	};
         	this.model.set({passenger:passengers});        	
-        	this.render();
+        	
 
         },
         addAgency : function(e){
@@ -114,8 +114,12 @@ define([
 	    			roomtype:$("#roomtype_"+gn+"_"+j).val(),
 				}   	    	
 			};
+			
         	
         	this.model.set({status:'Confirmed',
+    			bookdate:$("#bookdate"+gn).val(),
+    			pickup:$("#pickup"+gn).val(),
+    			dropoff:$("#dropoff"+gn).val(),
         		passenger:passengers});
         	
         	this.trigger("group:confirm",this.model);        

@@ -1,8 +1,8 @@
 // Model.js
 // --------
-define(["jquery", "backbone"],
+define(["app","jquery", "backbone"],
 
-    function($, Backbone) {
+    function(app,$, Backbone) {
 
         // Creates a new Backbone Model class object
         var Model = Backbone.Model.extend({

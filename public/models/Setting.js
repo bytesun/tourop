@@ -14,18 +14,23 @@ define(["jquery", "backbone"],
 
             // Default values for all of the Model attributes
             defaults: {
+            	tourcom:{
             		name:'',
             		address:'',
             		city:'',
             		province:'',
             		country:'',
             		postcode:'',
-            		phone:'',
+            		telephone:'',
             		fax:'',
             		email:'',
             		contact:'',
-            		regno:'',
-            	commission:0.1
+            		regno:''
+            	},
+            	finance:{
+            		commission:0.1	
+            	}
+            	
             	
             },
 

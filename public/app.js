@@ -7,15 +7,18 @@ define([
 
 	'models/SessionModel',
     'regions/notification',
-    'regions/dialog'
+    'regions/dialog',
+    'models/Setting'
 
 ], function (Backbone, Marionette,
 //		Wreqr,
 		SessionModel, NotifyRegion, 
-		DialogRegion	) {
+		DialogRegion,
+		Setting) {
 	'use strict';
 
 	var app = new Marionette.Application();
+	app.setting = new Setting();
 //	var commands = new Backbone.Wreqr.Commands();
 	
 	app.addRegions({
@@ -39,7 +42,14 @@ define([
 	}	
 
     app.on("start", function(options){
-    	
+    	var fetchingitem = app.request("setting:entity");
+    	$.when(fetchingitem).done(function(item){
+    		if(item !=null){
+    			app.setting = item;
+    	    	console.log('loading setting :'+JSON.stringify(app.setting));
+    		}
+    	});
+
         if (Backbone.history){
             Backbone.history.start();
             app.navigate("tour",true);

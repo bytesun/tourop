@@ -5,73 +5,74 @@
 <div role="tabpanel">
 
   <!-- Nav tabs -->
+  <!-- 
   <ul class="nav nav-tabs" role="tablist">
     <li role="presentation" class="active"><a href="#company" aria-controls="company" role="tab" data-toggle="tab">Company</a></li>
-    <li role="presentation"><a href="#business" aria-controls="business" role="tab" data-toggle="tab">Business</a></li>
+    <li role="presentation"><a href="#business" aria-controls="business" role="tab" data-toggle="tab">Finance</a></li>
   </ul>
-
+ -->
   <!-- Tab panes -->
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="company">
     	<br>
 			  <div class="form-group">
 			    <label for="inputPassword3" class="col-sm-2 control-label">Name:</label>
-			    <div class="col-sm-7">
-			      <input type="text" class="form-control" name="name" value="<%=name%>" placeholder="" required>
+			    <div class="col-sm-8">
+			      <input type="text" class="form-control" name="name" value="<%=tourcom.name%>" placeholder="" required>
 			    </div>
 			  </div>    
 			  <div class="form-group">
 			    <label for="inputPassword3" class="col-sm-2 control-label">Telephone:</label>
 			    <div class="col-sm-4">
-			      <input type="tel" class="form-control telephone" name="phone" value="<%=phone%>" placeholder="(_ _ _)  _ _ _ - _ _ _ _">
+			      <input type="tel" class="form-control telephone" name="telephone" value="<%=tourcom.telephone%>" placeholder="(_ _ _)  _ _ _ - _ _ _ _">
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="inputPassword3" class="col-sm-2 control-label">Fax:</label>
 			    <div class="col-sm-4">
-			      <input type="tel" class="form-control telephone" name="fax" value="<%=fax%>" placeholder="(_ _ _)  _ _ _ - _ _ _ _">
+			      <input type="tel" class="form-control telephone" name="fax" value="<%=tourcom.fax%>" placeholder="(_ _ _)  _ _ _ - _ _ _ _">
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="inputPassword3" class="col-sm-2 control-label">Email:</label>
 			    <div class="col-sm-4">
-			      <input type="email" class="form-control" name="email" value="<%=email%>" placeholder="">
+			      <input type="email" class="form-control" name="email" value="<%=tourcom.email%>" placeholder="">
 			    </div>
 			  </div>			  			  
 			  <div class="form-group">
 			    <label for="inputPassword3" class="col-sm-2 control-label">Contact:</label>
 			    <div class="col-sm-4">
-			      <input type="text" class="form-control" name="contact" value="<%=contact%>" placeholder="">
+			      <input type="text" class="form-control" name="contact" value="<%=tourcom.contact%>" placeholder="">
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="inputPassword3" class="col-sm-2 control-label">RegNo.:</label>
 			    <div class="col-sm-4">
-			      <input type="text" class="form-control" name="regno" value="<%=regno%>" placeholder="">
+			      <input type="text" class="form-control" name="regno" value="<%=tourcom.regno%>" placeholder="">
 			    </div>
 			  </div>			  
 			  <div class="form-group">
 			    <label for="inputPassword3" class="col-sm-2 control-label">Address:</label>
-			    <div class="col-sm-7">
-			      <input type="text" class="form-control" name="address" value="<%=address%>" placeholder="">
+			    <div class="col-sm-8">
+			      <input type="text" class="form-control" name="address" value="<%=tourcom.address%>" placeholder="">
 			    </div>
 			  </div>
 
 			  <div class="form-group">
 			  	<label for="inputPassword3" class="col-sm-2 control-label"></label>
-			    <div class="col-sm-2"><input type="text" class="form-control col-sm-3" name="city" value="<%=city%>" placeholder="city"></div>	
-			    <div class="col-sm-1"><input type="text" class="form-control col-sm-3" name="province" value="<%=province%>" placeholder="province"></div>
-			    <div class="col-sm-2"><input type="text" class="form-control col-sm-3" name="country" value="<%=country%>" placeholder="country">	</div>
-			    <div class="col-sm-2"><input type="text" class="form-control col-sm-3" name="postcode" value="<%=postcode%>" placeholder="postcode"></div>
+			    <div class="col-sm-2"><input type="text" class="form-control col-sm-3" name="city" value="<%=tourcom.city%>" placeholder="city"></div>	
+			    <div class="col-sm-2"><input type="text" class="form-control col-sm-3" name="province" value="<%=tourcom.province%>" placeholder="province"></div>
+			    <div class="col-sm-2"><input type="text" class="form-control col-sm-3" name="country" value="<%=tourcom.country%>" placeholder="country">	</div>
+			    <div class="col-sm-2"><input type="text" class="form-control col-sm-3" name="postcode" value="<%=tourcom.postcode%>" placeholder="postcode"></div>
 			  </div>
 	</div>
     
     <div role="tabpanel" class="tab-pane" id="business">
     <br>
 			  <div class="form-group">
-			    <label for="inputPassword3" class="col-sm-2 control-label">Commission:</label>
+			    <label for="inputPassword3" class="col-sm-2 control-label">Agency's commission:</label>
 			    <div class="col-sm-3">
-			      <input type="number" class="form-control" name="commission" value="<%=commission%>" placeholder="" required>
+			      <input type="number" class="form-control" name="commission" value="<%=finance.commission%>" placeholder="" required>
 			    </div>
 			  </div>    
 	</div>

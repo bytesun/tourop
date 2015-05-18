@@ -25,19 +25,21 @@ router.put('/api/setting/:id', function(req, res) {
 	Setting.findByIdAndUpdate(
 			req.params.id,
 //			req.body,
-			{$set:{				
-					name:req.body.name,
-					phone:req.body.phone,
-					fax:req.body.fax,
-					email:req.body.email,
-					contact:req.body.contact,
-					regno:req.body.regno,
-					address:req.body.address,
-					city:req.body.city,
-					province:req.body.province,
-					country:req.body.country,
-					postcode:req.body.postcode,
-				commission:req.body.commission
+			{$set:{	
+				tourcom:req.body.tourcom,
+				finance:req.body.finance
+//					name:req.body.name,
+//					phone:req.body.phone,
+//					fax:req.body.fax,
+//					email:req.body.email,
+//					contact:req.body.contact,
+//					regno:req.body.regno,
+//					address:req.body.address,
+//					city:req.body.city,
+//					province:req.body.province,
+//					country:req.body.country,
+//					postcode:req.body.postcode,
+//				commission:req.body.commission
 				}},
 			function( err, setting){
 		if(err){
@@ -57,7 +59,7 @@ router.get('/api/setting/:id',function(req,res){
 
 router.get('/api/setting',function(req,res){
 	res.set('Content-Type', 'application/json');
-	Setting.find(null,
+	Setting.findOne(null,
 				null,
 				null,function(err,settings){
 			res.send(settings);

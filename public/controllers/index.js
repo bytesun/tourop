@@ -206,12 +206,12 @@ define([
 	            	});       	
 	        	});
 	        	groupCollectionView.on("childview:group:confirm",function(childview,group){
-	        		
+
 	        		//save tour information before generating confirmation and invoice
 	        		app.execute("tour:save");
 	        		
 	        		//generate confirmation and invoice
-
+	        		
 	        		var cfm = new Confirmation();
 	        		var date=new Date();
 	        		var issuedate = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+(date.getDate());
@@ -228,7 +228,8 @@ define([
 	        			dropoff:group.get("dropoff"),
 	        			
 	        			agency:group.get("agency"),
-	        			passenger:group.get("passenger")
+	        			passenger:group.get("passenger"),
+	        			tourcom:app.setting.tourcom
 	        			
 	        		});
 //	        		console.log("save confirmation: "+JSON.stringify(cfm));
@@ -343,7 +344,8 @@ define([
 	                	tax:tax,
 	                	total:total,
 	        			agency:group.get("agency"),
-	        			passenger:passengers
+	        			passenger:passengers,
+	        			tourcom:app.setting.tourcom
 	        			
 	        		});
 		        	console.log("save invoice: "+JSON.stringify(invoice));
@@ -562,28 +564,29 @@ define([
 	        },
 	        invoice_info : function(id){
 	        	if(id == null){
-	        		var cfmView = new InvoiceInfoView({
+	        		var invoiceView = new InvoiceInfoView({
 		        		model: new InvoiceModel()
 		        	});		        	
-		        	app.main.show(cfmView);
+		        	app.main.show(invoiceView);
 	        	}else{
 		        	var fetchingItem = app.request("invoice:entity",id);
 					$.when(fetchingItem).done(function(invoice){
-						var cfmView = new InvoiceInfoView({
+						var invoiceView = new InvoiceInfoView({
 			        		model: invoice
 			        	});			        	
-			        	app.main.show(cfmView);
+			        	app.main.show(invoiceView);
 					});
 	        	}	        	
 	        	
 
 	        },	 
 	        setting: function(){
-	        	var fetchingitems = app.request("entities:settings");
-	        	$.when(fetchingitems).done(function(items){
-	        		if(items.length>0){
+
+	        	var fetchingitem = app.request("setting:entity");
+	        	$.when(fetchingitem).done(function(item){
+	        		if(item !=null){
 						var settingView = new SettingView({
-			        		model: items.at(0)
+			        		model: item
 			        	});			        	
 			        	app.main.show(settingView);
 	        		}else{
