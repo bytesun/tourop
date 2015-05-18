@@ -19,6 +19,8 @@ Manage partner, route information, and create tour
 			[2015-5-17] 1. add notification function for tour operations
 							2. edit logo text.
 							3. add authentication support
+							4. add "csrf" token in the ajax header.
+							
 			[2015-5-16] 1. finish all tour process.
 			[2015-5-15] 1. finish "confirmation" function
 			

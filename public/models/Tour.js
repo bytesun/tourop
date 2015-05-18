@@ -7,6 +7,11 @@ define(["jquery", "backbone"],
         var Model = Backbone.Model.extend({
         	 urlRoot: '/api/tours',
   	       idAttribute: '_id',
+  			initialize: function() {
+  		         
+
+  			      
+  			},
             // Default values for all of the Model attributes
             defaults: {
             	code:'',

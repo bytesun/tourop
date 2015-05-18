@@ -54,6 +54,17 @@ require([
 
     app.addInitializer(function() {
         PagesModule.start();
+        
+		  /* alias away the sync method */
+		  Backbone._sync = Backbone.sync;
+		  // override original sync method to make header request contain csrf token
+		  Backbone.sync = function(method, model, options, error){
+		       options.beforeSend = function(xhr){
+		           xhr.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'));
+		       };
+		       /* proxy the call to the old sync method */
+		       return Backbone._sync(method, model, options, error);
+		  };        
     });
 
 	app.start();
