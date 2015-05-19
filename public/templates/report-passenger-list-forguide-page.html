@@ -1,0 +1,40 @@
+<div class="container">
+	<h1><%=name%></h1>
+	<b>Departure date:</b> <%=departuredate%>  <b>Guide: </b><%=guide%>
+	<table class="table" border="1" width="100%">
+		<tr>
+			<th width="20%">Group</th>
+			<th>No.</th>
+			<th>Name</th>
+			<th>Phone</th>
+			<th>Meal</th>						
+			<th>Admission</th>			
+		</tr>
+		
+		<%
+			var pno = 1;
+		for(var i=0;i<group.length;i++){
+			var passengers = group[i].passenger;
+			for(var j=0;j<passengers.length;j++){
+			
+		%>
+		
+		<tr>
+			<%if(j==0){%>
+			<td rowspan="<%=passengers.length%>">
+			
+			<%=group[i].no%>
+			<br>
+			<b>Pickup:</b> <%=group[i].pickup%>
+			</td>
+			<%}%>
+			<td><%=pno%></td>
+			<td><%=passengers[j].name%></td>
+			<td><%=passengers[j].phone%></td>
+			<td><%=passengers[j].meal%></td>
+			<td><%=passengers[j].admission%></td>
+		</tr>
+		<% pno++}}%>
+		
+	</table>
+</div>

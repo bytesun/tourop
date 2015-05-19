@@ -41,7 +41,8 @@ define([
 		saveSetting:function(e){
         	e.preventDefault();          	
     	    var data = Syphon.serialize(this);
-    	    this.model.set({
+    	    var self = this;
+    	    this.model.save({
     	    	tourcom:{
     	    		name:data.name,
     	    		regno:data.regno,
@@ -59,9 +60,17 @@ define([
     	    	finance:{
     	    		commission:data.commission
     	    	}
+    	    },{
+    	    	success:function(setting){
+    	    		app.setting=new Setting(setting);
+    	    		console.log('update setting :'+JSON.stringify(app.setting));
+    	    	},
+    	    	error:function(){
+    	    		
+    	    	}
     	    });
-    	    this.model.save();
     	    console.log('save setting :'+JSON.stringify(this.model));
+    	    
     	    app.notify('','Setting information has been saved!','alert-info');
 
 		}

@@ -41,6 +41,9 @@ define(function (require) {
 		 invoice_item: require('tpl!templates/invoice-item-page.html'),
 		 invoice_info: require('tpl!templates/invoice-info-page.html'),
 		 
+		 report_passenger_list4guide: require('tpl!templates/report-passenger-list-forguide-page.html'),
+		 report_passenger_list4hotel: require('tpl!templates/report-passenger-list-forhotel-page.html'),
+		 
 		 setting:require('tpl!templates/setting-page.html'),
 		 common: require('tpl!templates/common-page.html')
 		 

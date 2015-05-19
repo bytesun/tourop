@@ -133,6 +133,25 @@ define([
 			        	var tourCollectionView = new TourCollectionView({
 			        		collection:tours
 			        	});
+			        	
+			        	tourCollectionView.on('childview:tour:showpassengersforguide',function(childview,tour){
+			        		console.log('get tour info: ',JSON.stringify(tour));
+			        		
+			        		var passengerListView = new CommonView({
+			        			template:templates.report_passenger_list4guide,
+			        			model:tour
+			        		});
+			        		app.main.show(passengerListView);
+			        	});
+			        	tourCollectionView.on('childview:tour:showpassengersforhotel',function(childview,tour){
+			        		console.log('get tour info: ',JSON.stringify(tour));
+			        		
+			        		var passengerListView = new CommonView({
+			        			template:templates.report_passenger_list4hotel,
+			        			model:tour
+			        		});
+			        		app.main.show(passengerListView);
+			        	});			        	
 			        	tourView.on("show",function(){	        		
 			        		tourView.tourListRegion.show(tourCollectionView);
 			        		
@@ -229,7 +248,7 @@ define([
 	        			
 	        			agency:group.get("agency"),
 	        			passenger:group.get("passenger"),
-	        			tourcom:app.setting.tourcom
+	        			tourcom:app.setting.get("tourcom")
 	        			
 	        		});
 //	        		console.log("save confirmation: "+JSON.stringify(cfm));
@@ -345,7 +364,7 @@ define([
 	                	total:total,
 	        			agency:group.get("agency"),
 	        			passenger:passengers,
-	        			tourcom:app.setting.tourcom
+	        			tourcom:app.setting.get("tourcom")
 	        			
 	        		});
 		        	console.log("save invoice: "+JSON.stringify(invoice));
