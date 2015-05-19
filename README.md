@@ -12,11 +12,12 @@ Manage partner, route information, and create tour
 			Week-5 : System deployment and defects fix 
 			
 			Backlog:
-				1. passenger list for guide and hotel
-				2. update user's info(password...)
 			
 			----------------------------------------------------------------------
 			Development Trace
+			[2015-5-19] 1. disable the limitation of phone length.
+						2. add "chinese name", "cell" ,"email" in partner information
+			
 			[2015-5-18] 1. user information editing.
 							2. default 'op' with user name
 							3. add more fields in signup page.

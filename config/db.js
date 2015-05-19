@@ -155,10 +155,13 @@ var Information = new Schema({
 	type : String, //1-agency/2-hotel/3-restaurant/4-admission
 	code : String,
 	name : String,
+	name_cn:String,
 	payment:String, //credit card/voucher/cheque/cash
 	telphone : String,
 	fax:String,
 	contact : String,
+	cellphone: String,
+	email:String,
 	address : String,
 	city: String,
 	province: String,
