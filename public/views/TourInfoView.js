@@ -45,6 +45,7 @@ define([
 
             'click .btn_tour_save' : 'saveTour',
             'click .btn_tour_confirm' : 'confirmTour',
+            'click .btn_tour_cancel' : 'cancelTour',
             'click .btn_tour_close' : 'closeTour'  
         },
         initialize: function(){
@@ -250,7 +251,13 @@ define([
         	app.notify('','Tour information has been confirmed and no information can be changed!','alert-info');        	
         	 app.navigate("tour",true);  
         	//generate invoice reports
-        },        
+        }, 
+        cancelTour: function(e){
+        	console.log('cancel a tour');
+        	this.model.save({status:"Canceled"});
+        	app.notify('','The tour has been canceled!','alert-info');
+        	app.navigate("tour",true); 
+        },
         closeTour: function(e){
         	console.log('close tour');
         	this.model.set({status:"Close",feedback:$("#feedback").val()});

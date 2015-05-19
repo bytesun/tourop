@@ -17,6 +17,7 @@ Manage partner, route information, and create tour
 			Development Trace
 			[2015-5-19] 1. disable the limitation of phone length.
 						2. add "chinese name", "cell" ,"email" in partner information
+						3. add one status ('canceled') of tour.
 			
 			[2015-5-18] 1. user information editing.
 							2. default 'op' with user name
