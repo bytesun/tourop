@@ -19,7 +19,7 @@ define([
         	e.preventDefault();
         	
         	var input = $(e.target).val();
-        	var length = input.length>14?14:input.length;
+        	var length = input.length;
         	var c = '';
         	var out = '';
         	for(var i=0;i<length;i++){
