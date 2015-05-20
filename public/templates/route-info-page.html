@@ -18,132 +18,69 @@
 			  <!-- Nav tabs -->
 			  <ul class="nav nav-tabs" role="tablist">
 			    <li role="presentation" class="active"><a href="#fee" aria-controls="fee" role="tab" data-toggle="tab">Fee</a></li>
-			     <li role="presentation"><a href="#itinerary" aria-controls="itinerary" role="tab" data-toggle="tab">Itinerary</a></li>
+			     <li role="presentation"><a href="#schedule" aria-controls="schedule" role="tab" data-toggle="tab">Schedule</a></li>
 			  </ul>   
 			  
 			  <div class="tab-content">
 			    <div role="tabpanel" class="tab-pane active" id="fee">
 			    <br>
 			    <div   class="form-group">
-			      <div class="col-sm-2">
+			      <div class="col-sm-1">
 						<br>
-					      <label>Tour :</label>
+					      <label>Fare :</label>
 							
 				  </div>								    
-			      <div class="col-sm-2"><label>Adult:</label>
+				  <%for(var i=0;i<fare.length;i++){%>	
+			      <div class="col-sm-2">
+						<input type="text"  class="form-control" id="fare_name_<%=i%>" value="<%=fare[i].name%>" placeholder="fare name">
 						<div class="input-group">
 					      <div class="input-group-addon">$</div>
-					      <input type="number" step="0.01" class="form-control" name="fee_tour_adult" value="<%=fee_tour_adult%>" placeholder="0.00">
+					      <input type="number" step="0.01" class="form-control" id="fare_price_<%=i%>" value="<%=fare[i].price%>" placeholder="0.00">
 					    </div>					  
 				  </div>
-			      <div class="col-sm-2"><label>Senior:</label>
-						<div class="input-group">
-					      <div class="input-group-addon">$</div>
-					      <input type="number" step="0.01"  class="form-control" name="fee_tour_senior" value="<%=fee_tour_senior%>"  placeholder="0.00">
-					    </div>
-				  </div>
-			      <div class="col-sm-2"><label>Youth:</label>
-						<div class="input-group">
-					      <div class="input-group-addon">$</div>
-					      <input type="number" step="0.01"  class="form-control" name="fee_tour_youth" value="<%=fee_tour_youth%>"  placeholder="0.00">
-					    </div>						
-					</div>								  
-			      <div class="col-sm-2"><label>Child:</label>
-						<div class="input-group">
-					      <div class="input-group-addon">$</div>
-					      <input type="number" step="0.01"  class="form-control" name="fee_tour_child" value="<%=fee_tour_child%>"  placeholder="0.00">
-					    </div>						
-					</div>
-			      <div class="col-sm-2"><label>Infant:</label>
-						<div class="input-group">
-					      <div class="input-group-addon">$</div>
-					      <input type="number" step="0.01"  class="form-control" name="fee_tour_infant" value="<%=fee_tour_infant%>"  placeholder="0.00">
-					    </div>						
-					</div>					  
+				  <%}%>
 			    </div>				    
-
+				<hr>
 				 <div   class="form-group">
-			      <div class="col-sm-2">
+			      <div class="col-sm-1">
 
 							<label>Meal :</label>
 				  </div>								    
+				  <%for(var i=0;i<meal.length;i++){%>	
 			      <div class="col-sm-2">
+						<input type="text"  class="form-control" id="meal_name_<%=i%>" value="<%=meal[i].name%>" placeholder="meal type">
 						<div class="input-group">
 					      <div class="input-group-addon">$</div>
-					      <input type="number" step="0.01"  class="form-control" name="fee_meal_adult" value="<%=fee_meal_adult%>"  placeholder="0.00">
+					      <input type="number" step="0.01" class="form-control" id="meal_price_<%=i%>" value="<%=meal[i].price%>" placeholder="0.00">
 					    </div>					  
 				  </div>
-			      <div class="col-sm-2">
-						<div class="input-group">
-					      <div class="input-group-addon">$</div>
-					      <input type="number" step="0.01"  class="form-control" name="fee_meal_senior" value="<%=fee_meal_senior%>"  placeholder="0.00">
-					    </div>
-				  </div>
-			      <div class="col-sm-2">
-						<div class="input-group">
-					      <div class="input-group-addon">$</div>
-					      <input type="number" step="0.01"  class="form-control" name="fee_meal_youth" value="<%=fee_meal_youth%>"  placeholder="0.00">
-					    </div>						
-					</div>								  
-			      <div class="col-sm-2">
-						<div class="input-group">
-					      <div class="input-group-addon">$</div>
-					      <input type="number" step="0.01"  class="form-control" name="fee_meal_child" value="<%=fee_meal_child%>"  placeholder="0.00">
-					    </div>						
-					</div>
-			      <div class="col-sm-2">
-						<div class="input-group">
-					      <div class="input-group-addon">$</div>
-					      <input type="number" step="0.01"  class="form-control" name="fee_meal_infant" value="<%=fee_meal_infant%>"  placeholder="0.00">
-					    </div>						
-					</div>					  
+				  <%}%>				  
 			    </div>	
 		        			    
-
+				<hr>
 				 <div   class="form-group">
-			      <div class="col-sm-2">
+			      <div class="col-sm-1">
 
 							<label>Admission:</label>
 				  </div>									 
+				  <%for(var i=0;i<admission.length;i++){%>	
 			      <div class="col-sm-2">
+						<input type="text"  class="form-control" id="admission_name_<%=i%>" value="<%=admission[i].name%>" placeholder="admission type">
 						<div class="input-group">
 					      <div class="input-group-addon">$</div>
-					      <input type="number" step="0.01"  class="form-control" name="fee_adm_adult" value="<%=fee_adm_adult%>"  placeholder="0.00">
+					      <input type="number" step="0.01" class="form-control" id="admission_price_<%=i%>" value="<%=admission[i].price%>" placeholder="0.00">
 					    </div>					  
 				  </div>
-			      <div class="col-sm-2">
-						<div class="input-group">
-					      <div class="input-group-addon">$</div>
-					      <input type="number" step="0.01"  class="form-control" name="fee_adm_senior" value="<%=fee_adm_senior%>"  placeholder="0.00">
-					    </div>
-				  </div>
-			      <div class="col-sm-2">
-						<div class="input-group">
-					      <div class="input-group-addon">$</div>
-					      <input type="number" step="0.01"  class="form-control" name="fee_adm_youth" value="<%=fee_adm_youth%>"  placeholder="0.00">
-					    </div>						
-					</div>								  
-			      <div class="col-sm-2">
-						<div class="input-group">
-					      <div class="input-group-addon">$</div>
-					      <input type="number" step="0.01"  class="form-control" name="fee_adm_child" value="<%=fee_adm_child%>"  placeholder="0.00">
-					    </div>						
-					</div>
-			      <div class="col-sm-2">
-						<div class="input-group">
-					      <div class="input-group-addon">$</div>
-					      <input type="number" step="0.01"  class="form-control" name="fee_adm_infant" value="<%=fee_adm_infant%>"  placeholder="0.00">
-					    </div>						
-					</div>					  
+				  <%}%>					  
 			    </div>
 			   			    
 			  </div><!-- end of fee -->
 
 
 			<!-- end tab content  -->	
-			<div role="tabpanel" class="tab-pane" id="itinerary">
+			<div role="tabpanel" class="tab-pane" id="schedule">
 				<br>
-			  <div id="itinerary-list-region">  </div>
+			  <div id="schedule-list-region">  </div>
 			</div>
 			
 			</div>
@@ -152,6 +89,7 @@
 			<!-- note -->
 		    <div class="form-group">
 		      <div class="col-sm-12"><label>Note:</label><textarea name="note" class="form-control" rows="5"><%=note%></textarea>
+
 		      <br>
 		      <div class="col-sm-offset-5 ">
 		      <input type="button" class="btn btn-primary btn_route_save" value="Save"></input>

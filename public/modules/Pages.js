@@ -77,6 +77,25 @@ define([
  	//		});
  			return defer.promise();
  		},
+ 		fetchInformation:function(code){
+ 			var info = new Information();
+ 			var defer = $.Deferred();
+ 			//setTimeout(function(){
+ 				info.fetch({
+ 					data:$.param({code:code}),
+ 					success:function(data){
+ 						defer.resolve(data);
+ 					},
+ 					error:function(data){
+ 						defer.resolve(undefined);
+ 					}
+ 				
+ 				});
+ 			//},2000);		
+ 			//ocase.fetch().done(function(){
+ 	//		});
+ 			return defer.promise();
+ 		},
  		
 		getRoutes:function(query){
  			console.log('calling API.getRoutes');
@@ -255,6 +274,9 @@ define([
  	app.reqres.setHandler("information:entity",function(id){
  		return API.getInformation(id);
  	});
+ 	app.reqres.setHandler("information:entity:fetch",function(code){
+ 		return API.fetchInformation(code);
+ 	}); 	
  	
  	app.reqres.setHandler("entities:routes", function(query){
  		console.log('calling app request info'+query);

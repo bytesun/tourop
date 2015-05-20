@@ -20,7 +20,7 @@ define([
 		model:Group,
 		tagName:'div',
         events: {
-        	"keyup .telephone":"formatTel",
+//        	"keyup .telephone":"formatTel",
         	"change .passenger_agency" :"addAgency",
         	"click .btn_add_passenger" : "addPassenger",
         	"click .btn_confirm_group" : "confirmGroup"

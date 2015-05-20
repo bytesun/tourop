@@ -12,6 +12,11 @@ Manage partner, route information, and create tour
 			Week-5 : System deployment and defects fix 
 			
 			Backlog:
+				1. download invoice with pdf
+				2. print tour full info
+				3. delete itinerary '
+				4. custom commission
+				5. print itinerary: date+weekday,
 			
 			----------------------------------------------------------------------
 			Development Trace

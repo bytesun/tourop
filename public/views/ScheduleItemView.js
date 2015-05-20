@@ -7,12 +7,13 @@ define([
 	'use strict';
 
 	return Marionette.ItemView.extend({
-		template: templates.route_itinerary_item,
+		template: templates.route_schedule_item,
 		model:Model,
 		tagName:'div',
         events: {
         	'change .scenic_input' :'fetchScenic',
         	'click .btn_add_scenic' :'addScenic',
+        	'click .btn_del_scenic' :'delScenic',
         	'change .breakfast_input':'addBreakfast',
         	'change .lunch_input':'addLunch',
         	'change .dinner_input':'addDinner',
@@ -23,9 +24,21 @@ define([
 		},        
      
         addScenic: function(){
-        	var sa = this.model.get('scenic');
-        	console.log('scenic '+JSON.stringify(sa));
-        	sa[sa.length]={
+
+
+        	var day = this.model.get('day');
+        	var sn= $("#sn"+day).val();
+	    	var scenic = new Array();
+	    	for(var i=0;i<sn;i++){
+	    		scenic[i]={
+	    				name:$("#scenic_name_"+day+"_"+i).val(),
+	    				telephone:$("#scenic_telephone_"+day+"_"+i).val(),
+	    				payment:$("#scenic_payment_"+day+"_"+i).val(),
+	    				address:$("#scenic_address_"+day+"_"+i).val(),
+	    		}
+
+	    	}
+	    	scenic[sn]={
         			name:'',
     				telephone:'',
     				address:'',
@@ -34,10 +47,29 @@ define([
     				payment:''
         			
         	}
+	    	this.model.set({
+	    			
+	    			from:$("#from"+day).val(),
+	    			via:$("#via"+day).val(),
+	    			to:$("#to"+day).val(),
+	    			scenic:scenic,
+	    			itinerary:$("#itinerary"+day).val(),
+	    	});
+        	console.log('scenic '+JSON.stringify(this.model));
+
+        },
+        delScenic: function(){
+        	var scenic = this.model.get('scenic');
+        	console.log('orignial model:'+JSON.stringify(this.model));
+        	var sc = new Array();
+        	for(var i=0;i<scenic.length-1;i++){
+        		sc[i]=scenic[i]
+        	}
+        	
         	this.model.set({
-        		note:this.model.get('note')+'',
-        		scenic:sa
+        		scenic:sc
         	})
+        	console.log('update model:'+JSON.stringify(this.model));
         },
         fetchScenic : function(e){
         	var inputid = e.target.id;

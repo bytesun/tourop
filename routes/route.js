@@ -31,27 +31,12 @@ router.put('/api/routes/:id', function(req, res) {
 				code:req.body.code,
 				name:req.body.name,
 				days:req.body.days,
-				
-				fee_tour_adult:req.body.fee_tour_adult,
-				fee_tour_senior:req.body.fee_tour_senior,
-				fee_tour_youth:req.body.fee_tour_youth,
-				fee_tour_child:req.body.fee_tour_child,
-				fee_tour_infant:req.body.fee_tour_infant,
+				note:req.body.note,
+				fare:req.body.fare,
+				meal:req.body.meal,
+				admission:req.body.admission,
+				schedule:req.body.schedule
 
-				fee_meal_adult:req.body.fee_meal_adult,
-				fee_meal_senior:req.body.fee_meal_senior,
-				fee_meal_youth:req.body.fee_meal_youth,
-				fee_meal_child:req.body.fee_meal_child,
-				fee_meal_infant:req.body.fee_meal_infant,
-
-				fee_adm_adult:req.body.fee_adm_adult,
-				fee_adm_senior:req.body.fee_adm_senior,
-				fee_adm_youth:req.body.fee_adm_youth,
-				fee_adm_child:req.body.fee_adm_child,
-				fee_adm_infant:req.body.fee_tour_infant,			
-				itinerary:req.body.itinerary,
-				
-				note:req.body.note
 				}},
 			function( err, route){
 		if(err){

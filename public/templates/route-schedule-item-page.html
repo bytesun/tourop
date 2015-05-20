@@ -1,0 +1,71 @@
+<div class="row">
+  <div class="col-sm-1">
+    <label>DAY</label>
+  </div>
+  <div class="col-sm-3">
+   <label>FROM</label>
+  </div>
+  <div class="col-sm-3">
+   <label>VIA</label>
+  </div>
+  <div class="col-sm-3">
+    <label>TO</label>
+  </div>
+
+</div>
+
+	<div class="row">
+	  <div class="col-sm-1">
+	   <input class="form-control" name="day<%=day%>" id="day<%=day%>" value="<%=day%>" type="hidden"><%=day%>
+	  </div>
+	  <div class="col-sm-3">
+	   <input class="form-control" value="<%=from%>" name="from<%=day%>" id="from<%=day%>" placeholder="">
+	  </div>
+	  <div class="col-sm-3">
+	   <input class="form-control" value="<%=via%>" name="via<%=day%>" id="via<%=day%>" placeholder="">
+	  </div>
+	  <div class="col-sm-3">
+	    <input class="form-control" value="<%=to%>" name="to<%=day%>" id="to<%=day%>" placeholder="">
+	  </div>
+
+	</div>  
+	  
+	  <%
+	  var sn = scenic.length;
+	  for(var i=0;i<sn;i++){%>	
+		<div class="row">	  	 	 
+		   <div class="col-sm-offset-1 col-sm-3">
+		   <br>
+		  	<input class="form-control scenic_input"  value="<%=scenic[i].name%>"   name="scenic_name_<%=day%>_<%=i%>" id="scenic_name_<%=day%>_<%=i%>" placeholder="search by code">
+		  	</div>
+		  <div class="col-sm-2">
+		  <br>
+		    <input class="form-control" value="<%=scenic[i].telephone%>" name="scenic_telephone_<%=day%>_<%=i%>" id="scenic_telephone_<%=day%>_<%=i%>" placeholder="Telephone" disabled>
+		  </div>
+		  <div class="col-sm-2">
+		  <br>
+		    <input class="form-control" value="<%=scenic[i].payment%>" name="scenic_payment_<%=day%>_<%=i%>" id="scenic_payment_<%=day%>_<%=i%>" placeholder="Payment" disabled>
+		  </div>
+		  <div class="col-sm-4">
+		  <br>
+		    <input class="form-control" value="<%=scenic[i].address%>" name="scenic_address_<%=day%>_<%=i%>" id="scenic_address_<%=day%>_<%=i%>" placeholder="Address" disabled>
+		  </div>	  	  
+		
+	  </div>
+	   <% } %>
+	 <input type="hidden" id="sn<%=day%>" value="<%=sn%>">	
+	 <a class="col-sm-offset-1 btn btn-default btn_add_scenic">+</a>  
+		<a class="btn btn-default btn_del_scenic">-</a>
+		 
+	 <div class="row">
+		 <div class="col-sm-offset-1 col-sm-11">
+		 <br>
+		 	<label>Itinerary:</label>
+		 	<textarea name="itinerary<%=day%>" id="itinerary<%=day%>" class="form-control" rows="10"><%=itinerary%></textarea>
+		</div>
+	</div>
+	 <div class="row">
+		 <div class="col-sm-12">
+		 <hr>
+		</div>
+	</div>

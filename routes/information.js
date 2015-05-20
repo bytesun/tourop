@@ -29,7 +29,7 @@ router.post('/api/infos', function(req, res) {
 	postcode:String,
 	note: String
  */
-router.put('/api/infos/:id', function(req, res) {
+router.put('/api/info/:id', function(req, res) {
 	Information.findByIdAndUpdate(
 			req.params.id,
 			{$set:{
@@ -60,12 +60,22 @@ router.put('/api/infos/:id', function(req, res) {
 /**
  * get a case by id
  */
-router.get('/api/infos/:id',function(req,res){
+router.get('/api/info/:id',function(req,res){
 	Information.findById(req.params.id,function(err,info){
 		res.send(info);
 	});
 });
 
+router.get('/api/info',function(req,res){
+	res.set('Content-Type', 'application/json');
+	Information.findOne({code:req.query.code},
+				null,
+				null,function(err,information){
+			res.send(information);
+	});
+	
+
+});
 router.get('/api/infos',function(req,res){
 	res.set('Content-Type', 'application/json');
 
@@ -83,6 +93,7 @@ router.get('/api/infos',function(req,res){
 	
 
 });
+
 
 router.delete('/api/infos/:id',function(req,res){
 	Information.remove({_id:req.params.id},function(err,count){

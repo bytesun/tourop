@@ -2,9 +2,12 @@ define([
 	'marionette',
 	'templates',
     'underscore',
-    'syphon'
+    'syphon',
+
+    'html2pdf'
 ], function (Marionette, templates, _,
-		Syphon) {
+		Syphon,
+		html2pdf) {
 	'use strict';
 
 	return Marionette.LayoutView.extend({
@@ -17,8 +20,8 @@ define([
 	    },
         events: {
         	'click b#label_remark' : 'showRemarkInput',
-        	'click .btn_remark_save' : 'saveRemark'
-        		
+        	'click .btn_remark_save' : 'saveRemark',
+        	'click .a_download' : 'download'	
         },
 
         showRemarkInput: function(){
@@ -36,6 +39,39 @@ define([
         	this.model.set({remark:remark});
         	this.model.save();
         	this.render();
+        },
+        download: function(e){
+        	console.log('download invoice');
+//        	var doc = new jsPDF('p', 'in', 'letter');
+        	
+//            var source = $('#invoice-info-template').first();
+//            var specialElementHandlers = {
+//                '#editor': function(element, renderer) {
+//                    return true;
+//                }
+//            };
+//
+//            doc.fromHTML(
+//                source, // HTML string or DOM elem ref.
+//                0.5,    // x coord
+//                0.5,    // y coord
+//                {
+//                    'width': 7.5, // max width of content on PDF
+//                    'elementHandlers': specialElementHandlers
+//                });    	
+//        	
+//
+//        	doc.save('text.pdf');
+        	var pdf = new jsPDF('p', 'pt', 'letter');
+            var canvas = pdf.canvas;
+            canvas.height = 72 * 11;
+            canvas.width= 72 * 8.5;;
+            
+            // can also be document.body
+            var html = '<html><body>Hello <strong> World</strong></body></html>';
+            html2pdf(html, pdf, function(pdf) {        
+                    pdf.output('dataurlnewwindow');        
+            });
         }
         
 	});

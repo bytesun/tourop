@@ -3,20 +3,20 @@ define([
 	'templates',
     'underscore',
     'syphon',
-    'collections/Itinerarys',
-    'views/ItineraryCollectionView',
-    'views/ItineraryItemView'
+    'collections/Schedules',
+    'views/ScheduleCollectionView',
+    'views/ScheduleItemView'
 ], function (Marionette, templates, _,
 		Syphon,
-		Itinerarys,
-		ItineraryCollectionView,
-		ItineraryItemView) {
+		Schedules,
+		ScheduleCollectionView,
+		ScheduleItemView) {
 	'use strict';
 
 	return Marionette.LayoutView.extend({
 		template: templates.route_info,
 		regions:{
-			itineraryRegion:"#itinerary-list-region"
+			scheduleRegion:"#schedule-list-region"
 		},
 	   initialize: function () {
 //	        _.bindAll(this,this.render);		   
@@ -26,21 +26,20 @@ define([
         events: {
 //        	'change .code_input': "fetchRoute",
         	"click .btn_route_save": "saveRoute",
-        	"click .btn_route_itinerary":"listItinerary"     	
         		
         },
         
         onShow: function(e){
         	
-        	var collection = new Itinerarys();
-        	collection.reset(this.model.get("itinerary"));        	
+        	var collection = new Schedules();
+        	collection.reset(this.model.get("schedule"));        	
         	
-        	var collectionView = new ItineraryCollectionView({
+        	var collectionView = new ScheduleCollectionView({
     			collection:collection
     		});
         	
         	$("#days").val(collection.length);
-        	this.itineraryRegion.show(collectionView);
+        	this.scheduleRegion.show(collectionView);
     		
         },
 //        fetchRoute:function(e){
@@ -71,39 +70,91 @@ define([
 //    	    
     	    this.model.set(data);
     	    
+    	    //----------------fee data
+    	    //fare
+    	    var fare = new Array();
+    	    for(var i=0;i<5;i++){
+    	    	if($("#fare_name_"+i).val() != ''){
+    	    		fare[i]={
+        	    			name:$("#fare_name_"+i).val(),
+        	    			price:$("#fare_price_"+i).val()
+        	    	}	
+    	    	}
+    	    	
+    	    }
+    	    //meal
+    	    var meal = new Array();
+    	    for(var i=0;i<5;i++){
+    	    	if($("#meal_name_"+i).val() != ''){
+    	    		meal[i]={
+        	    			name:$("#meal_name_"+i).val(),
+        	    			price:$("#meal_price_"+i).val()
+        	    	}	
+    	    	}
+    	    	
+    	    }    	    
+    	    //admission
+    	    var admission = new Array();
+    	    for(var i=0;i<5;i++){
+    	    	if($("#admission_name_"+i).val() != ''){
+    	    		admission[i]={
+        	    			name:$("#admission_name_"+i).val(),
+        	    			price:$("#admission_price_"+i).val()
+        	    	}	
+    	    	}
+    	    	
+    	    }    	    
+    	    //schedule data
     	    var days=$("#days").val();
     	   
-    	    var itinerary = new Array();
+    	    var schedule = new Array();
     	    for(var day=1;day<=days;day++){
-    	    	//get itinerary string
-    	    	var adm = "";
-    	    	var index = 1;
-    	    	while($("#adm"+day+"_"+index).val() != undefined ){
-    	    		if(index == 1)
-    	    			adm = $("#adm"+day+"_"+index).val();
-    	    		else
-    	    			adm = adm+"|"+$("#adm"+day+"_"+index).val();
-    	    		index++;
+    	    	var sn= $("#sn"+day).val();
+    	    	var scenic = new Array();
+    	    	for(var i=0;i<sn;i++){
+    	    		scenic[i]={
+    	    				name:$("#scenic_name_"+day+"_"+i).val(),
+    	    				telephone:$("#scenic_telephone_"+day+"_"+i).val(),
+    	    				payment:$("#scenic_payment_"+day+"_"+i).val(),
+    	    				address:$("#scenic_address_"+day+"_"+i).val(),
+    	    		}
+    	    		this.model.unset("scenic_name_"+day+"_"+i);
+    	    		this.model.unset("scenic_telephone_"+day+"_"+i);
+    	    		this.model.unset("scenic_payment_"+day+"_"+i);
+    	    		this.model.unset("scenic_address_"+day+"_"+i);
+
     	    	}
-    	    	console.log('adm is :'+adm);
-    	    	itinerary[day-1]={
+    	    	schedule[day-1]={
     	    			day:$("#day"+day).val(),
     	    			from:$("#from"+day).val(),
     	    			via:$("#via"+day).val(),
     	    			to:$("#to"+day).val(),
-    	    			itinerary:adm
-
-    	    	};
-    	    	//remove duplicate fields
+    	    			scenic:scenic,
+    	    			itinerary:$("#itinerary"+day).val(),
+    	    	}
+    	    	
+    	    	
+    	    	
+    	    	//	remove duplicate fields
     	    	this.model.unset('day'+day);
     	    	this.model.unset('from'+day);
     	    	this.model.unset('via'+day);
     	    	this.model.unset('to'+day);
-    	    	this.model.unset('adm_'+day);
+    	    	this.model.unset('itinerary'+day);
     	    }
-    	    this.model.set({'itinerary':itinerary});
-//    	    console.log("ready to save data: "+JSON.stringify(this.model));
+    	    this.model.set({
+    	    	fare:fare,
+    	    	meal:meal,
+    	    	admission:admission,
+    	    	schedule:schedule
+    	    });
+    	    console.log("ready to save route data: "+JSON.stringify(this.model));
     	    this.model.save();
+//    	    	fare:fare,
+//    	    	meal:meal,
+//    	    	admission:admission,
+//    	    	schedule:schedule
+//    	    });
 
     	    app.navigate("route/"+this.model.get("code"),true); 
         }
