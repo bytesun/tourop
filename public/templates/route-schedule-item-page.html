@@ -16,16 +16,16 @@
 
 	<div class="row">
 	  <div class="col-sm-1">
-	   <input class="form-control" name="day<%=day%>" id="day<%=day%>" value="<%=day%>" type="hidden"><%=day%>
+	   <input class="form-control"  id="day<%=day%>" value="<%=day%>" type="hidden"><%=day%>
 	  </div>
 	  <div class="col-sm-3">
-	   <input class="form-control" value="<%=from%>" name="from<%=day%>" id="from<%=day%>" placeholder="">
+	   <input class="form-control" value="<%=from%>"  id="from<%=day%>" placeholder="">
 	  </div>
 	  <div class="col-sm-3">
-	   <input class="form-control" value="<%=via%>" name="via<%=day%>" id="via<%=day%>" placeholder="">
+	   <input class="form-control" value="<%=via%>"  id="via<%=day%>" placeholder="">
 	  </div>
 	  <div class="col-sm-3">
-	    <input class="form-control" value="<%=to%>" name="to<%=day%>" id="to<%=day%>" placeholder="">
+	    <input class="form-control" value="<%=to%>"  id="to<%=day%>" placeholder="">
 	  </div>
 
 	</div>  
@@ -36,19 +36,19 @@
 		<div class="row">	  	 	 
 		   <div class="col-sm-offset-1 col-sm-3">
 		   <br>
-		  	<input class="form-control scenic_input"  value="<%=scenic[i].name%>"   name="scenic_name_<%=day%>_<%=i%>" id="scenic_name_<%=day%>_<%=i%>" placeholder="search by code">
+		  	<input class="form-control scenic_input"  value="<%=scenic[i].name%>"  id="scenic_name_<%=day%>_<%=i%>" placeholder="search by code">
 		  	</div>
 		  <div class="col-sm-2">
 		  <br>
-		    <input class="form-control" value="<%=scenic[i].telephone%>" name="scenic_telephone_<%=day%>_<%=i%>" id="scenic_telephone_<%=day%>_<%=i%>" placeholder="Telephone" disabled>
+		    <input class="form-control" value="<%=scenic[i].telephone%>"  id="scenic_telephone_<%=day%>_<%=i%>" placeholder="Telephone" disabled>
 		  </div>
 		  <div class="col-sm-2">
 		  <br>
-		    <input class="form-control" value="<%=scenic[i].payment%>" name="scenic_payment_<%=day%>_<%=i%>" id="scenic_payment_<%=day%>_<%=i%>" placeholder="Payment" disabled>
+		    <input class="form-control" value="<%=scenic[i].payment%>" id="scenic_payment_<%=day%>_<%=i%>" placeholder="Payment" disabled>
 		  </div>
 		  <div class="col-sm-4">
 		  <br>
-		    <input class="form-control" value="<%=scenic[i].address%>" name="scenic_address_<%=day%>_<%=i%>" id="scenic_address_<%=day%>_<%=i%>" placeholder="Address" disabled>
+		    <input class="form-control" value="<%=scenic[i].address%>"  id="scenic_address_<%=day%>_<%=i%>" placeholder="Address" disabled>
 		  </div>	  	  
 		
 	  </div>
@@ -61,7 +61,7 @@
 		 <div class="col-sm-offset-1 col-sm-11">
 		 <br>
 		 	<label>Itinerary:</label>
-		 	<textarea name="itinerary<%=day%>" id="itinerary<%=day%>" class="form-control" rows="10"><%=itinerary%></textarea>
+		 	<textarea  id="itinerary<%=day%>" class="form-control" rows="10"><%=itinerary%></textarea>
 		</div>
 	</div>
 	 <div class="row">

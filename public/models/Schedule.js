@@ -17,6 +17,38 @@ define(["jquery", "backbone"],
     			from:'',
     			via:'',
     			to:'',
+    			breakfast:{
+    				name:'',
+    				telephone:'',
+    				address:'',
+    				city:'',
+    				province:'',
+    				payment:''
+    			},
+    			lunch:{
+    				name:'',
+    				telephone:'',
+    				address:'',
+    				city:'',
+    				province:'',
+    				payment:''
+    			},
+    			dinner:{
+    				name:'',
+    				telephone:'',
+    				address:'',
+    				city:'',
+    				province:'',
+    				payment:''
+    			},
+    			hotel:{
+    				name:'',
+    				telephone:'',
+    				address:'',
+    				city:'',
+    				province:'',
+    				payment:''
+    			},    			
     			scenic:[{
     				name:'',
     				telephone:'',

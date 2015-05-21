@@ -15,7 +15,8 @@ define([
 	'models/Setting',
 	'models/User',
 	
-    'collections/Itinerarys',
+    'collections/Schedules',
+    'collections/FareTypes',
     'collections/Passengers',
     'collections/Groups',
     'collections/Buses', 
@@ -43,8 +44,10 @@ define([
 	'views/InvoiceInfoView',
 
 	'views/TourInfoView',
-    'views/ItineraryItemView',
-    'views/ItineraryCollectionView',	
+    'views/ScheduleItemView',
+    'views/ScheduleCollectionView',	
+    'views/RouteFeeItemView',
+    'views/RouteFeeCollectionView',	
 	'views/GroupItemView',
     'views/GroupCollectionView',
     'views/BusItemView',
@@ -68,7 +71,8 @@ define([
 		Setting,
 		User,
 		
-		Itinerarys,
+		Schedules,
+		FareTypes,
 		Passengers,
 		Groups,
 		Buses,	
@@ -95,8 +99,10 @@ define([
 		InvoiceListItemView,
 		InvoiceInfoView,
 		TourInfoView,
-		ItineraryItemView,
-		ItineraryCollectionView,		
+		ScheduleItemView,
+		ScheduleCollectionView,	
+		RouteFeeItemView,
+		RouteFeeCollectionView,			
 		GroupItemView,
 		GroupCollectionView,
 		BusItemView,
@@ -182,7 +188,7 @@ define([
 	        			name:route.get("name"),
 	        			days:route.get("days"),
 	        			op:Cookie.get("user.displayname"),
-	        			itinerary:route.get("itinerary")
+	        			schedule:route.get("schedule")
 	        		});
 
 					self.tour_show(tour);
@@ -376,13 +382,13 @@ define([
 
 	        	
 	        	//itinerary list
-	        	var collection = new Itinerarys();
-	        	collection.reset(tour.get("itinerary"));        	
+	        	var collection = new Schedules();
+	        	collection.reset(tour.get("schedule"));        	
 
-	        	var collectionView = new ItineraryCollectionView({
-	        		template:templates.tour_itinerary_list,
-	        		childView:ItineraryItemView.extend({
-	        			template: templates.tour_itinerary_item,
+	        	var collectionView = new ScheduleCollectionView({
+	        		template:templates.tour_schedule_list,
+	        		childView:ScheduleItemView.extend({
+	        			template: templates.tour_schedule_item,
 	        		}),
 	    			collection:collection
 	    		});
@@ -430,7 +436,7 @@ define([
 	        	//showing page with regions
 	        	tourView.on("show",function(){
 	        		tourView.groupRegion.show(groupCollectionView);  
-	        		tourView.itineraryRegion.show(collectionView);  
+	        		tourView.scheduleRegion.show(collectionView);  
 	        		tourView.busRegion.show(busCollectionView); 
 	        	});
 	        	app.main.show(tourView);
@@ -467,21 +473,102 @@ define([
 	        	
 	        },
 	        route_info : function(id){
+	        	var self = this;
 	        	if(id == null){
-	        		var routeView = new RouteInfoView({
-		        		model: new RouteModel()
-		        	});		        	
-		        	app.main.show(routeView);
+	        		self._routeInfo(new RouteModel());
 	        	}else{
 		        	var fetchingRoute = app.request("route:entity",id);
 					$.when(fetchingRoute).done(function(route){
-						var routeView = new RouteInfoView({
-			        		model: route
-			        	});			        	
-			        	app.main.show(routeView);
+						self._routeInfo(route);
 					});
 	        	}
 	        	
+	        },
+	        _routeInfo: function(route){
+	        	var routeView = new RouteInfoView({
+	        		model: route
+	        	});
+	        	
+	        	routeView.on("show",function(){
+	            	//fee------------
+	        		//fares
+	        		var fares = new FareTypes();
+	        		
+		        	var loadFares = route.get("fare");
+		        	console.log('loadFares is ',loadFares);
+		        	if(loadFares != undefined && loadFares.length>0){
+		        		fares.reset(loadFares);
+		        	}
+		        	
+		        	var fareCollectionView = new RouteFeeCollectionView({
+		        		collection:fares,
+		        		templateHelpers:function(){
+		        			return {
+		        				fn:fares.length
+		        			}
+		        		}
+		        	});
+	            	this.faresRegion.show(fareCollectionView);
+	            	//meal
+	        		var meals = new FareTypes();
+	        		
+		        	var loadMeals = route.get("meal");
+		        	console.log('loadMeals is ',loadMeals);
+		        	if(loadMeals != undefined && loadMeals.length>0){
+		        		meals.reset(loadMeals);
+		        	}
+		        	
+		        	var mealCollectionView = new RouteFeeCollectionView({
+		        		collection:meals,
+		        		  childView: RouteFeeItemView.extend({
+		        				template: templates.route_meal_item,
+		        		  }),
+		        		  childViewContainer: "#fare_meal_item",
+		        		  template: templates.route_meal_list,
+		        		templateHelpers:function(){
+		        			return {
+		        				mn:meals.length
+		        			}
+		        		}
+		        	});
+	            	this.mealsRegion.show(mealCollectionView);	            	
+	            	//admission
+	        		var adms = new FareTypes();
+	        		
+		        	var loadadms = route.get("admission");
+		        	console.log('loadadms is ',loadadms);
+		        	if(loadadms != undefined && loadadms.length>0){
+		        		adms.reset(loadadms);
+		        	}
+		        	
+		        	var admsCollectionView = new RouteFeeCollectionView({
+		        		collection:adms,
+		        		  childView: RouteFeeItemView.extend({
+		        				template: templates.route_admission_item,
+		        		  }),
+		        		  childViewContainer: "#fare_admission_item",
+		        		  template: templates.route_admission_list,
+		        		templateHelpers:function(){
+		        			return {
+		        				an:adms.length
+		        			}
+		        		}
+		        	});
+	            	this.admissionsRegion.show(admsCollectionView);		            	
+	            	
+	            	//schedule
+	        		var collection = new Schedules();
+	            	collection.reset(this.model.get("schedule"));        	
+
+	        		var collectionView = new ScheduleCollectionView({
+	        			collection:collection
+	        		});
+	            	
+	            	$("#days").val(collection.length);
+	            	routeView.scheduleRegion.show(collectionView);
+	        	});
+	        	
+	        	app.main.show(routeView);
 	        },
 	        info : function(code,type){
 	        	console.log('code:type:'+code+":"+type);

@@ -16,6 +16,9 @@ define([
 	return Marionette.LayoutView.extend({
 		template: templates.route_info,
 		regions:{
+			faresRegion: "#fare_collection_region",
+			mealsRegion: "#meal_collection_region",
+			admissionsRegion: "#admission_collection_region",
 			scheduleRegion:"#schedule-list-region"
 		},
 	   initialize: function () {
@@ -25,57 +28,36 @@ define([
 	    },
         events: {
 //        	'change .code_input': "fetchRoute",
+        	'click .btn_add_faretype': 'addFaretype',
         	"click .btn_route_save": "saveRoute",
         		
         },
-        
-        onShow: function(e){
+//		initialize : function() {
+//			  this.listenTo(this.model, 'change', this.render);
+//		},          
+
+        addFaretype: function(e){
+        	e.preventDefault();
+//        	this._saveRoute(e);
         	
-        	var collection = new Schedules();
-        	collection.reset(this.model.get("schedule"));        	
-        	
-        	var collectionView = new ScheduleCollectionView({
-    			collection:collection
-    		});
-        	
-        	$("#days").val(collection.length);
-        	this.scheduleRegion.show(collectionView);
-    		
         },
-//        fetchRoute:function(e){
-//        	var that = this;
-//        	var inputstr = $(".code_input").val();
-//        	var fetchingroutes = app.request("entities:routes",{c:inputstr});
-//        	$.when(fetchingroutes).done(function(routes){
-//        		if(routes.length >= 1){
-//        			console.log('that model before :'+JSON.stringify(that.model));
-//        			var route = routes.at(0);
-//        			that.model.set({
-//        				code:route.get("code"),
-//        				name:route.get("name"),
-//        				days:route.get("days"),
-//        				
-//        			});
-//        			console.log('that model :'+JSON.stringify(that.model));
-//        			
-//        		}
-//        	});
-//        	
-//        },
-        saveRoute: function(e){
+
+        _saveRoute: function(e){
         	e.preventDefault();
           	
     	    var data = Syphon.serialize(this);
-//    	    console.log('submit route data ==='+JSON.stringify(data));
 //    	    
     	    this.model.set(data);
     	    
     	    //----------------fee data
     	    //fare
+    	    var fn=$("#fn").val();
     	    var fare = new Array();
-    	    for(var i=0;i<5;i++){
+    	    for(var i=1;i<=fn;i++){
+
     	    	if($("#fare_name_"+i).val() != ''){
-    	    		fare[i]={
+    	    		
+    	    		fare[i-1]={
         	    			name:$("#fare_name_"+i).val(),
         	    			price:$("#fare_price_"+i).val()
         	    	}	
@@ -83,10 +65,11 @@ define([
     	    	
     	    }
     	    //meal
+    	    var mn = $("#mn").val();
     	    var meal = new Array();
-    	    for(var i=0;i<5;i++){
+    	    for(var i=1;i<=mn;i++){
     	    	if($("#meal_name_"+i).val() != ''){
-    	    		meal[i]={
+    	    		meal[i-1]={
         	    			name:$("#meal_name_"+i).val(),
         	    			price:$("#meal_price_"+i).val()
         	    	}	
@@ -94,10 +77,11 @@ define([
     	    	
     	    }    	    
     	    //admission
+    	    var an = $("#an").val();
     	    var admission = new Array();
-    	    for(var i=0;i<5;i++){
+    	    for(var i=1;i<=an;i++){
     	    	if($("#admission_name_"+i).val() != ''){
-    	    		admission[i]={
+    	    		admission[i-1]={
         	    			name:$("#admission_name_"+i).val(),
         	    			price:$("#admission_price_"+i).val()
         	    	}	
@@ -118,10 +102,6 @@ define([
     	    				payment:$("#scenic_payment_"+day+"_"+i).val(),
     	    				address:$("#scenic_address_"+day+"_"+i).val(),
     	    		}
-    	    		this.model.unset("scenic_name_"+day+"_"+i);
-    	    		this.model.unset("scenic_telephone_"+day+"_"+i);
-    	    		this.model.unset("scenic_payment_"+day+"_"+i);
-    	    		this.model.unset("scenic_address_"+day+"_"+i);
 
     	    	}
     	    	schedule[day-1]={
@@ -132,15 +112,7 @@ define([
     	    			scenic:scenic,
     	    			itinerary:$("#itinerary"+day).val(),
     	    	}
-    	    	
-    	    	
-    	    	
-    	    	//	remove duplicate fields
-    	    	this.model.unset('day'+day);
-    	    	this.model.unset('from'+day);
-    	    	this.model.unset('via'+day);
-    	    	this.model.unset('to'+day);
-    	    	this.model.unset('itinerary'+day);
+
     	    }
     	    this.model.set({
     	    	fare:fare,
@@ -156,7 +128,11 @@ define([
 //    	    	schedule:schedule
 //    	    });
 
-    	    app.navigate("route/"+this.model.get("code"),true); 
+    	   
+        },
+        saveRoute: function(e){
+        	this._saveRoute(e);
+        	 app.navigate("route/"+this.model.get("code"),true); 
         }
 
 

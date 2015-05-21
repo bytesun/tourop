@@ -123,35 +123,20 @@ var Route = new Schema({
 	name : String,
 	days: Number,
 	fare:[{
+		no:Number,
 		name:String,
 		price:Number
 	}],
 	meal:[{
+		no:Number,
 		name:String,
 		price:Number		
 	}],
 	admission:[{
+		no:Number,
 		name:String,
 		price:Number		
 	}],
-//	
-//	fee_tour_adult:Number,
-//	fee_tour_senior:Number,
-//	fee_tour_youth:Number,
-//	fee_tour_child:Number,
-//	fee_tour_infant:Number,
-//
-//	fee_meal_adult:Number,
-//	fee_meal_senior:Number,
-//	fee_meal_youth:Number,
-//	fee_meal_child:Number,
-//	fee_meal_infant:Number,
-//
-//	fee_adm_adult:Number,
-//	fee_adm_senior:Number,
-//	fee_adm_youth:Number,
-//	fee_adm_child:Number,
-//	fee_adm_infant:Number,
 	note : String,
 	schedule:
 		[{

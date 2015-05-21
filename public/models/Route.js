@@ -18,63 +18,18 @@ define(["jquery", "backbone"],
             	name : '',
             	days: 1,
             	fare:[{
-            		name:'',
-            		price:0
-            	},
-            	{
-            		name:'',
-            		price:0
-            	},
-            	{
-            		name:'',
-            		price:0
-            	},
-            	{
-            		name:'',
-            		price:0
-            	},
-            	{
+            		no:1,
             		name:'',
             		price:0
             	}],
             	meal:[{
+            		no:1,
             		name:'Adult',
-            		price:0		
-            	},
-            	{
-            		name:'Senior',
-            		price:0		
-            	},
-            	{
-            		name:'Youth',
-            		price:0		
-            	},
-            	{
-            		name:'Child',
-            		price:0		
-            	},
-            	{
-            		name:'Infant',
             		price:0		
             	}],
             	admission:[{
+            		no:1,
             		name:'Adult',
-            		price:0		
-            	},
-            	{
-            		name:'Senior',
-            		price:0		
-            	},
-            	{
-            		name:'Youth',
-            		price:0		
-            	},
-            	{
-            		name:'Child',
-            		price:0		
-            	},
-            	{
-            		name:'Infant',
             		price:0		
             	}],
             	note : '',

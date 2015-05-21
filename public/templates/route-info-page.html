@@ -29,32 +29,19 @@
 						<br>
 					      <label>Fare :</label>
 							
-				  </div>								    
-				  <%for(var i=0;i<fare.length;i++){%>	
-			      <div class="col-sm-2">
-						<input type="text"  class="form-control" id="fare_name_<%=i%>" value="<%=fare[i].name%>" placeholder="fare name">
-						<div class="input-group">
-					      <div class="input-group-addon">$</div>
-					      <input type="number" step="0.01" class="form-control" id="fare_price_<%=i%>" value="<%=fare[i].price%>" placeholder="0.00">
-					    </div>					  
-				  </div>
-				  <%}%>
+				  </div>	
+				  <div id="fare_collection_region">	</div>						    
+			  
 			    </div>				    
 				<hr>
 				 <div   class="form-group">
 			      <div class="col-sm-1">
 
 							<label>Meal :</label>
-				  </div>								    
-				  <%for(var i=0;i<meal.length;i++){%>	
-			      <div class="col-sm-2">
-						<input type="text"  class="form-control" id="meal_name_<%=i%>" value="<%=meal[i].name%>" placeholder="meal type">
-						<div class="input-group">
-					      <div class="input-group-addon">$</div>
-					      <input type="number" step="0.01" class="form-control" id="meal_price_<%=i%>" value="<%=meal[i].price%>" placeholder="0.00">
-					    </div>					  
-				  </div>
-				  <%}%>				  
+				  </div>	
+				  <div id="meal_collection_region">	</div>	
+				  							    
+					  
 			    </div>	
 		        			    
 				<hr>
@@ -62,16 +49,10 @@
 			      <div class="col-sm-1">
 
 							<label>Admission:</label>
-				  </div>									 
-				  <%for(var i=0;i<admission.length;i++){%>	
-			      <div class="col-sm-2">
-						<input type="text"  class="form-control" id="admission_name_<%=i%>" value="<%=admission[i].name%>" placeholder="admission type">
-						<div class="input-group">
-					      <div class="input-group-addon">$</div>
-					      <input type="number" step="0.01" class="form-control" id="admission_price_<%=i%>" value="<%=admission[i].price%>" placeholder="0.00">
-					    </div>					  
-				  </div>
-				  <%}%>					  
+				  </div>							
+				  
+				  <div id="admission_collection_region">	</div>			 
+					  
 			    </div>
 			   			    
 			  </div><!-- end of fee -->

@@ -38,7 +38,7 @@ define([
 		template: templates.tour_info,
 		regions:{
 			groupRegion:"#group_list_region",
-			itineraryRegion:"#itinerary_list_region",
+			scheduleRegion:"#schedule_list_region",
 			busRegion:"#bus_list_region"
 		},
         events: {
