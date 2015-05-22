@@ -93,14 +93,23 @@ define([
     	   
     	    var schedule = new Array();
     	    for(var day=1;day<=days;day++){
-    	    	var sn= $("#sn"+day).val();
+    	    	var sn= $("#partner_count_"+day).val();
     	    	var scenic = new Array();
-    	    	for(var i=0;i<sn;i++){
-    	    		scenic[i]={
+    	    	for(var i=1;i<=sn;i++){
+    	    		scenic[i-1]={
+    	    				no:$("#scenic_no_"+day+"_"+i).val(),
     	    				name:$("#scenic_name_"+day+"_"+i).val(),
-    	    				telephone:$("#scenic_telephone_"+day+"_"+i).val(),
+    	    				telphone:$("#scenic_telphone_"+day+"_"+i).val(),
     	    				payment:$("#scenic_payment_"+day+"_"+i).val(),
     	    				address:$("#scenic_address_"+day+"_"+i).val(),
+    	    				
+                   			code : $("#scenic_code_"+day).val(),
+                			fax: $("#scenic_fax_"+day).val(),
+                			contact :  $("#scenic_contact_"+day).val(),
+                			city:  $("#scenic_city_"+day).val(),
+                			province:  $("#scenic_province_"+day).val(),
+                			country : $("#scenic_country_"+day).val(),
+                			postcode: $("#scenic_postcode_"+day).val()    	    				
     	    		}
 
     	    	}

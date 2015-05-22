@@ -59,8 +59,7 @@ define([
     	    this.model.set(data);
 
     	    this.model.save();
-    	    console.log('code:'+this.model.get("code"));
-    	    console.log('type:'+this.model.get("type"));
+
     	    //redirect list page
     	    app.navigate("info/"+this.model.get("code")+"/"+this.model.get("type"),true);        	
         }

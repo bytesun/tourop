@@ -150,7 +150,7 @@ var Tour = new Schema({
 			postcode:String
 		},
 		scenic:[{
-			_id:Schema.Types.ObjectId,
+			no:Number,
 			code : String,
 			name : String,
 			payment:String, //credit card/voucher/cheque/cash
@@ -220,6 +220,7 @@ var Route = new Schema({
 			via:String,
 			to:String,
 			scenic:[{
+				no:Number,
 				name:String,
 				telphone:String,
 				address:String,

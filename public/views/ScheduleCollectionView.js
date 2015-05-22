@@ -19,15 +19,16 @@ define([
 		  'click .btn_del_schedule': 'delSchedule'  
 	  },
 	  addSchedule: function(e){
-
+		
 		var size = this.collection.length;
-
+		console.log('push schedule collection size: '+size);
 		this.collection.push(new Schedule({day:size+1}));
 		$("#days").val(this.collection.length);
 				
 	  },
 	  delSchedule: function(e){
 			var size = this.collection.length;
+			console.log('del schedule collection size: '+size);
 			var lastmodel = this.collection.at(size-1);
 			
 			this.collection.remove(lastmodel);

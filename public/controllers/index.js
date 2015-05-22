@@ -45,7 +45,9 @@ define([
 
 	'views/TourInfoView',
     'views/ScheduleItemView',
-    'views/ScheduleCollectionView',	
+    'views/ScheduleCollectionView',
+    'views/TourScheduleItemView',
+    'views/TourScheduleCollectionView',	
     'views/RouteFeeItemView',
     'views/RouteFeeCollectionView',	
 	'views/GroupItemView',
@@ -99,8 +101,11 @@ define([
 		InvoiceListItemView,
 		InvoiceInfoView,
 		TourInfoView,
+		
 		ScheduleItemView,
 		ScheduleCollectionView,	
+		TourScheduleItemView,
+		TourScheduleCollectionView,	
 		RouteFeeItemView,
 		RouteFeeCollectionView,			
 		GroupItemView,
@@ -354,11 +359,7 @@ define([
 	        	var collection = new Schedules();
 	        	collection.reset(tour.get("schedule"));        	
 
-	        	var collectionView = new ScheduleCollectionView({
-	        		template:templates.tour_schedule_list,
-	        		childView:ScheduleItemView.extend({
-	        			template: templates.tour_schedule_item,
-	        		}),
+	        	var collectionView = new TourScheduleCollectionView({
 	    			collection:collection
 	    		});
 	        	
@@ -532,6 +533,7 @@ define([
 	        		var collectionView = new ScheduleCollectionView({
 	        			collection:collection
 	        		});
+
 	            	
 	            	$("#days").val(collection.length);
 	            	routeView.scheduleRegion.show(collectionView);

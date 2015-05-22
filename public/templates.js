@@ -50,6 +50,8 @@ define(function (require) {
 		 invoice_item: require('tpl!templates/invoice-item-page.html'),
 		 invoice_info: require('tpl!templates/invoice-info-page.html'),
 		 
+		 partner_list_scenic: require('tpl!templates/partner-list-scenic-page.html'),
+		 partner_item_scenic: require('tpl!templates/partner-item-scenic-page.html'),
 		 report_passenger_list4guide: require('tpl!templates/report-passenger-list-forguide-page.html'),
 		 report_passenger_list4hotel: require('tpl!templates/report-passenger-list-forhotel-page.html'),
 		 

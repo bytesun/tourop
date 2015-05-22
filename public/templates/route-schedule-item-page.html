@@ -29,34 +29,8 @@
 	  </div>
 
 	</div>  
-	  
-	  <%
-	  var sn = scenic.length;
-	  for(var i=0;i<sn;i++){%>	
-		<div class="row">	  	 	 
-		   <div class="col-sm-offset-1 col-sm-3">
-		   <br>
-		  	<input class="form-control scenic_input"  value="<%=scenic[i].name%>"  id="scenic_name_<%=day%>_<%=i%>" placeholder="search by code">
-		  	</div>
-		  <div class="col-sm-2">
-		  <br>
-		    <input class="form-control" value="<%=scenic[i].telephone%>"  id="scenic_telephone_<%=day%>_<%=i%>" placeholder="Telephone" disabled>
-		  </div>
-		  <div class="col-sm-2">
-		  <br>
-		    <input class="form-control" value="<%=scenic[i].payment%>" id="scenic_payment_<%=day%>_<%=i%>" placeholder="Payment" disabled>
-		  </div>
-		  <div class="col-sm-4">
-		  <br>
-		    <input class="form-control" value="<%=scenic[i].address%>"  id="scenic_address_<%=day%>_<%=i%>" placeholder="Address" disabled>
-		  </div>	  	  
-		
-	  </div>
-	   <% } %>
-	 <input type="hidden" id="sn<%=day%>" value="<%=sn%>">	
-	 <a class="col-sm-offset-1 btn btn-default btn_add_scenic">+</a>  
-		<a class="btn btn-default btn_del_scenic">-</a>
-		 
+	  <div id="partner_list_scenic_region"></div>
+	 
 	 <div class="row">
 		 <div class="col-sm-offset-1 col-sm-11">
 		 <br>

@@ -13,7 +13,7 @@ define([
 	'use strict';
 
 	return Marionette.LayoutView.extend({
-		template: templates.route_schedule_item,
+		template: templates.tour_schedule_item,
 		model:Model,
 		tagName:'div',
         events: {
@@ -23,43 +23,10 @@ define([
         	'change .schedule_dinner':'addDinner',
         	'change .schedule_hotel':'addHotel'
         },
-		regions:{
-			scenicsRegion: "#partner_list_scenic_region",
-		},
+
 		initialize : function() {
 			  this.listenTo(this.model, 'change', this.render);
-		},
-		onShow: function(){
-			var self = this;
-			var scenics = new Scenics();
-			var day = self.model.get('day');
-			var loadScenics = this.model.get('scenic');
-			if(loadScenics != undefined && loadScenics.length>0){
-				scenics.reset(loadScenics);
-			}
-			console.log('scenics :'+JSON.stringify(scenics));
-			var scenicCollectionView = new ScenicCollectionView({
-				childViewOptions : function () { 
-					return { 
-						day: day
-						}; 
-				},
-  			  collection:scenics,
-	      		templateHelpers:function(){
-	    			return {
-	    				partnercount:this.collection.length,
-	    				day:day
-
-	    			}
-	    		}
-
-			});
-			scenicCollectionView.on('partner:count:set',function(pc){
-         		$("#partner_count_"+day).val(pc);
-        	});
-			this.scenicsRegion.show(scenicCollectionView);		
-			
-		},
+		},		
         fetchScenic : function(e){
         	
         	var inputid = e.target.id;
