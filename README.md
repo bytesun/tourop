@@ -14,12 +14,17 @@ Manage partner, route information, and create tour
 			Backlog:
 				1. download invoice with pdf
 				2. print tour full info
-				3. delete itinerary '
-				4. custom commission
 				5. print itinerary: date+weekday,
+				* search tour by status
+				* result sorting and paging
+				* format text by escaping
+				
 			
 			----------------------------------------------------------------------
 			Development Trace
+			[2015-5-22] 1. support customize fare type and add extra commission.
+						  2. add deleting operation for all list 
+						  
 			[2015-5-19] 1. disable the limitation of phone length.
 						2. add "chinese name", "cell" ,"email" in partner information
 						3. add one status ('canceled') of tour.
