@@ -19,14 +19,52 @@ define(["app","jquery", "backbone"],
     			pickup:'',	
     			dropoff:'',
     			agency:'',
-    			commission:0.1,
-    			passenger:[{
+    			commission:20,
+    			adjustamount:0,
+    			route:{
+    				code : '',
+                	name : '',
+                	days: 1,
+                	fare:[{
+                		no:1,
+                		name:'',
+                		price:0
+                	}],
+                	meal:[{
+                		no:1,
+                		name:'Adult',
+                		price:0		
+                	}],
+                	admission:[{
+                		no:1,
+                		name:'Adult',
+                		price:0		
+                	}],
+                	note : '',
+                	schedule:
+                		[{
+                			day:1,
+                			from:'',
+                			via:'',
+                			to:'',
+                			scenic:[{
+                				name:'',
+                				telephone:'',
+                				address:'',
+                				city:'',
+                				province:'',
+                				payment:''
+                			}],
+                			itinerary:''
+                		}]   
+    			},
+    			tourist:[{
     				    no:1,
 		    			name:'',
 		    			gender:'',
 		    			age:0,
 		    			phone:'',
-		    			fee:'',
+		    			fare:'',
 		    			meal:'',
 		    			admission:'',
 		    			roomtype:''

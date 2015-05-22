@@ -66,35 +66,37 @@
 			<td align="right"><b>Admission</b></td>
 			<td align="right"><b>Meal</b></td>
 			<td align="right"><b>Commission</b></td>
+			<td align="right"><b>AdjustAmount</b></td>
 			<td align="right"><b>Amount</b></td>
 			
 		</tr>
-		<%for(var i=0;i<passenger.length;i++){
+		<%for(var i=0;i<tourist.length;i++){
 		%>
 		<tr>
 			<%if(i==0){%>
-			<td rowspan=<%=passenger.length%><b><%=tourname%></b>
+			<td rowspan=<%=tourist.length%><b><%=tourname%></b>
 			<br>
 			<BR><b>Departure</b> :<%=departuredate%>
 			
 			</td>
 			<%}%>
 			<td>
-			  <%=passenger[i].name%>
+			  <%=tourist[i].name%>
 			</td>
 
-			<td align="right"><%=passenger[i].fee%></td>
-			<td align="right"><%=passenger[i].admission%></td>
-			<td align="right"><%=passenger[i].meal%></td>
-			<td align="right"><%=passenger[i].commission%></td>
-			<td align="right"><%=passenger[i].amount%></td>
+			<td align="right"><%=tourist[i].fare%></td>
+			<td align="right"><%=tourist[i].admission%></td>
+			<td align="right"><%=tourist[i].meal%></td>
+			<td align="right"><%=tourist[i].commission%></td>
+			<td align="right"><%=tourist[i].adjustamount%></td>
+			<td align="right"><%=tourist[i].amount%></td>
 			
 			
 		</tr>
 		<%}%>
 		
 		<tr>
-		<td colspan="7" align="right">
+		<td colspan="8" align="right">
 			<table width="100%">
 				<tr>
 					<td width="90%" align="right">

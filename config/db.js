@@ -19,30 +19,36 @@ var Tour = new Schema({
 		code : String,
 		name : String,
 		days: Number,
-		fee_tour_adult:Number,
-		fee_tour_senior:Number,
-		fee_tour_youth:Number,
-		fee_tour_child:Number,
-		fee_tour_infant:Number,
-
-		fee_meal_adult:Number,
-		fee_meal_senior:Number,
-		fee_meal_youth:Number,
-		fee_meal_child:Number,
-		fee_meal_infant:Number,
-
-		fee_adm_adult:Number,
-		fee_adm_senior:Number,
-		fee_adm_youth:Number,
-		fee_adm_child:Number,
-		fee_adm_infant:Number,
+		fare:[{
+			no:Number,
+			name:String,
+			price:Number
+		}],
+		meal:[{
+			no:Number,
+			name:String,
+			price:Number		
+		}],
+		admission:[{
+			no:Number,
+			name:String,
+			price:Number		
+		}],
 		note : String,
-		itinerary:
+		schedule:
 			[{
 				day:Number,
 				from:String,
 				via:String,
 				to:String,
+				scenic:[{
+					name:String,
+					telphone:String,
+					address:String,
+					city:String,
+					province:String,
+					payment:String
+				}],
 				itinerary:String
 			}]
 	},	
@@ -50,6 +56,7 @@ var Tour = new Schema({
 		no:Number,
 		status:String,
 		commission:Number,
+		adjustamount:Number,
 		bookdate:String,
 		pickup:String,	
 		dropoff:String,
@@ -67,7 +74,7 @@ var Tour = new Schema({
 			country :String,
 			postcode:String
 		},
-		passenger:[{
+		tourist:[{
 			no:Number,
       		name:String,
 			gender:String,
@@ -81,15 +88,81 @@ var Tour = new Schema({
 		
 
 	}],
-	itinerary:[{
+	schedule:[{
 		day:Number,
 		from:String,
 		via:String,
 		to:String,
-		hotel:String,
-		breakfast:String,
-		lunch:String,
-		dinner:String,
+		hotel:{
+			_id:Schema.Types.ObjectId,
+			code : String,
+			name : String,
+			payment:String, //credit card/voucher/cheque/cash
+			telphone : String,
+			fax:String,
+			contact : String,
+			address : String,
+			city: String,
+			province: String,
+			country :String,
+			postcode:String
+		},
+		breakfast:{
+			_id:Schema.Types.ObjectId,
+			code : String,
+			name : String,
+			payment:String, //credit card/voucher/cheque/cash
+			telphone : String,
+			fax:String,
+			contact : String,
+			address : String,
+			city: String,
+			province: String,
+			country :String,
+			postcode:String
+		},
+		lunch:{
+			_id:Schema.Types.ObjectId,
+			code : String,
+			name : String,
+			payment:String, //credit card/voucher/cheque/cash
+			telphone : String,
+			fax:String,
+			contact : String,
+			address : String,
+			city: String,
+			province: String,
+			country :String,
+			postcode:String
+		},
+		dinner:{
+			_id:Schema.Types.ObjectId,
+			code : String,
+			name : String,
+			payment:String, //credit card/voucher/cheque/cash
+			telphone : String,
+			fax:String,
+			contact : String,
+			address : String,
+			city: String,
+			province: String,
+			country :String,
+			postcode:String
+		},
+		scenic:[{
+			_id:Schema.Types.ObjectId,
+			code : String,
+			name : String,
+			payment:String, //credit card/voucher/cheque/cash
+			telphone : String,
+			fax:String,
+			contact : String,
+			address : String,
+			city: String,
+			province: String,
+			country :String,
+			postcode:String
+		}],
 		itinerary:String
 		
 	}]
@@ -102,9 +175,11 @@ var Tour = new Schema({
 		phone:String,
 		note:String,
 		buscom:
-			{
+		{
+			_id:Schema.Types.ObjectId,
 			code : String,
 			name : String,
+			payment:String, //credit card/voucher/cheque/cash
 			telphone : String,
 			fax:String,
 			contact : String,
@@ -146,7 +221,7 @@ var Route = new Schema({
 			to:String,
 			scenic:[{
 				name:String,
-				telephone:String,
+				telphone:String,
 				address:String,
 				city:String,
 				province:String,
@@ -265,7 +340,7 @@ var Confirmation = new Schema({
 		country :String,
 		postcode:String,		
 	},
-	passenger:[{
+	tourist:[{
 		name:String,
 		age:Number,
 		gender:String,		
@@ -317,17 +392,18 @@ var Invoice = new Schema({
 		country :String,
 		postcode:String		
 	},
-	passenger:[{
+	tourist:[{
 		name:String,
 		age:Number,
 		gender:String,		
 		roomtype:String,
 		phone:String,
 		faretype:String,
-		fee:Number,
+		fare:Number,
 		admission:Number,
 		meal:Number,
 		commission:Number,
+		adjustamount:Number,
 		amount:Number
 
 	}]

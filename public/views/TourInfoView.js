@@ -70,30 +70,22 @@ define([
     	    var groups = new Array();
     	    for(var i=1;i<=gn;i++){
 
-    			var pn=$("#pn_"+i).val();    			
-    	    	var passengers = new Array();
+    			var pn=$("#tn_"+i).val();    			
+    	    	var tourists = new Array();
     			for(var j=1;j<=pn;j++){
-    				passengers[j-1]={
+    				tourists[j-1]={
     					no:$("#pno_"+i+"_"+j).val(),
 		    			name:$("#pname_"+i+"_"+j).val(),
 		    			gender:$("#gender_"+i+"_"+j).val(),
 		    			age:$("#age_"+i+"_"+j).val(),
 		    			phone:$("#pphone_"+i+"_"+j).val(),
-		    			fare:$("#fee_"+i+"_"+j).val(),
+		    			fare:$("#fare_"+i+"_"+j).val(),
 		    			meal:$("#meal_"+i+"_"+j).val(),
 		    			admission:$("#admission_"+i+"_"+j).val(),
 		    			roomtype:$("#roomtype_"+i+"_"+j).val(),
     				}
 
-    				this.model.unset("pno_"+i+"_"+j);
-        	    	this.model.unset("pname_"+i+"_"+j);
-        	    	this.model.unset("gender_"+i+"_"+j);
-        	    	this.model.unset("age_"+i+"_"+j);
-        	    	this.model.unset("pphone_"+i+"_"+j);
-        	    	this.model.unset("fee_"+i+"_"+j);
-        	    	this.model.unset("meal_"+i+"_"+j);
-        	    	this.model.unset("admission_"+i+"_"+j);
-        	    	this.model.unset("roomtype_"+i+"_"+j);
+
         	    	
     			};
     			var agency={
@@ -117,70 +109,105 @@ define([
     	    			pickup:$("#pickup"+i).val(),	
     	    			dropoff:$("#dropoff"+i).val(),
     	    			commission:$("#commission"+i).val(),
+    	    			adjustamount:$("#adjustamount"+i).val(),
     	    			agency:agency,
-    	    			passenger:passengers
+    	    			tourist:tourists
     	    			
     	    	}
-    	    	this.model.unset("no"+i);
-    	    	this.model.unset("status"+i);
-    	    	this.model.unset("agency_code_"+i);
-    	    	this.model.unset("agency_name_"+i);
-    	    	this.model.unset("agency_payment_"+i);
-    	    	this.model.unset("agency_telphone_"+i);
-    	    	this.model.unset("agency_fax_"+i);
-    	    	this.model.unset("agency_contact_"+i);
-    	    	this.model.unset("agency_address_"+i);
-    	    	this.model.unset("agency_city_"+i);
-    	    	this.model.unset("agency_province_"+i);
-    	    	this.model.unset("agency_country_"+i);
-    	    	this.model.unset("agency_postcode_"+i);
     	    	
-    	    	this.model.unset("bookdate"+i);
-    	    	this.model.unset("pickup"+i);
-    	    	this.model.unset("dropoff"+i);
-    	    	this.model.unset("agency"+i);
-    	    	this.model.unset("commission"+i);
     	    }
     	    this.model.set("group",groups);
-    	    //----------------save itinerary data---------------
+    	    //----------------save schedule data---------------
     	    var days=$("#days").val();
-    	    var itinerary = new Array();
+    	    var schedule = new Array();
     	    for(var day=1;day<=days;day++){
-    	    	//get itinerary string
-    	    	var adm = "";
-    	    	var index = 1;
-    	    	while($("#adm"+day+"_"+index).val() != undefined ){
-    	    		if(index == 1)
-    	    			adm = $("#adm"+day+"_"+index).val();
-    	    		else
-    	    			adm = adm+"|"+$("#adm"+day+"_"+index).val();
-    	    		index++;
+    	    	//breakfast
+    	    	var breakfast={
+               			code : $("#breakfast_code_"+day).val(),
+            			name :  $("#breakfast_name_"+day).val(),
+            			payment: $("#breakfast_payment_"+day).val(), //credit card/voucher/cheque/cash
+            			telphone :  $("#breakfast_telphone_"+day).val(),
+            			fax: $("#breakfast_fax_"+day).val(),
+            			contact :  $("#breakfast_contact_"+day).val(),
+            			address :  $("#breakfast_address_"+day).val(),
+            			city:  $("#breakfast_city_"+day).val(),
+            			province:  $("#breakfast_province_"+day).val(),
+            			country : $("#breakfast_country_"+day).val(),
+            			postcode: $("#breakfast_postcode_"+day).val()
+    	    	};
+    	    	
+    	    	//lunch
+    	    	var lunch = {
+               			code : $("#lunch_code_"+day).val(),
+            			name :  $("#lunch_name_"+day).val(),
+            			payment: $("#lunch_payment_"+day).val(), //credit card/voucher/cheque/cash
+            			telphone :  $("#lunch_telphone_"+day).val(),
+            			fax: $("#lunch_fax_"+day).val(),
+            			contact :  $("#lunch_contact_"+day).val(),
+            			address :  $("#lunch_address_"+day).val(),
+            			city:  $("#lunch_city_"+day).val(),
+            			province:  $("#lunch_province_"+day).val(),
+            			country : $("#lunch_country_"+day).val(),
+            			postcode: $("#lunch_postcode_"+day).val()
+    	    	};
+    	    	//dinner
+    	    	var dinner = {
+               			code : $("#dinner_code_"+day).val(),
+            			name :  $("#dinner_name_"+day).val(),
+            			payment: $("#dinner_payment_"+day).val(), //credit card/voucher/cheque/cash
+            			telphone :  $("#dinner_telphone_"+day).val(),
+            			fax: $("#dinner_fax_"+day).val(),
+            			contact :  $("#dinner_contact_"+day).val(),
+            			address :  $("#dinner_address_"+day).val(),
+            			city:  $("#dinner_city_"+day).val(),
+            			province:  $("#dinner_province_"+day).val(),
+            			country : $("#dinner_country_"+day).val(),
+            			postcode: $("#dinner_postcode_"+day).val()
+    	    	};
+    	    	
+    	    	//hotel
+    	    	var hotel = {
+               			code : $("#hotel_code_"+day).val(),
+            			name :  $("#hotel_name_"+day).val(),
+            			payment: $("#hotel_payment_"+day).val(), //credit card/voucher/cheque/cash
+            			telphone :  $("#hotel_telphone_"+day).val(),
+            			fax: $("#hotel_fax_"+day).val(),
+            			contact :  $("#hotel_contact_"+day).val(),
+            			address :  $("#hotel_address_"+day).val(),
+            			city:  $("#hotel_city_"+day).val(),
+            			province:  $("#hotel_province_"+day).val(),
+            			country : $("#hotel_country_"+day).val(),
+            			postcode: $("#hotel_postcode_"+day).val()
+    	    	};
+    	    	
+    	    	var scenic_count = $("#scenic_count_"+day).val();
+    	    	var scenic = new Array();
+    	    	for(var s=0;s<scenic_count;s++){
+    	    		scenic[s]={
+    	    				name:$("#scenic_name_"+day+"_"+s).val(),
+            				telphone:$("#scenic_telphone_"+day+"_"+s).val(),
+            				address:$("#scenic_address_"+day+"_"+s).val(),
+            				city:$("#scenic_city_"+day+"_"+s).val(),
+            				province:$("#scenic_province_"+day+"_"+s).val(),
+            				payment:$("#scenic_payment_"+day+"_"+s).val()
+    	    		}
     	    	}
-    	    	console.log('adm is :'+adm);
-    	    	itinerary[day-1]={
+    	    	schedule[day-1]={
     	    			day:$("#day"+day).val(),
     	    			from:$("#from"+day).val(),
     	    			via:$("#via"+day).val(),
     	    			to:$("#to"+day).val(),
-    	    			breakfast:$("#breakfast"+day).val(),
-    	    			lunch:$("#lunch"+day).val(),
-    	    			dinner:$("#dinner"+day).val(),
-    	    			hotel:$("#hotel"+day).val(),
-    	    			itinerary:adm
+    	    			breakfast:breakfast,
+    	    			lunch:lunch,
+    	    			dinner:dinner,
+    	    			hotel:hotel,
+    	    			scenic:scenic,
+    	    			itinerary:$("#itinerary"+day).val(),
 
     	    	};
-    	    	//remove duplicate fields
-    	    	this.model.unset('day'+day);
-    	    	this.model.unset('from'+day);
-    	    	this.model.unset('via'+day);
-    	    	this.model.unset('to'+day);
-    	    	this.model.unset('adm_'+day);
-    	    	this.model.unset('breakfast'+day);
-    	    	this.model.unset('lunch'+day);
-    	    	this.model.unset('dinner'+day);
-    	    	this.model.unset('hotel'+day);
+
     	    }
-    	    this.model.set({'itinerary':itinerary});
+    	    this.model.set({'schedule':schedule});
     	    
     	    //---------------------save bus data----------------------
     	    var bn = $("#bn").val();
@@ -211,24 +238,7 @@ define([
     	    			
     	    	}
 
-    	    	this.model.unset("bno"+i);
-    	    	this.model.unset("plateno"+i);
-    	    	this.model.unset("driver"+i);
-    	    	this.model.unset("seats"+i);
-    	    	this.model.unset("bphone"+i);
-    	    	
-    	    	
-       	    	this.model.unset("buscom_code_"+i);
-    	    	this.model.unset("buscom_name_"+i);
-    	    	this.model.unset("buscom_payment_"+i);
-    	    	this.model.unset("buscom_telphone_"+i);
-    	    	this.model.unset("buscom_fax_"+i);
-    	    	this.model.unset("buscom_contact_"+i);
-    	    	this.model.unset("buscom_address_"+i);
-    	    	this.model.unset("buscom_city_"+i);
-    	    	this.model.unset("buscom_province_"+i);
-    	    	this.model.unset("buscom_country_"+i);
-    	    	this.model.unset("buscom_postcode_"+i);
+
 
     	    }
     	    this.model.set("bus",bus);    	    

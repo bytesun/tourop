@@ -11,86 +11,42 @@ define([
 		model:Model,
 		tagName:'div',
         events: {
-        	'change .scenic_input' :'fetchScenic',
-        	'click .btn_add_scenic' :'addScenic',
-        	'click .btn_del_scenic' :'delScenic',
-        	'change .breakfast_input':'addBreakfast',
-        	'change .lunch_input':'addLunch',
-        	'change .dinner_input':'addDinner',
-        	'change .hotel_input':'addHotel'
+        	'change .schedule_scenic' :'fetchScenic',
+        	'change .schedule_breakfast':'addBreakfast',
+        	'change .schedule_lunch':'addLunch',
+        	'change .schedule_dinner':'addDinner',
+        	'change .schedule_hotel':'addHotel'
         },
 		initialize : function() {
 			  this.listenTo(this.model, 'change', this.render);
-		},        
-     
-        addScenic: function(){
-
-
-        	var day = this.model.get('day');
-        	var sn= $("#sn"+day).val();
-	    	var scenic = new Array();
-	    	for(var i=0;i<sn;i++){
-	    		scenic[i]={
-	    				name:$("#scenic_name_"+day+"_"+i).val(),
-	    				telephone:$("#scenic_telephone_"+day+"_"+i).val(),
-	    				payment:$("#scenic_payment_"+day+"_"+i).val(),
-	    				address:$("#scenic_address_"+day+"_"+i).val(),
-	    		}
-
-	    	}
-	    	scenic[sn]={
-        			name:'',
-    				telephone:'',
-    				address:'',
-    				city:'',
-    				province:'',
-    				payment:''
-        			
-        	}
-	    	this.model.set({
-	    			
-	    			from:$("#from"+day).val(),
-	    			via:$("#via"+day).val(),
-	    			to:$("#to"+day).val(),
-	    			scenic:scenic,
-	    			itinerary:$("#itinerary"+day).val(),
-	    	});
-        	console.log('scenic '+JSON.stringify(this.model));
-
-        },
-        delScenic: function(){
-        	var scenic = this.model.get('scenic');
-        	console.log('orignial model:'+JSON.stringify(this.model));
-        	var sc = new Array();
-        	for(var i=0;i<scenic.length-1;i++){
-        		sc[i]=scenic[i]
-        	}
-        	
-        	this.model.set({
-        		scenic:sc
-        	})
-        	console.log('update model:'+JSON.stringify(this.model));
-        },
+		}, 
         fetchScenic : function(e){
+        	
         	var inputid = e.target.id;
-        	var index = inputid.substring(12);
-        	var code = $("#"+inputid).val();
-        	//check admission first
-        	var fetchingitem = app.request("information:entity:fetch",code);
-        	$.when(fetchingitem).done(function(info){
-        		if(info != null){
-                	$("#"+inputid).val(info.get('name'));
-                	$("#scenic_telephone_"+index).val(info.get('telphone'));
-                	$("#scenic_payment_"+index).val(info.get('payment'));
-                	$("#scenic_address_"+index).val(info.get('address')+", " +info.get('city'));
-//                	$("#"+inputid).before("<input class=\"form-control\" id=\"adm"+day+"_"+index+"\" value=\""+inputstr+"\"><br>");
-//                	$("#"+inputid).val("");
-//                	$("#admindex_"+day).val(parseInt(index)+1);
-        		}
-            	
-            	
+        	var inputstr = $("#"+inputid).val();
+        	var self = this;
+        	var no = this.model.get('day');
+        	var index = inputid.substring(inputid.lastIndexOf("_")+1);
+        	console.log('get scenic index :'+index);
+//        	this.trigger("group:addagency",this.model,inputstr);
+        	var fetchingoitem = app.request("information:entity:fetch",inputstr);
+        	$.when(fetchingoitem).done(function(item){
+        		if(item!=null){
+//        			self.model.set({:item.toJSON()});
+        			$("#"+inputid).val(item.get("name"));
+        			$("#scenic_telphone_"+no+"_"+index).val(item.get("telphone"));
+        			$("#scenic_payment_"+no+"_"+index).val(item.get("payment"));
+        			$("#scenic_code_"+no+"_"+index).val(item.get("code"));
+        			$("#scenic_address_"+no+"_"+index).val(item.get("address"));
+        			$("#scenic_contact_"+no+"_"+index).val(item.get("contact"));
+        			$("#scenic_fax_"+no+"_"+index).val(item.get("fax"));
+        			$("#scenic_city_"+no+"_"+index).val(item.get("city"));
+        			$("#scenic_province_"+no+"_"+index).val(item.get("province"));
+        			$("#scenic_country_"+no+"_"+index).val(item.get("country"));
+        			$("#scenic_postcode_"+no+"_"+index).val(item.get("postcode"));
+        		}   	      		
 	        	
-        	});
+        	}); 
         	
 
         },
@@ -98,65 +54,110 @@ define([
         	e.preventDefault();
         	var inputid = e.target.id;
         	var inputstr = $("#"+inputid).val();
-        	//check admission first
-        	var fetchingoitems = app.request("entities:informations",{c:inputstr,t:'R'});
-        	$.when(fetchingoitems).done(function(items){
-        		if(items.length >= 1){
-        			var restaurant = items.at(0);
-        			inputstr = restaurant.get("name")+"  ("+restaurant.get("telphone")+")  "+restaurant.get("address");
-        			$("#"+inputid).val(inputstr);
-        		}   	
-        		
+        	var self = this;
+        	var no = this.model.get('day');
+  
+//        	this.trigger("group:addagency",this.model,inputstr);
+        	var fetchingoitem = app.request("information:entity:fetch",inputstr);
+        	$.when(fetchingoitem).done(function(item){
+        		if(item!=null){
+//        			self.model.set({agency:item.toJSON()});
+        			$("#"+inputid).val(item.get("name"));
+        			$("#breakfast_telphone_"+no).val(item.get("telphone"));
+        			$("#breakfast_payment_"+no).val(item.get("payment"));
+        			$("#breakfast_code_"+no).val(item.get("code"));
+        			$("#breakfast_address_"+no).val(item.get("address"));
+        			$("#breakfast_contact_"+no).val(item.get("contact"));
+        			$("#breakfast_fax_"+no).val(item.get("fax"));
+        			$("#breakfast_city_"+no).val(item.get("city"));
+        			$("#breakfast_province_"+no).val(item.get("province"));
+        			$("#breakfast_country_"+no).val(item.get("country"));
+        			$("#breakfast_postcode_"+no).val(item.get("postcode"));
+        		}   	      		
 	        	
-        	});    
+        	});   
         },
         addLunch: function(e){
         	e.preventDefault();
         	var inputid = e.target.id;
         	var inputstr = $("#"+inputid).val();
-        	//check admission first
-        	var fetchingoitems = app.request("entities:informations",{c:inputstr,t:'R'});
-        	$.when(fetchingoitems).done(function(items){
-        		if(items.length >= 1){
-        			var restaurant = items.at(0);
-        			inputstr = restaurant.get("name")+"  ("+restaurant.get("telphone")+")  "+restaurant.get("address");
-        			$("#"+inputid).val(inputstr);
-        		}   	
-        		
+        	var self = this;
+        	var no = this.model.get('day');
+  
+//        	this.trigger("group:addagency",this.model,inputstr);
+        	var fetchingoitem = app.request("information:entity:fetch",inputstr);
+        	$.when(fetchingoitem).done(function(item){
+        		if(item!=null){
+//        			self.model.set({agency:item.toJSON()});
+        			$("#"+inputid).val(item.get("name"));
+        			$("#lunch_telphone_"+no).val(item.get("telphone"));
+        			$("#lunch_payment_"+no).val(item.get("payment"));
+        			$("#lunch_code_"+no).val(item.get("code"));
+        			$("#lunch_address_"+no).val(item.get("address"));
+        			$("#lunch_contact_"+no).val(item.get("contact"));
+        			$("#lunch_fax_"+no).val(item.get("fax"));
+        			$("#lunch_city_"+no).val(item.get("city"));
+        			$("#lunch_province_"+no).val(item.get("province"));
+        			$("#lunch_country_"+no).val(item.get("country"));
+        			$("#lunch_postcode_"+no).val(item.get("postcode"));
+        		}   	      		
 	        	
-        	}); 
+        	});
         },
         addDinner: function(e){
         	e.preventDefault();
         	var inputid = e.target.id;
         	var inputstr = $("#"+inputid).val();
-        	//check admission first
-        	var fetchingoitems = app.request("entities:informations",{c:inputstr,t:'R'});
-        	$.when(fetchingoitems).done(function(items){
-        		if(items.length >= 1){
-        			var restaurant = items.at(0);
-        			inputstr = restaurant.get("name")+"  ("+restaurant.get("telphone")+")  "+restaurant.get("address");
-        			$("#"+inputid).val(inputstr);
-        		}   	
-        		
+        	var self = this;
+        	var no = this.model.get('day');
+  
+//        	this.trigger("group:addagency",this.model,inputstr);
+        	var fetchingoitem = app.request("information:entity:fetch",inputstr);
+        	$.when(fetchingoitem).done(function(item){
+        		if(item!=null){
+//        			self.model.set({agency:item.toJSON()});
+        			$("#"+inputid).val(item.get("name"));
+        			$("#dinner_telphone_"+no).val(item.get("telphone"));
+        			$("#dinner_payment_"+no).val(item.get("payment"));
+        			$("#dinner_code_"+no).val(item.get("code"));
+        			$("#dinner_address_"+no).val(item.get("address"));
+        			$("#dinner_contact_"+no).val(item.get("contact"));
+        			$("#dinner_fax_"+no).val(item.get("fax"));
+        			$("#dinner_city_"+no).val(item.get("city"));
+        			$("#dinner_province_"+no).val(item.get("province"));
+        			$("#dinner_country_"+no).val(item.get("country"));
+        			$("#dinner_postcode_"+no).val(item.get("postcode"));
+        		}   	      		
 	        	
-        	}); 
+        	});
         },
         addHotel: function(e){
         	e.preventDefault();
         	var inputid = e.target.id;
         	var inputstr = $("#"+inputid).val();
-        	//check admission first
-        	var fetchingoitems = app.request("entities:informations",{c:inputstr,t:'H'});
-        	$.when(fetchingoitems).done(function(items){
-        		if(items.length >= 1){
-        			var hotel = items.at(0);
-        			inputstr = hotel.get("name")+"  ("+hotel.get("telphone")+")  "+hotel.get("address");
-        			$("#"+inputid).val(inputstr);
-        		}   	
-        		
+        	var self = this;
+        	var no = this.model.get('day');
+  
+//        	this.trigger("group:addagency",this.model,inputstr);
+        	var fetchingoitem = app.request("information:entity:fetch",inputstr);
+        	$.when(fetchingoitem).done(function(item){
+        		if(item!=null){
+        			console.log('fetching hotel: '+JSON.stringify(item));
+//        			self.model.set({agency:item.toJSON()});
+        			$("#"+inputid).val(item.get("name"));
+        			$("#hotel_telphone_"+no).val(item.get("telphone"));
+        			$("#hotel_payment_"+no).val(item.get("payment"));
+        			$("#hotel_code_"+no).val(item.get("code"));
+        			$("#hotel_address_"+no).val(item.get("address"));
+        			$("#hotel_contact_"+no).val(item.get("contact"));
+        			$("#hotel_fax_"+no).val(item.get("fax"));
+        			$("#hotel_city_"+no).val(item.get("city"));
+        			$("#hotel_province_"+no).val(item.get("province"));
+        			$("#hotel_country_"+no).val(item.get("country"));
+        			$("#hotel_postcode_"+no).val(item.get("postcode"));
+        		}   	      		
 	        	
-        	}); 
+        	});
         },
 
         

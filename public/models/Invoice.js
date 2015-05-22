@@ -52,17 +52,18 @@ define(["jquery", "backbone"],
             		country :'',
             		postcode:'',		
             	},
-            	passenger:[{
+            	tourist:[{
             		name:'',
             		age:0,
             		gender:'',		
             		roomtype:'',
             		phone:'',
             		faretype:'',
-            		fee:0,
+            		fare:0,
             		admission:0,
             		meal:0,
             		commission:0,
+            		adjustamount:0,
             		amount:0,
 
             	}]

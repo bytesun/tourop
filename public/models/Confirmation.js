@@ -48,7 +48,7 @@ define(["jquery", "backbone"],
             		country :'',
             		postcode:'',
             	},
-            	passenger:[{
+            	tourist:[{
             		name:'',
             		age:1,
             		gender:'',

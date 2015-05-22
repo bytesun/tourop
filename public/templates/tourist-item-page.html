@@ -1,0 +1,101 @@
+			<div class="row">		 	
+			  <div class="col-lg-offset-1 col-lg-1">
+			  <label>No.</label>
+			  	<input class="form-control"  value="<%=no%>" type="number"  id="pno_<%=groupno%>_<%=no%>" disabled>
+			  </div>		   	        	
+			  <div class="col-lg-3">
+			  <label>Name</label>
+			   <input class="form-control" value="<%=name%>" id="pname_<%=groupno%>_<%=no%>" placeholder="">
+			  </div>
+			  <div class="col-lg-1">
+			  <label>Age</label>
+			   <input class="form-control" value="<%=age%>"  id="age_<%=groupno%>_<%=no%>" type="number" min="1" max="150">
+			  </div>
+			  <div class="col-lg-2">
+			  <label>Gender</label>
+			    <select class="form-control" id="gender_<%=groupno%>_<%=no%>">
+			    <%
+			    	var genders = ['Male','Female'];
+			    	for(var i=0;i<2;i++){
+			    		if(genders[i] == gender){
+			    %>
+			    	<option selected><%=gender%></option>
+			    <%}else{%>
+			    	<option><%=genders[i]%></option>
+			    <%}}%>
+			    	
+			    	
+			    </select>
+			  </div>
+			 
+			   <div class="col-lg-2">
+			  <label>Phone</label>
+			    <input class="form-control telephone" value="<%=phone%>" id="pphone_<%=groupno%>_<%=no%>" placeholder="" >
+			    <br>
+			  </div> 
+			   <div class="col-lg-offset-2 col-lg-2">
+			  <label>Room Type</label>
+			    <select class="form-control" id="roomtype_<%=groupno%>_<%=no%>">
+			    <%
+			    var roomtypes = ['Single','Twin','Triple','Quad'];
+			    	for(var i=0;i<4;i++){
+			    		if(roomtypes[i] == roomtype){
+			    %>
+			    	<option selected><%=roomtype%></option>
+			    <%}else{%>
+			    	<option><%=roomtypes[i]%></option>
+			    <%}}%>  
+			    </select>
+			    <br>
+			  </div> 
+			  
+			   <div class="col-lg-2">
+			  <label>Fare</label>
+			    <select class="form-control" id="fare_<%=groupno%>_<%=no%>">
+			    <%
+			    	var faretypes = route.fare;
+			    	for(var i=0;i<faretypes.length;i++){
+			    		if(faretypes[i].name == fare){
+			    %>
+			    	<option selected><%=fare%></option>
+			    <%}else{%>
+			    	<option><%=faretypes[i].name%></option>
+			    <%}}%>    
+			
+			    </select>
+			  </div>   
+			   <div class="col-lg-2">
+			  <label>Meal</label>
+			    <select class="form-control" id="meal_<%=groupno%>_<%=no%>">
+			    <option>No</option>
+			    <%
+			    	var meals = route.meal;
+			    	for(var i=0;i<meals.length;i++){
+			    		if(meals[i].name == meal){
+			    %>
+			    	<option selected><%=meal%></option>
+			    <%}else{%>
+			    	<option><%=meals[i].name%></option>
+			    <%}}%>   
+			    </select>
+			  </div>
+			   <div class="col-lg-2">
+			  <label>Admission</label>
+			    <select class="form-control" id="admission_<%=groupno%>_<%=no%>">
+			    	<option>No</option>
+			    <%
+			    	var admissions = route.admission;
+			    	for(var i=0;i<admissions.length;i++){
+			    		if(admissions[i].name == admission){
+			    %>
+			    	<option selected><%=admission%></option>
+			    <%}else{%>
+			    	<option><%=admissions[i].name%></option>
+			    <%}}%>   			    
+			    </select>
+			    <br>
+			  </div>
+				<div class="col-lg-offset-1 col-lg-9">
+			   	<hr>
+			  </div> 			 		  		  
+		 	</div> 

@@ -3,32 +3,41 @@ define([
 	'templates',
     'underscore',
     'models/Group',
-    'collections/Passengers',
-    'models/Passenger',
-    'views/PassengerCollectionView',
+    'collections/Tourists',
+    'models/Tourist',
+    'views/TourTouristCollectionView',
     'models/Confirmation'
 ], function (Marionette, templates, _,
 		Group,
-		Passengers,
-		Passenger,
-		PassengerCollectionView,
+		Tourists,
+		Tourist,
+		TourTouristCollectionView,
 		Confirmation) {
 	'use strict';
 
-	return Marionette.ItemView.extend({
+	return Marionette.LayoutView.extend({
 		template: templates.tour_group_item,
 		model:Group,
 		tagName:'div',
         events: {
 //        	"keyup .telephone":"formatTel",
         	"change .passenger_agency" :"addAgency",
-        	"click .btn_add_passenger" : "addPassenger",
         	"click .btn_confirm_group" : "confirmGroup"
         },
-		initialize : function() {
-			  this.listenTo(this.model, 'change', this.render);
-		},        
-       
+        regions:{
+			touristRegion: "#tourist_list_region",
+		},
+		initialize : function(options) {
+			this.model.set({route: options.route});
+			this.listenTo(this.model, 'change', this.render);
+		},
+		onDomRefresh:function(){
+			this._showTourists();
+		},
+        onShow: function(e){
+        	this._showTourists();
+        },
+        
         formatTel: function(e){
         	e.preventDefault();
         	
@@ -50,65 +59,48 @@ define([
         	
         	$(e.target).val(out);
         },
-        addPassenger: function(e){
-        	e.preventDefault();
-        	
-        	var gn=this.model.get("no");        	
-        	var pn=parseInt($("#pn_"+gn).val());
-	    	var passengers = new Array();
-			for(var j=1;j<=pn;j++){
-				
-				passengers[j-1]={
-					no:$("#pno_"+gn+"_"+j).val(),
-	    			name:$("#pname_"+gn+"_"+j).val(),
-	    			gender:$("#gender_"+gn+"_"+j).val(),
-	    			age:$("#age_"+gn+"_"+j).val(),
-	    			phone:$("#pphone_"+gn+"_"+j).val(),
-	    			fee:$("#fee_"+gn+"_"+j).val(),
-	    			meal:$("#meal_"+gn+"_"+j).val(),
-	    			admissiogn:$("#admission_"+gn+"_"+j).val(),
-	    			roomtype:$("#roomtype_"+gn+"_"+j).val(),
-				}   	    	
-			};
-			
-			passengers[pn]= {
-                no:(pn+1),
-    			name:'',
-    			gender:'',
-    			age:0,
-    			phone:'',
-    			fee:'',
-    			meal:'',
-    			admission:'',
-    			roomtype:''
-        	};
-        	this.model.set({passenger:passengers});        	
-        	
-
-        },
         addAgency : function(e){
         	e.preventDefault();
         	var inputid = e.target.id;
         	var inputstr = $("#"+inputid).val();
+        	var self = this;
+        	var no = this.model.get('no');
   
-        	this.trigger("group:addagency",this.model,inputstr);
+//        	this.trigger("group:addagency",this.model,inputstr);
+        	var fetchingoitem = app.request("information:entity:fetch",inputstr);
+        	$.when(fetchingoitem).done(function(item){
+        		if(item!=null){
+        			self.model.set({agency:item.toJSON()});
+        			$("#"+inputid).val(item.get("name"));
+        			$("#agency_telphone_"+no).val(item.get("telphone"));
+        			$("#agency_payment_"+no).val(item.get("payment"));
+        			$("#agency_code_"+no).val(item.get("code"));
+        			$("#agency_address_"+no).val(item.get("address"));
+        			$("#agency_contact_"+no).val(item.get("contact"));
+        			$("#agency_fax_"+no).val(item.get("fax"));
+        			$("#agency_city_"+no).val(item.get("city"));
+        			$("#agency_province_"+no).val(item.get("province"));
+        			$("#agency_country_"+no).val(item.get("country"));
+        			$("#agency_postcode_"+no).val(item.get("postcode"));
+        		}   	      		
+	        	
+        	}); 
 
         },
         confirmGroup: function(e){
 
         	//reset lastest passenger info
            	var gn=this.model.get("no");        	
-        	var pn=parseInt($("#pn_"+gn).val());
+        	var pn=parseInt($("#tn_"+gn).val());
 	    	var passengers = new Array();
-			for(var j=1;j<=pn;j++){
-				
+			for(var j=1;j<=pn;j++){				
 				passengers[j-1]={
 					no:$("#pno_"+gn+"_"+j).val(),
 	    			name:$("#pname_"+gn+"_"+j).val(),
 	    			gender:$("#gender_"+gn+"_"+j).val(),
 	    			age:$("#age_"+gn+"_"+j).val(),
 	    			phone:$("#pphone_"+gn+"_"+j).val(),
-	    			fare:$("#fee_"+gn+"_"+j).val(),
+	    			fare:$("#fare_"+gn+"_"+j).val(),
 	    			meal:$("#meal_"+gn+"_"+j).val(),
 	    			admission:$("#admission_"+gn+"_"+j).val(),
 	    			roomtype:$("#roomtype_"+gn+"_"+j).val(),
@@ -120,10 +112,36 @@ define([
     			bookdate:$("#bookdate"+gn).val(),
     			pickup:$("#pickup"+gn).val(),
     			dropoff:$("#dropoff"+gn).val(),
-        		passenger:passengers});
-        	
+    			commission:$("#commission"+gn).val(),
+    			adjustamount:$("#adjustamount"+gn).val(),
+        		tourist:passengers});
         	this.trigger("group:confirm",this.model);        
         	
+        },
+        _showTourists:function(){
+        	var self = this;
+        	var tourists = this.model.get('tourist');
+        	console.log('fetch tourists from group :'+JSON.stringify(tourists));
+        	var touristCollection = new Tourists();
+        	if(tourists != undefined && tourists.length>0)
+        		touristCollection.reset(tourists);
+        	var groupno=this.model.get('no');
+        	var touristsView = new TourTouristCollectionView({
+        		childViewOptions : function () { return { groupno: groupno,
+        			route:self.model.get('route')}; },
+        		collection:touristCollection,
+        		templateHelpers:function(){
+        			return {
+        				tn:this.collection.length,
+        				groupno:groupno,
+        				groupstatus:self.model.get('status')
+        			}
+        		}
+        	});
+        	touristsView.on('tourists:tn:set',function(tn){
+         		$("#tn_"+groupno).val(tn);
+        	});
+        	this.touristRegion.show(touristsView);
         }
         
 

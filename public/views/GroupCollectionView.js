@@ -17,7 +17,8 @@ define([
 	  childViewContainer: "#group_list_item",
 	  template: templates.tour_group_list,
 	  events:{
-		  'click .btn_add_group': 'addGroup'
+		  'click .btn_add_group': 'addGroup',
+		  'click .btn_del_group': 'delGroup'
 	  },
 
      templateHelpers:function(){
@@ -30,6 +31,12 @@ define([
 		var size = this.collection.length;
 		this.collection.push(new Group({no:size+1}));
 		$("#gn").val(this.collection.length);
-	  }
+	  },
+	  delGroup: function(e){
+			var size = this.collection.length;
+			this.collection.pop();
+			$("#gn").val(this.collection.length-1);
+		  }
+        
 	});
 });

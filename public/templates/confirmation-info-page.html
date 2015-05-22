@@ -71,11 +71,11 @@
 			<th>Meal</th>
 			
 		</tr>
-		<%for(var i=0;i<passenger.length;i++){
+		<%for(var i=0;i<tourist.length;i++){
 		%>
 		<tr>
 			<%if(i==0){%>
-			<td rowspan=<%=passenger.length%><b><%=tourname%></b>
+			<td rowspan=<%=tourist.length%><b><%=tourname%></b>
 			<br>
 			<BR><b>Departure</b> :<%=departuredate%>
 			<BR><b> Pickup</b> :<%=pickup%>
@@ -83,12 +83,11 @@
 			</td>
 			<%}%>
 			<td>
-			  <%=passenger[i].name%>
+			  <%=tourist[i].name%>
 			</td>
-			<td><%=passenger[i].fare%> </td>
-			<td><%=passenger[i].admission%></td>
-			<td><%=passenger[i].meal%></td>
-			
+			<td><%=tourist[i].fare%> </td>
+			<td><%=tourist[i].admission%></td>
+			<td><%=tourist[i].meal%></td>			
 			
 		</tr>
 		<%}%>

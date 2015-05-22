@@ -17,8 +17,9 @@ define(function (require) {
 		 tour_schedule_item: require('tpl!templates/tour-schedule-item-page.html'),
 		 tour_group_item:require('tpl!templates/group-item-page.html'),
 		 tour_group_list:require('tpl!templates/group-list-page.html'),
-		 tour_passenger_item:require('tpl!templates/passenger-item-page.html'),
-		 tour_passenger_list:require('tpl!templates/passenger-list-page.html'),
+		 tour_tourist_item:require('tpl!templates/tourist-item-page.html'),
+		 tour_tourist_list:require('tpl!templates/tourist-list-page.html'),
+
 		 
 		 tour_bus_item:require('tpl!templates/bus-item-page.html'),
 		 tour_bus_list:require('tpl!templates/bus-list-page.html'),

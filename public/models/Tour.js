@@ -25,44 +25,53 @@ define(["jquery", "backbone"],
             	feedback:'',
 
             	route:{
+            		
             		code : '',
             		name : '',
             		days: 1,
-            		fee_tour_adult:0,
-            		fee_tour_senior:0,
-            		fee_tour_youth:0,
-            		fee_tour_child:0,
-            		fee_tour_infant:0,
-
-            		fee_meal_adult:0,
-            		fee_meal_senior:0,
-            		fee_meal_youth:0,
-            		fee_meal_child:0,
-            		fee_meal_infant:0,
-
-            		fee_adm_adult:0,
-            		fee_adm_senior:0,
-            		fee_adm_youth:0,
-            		fee_adm_child:0,
-            		fee_adm_infant:0,
+            		fare:[{
+            			no:1,
+            			name:'',
+            			price:0
+            		}],
+            		meal:[{
+            			no:1,
+            			name:'',
+            			price:0		
+            		}],
+            		admission:[{
+            			no:1,
+            			name:'',
+            			price:0		
+            		}],
             		note : '',
-            		itinerary:
+            		schedule:
             			[{
             				day:1,
             				from:'',
             				via:'',
             				to:'',
+            				scenic:[{
+            					name:'',
+            					telephone:'',
+            					address:'',
+            					city:'',
+            					province:'',
+            					payment:''
+            				}],
             				itinerary:''
             			}]
             	},	
             	group:[{
             		no:1,
             		status:'New',
-            		commission:0.1,
+            		commission:20,
+            		adjustamount:0,
             		bookdate:'',
             		pickup:'',	
             		dropoff:'',
             		agency:{
+            			
             			code : '',
             			name : '',
             			payment:'', //credit card/voucher/cheque/cash
@@ -75,27 +84,95 @@ define(["jquery", "backbone"],
             			country :'',
             			postcode:''
             		},
-            		passenger:[{
+            		tourist:[{
             			no:1,
                   		name:'',
             			gender:'',
-            			age:1,
+            			age:0,
             			phone:'',
             			roomtype:'',
             			fare:'',
             			meal:'',
             			admission:''
             		}]
+            		
+
             	}],
-            	itinerary:[{
+            	schedule:[{
             		day:1,
             		from:'',
             		via:'',
             		to:'',
-            		hotel:'',
-            		breakfast:'',
-            		lunch:'',
-            		dinner:'',
+            		hotel:{
+            			
+            			code : '',
+            			name : '',
+            			payment:'', //credit card/voucher/cheque/cash
+            			telphone : '',
+            			fax:'',
+            			contact : '',
+            			address : '',
+            			city: '',
+            			province: '',
+            			country :'',
+            			postcode:''
+            		},
+            		breakfast:{
+            			
+            			code : '',
+            			name : '',
+            			payment:'', //credit card/voucher/cheque/cash
+            			telphone : '',
+            			fax:'',
+            			contact : '',
+            			address : '',
+            			city: '',
+            			province: '',
+            			country :'',
+            			postcode:''
+            		},
+            		lunch:{
+
+            			code : '',
+            			name : '',
+            			payment:'', //credit card/voucher/cheque/cash
+            			telphone : '',
+            			fax:'',
+            			contact : '',
+            			address : '',
+            			city: '',
+            			province: '',
+            			country :'',
+            			postcode:''
+            		},
+            		dinner:{
+
+            			code : '',
+            			name : '',
+            			payment:'', //credit card/voucher/cheque/cash
+            			telphone : '',
+            			fax:'',
+            			contact : '',
+            			address : '',
+            			city: '',
+            			province: '',
+            			country :'',
+            			postcode:''
+            		},
+            		scenic:[{
+
+            			code : '',
+            			name : '',
+            			payment:'', //credit card/voucher/cheque/cash
+            			telphone : '',
+            			fax:'',
+            			contact : '',
+            			address : '',
+            			city: '',
+            			province: '',
+            			country :'',
+            			postcode:''
+            		}],
             		itinerary:''
             		
             	}]
@@ -104,12 +181,12 @@ define(["jquery", "backbone"],
             		no:1,
             		plateno:'',
             		driver:'',
-            		seats:10,
+            		seats:0,
             		phone:'',
             		note:'',
             		buscom:
-            			{
-            			type : '', //1-agency/2-hotel/3-restaurant/4-admission
+            		{
+
             			code : '',
             			name : '',
             			payment:'', //credit card/voucher/cheque/cash
@@ -123,11 +200,9 @@ define(["jquery", "backbone"],
             			postcode:''
             		}
             		
-            		
             	}]
             }
-        }
-        );
+        });
         // Returns the Model class
         return Model;
 

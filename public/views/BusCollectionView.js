@@ -16,7 +16,8 @@ define([
 	  template: templates.tour_bus_list,
 
 	  events:{
-		  'click .btn_add_bus': 'addBus'
+		  'click .btn_add_bus': 'addBus',
+		  'click .btn_del_bus': 'delBus'
 	  },
      templateHelpers:function(){
             return {
@@ -28,6 +29,10 @@ define([
 		var size = this.collection.length;
 		this.collection.push(new Bus({no:size+1}));
 		$("#bn").val(this.collection.length);
-	  }
+	  },
+  	  delBus: function(e){
+  		this.collection.pop();
+  		$("#bn").val(this.collection.length);
+  	  }
 	});
 });

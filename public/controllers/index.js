@@ -198,6 +198,7 @@ define([
 	        //common function
 	        tour_show: function(tour){
 	        	var route = tour.get("route");//get route information for next fare calculation
+
 	        	var tourView = new TourInfoView({
 	        		model: tour
 	        	})
@@ -212,6 +213,7 @@ define([
 	        	
 	        	var groupCollectionView = new GroupCollectionView({
 	        		collection:groups,
+	        		childViewOptions : function () { return { route: route }; },
 	        		templateHelpers:function(){
 	        			return {
 	        				gn:groups.length,
@@ -219,17 +221,16 @@ define([
 	        			}
 	        		}
 	        	});
-	        	groupCollectionView.on("childview:group:addagency",function(childview,group,agencycode){
-
-	            	var fetchingoitems = app.request("entities:informations",{c:agencycode,t:'A'});
-	            	$.when(fetchingoitems).done(function(items){
-	            		if(items.length >= 1){
-	            			var agency = items.at(0);
-	            			group.set({agency:agency.toJSON()});
-	            		}   	      		
-	    	        	
-	            	});       	
-	        	});
+//	        	groupCollectionView.on("childview:group:addagency",function(childview,group,agencycode){
+//
+//	            	var fetchingoitem = app.request("information:entity:fetch",agencycode);
+//	            	$.when(fetchingoitem).done(function(item){
+//	            		if(item!=null){
+//	            			group.set({agency:item.toJSON()});
+//	            		}   	      		
+//	    	        	
+//	            	});       	
+//	        	});
 	        	groupCollectionView.on("childview:group:confirm",function(childview,group){
 
 	        		//save tour information before generating confirmation and invoice
@@ -253,96 +254,64 @@ define([
 	        			dropoff:group.get("dropoff"),
 	        			
 	        			agency:group.get("agency"),
-	        			passenger:group.get("passenger"),
+	        			tourist:group.get("tourist"),
 	        			tourcom:app.setting.get("tourcom")
 	        			
 	        		});
-//	        		console.log("save confirmation: "+JSON.stringify(cfm));
+	        		console.log("save confirmation: "+JSON.stringify(cfm));
 	        		cfm.save();
 	        			        		
-	        		
+	        		//generate invoice
 	        		var subtotal = 0;
 	        		
-	        		var pgs = group.get("passenger");
+	        		var tourists = group.get("tourist");
 	        		var passengers = new Array();
-	        		for(var i=0;i<pgs.length;i++){
+	        		for(var i=0;i<tourists.length;i++){
 	        			var fare = 0;
-	        			switch(pgs[i].fare){
-	        			case 'Adult':
-	        				fare = route.fee_tour_adult;
-	        				break;
-	        			case 'Senior':
-	        				fare = route.fee_tour_senior;
-	        				break;
-	        			case 'Youth':
-	        				fare = route.fee_tour_youth;
-	        				break;
-	        			case 'Child':
-	        				fare = route.fee_tour_child;
-	        				break;
-	        			case 'Infant':
-	        				fare = route.fee_tour_infant;
-	        				break;
+	        			for(var j=0;j<route.fare.length;j++){
+	        				if(route.fare[j].name == tourists[i].fare){
+	        					fare = route.fare[j].price;
+	        					break;
+	        				}
 	        			}
-	        			subtotal=subtotal+fare;
-	        			
-	        			var admission = 0;
-	        			switch(pgs[i].admission){
-	        			case 'Adult':
-	        				admission = route.fee_adm_adult;
-	        				break;
-	        			case 'Senior':
-	        				admission = route.fee_adm_senior;
-	        				break;
-	        			case 'Youth':
-	        				admission = route.fee_adm_youth;
-	        				break;
-	        			case 'Child':
-	        				admission = route.fee_adm_child;
-	        				break;
-	        			case 'Infant':
-	        				admission = route.fee_adm_infant;
-	        				break;
-	        			}
-	        			subtotal=subtotal+admission;
 	        			
 	        			var meal = 0;
-	        			switch(pgs[i].meal){
-	        			case 'Adult':
-	        				meal = route.fee_meal_adult;
-	        				break;
-	        			case 'Senior':
-	        				meal = route.fee_meal_senior;
-	        				break;
-	        			case 'Youth':
-	        				meal = route.fee_meal_youth;
-	        				break;
-	        			case 'Child':
-	        				meal = route.fee_meal_child;
-	        				break;
-	        			case 'Infant':
-	        				meal = route.fee_meal_infant;
-	        				break;
+	        			for(var j=0;j<route.meal.length;j++){
+	        				if(route.meal[j].name == tourists[i].meal){
+	        					meal = route.meal[j].price;
+	        					break;
+	        				}
 	        			}
-	        			subtotal=subtotal+meal;
-//	        			if(pgs.admission != 'No') faretype=faretype+"-"+
-	        			var commission = -(fare*group.get("commission"));
+	        			var admission = 0;
+	        			for(var j=0;j<route.admission.length;j++){
+	        				if(route.admission[j].name == tourists[i].admission){
+	        					admission = route.admission[j].price;
+	        					break;
+	        				}
+	        			}	        			
+	        			//subtotal=subtotal+route[tourists[i].fare]+ route[tourists[i].admission]+route[tourists[i].meal];
+
+	        			var commission = -(fare*(group.get("commission")/100));
 	        			commission= Math.round(commission * 100) / 100;
 	        			
-	        			var amount = (fare+admission+meal+commission);
+	        			var adjustamount = -group.get('adjustamount');
+	        			
+	        			var amount = (fare+admission+meal+commission+adjustamount);
 	        			amount= Math.round(amount * 100) / 100;
-	        			subtotal=subtotal+commission;
+	        			subtotal = subtotal+amount;
+	        			
 	        			var passenger = {
-	        					name:pgs[i].name,
-	        					age:pgs[i].age,
-	        					gender:pgs[i].gender,		
-	        					roomtype:pgs[i].roomtype,
-	        					phone:pgs[i].telephone,
+	        					name:tourists[i].name,
+	        					age:tourists[i].age,
+	        					gender:tourists[i].gender,		
+	        					roomtype:tourists[i].roomtype,
+	        					phone:tourists[i].phone,
 	        					faretype:'',
-	        					fee:fare,
+	        					fare:fare,
 	        					admission:admission,
 	        					meal:meal,
 	        					commission:commission,
+	        					adjustamount:adjustamount,
 	        					amount:amount
 	        			}
 	        			passengers[i]=passenger;
@@ -369,7 +338,7 @@ define([
 	                	tax:tax,
 	                	total:total,
 	        			agency:group.get("agency"),
-	        			passenger:passengers,
+	        			tourist:passengers,
 	        			tourcom:app.setting.get("tourcom")
 	        			
 	        		});
