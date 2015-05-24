@@ -2,12 +2,9 @@ define([
 	'marionette',
 	'templates',
     'underscore',
-    'syphon',
-
-    'html2pdf'
+    'syphon'
 ], function (Marionette, templates, _,
-		Syphon,
-		html2pdf) {
+		Syphon) {
 	'use strict';
 
 	return Marionette.LayoutView.extend({
@@ -42,36 +39,56 @@ define([
         },
         download: function(e){
         	console.log('download invoice');
-//        	var doc = new jsPDF('p', 'in', 'letter');
+//        	$('#invoice-info-template').wordExport();
         	
-//            var source = $('#invoice-info-template').first();
-//            var specialElementHandlers = {
-//                '#editor': function(element, renderer) {
-//                    return true;
-//                }
-//            };
+//        	var pdf = new jsPDF('p', 'pt', 'letter')
 //
-//            doc.fromHTML(
-//                source, // HTML string or DOM elem ref.
-//                0.5,    // x coord
-//                0.5,    // y coord
-//                {
-//                    'width': 7.5, // max width of content on PDF
-//                    'elementHandlers': specialElementHandlers
-//                });    	
+//        	// source can be HTML-formatted string, or a reference
+//        	// to an actual DOM element from which the text will be scraped.
+//        	, source = $('#invoice-info-template')[0]
+//
+//        	// we support special element handlers. Register them with jQuery-style
+//        	// ID selector for either ID or node name. ("#iAmID", "div", "span" etc.)
+//        	// There is no support for any other type of selectors
+//        	// (class, of compound) at this time.
+//        	, specialElementHandlers = {
+//        	    // element with id of "bypass" - jQuery style selector
+//        	    '#editor': function(element, renderer){
+//        	        // true = "handled elsewhere, bypass text extraction"
+//        	        return true
+//        	    }
+//        	}
+//
+//        	var margins = {
+//        	    top: 80,
+//        	    bottom: 60,
+//        	    left: 40,
+//        	    width: 522
+//        	  };
+//        	  // all coords and widths are in jsPDF instance's declared units
+//        	  // 'inches' in this case
+//        	pdf.fromHTML(
+//        	    source // HTML string or DOM elem ref.
+//        	    , margins.left // x coord
+//        	    , margins.top // y coord
+//        	    , {
+//        	        'width': margins.width // max width of content on PDF
+//        	        , 'elementHandlers': {}
+//        	    },
+//        	    function (dispose) {
+//        	      // dispose: object with X, Y of the last line add to the PDF
+//        	      //          this allow the insertion of new lines after html
+//        	        pdf.save('Test.pdf');
+//        	      },
+//        	    margins
+//        	  )
 //        	
-//
-//        	doc.save('text.pdf');
-        	var pdf = new jsPDF('p', 'pt', 'letter');
-            var canvas = pdf.canvas;
-            canvas.height = 72 * 11;
-            canvas.width= 72 * 8.5;;
+        	
+ 
+
             
             // can also be document.body
-            var html = '<html><body>Hello <strong> World</strong></body></html>';
-            html2pdf(html, pdf, function(pdf) {        
-                    pdf.output('dataurlnewwindow');        
-            });
+
         }
         
 	});

@@ -1,6 +1,7 @@
 require.config({
 	paths: {
         'jquery'                : 'assets/lib/jquery.min',
+        'jquery-ui'             : 'assets/lib/jquery-ui.min', 
         'underscore'            : 'assets/lib/underscore-min',         
         'backbone'              : 'assets/lib/backbone.min',
         'marionette'            : 'assets/lib/backbone.marionette.min',
@@ -11,9 +12,8 @@ require.config({
         'text'                  : 'assets/lib/text',
         'tpl'                   : 'assets/lib/tpl',
         'parsley'               : 'assets/lib/parsley',
-        'js-cookie'             : 'assets/lib/js.cookie',
-        'jspdf'                 : 'assets/lib/jspdf.debug',
-        'html2pdf'              : 'assets/lib/html2pdf'
+        'js-cookie'             : 'assets/lib/js.cookie',        
+        
 	},
 
 	shim: {
@@ -34,94 +34,11 @@ require.config({
 			exports: 'Backbone.Syphon',
 			deps: ['backbone']
 		},
-//		wreqr : {
-//			exports: 'Backbone.Wreqr',
-//			deps: ['backbone', 'marionette', 'underscore']
-//			
-//		},
         bootstrap: {
             deps: ['jquery']
-        },
-        'assets/lib/plugins/standard_fonts_metrics':{
-            deps:[
-	            'jspdf'
-            ]
-        },
+        }
 
-        'assets/lib/plugins/split_text_to_size':{
-            deps:[
-	            'jspdf'
-            ]
-        },
-
-        'assets/lib/plugins/annotations' : {
-        	deps:[
-            'jspdf',
-            'plugins/standard_fonts_metrics',
-            'plugins/split_text_to_size'
-            ]
-        },
-
-        'assets/lib/plugins/outline':{
-            deps:[
-	            'jspdf'
-            ]
-        },
-
-        'assets/lib/plugins/addimage':{
-            deps:[
-	            'jspdf'
-            ]
-        },
-
-        'assets/lib/plugins/png_support':{
-            deps:[
-	            'jspdf',
-	            'libs/png_support/png',
-	            'libs/png_support/zlib'
-            ]
-        },
-
-        'assets/lib/plugins/from_html':{
-            deps:[
-	            'jspdf'
-            ]
-        },
-
-        'assets/lib/plugins/context2d':{
-            deps:[
-	            'jspdf',
-	            'plugins/png_support',
-	            'plugins/addimage',
-	            'libs/css_colors'
-            ]
-        },
-
-        'assets/lib/plugins/html2canvas':{
-            deps:[
-	            'jspdf'
-            ]
-        },
-
-        'assets/lib/plugins/canvas' : {
-            deps:[
-	            'jspdf'
-            ]
-        },
-        'assets/lib/html2pdf' : {
-        	deps:[
-            'jspdf',
-            'assets/lib/plugins/standard_fonts_metrics',
-            'assets/lib/plugins/split_text_to_size',
-            'assets/lib/plugins/png_support',
-            'assets/lib/plugins/context2d',
-            'assets/lib/plugins/canvas',
-            'assets/lib/plugins/annotations',
-
-            'assets/lib/plugins/html2canvas'
-            ]
-        },
-
+        
 	},
     waitSeconds: 60
 });

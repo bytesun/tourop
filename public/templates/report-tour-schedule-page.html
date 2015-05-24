@@ -1,0 +1,107 @@
+<div class="row">
+	<div class="col-md-offset-2 col-md-10">
+	<h1>CANTOP TOURS & TRAVEL LTD.</h1>
+	</div>
+	        
+</div>
+<div class="row">
+	<div class="col-md-2">
+	<B>Tour Code:</B>  <%=code%> 
+	</div>
+	<div class="col-md-2">
+	<B>Guide:</B>  <%=guide%> 
+	</div>	         
+</div>
+
+<%
+var today = new Date(departuredate);
+var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+var weekday = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+
+for(var day=1;day<=days;day++){	
+
+	var now = today.getDate()+"-"+months[today.getMonth()]+"-"+today.getFullYear()+"   "+weekday[today.getDay()];
+
+%>
+	
+<div class="row">
+	<div class="col-md-12">
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+		  <h4>
+			<b> [ <%=now%> ]    </b>    
+			<b> FROM : </b> <%=schedule[day-1].from%>,   
+			<b>VIA : </b> <%=schedule[day-1].via%>,   
+			<b>TO : </b><%=schedule[day-1].to%>,  
+			</h4>
+		  </div>
+		  <div class="panel-body">
+			<h3>Itinerary:</h3>
+			<pre style="background-color: #FFFFFF;"><%=schedule[day-1].itinerary%></pre>				
+		  
+			<table class="table">
+				<tr>
+					<th></th>
+					<th>Name</th>
+					<th>Tel</th>
+					<th>Budget</th>
+					<th>Address</th>
+				</tr>
+				<%if(schedule[day-1].breakfast.name != ''){%>
+					<tr>
+						<td>Breakfase @</td>
+						<td><%=schedule[day-1].breakfast.name%></td>
+						<td><%=schedule[day-1].breakfast.telphone%></td>
+						<td><%=schedule[day-1].breakfast.payment%></td>
+						<td><%=schedule[day-1].breakfast.address%>, <%=schedule[day-1].breakfast.city%></td>
+					</tr>				
+				<%}%>
+				<%if(schedule[day-1].lunch.name != ''){%>
+					<tr>
+						<td>Lunch @</td>
+						<td><%=schedule[day-1].lunch.name%></td>
+						<td><%=schedule[day-1].lunch.telphone%></td>
+						<td><%=schedule[day-1].lunch.payment%></td>
+						<td><%=schedule[day-1].lunch.address%>, <%=schedule[day-1].lunch.city%></td>
+					</tr>				
+				<%}%>
+				<%if(schedule[day-1].dinner.name != ''){%>
+					<tr>
+						<td>Dinner @</td>
+						<td><%=schedule[day-1].dinner.name%></td>
+						<td><%=schedule[day-1].dinner.telphone%></td>
+						<td><%=schedule[day-1].dinner.payment%></td>
+						<td><%=schedule[day-1].dinner.address%>, <%=schedule[day-1].dinner.city%></td>
+					</tr>				
+				<%}%>
+				<%if(schedule[day-1].hotel.name != ''){%>
+					<tr>
+						<td>Hotel @</td>
+						<td><%=schedule[day-1].hotel.name%></td>
+						<td><%=schedule[day-1].hotel.telphone%></td>
+						<td><%=schedule[day-1].hotel.payment%></td>
+						<td><%=schedule[day-1].hotel.address%>, <%=schedule[day-1].hotel.city%></td>
+					</tr>				
+				<%}%>			
+				<%
+				var scenic = schedule[day-1].scenic;
+				for(var i=0;i<scenic.length;i++){%>
+					<tr>
+						<td>Admission - <%=i+1%></td>
+						<td><%=scenic[i].name%></td>
+						<td><%=scenic[i].telphone%></td>
+						<td><%=scenic[i].payment%></td>
+						<td><%=scenic[i].address%>, <%=scenic[i].city%></td>
+					</tr>
+				<%}%>
+			</table>
+
+		  </div>
+		</div>
+	</div>
+</div>
+
+<%
+today.setDate(today.getDate()+1);
+
+}%>

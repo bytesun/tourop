@@ -145,24 +145,7 @@ define([
 			        		collection:tours
 			        	});
 			        	
-			        	tourCollectionView.on('childview:tour:showpassengersforguide',function(childview,tour){
-			        		console.log('get tour info: ',JSON.stringify(tour));
-			        		
-			        		var passengerListView = new CommonView({
-			        			template:templates.report_passenger_list4guide,
-			        			model:tour
-			        		});
-			        		app.main.show(passengerListView);
-			        	});
-			        	tourCollectionView.on('childview:tour:showpassengersforhotel',function(childview,tour){
-			        		console.log('get tour info: ',JSON.stringify(tour));
-			        		
-			        		var passengerListView = new CommonView({
-			        			template:templates.report_passenger_list4hotel,
-			        			model:tour
-			        		});
-			        		app.main.show(passengerListView);
-			        	});			        	
+		        	
 			        	tourView.on("show",function(){	        		
 			        		tourView.tourListRegion.show(tourCollectionView);
 			        		
@@ -677,6 +660,28 @@ define([
 	        },
 	        logout: function(view,options){
 	        	app.main.show(new LoginView());
+	        },
+	        report_tour_schedule: function(id){
+	        	this._report_tour(id,templates.report_tour_schedule);
+	        },
+	        report_tour_namelist4guide: function(id){
+	        	this._report_tour(id,templates.report_passenger_list4guide);
+	        		
+	        },
+	        report_tour_namelist4hotel: function(id){
+	        	this._report_tour(id,templates.report_passenger_list4hotel);
+	        },
+	        _report_tour: function(id,tpl){
+	        	var fetchingitem = app.request("tour:entity",id);
+	        	$.when(fetchingitem).done(function(tour){
+		        		
+		        		var listView = new CommonView({
+		        			template:tpl,
+		        			model:tour
+		        		});
+		        		app.main.show(listView);
+		        	
+	        	});	
 	        }
 
 

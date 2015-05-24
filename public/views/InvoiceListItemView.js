@@ -2,11 +2,8 @@ define([
 	'marionette',
 	'templates',
     'underscore',
-    'jspdf',
     'models/Invoice'
-    
 ], function (Marionette, templates, _,
-		jsPDF,
 		InvoiceModel) {
 	'use strict';
 
@@ -20,8 +17,7 @@ define([
 		download: function(e){
 			e.preventDefault();
 			var doc = new jsPDF();
-			
-			doc.save('invoice_'+this.model.get('no')+'.pdf');
+//			doc.save('invoice_'+this.model.get('no')+'.pdf');
 		}
 
 	});

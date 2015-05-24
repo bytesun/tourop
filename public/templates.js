@@ -54,6 +54,8 @@ define(function (require) {
 		 partner_item_scenic: require('tpl!templates/partner-item-scenic-page.html'),
 		 report_passenger_list4guide: require('tpl!templates/report-passenger-list-forguide-page.html'),
 		 report_passenger_list4hotel: require('tpl!templates/report-passenger-list-forhotel-page.html'),
+		 report_tour_schedule : require('tpl!templates/report-tour-schedule-page.html'),
+
 		 
 		 setting:require('tpl!templates/setting-page.html'),
 		 common: require('tpl!templates/common-page.html')
