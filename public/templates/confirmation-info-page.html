@@ -102,8 +102,10 @@
 			<b>Remarks:</b>
 		</div>
 
-		<div class="col-md-offset-1 remark_area" id="remark_area">
-			<pre><%=remark%></pre>
+		<div class="remark_area" id="remark_area">
+			<%if(remark != ''){%>
+			<pre   style="background-color: #FFFFFF;"><%=remark%></pre>
+			<%}%>
 		</div>
 		</div>
 	</div>

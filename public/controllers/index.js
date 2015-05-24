@@ -133,12 +133,12 @@ define([
 	    		  model:user
 	    	  }));
 	      },
-	      tour : function(query){
+	      tour : function(code,status){
 
 	        	var tourView = new TourView({
 	        		model:new TourModel()
 	        	});
-	        	var fetchingitems = app.request("entities:tours",{c:query});
+	        	var fetchingitems = app.request("entities:tours",{c:code,status:status});
 		        	$.when(fetchingitems).done(function(tours){
 		        			        		
 			        	var tourCollectionView = new TourCollectionView({
@@ -201,7 +201,8 @@ define([
 	        	
 	        	var groupCollectionView = new GroupCollectionView({
 	        		collection:groups,
-	        		childViewOptions : function () { return { route: route }; },
+	        		childViewOptions : function () { return { route: route,
+	        			tourstatus:tour.get('status')}; },
 	        		templateHelpers:function(){
 	        			return {
 	        				gn:groups.length,

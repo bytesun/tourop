@@ -64,7 +64,7 @@
       		<label>Feedback:</label>
       		
       		<textarea id="feedback" name="feedback" class="form-control" rows="6">  <%=feedback%>  </textarea>
-		<%}else if(status == 'Close'){%>
+		<%}else if(status == 'Closed' || status == 'Canceled'){%>
 			 <label><b>Note:</b></label><br>
 			 <pre><%=note%></pre>
 			 <hr>

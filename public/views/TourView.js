@@ -11,12 +11,15 @@ define([
 			tourListRegion:"#tour-list-region"
 		},
         events: {
-        	"change .search_code" : "searchByCode",
+//        	"change .search_code" : "searchByCode",
+//        	'change tour_search_status': 'searchByStatus',
         	"click .btn_route_search":"searchByCode",
         },
         searchByCode: function(e){
-        	var query = $("#search_code").val();
-        	app.navigate('tour/'+query,true);
+        	var code = $("#search_code").val();
+        	if(code == "")code=0;
+        	
+        	app.navigate('tour/'+code+"/"+$("#tour_search_status").val(),true);
         },
 
 	});

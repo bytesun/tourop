@@ -270,7 +270,7 @@ define([
         },
         closeTour: function(e){
         	console.log('close tour');
-        	this.model.set({status:"Close",feedback:$("#feedback").val()});
+        	this.model.set({status:"Closed",feedback:$("#feedback").val()});
         	console.log("ready to close model: "+JSON.stringify(this.model));
         	this.model.save();
         	app.notify('','The tour has been closed!','alert-info');

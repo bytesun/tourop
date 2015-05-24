@@ -28,7 +28,8 @@ define([
 			touristRegion: "#tourist_list_region",
 		},
 		initialize : function(options) {
-			this.model.set({route: options.route});
+			this.model.set({route: options.route,
+				tourstatus:options.tourstatus});
 			this.listenTo(this.model, 'change', this.render);
 		},
 		onDomRefresh:function(){

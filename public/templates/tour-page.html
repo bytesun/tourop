@@ -4,9 +4,17 @@
 
 			<form class="form-inline">
 		  <div class="form-group">
-				  <input type="text" class="form-control search_code" id="search_code" placeholder="Code" autofocus required>
+				  <input type="text" class="form-control search_code" id="search_code" placeholder="Code" autofocus >
+				     <select class="form-control tour_search_status" id="tour_search_status">
+		      		  <option value="ALL">--Select status--</option>
+					  <option >New</option>
+					  <option>Confirmed</option>
+					  <option>Canceled</option>
+					  <option>Closed</option>
+
+					</select>	
 			  </div>			  
-			  <button type="button" id="search_input" name="search_input" class="btn btn-primary btn_route_search">Search</button>
+			  <a type="button" id="search_input" name="search_input" class="btn btn-primary btn_route_search">Search</a>
 			  <!-- 
 			  OR 
 			  <div class="form-group">

@@ -13,7 +13,7 @@ Manage partner, route information, and create tour
 			
 			Backlog:
 				1. download invoice with pdf
-				* search tour by status
+				
 				* result sorting and paging
 
 				
@@ -21,7 +21,8 @@ Manage partner, route information, and create tour
 			----------------------------------------------------------------------
 			Development Trace
 			[2015-5-23] 1. Print tour detail schedule report.
-			
+							2 search tour by status
+							
 			[2015-5-22] 1. support customize fare type and add extra commission.
 						  2. add deleting operation for all list 
 						  				* format text by escaping
