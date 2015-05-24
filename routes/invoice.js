@@ -54,7 +54,7 @@ router.get('/api/invoices',function(req,res){
 	
 	console.log('query is '+JSON.stringify(query));
 	
-	Invoice.find(null,
+	Invoice.find(query,
 				null,
 				null,function(err,invoices){
 			res.send(invoices);

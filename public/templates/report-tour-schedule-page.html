@@ -19,9 +19,7 @@ var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov',
 var weekday = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
 for(var day=1;day<=days;day++){	
-
 	var now = today.getDate()+"-"+months[today.getMonth()]+"-"+today.getFullYear()+"   "+weekday[today.getDay()];
-
 %>
 	
 <div class="row">
@@ -36,7 +34,7 @@ for(var day=1;day<=days;day++){
 			</h4>
 		  </div>
 		  <div class="panel-body">
-			<h3>Itinerary:</h3>
+			<h4>Itinerary:</h4>
 			<pre style="background-color: #FFFFFF;"><%=schedule[day-1].itinerary%></pre>				
 		  
 			<table class="table">

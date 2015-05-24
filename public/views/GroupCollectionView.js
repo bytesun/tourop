@@ -35,7 +35,7 @@ define([
 	  delGroup: function(e){
 			var size = this.collection.length;
 			this.collection.pop();
-			$("#gn").val(this.collection.length-1);
+			$("#gn").val(this.collection.length);
 		  }
         
 	});

@@ -54,10 +54,10 @@ define([
     	    var fn=$("#fn").val();
     	    var fare = new Array();
     	    for(var i=1;i<=fn;i++){
-
-    	    	if($("#fare_name_"+i).val() != ''){
-    	    		
+    	    	console.log('fare name is :'+$("#fare_name_"+i).val());
+    	    	if($("#fare_name_"+i).val() != ''){    	    		
     	    		fare[i-1]={
+    	    				no:$("#fare_no_"+i).val(),
         	    			name:$("#fare_name_"+i).val(),
         	    			price:$("#fare_price_"+i).val()
         	    	}	
@@ -68,8 +68,10 @@ define([
     	    var mn = $("#mn").val();
     	    var meal = new Array();
     	    for(var i=1;i<=mn;i++){
+    	    	console.log('meal name is :'+$("#meal_name_"+i).val());
     	    	if($("#meal_name_"+i).val() != ''){
     	    		meal[i-1]={
+    	    				no:$("#meal_no_"+i).val(),
         	    			name:$("#meal_name_"+i).val(),
         	    			price:$("#meal_price_"+i).val()
         	    	}	
@@ -82,6 +84,7 @@ define([
     	    for(var i=1;i<=an;i++){
     	    	if($("#admission_name_"+i).val() != ''){
     	    		admission[i-1]={
+    	    				no:$("#admission_no_"+i).val(),
         	    			name:$("#admission_name_"+i).val(),
         	    			price:$("#admission_price_"+i).val()
         	    	}	

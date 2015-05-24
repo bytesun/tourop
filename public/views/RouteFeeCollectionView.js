@@ -24,9 +24,7 @@ define([
 	  },
 	  addFare: function(e){
 			var size = this.collection.length;
-
 			this.collection.push(new FareType({no:size+1}));
-
 			$("#fn").val(this.collection.length);
 	  },
 	  addMeal: function(e){
