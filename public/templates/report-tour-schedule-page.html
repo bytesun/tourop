@@ -8,18 +8,24 @@
 	<div class="col-md-2">
 	<B>Tour Code:</B>  <%=code%> 
 	</div>
+	<div class="col-md-3">
+	<B>Departure Date:</B>  <%=departuredate%> 
+	</div>		
 	<div class="col-md-2">
 	<B>Guide:</B>  <%=guide%> 
-	</div>	         
+	</div>	
+         
 </div>
 
 <%
-var today = new Date(departuredate);
+var ddate = new Date(departuredate);
+
+console.log('depaturedate is -'+ddate);
 var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
 var weekday = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
 
 for(var day=1;day<=days;day++){	
-	var now = today.getDate()+"-"+months[today.getMonth()]+"-"+today.getFullYear()+"   "+weekday[today.getDay()];
+	var now = ddate.getDate()+"-"+months[ddate.getMonth()]+"-"+ddate.getFullYear()+"   "+weekday[ddate.getDay()];
 %>
 	
 <div class="row">
@@ -27,7 +33,7 @@ for(var day=1;day<=days;day++){
 		<div class="panel panel-default">
 		  <div class="panel-heading">
 		  <h4>
-			<b> [ <%=now%> ]    </b>    
+			<b> [Day - <%=day%> ]    </b>    
 			<b> FROM : </b> <%=schedule[day-1].from%>,   
 			<b>VIA : </b> <%=schedule[day-1].via%>,   
 			<b>TO : </b><%=schedule[day-1].to%>,  
@@ -100,6 +106,6 @@ for(var day=1;day<=days;day++){
 </div>
 
 <%
-today.setDate(today.getDate()+1);
+ddate.setDate(ddate.getDate()+1);
 
 }%>
