@@ -30,7 +30,7 @@ app.set('view engine', 'ejs');
 app.use(logger('dev'));
 app.use(cookieParser());
 app.use(require('stylus').middleware(path.join(__dirname, 'public')));
-app.use(favicon(__dirname + '/public/img/favicon.ico'));
+app.use(favicon(__dirname + '/public/assets/img/favicon.ico'));
 
 app.use(session({secret: 'ssssffffopencase',saveUninitialized: true, resave: true}));
 app.use(passport.initialize());
