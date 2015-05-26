@@ -27,7 +27,7 @@ define(["app","jquery", "backbone"],
                 	days: 1,
                 	fare:[{
                 		no:1,
-                		name:'',
+                		name:'Adult',
                 		price:0
                 	}],
                 	meal:[{
@@ -37,7 +37,7 @@ define(["app","jquery", "backbone"],
                 	}],
                 	admission:[{
                 		no:1,
-                		name:'Adult',
+                		name:'Single',
                 		price:0		
                 	}],
                 	note : '',
@@ -67,7 +67,9 @@ define(["app","jquery", "backbone"],
 		    			fare:'',
 		    			meal:'',
 		    			admission:'',
-		    			roomtype:''
+		    			roomtype:'',
+            			fcommission:20,
+            			mcommission:0
     			}]
 //            	
             },

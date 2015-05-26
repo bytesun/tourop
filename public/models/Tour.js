@@ -93,7 +93,9 @@ define(["jquery", "backbone"],
             			roomtype:'',
             			fare:'',
             			meal:'',
-            			admission:''
+            			admission:'',
+            			fcommission:20,
+            			mcommission:0
             		}]
             		
 

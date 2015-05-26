@@ -105,6 +105,8 @@ define([
 	    			meal:$("#meal_"+gn+"_"+j).val(),
 	    			admission:$("#admission_"+gn+"_"+j).val(),
 	    			roomtype:$("#roomtype_"+gn+"_"+j).val(),
+	    			fcommission:$("#fcommission_"+gn+"_"+j).val(),
+	    			mcommission:$("#mcommission_"+gn+"_"+j).val()
 				}   	    	
 			};
 			
@@ -113,8 +115,8 @@ define([
     			bookdate:$("#bookdate"+gn).val(),
     			pickup:$("#pickup"+gn).val(),
     			dropoff:$("#dropoff"+gn).val(),
-    			commission:$("#commission"+gn).val(),
-    			adjustamount:$("#adjustamount"+gn).val(),
+//    			commission:$("#commission"+gn).val(),
+//    			adjustamount:$("#adjustamount"+gn).val(),
         		tourist:passengers});
         	this.trigger("group:confirm",this.model);        
         	

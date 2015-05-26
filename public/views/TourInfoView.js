@@ -83,6 +83,8 @@ define([
 		    			meal:$("#meal_"+i+"_"+j).val(),
 		    			admission:$("#admission_"+i+"_"+j).val(),
 		    			roomtype:$("#roomtype_"+i+"_"+j).val(),
+		    			fcommission:$("#fcommission_"+i+"_"+j).val(),
+		    			mcommission:$("#mcommission_"+i+"_"+j).val(),
     				}
 
 
@@ -108,8 +110,8 @@ define([
     	    			bookdate:$("#bookdate"+i).val(),
     	    			pickup:$("#pickup"+i).val(),	
     	    			dropoff:$("#dropoff"+i).val(),
-    	    			commission:$("#commission"+i).val(),
-    	    			adjustamount:$("#adjustamount"+i).val(),
+//    	    			commission:$("#commission"+i).val(),
+//    	    			adjustamount:$("#adjustamount"+i).val(),
     	    			agency:agency,
     	    			tourist:tourists
     	    			

@@ -277,13 +277,14 @@ define([
 	        					admission = route.admission[j].price;
 	        					break;
 	        				}
-	        			}	        			
+	        			}	        
+	        			
 	        			//subtotal=subtotal+route[tourists[i].fare]+ route[tourists[i].admission]+route[tourists[i].meal];
 
-	        			var commission = -(fare*(group.get("commission")/100));
+	        			var commission = -(fare*(tourists[i].fcommission/100));
 	        			commission= Math.round(commission * 100) / 100;
 	        			
-	        			var adjustamount = -group.get('adjustamount');
+	        			var adjustamount = -tourists[i].mcommission;
 	        			
 	        			var amount = (fare+admission+meal+commission+adjustamount);
 	        			amount= Math.round(amount * 100) / 100;

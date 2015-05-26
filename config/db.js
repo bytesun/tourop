@@ -83,7 +83,9 @@ var Tour = new Schema({
 			roomtype:String,
 			fare:String,
 			meal:String,
-			admission:String
+			admission:String,
+			fcommission:Number,
+			mcommission:Number
 		}]
 		
 
