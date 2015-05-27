@@ -6,7 +6,7 @@ var Information     = mongoose.model( 'Information' );
 /**
  * create a new case
  */
-router.post('/api/infos', function(req, res) {
+router.post('/api/info', function(req, res) {
 
 	new Information(req.body).save( function( err, info){
 		if(err){
@@ -95,7 +95,7 @@ router.get('/api/infos',function(req,res){
 });
 
 
-router.delete('/api/infos/:id',function(req,res){
+router.delete('/api/info/:id',function(req,res){
 	Information.remove({_id:req.params.id},function(err,count){
 		res.send({error:err,count:count});
 	});

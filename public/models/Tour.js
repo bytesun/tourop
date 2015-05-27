@@ -5,12 +5,9 @@ define(["jquery", "backbone"],
 
         // Creates a new Backbone Model class object
         var Model = Backbone.Model.extend({
-        	 urlRoot: '/api/tours',
-  	       idAttribute: '_id',
+        	urlRoot: '/api/tours',
+  	        idAttribute: '_id',
   			initialize: function() {
-  		         
-
-  			      
   			},
             // Default values for all of the Model attributes
             defaults: {
@@ -203,6 +200,17 @@ define(["jquery", "backbone"],
             		}
             		
             	}]
+            },
+            validate: function(attrs, options) {
+            	console.log('valdate tour model code '+attrs.code);
+            	if(attrs.code == '' || attrs.code == undefined){
+            		return "tour code is required!";
+            	}else  if(attrs.name == '' || attrs.name == undefined){
+            		return "tour name is required!";
+            	}else  if(attrs.departuredate == '' || attrs.departuredate == undefined){
+            		return "tour departuredate is required!";
+            	}
+
             }
         });
         // Returns the Model class

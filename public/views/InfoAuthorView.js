@@ -57,11 +57,15 @@ define([
        	 
     	    var data = Syphon.serialize(this);
     	    this.model.set(data);
+    	    this.model.set({},{validate: true})
+    	    if (!this.model.isValid()) {
+        		app.notify('Error',this.model.validationError,'alert-danger');
+        	}else{
+        		 this.model.save();
+         	    //redirect list page
+         	    app.navigate("info/"+this.model.get("code")+"/"+this.model.get("type"),true);        	
 
-    	    this.model.save();
-
-    	    //redirect list page
-    	    app.navigate("info/"+this.model.get("code")+"/"+this.model.get("type"),true);        	
+        	}
         }
 	});
 });

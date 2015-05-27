@@ -58,13 +58,16 @@ define([
         saveTour:function(e){
         	e.preventDefault();
         	this._saveTour(e);
-        	app.notify('','Tour information has been saved!','alert-info');
+        	if (!this.model.isValid()) {
+        		app.notify('Error',this.model.validationError,'alert-danger');
+        	}else{
+        		app.notify('','Tour information has been saved!','alert-info');
+        	}
         },
         _saveTour: function(e){
         	 
     	    var data = Syphon.serialize(this);
     	    this.model.set(data);
-    	    
     	    //------------------save passenger data-------------------
     	    var gn = $("#gn").val();
 
@@ -210,7 +213,7 @@ define([
     	    	};
 
     	    }
-    	    this.model.set({'schedule':schedule});
+    	    this.model.set({'schedule':schedule},{validate: true});
     	    
     	    //---------------------save bus data----------------------
     	    var bn = $("#bn").val();
@@ -253,7 +256,8 @@ define([
     	    
 //    	    this.render();
 
-//    	    app.navigate("tour",true);         	
+//    	    app.navigate("tour",true);  
+
 
         },
         confirmTour: function(e){

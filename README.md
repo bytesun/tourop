@@ -20,7 +20,8 @@ Manage partner, route information, and create tour
 			
 			----------------------------------------------------------------------
 			Development Trace
-			[2015-5-27] support revising confirmation/invoice and tour.
+			[2015-5-27] 1. support revising confirmation/invoice and tour.
+							2. add required information validation before saving.
 			
 			[2015-5-25] change the fare and meal commission to tourist relative instead of group. 
 			[2015-5-23] 1. Print tour detail schedule report.

@@ -131,9 +131,14 @@ define([
     	    	meal:meal,
     	    	admission:admission,
     	    	schedule:schedule
-    	    });
+    	    },{validate: true});
     	    console.log("ready to save route data: "+JSON.stringify(this.model));
-    	    this.model.save();
+    	    if (!this.model.isValid()) {
+        		app.notify('Error',this.model.validationError,'alert-danger');
+        	}else{
+        		 this.model.save();
+        	}
+    	   
 //    	    	fare:fare,
 //    	    	meal:meal,
 //    	    	admission:admission,
@@ -144,7 +149,9 @@ define([
         },
         saveRoute: function(e){
         	this._saveRoute(e);
-        	 app.navigate("route/"+this.model.get("code"),true); 
+        	if (this.model.isValid()) {
+        	 app.navigate("route/"+this.model.get("code"),true);
+        	}
         }
 
 

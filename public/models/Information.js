@@ -37,7 +37,11 @@ define(["jquery", "backbone"],
 
             // Gets called automatically by Backbone when the set and/or save methods are called (Add your own logic)
             validate: function(attrs) {
-
+            	if(attrs.code == '' || attrs.code == undefined){
+            		return "partner code is required!";
+            	}else  if(attrs.name == '' || attrs.name == undefined){
+            		return "partner name is required!";
+            	}
             }
 
         });
