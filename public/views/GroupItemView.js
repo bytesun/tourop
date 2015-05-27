@@ -22,7 +22,8 @@ define([
         events: {
 //        	"keyup .telephone":"formatTel",
         	"change .passenger_agency" :"addAgency",
-        	"click .btn_confirm_group" : "confirmGroup"
+        	"click .btn_confirm_group" : "confirmGroup",
+        	"click .btn_revise_group" : "reviseGroup"
         },
         regions:{
 			touristRegion: "#tourist_list_region",
@@ -87,6 +88,10 @@ define([
 	        	
         	}); 
 
+        },
+        reviseGroup : function(e){
+        	this.model.set({status:'Revised'});
+        	this.trigger("group:revise",this.model);      
         },
         confirmGroup: function(e){
 

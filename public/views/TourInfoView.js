@@ -46,6 +46,7 @@ define([
             'click .btn_tour_save' : 'saveTour',
             'click .btn_tour_confirm' : 'confirmTour',
             'click .btn_tour_cancel' : 'cancelTour',
+            'click .btn_tour_revise' : 'reviseTour',
             'click .btn_tour_close' : 'closeTour'  
         },
         initialize: function(){
@@ -268,6 +269,12 @@ define([
         	console.log('cancel a tour');
         	this.model.save({status:"Canceled"});
         	app.notify('','The tour has been canceled!','alert-info');
+        	app.navigate("tour",true); 
+        },
+        reviseTour: function(e){
+        	console.log('revise a tour');
+        	this.model.save({status:"New"});
+        	app.notify('','The tour has been revised!','alert-info');
         	app.navigate("tour",true); 
         },
         closeTour: function(e){

@@ -6,7 +6,7 @@ define(["jquery", "backbone"],
 
         // Creates a new Backbone Model class object
         var Model = Backbone.Model.extend({
-        	 urlRoot: '/api/confirmations',
+        	 urlRoot: '/api/confirmation',
   	       idAttribute: '_id',
             // Model Constructor
 

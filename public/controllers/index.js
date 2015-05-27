@@ -210,16 +210,25 @@ define([
 	        			}
 	        		}
 	        	});
-//	        	groupCollectionView.on("childview:group:addagency",function(childview,group,agencycode){
-//
-//	            	var fetchingoitem = app.request("information:entity:fetch",agencycode);
-//	            	$.when(fetchingoitem).done(function(item){
-//	            		if(item!=null){
-//	            			group.set({agency:item.toJSON()});
-//	            		}   	      		
-//	    	        	
-//	            	});       	
-//	        	});
+
+	        	
+	        	groupCollectionView.on("childview:group:revise",function(childview,group){
+	        		app.execute("tour:save");
+	        		//delete old confirmation and invoices
+	        		var fetchingitems = app.request("entities:confirmations",{c:tour.get("code")});
+		        	$.when(fetchingitems).done(function(confirmations){
+		        		var cfm = confirmations.findWhere({no:(tour.get("code")+group.get("no"))});
+		        		console.log('fetching confirmation '+JSON.stringify(cfm));
+		        		cfm.destroy();
+		        	});	
+		        	
+		        	var fetchingitems = app.request("entities:invoices",{c:tour.get("code")});
+		        	$.when(fetchingitems).done(function(invoices){
+		        		var inv = invoices.findWhere({no:(tour.get("code")+group.get("no"))});
+		        		console.log('fetching inv '+JSON.stringify(inv));
+		        		inv.destroy();
+		        	});	
+	        	});
 	        	groupCollectionView.on("childview:group:confirm",function(childview,group){
 
 	        		//save tour information before generating confirmation and invoice

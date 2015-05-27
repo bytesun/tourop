@@ -6,7 +6,7 @@ var Invoice     = mongoose.model('Invoice');
 /**
  * create a new ROUTE
  */
-router.post('/api/invoices', function(req, res) {
+router.post('/api/invoice', function(req, res) {
 	console.log('post invoice data'+JSON.stringify(req.body));
 
 	new Invoice(req.body).save( function( err, invoice){
@@ -21,7 +21,7 @@ router.post('/api/invoices', function(req, res) {
 });
 
 
-router.put('/api/invoices/:id', function(req, res) {
+router.put('/api/invoice/:id', function(req, res) {
 	Invoice.findByIdAndUpdate(
 			req.params.id,
 			{$set:{		
@@ -37,7 +37,7 @@ router.put('/api/invoices/:id', function(req, res) {
 /**
  * get a case by id
  */
-router.get('/api/invoices/:id',function(req,res){
+router.get('/api/invoice/:id',function(req,res){
 	Invoice.findById(req.params.id,function(err,invoice){
 		res.send(invoice);
 	});
@@ -63,13 +63,13 @@ router.get('/api/invoices',function(req,res){
 
 });
 
-router.delete('/api/invoices',function(req,res){
-	Invoice.remove(function(err,count){
-		res.send({error:err,count:count});
-	});
-});
+//router.delete('/api/invoices',function(req,res){
+//	Invoice.remove(function(err,count){
+//		res.send({error:err,count:count});
+//	});
+//});
 
-router.delete('/api/invoices/:id',function(req,res){
+router.delete('/api/invoice/:id',function(req,res){
 	Invoice.remove({_id:req.params.id},function(err,count){
 		res.send({error:err,count:count});
 	});

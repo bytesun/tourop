@@ -6,7 +6,7 @@ var Confirmation     = mongoose.model('Confirmation');
 /**
  * create a new ROUTE
  */
-router.post('/api/confirmations', function(req, res) {
+router.post('/api/confirmation', function(req, res) {
 //	console.log('post confirmation data'+JSON.stringify(req.body));
 
 	new Confirmation(req.body).save( function( err, confirmation){
@@ -21,7 +21,7 @@ router.post('/api/confirmations', function(req, res) {
 });
 
 
-router.put('/api/confirmations/:id', function(req, res) {
+router.put('/api/confirmation/:id', function(req, res) {
 	Confirmation.findByIdAndUpdate(
 			req.params.id,
 			{$set:{		
@@ -50,7 +50,7 @@ router.put('/api/confirmations/:id', function(req, res) {
 /**
  * get a case by id
  */
-router.get('/api/confirmations/:id',function(req,res){
+router.get('/api/confirmation/:id',function(req,res){
 	Confirmation.findById(req.params.id,function(err,confirmation){
 		res.send(confirmation);
 	});
@@ -76,13 +76,13 @@ router.get('/api/confirmations',function(req,res){
 
 });
 
-router.delete('/api/confirmations',function(req,res){
-	Confirmation.remove(function(err,count){
-		res.send({error:err,count:count});
-	});
-});
+//router.delete('/api/confirmations',function(req,res){
+//	Confirmation.remove(function(err,count){
+//		res.send({error:err,count:count});
+//	});
+//});
 
-router.delete('/api/confirmations/:id',function(req,res){
+router.delete('/api/confirmation/:id',function(req,res){
 	Confirmation.remove({_id:req.params.id},function(err,count){
 		res.send({error:err,count:count});
 	});

@@ -263,7 +263,8 @@ define([
  			//ocase.fetch().done(function(){
  	//		});
  			return defer.promise();
- 		}, 	 		
+ 		}, 	
+ 	
  	};
  	
  	app.reqres.setHandler("entities:informations", function(query){
@@ -312,6 +313,7 @@ define([
  		return API.getInvoice(id);
  	});
  	
+	
  	app.reqres.setHandler("entities:invoices",function(query){
  		return API.getInvoices(query);
  	});  	
