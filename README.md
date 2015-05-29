@@ -20,6 +20,9 @@ Manage partner, route information, and create tour
 			
 			----------------------------------------------------------------------
 			Development Trace
+			[2015-5-28] 1. support deleting partner and route information
+							2. add confimation notice before doing deleting/confirm... operations
+							
 			[2015-5-27] 1. support revising confirmation/invoice and tour.
 							2. add required information validation before saving.
 			

@@ -29,10 +29,7 @@ define([
             selector: "#notification",
             regionType: NotifyRegion
         },
-        dialog: {
-            selector: "#dialog",
-            regionType: DialogRegion
-        }
+        dialog: DialogRegion
 	});
 
 
@@ -117,7 +114,7 @@ define([
     app.commands.setHandler("app:dialog:confirm", function(data) {
         require(['views/DialogView', 'models/Dialog', 'tpl!templates/confirmModal.html'],
             function(DialogView, DialogModel, ModalTpl) {
-
+        		console.log('calling confirm dialog!');
                 app.dialog.show(new DialogView({
                     template: ModalTpl,
                     model: new DialogModel(data),

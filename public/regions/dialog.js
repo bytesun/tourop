@@ -4,8 +4,9 @@ define([
 ], function(app, Marionette){
 
     return  Marionette.Region.extend({
+    	el: "#dialog",
         onShow: function(view){
-
+        	console.log('showing dialog!');
             this.listenTo(view, "dialog:close", this.closeDialog);
 
             var self = this;

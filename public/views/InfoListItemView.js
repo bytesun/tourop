@@ -13,7 +13,8 @@ define([
 		model:InfoModel,
 		tagName:'tr',
         events: {
-        	'click .a_info_edit': 'editInfo'        	
+        	'click .a_info_edit': 'editInfo',
+        	'click .a_info_delete': 'delInfo'   
         },
         editInfo : function(e){
         	app.navigate("info_new");
@@ -22,6 +23,17 @@ define([
         	});
         	app.main.show(infoView);
         	 
+        },
+        delInfo : function(e){
+        	var self = this;
+        	app.execute('app:dialog:confirm',{title:'Confirm!',message:'You will delete <b>\"'+self.model.get('name')+"\"</b>! Please confirm it first.",
+        		confirmNo: function(){
+        			console.log('cancel deleting operation');
+        		},
+        		confirmYes:function(){
+        			self.model.destroy();		
+        		}});
+//        	
         }
 
 	});

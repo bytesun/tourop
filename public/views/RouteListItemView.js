@@ -15,24 +15,25 @@ define([
 		model:RouteModel,
 		tagName:'tr',
 		events:{
-			'click .start_tour': 'startTour'
+			'click .start_tour': 'startTour',
+			'click .a_route_delete': 'delRoute'
+				
 		},
 		startTour: function(e){
-//			console.log('start a tour with '+JSON.stringify(this.model));
-//			var tourModel = new TourModel();
-//			tourModel.set({
-//				routecode:this.model.get('code'),
-//				name:this.model.get('name'),
-//				days:this.model.get("days"),
-//				itinerary:this.model.get('itinerary'),
-//				note:this.model.get('note')
-//				
-//			});
-//			console.log('start a tour with '+JSON.stringify(tourModel));
-//			app.main.show(new TourInfoView({
-//        		model: tourModel
-//        	}));
 			app.navigate("/tour_new/"+this.model.get("_id"),true);
+		},
+		delRoute: function(e){
+			e.preventDefault();
+			var self =this;
+			app.execute('app:dialog:confirm',{title:'Confirm!',message:'You will delete <b>\"'+self.model.get('name')+"\"</b>! Please confirm it first.",
+        		confirmNo: function(){
+        			console.log('cancel deleting operation');
+        		},
+        		confirmYes:function(){
+        			console.log('delete a route : '+JSON.stringify(self.model));
+        			self.model.destroy();		
+        		}});
+        	
 		}
 	});
 });

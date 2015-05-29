@@ -262,18 +262,36 @@ define([
         },
         confirmTour: function(e){
         	console.log('confirm a tour');
-        	//generate confirmation reports
-        	this.model.set({status:"Confirmed"});
-        	this.model.save();
-        	app.notify('','Tour information has been confirmed and no information can be changed!','alert-info');        	
-        	 app.navigate("tour",true);  
+			var self =this;
+			app.execute('app:dialog:confirm',{title:'Confirm!',message:'You will confirm TOUR : <b>\"'+self.model.get('name')+"\"</b>! Are you sure?",
+        		confirmNo: function(){
+        			console.log('cancel deleting operation');
+        		},
+        		confirmYes:function(){
+                	//generate confirmation reports
+                	self.model.set({status:"Confirmed"});
+                	self.model.save();
+                	app.notify('','Tour information has been confirmed and no information can be changed!','alert-info');        	
+                	 app.navigate("tour",true); 	
+        		}});
+        	
+ 
         	//generate invoice reports
         }, 
         cancelTour: function(e){
         	console.log('cancel a tour');
-        	this.model.save({status:"Canceled"});
-        	app.notify('','The tour has been canceled!','alert-info');
-        	app.navigate("tour",true); 
+			var self =this;
+			app.execute('app:dialog:confirm',{title:'Confirm!',message:'You will cancel <b>\"'+self.model.get('name')+"\"</b>! Are you sure?",
+        		confirmNo: function(){
+        			console.log('cancel deleting operation');
+        		},
+        		confirmYes:function(){
+                	self.model.save({status:"Canceled"});
+                	app.notify('','The tour has been canceled!','alert-info');
+                	app.navigate("tour",true); 	
+        		}});        	
+        	
+
         },
         reviseTour: function(e){
         	console.log('revise a tour');
@@ -283,11 +301,21 @@ define([
         },
         closeTour: function(e){
         	console.log('close tour');
-        	this.model.set({status:"Closed",feedback:$("#feedback").val()});
-        	console.log("ready to close model: "+JSON.stringify(this.model));
-        	this.model.save();
-        	app.notify('','The tour has been closed!','alert-info');
-        	app.navigate("tour",true); 
+        	
+			var self =this;
+			app.execute('app:dialog:confirm',{title:'Confirm!',message:'<b>\"'+self.model.get('name')+"\"</b> will be closed and it can't be revised! Are you sure?",
+        		confirmNo: function(){
+        			console.log('cancel deleting operation');
+        		},
+        		confirmYes:function(){
+                	self.model.set({status:"Closed",feedback:$("#feedback").val()});
+
+                	self.model.save();
+                	app.notify('','The tour has been closed!','alert-info');
+                	app.navigate("tour",true); 	
+        		}});        	
+        	        	
+
         }
 
 
