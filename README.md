@@ -14,6 +14,8 @@ Manage partner, route information, and create tour
 			
 			----------------------------------------------------------------------
 			Development Trace
+			[2015-6-2] add GST No. in invoice page.
+			
 			[2015-6-1]  1. sort confirmations/invoices by no.
 			
 			[2015-5-28] 1. support deleting partner and route information
