@@ -9,8 +9,10 @@ define(["jquery","backbone",
     var Collection = Backbone.Collection.extend({
       url: '/api/confirmations',
       // Tells the Backbone Collection that all of it's models will be of type Model (listed up top as a dependency)
-      model: Model
-
+      model: Model,
+      comparator: function( collection ){
+          return( collection.get("no") );
+        }
     });
 
     // Returns the Model class

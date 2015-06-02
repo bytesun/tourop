@@ -3,23 +3,19 @@ CANTOP LOCAL TOUR SYSTEM
 Manage partner, route information, and create tour  
 [Live demo](http://tour.sunorth.org) (cantop/cantop)
 
-	    	*Note: this is only for development tracking, so it will be removed after deployment.
-
-			Schedule
-			Week-1 : User Interface development
-			Week-2 : Basic Information(agency/hotel/restaurant/route) input functions
-			Week-3/4 : Core business logic (order input, generate voucher/invoice)
-			Week-5 : System deployment and defects fix 
-			
+			-------------------------------------------------------------------			
 			Backlog:
-				1. download invoice with pdf
-				
+				* download invoice with pdf				
 				* result sorting and paging
+				* auto fill partner list
+				* report 
 
 				
 			
 			----------------------------------------------------------------------
 			Development Trace
+			[2015-6-1]  1. sort confirmations/invoices by no.
+			
 			[2015-5-28] 1. support deleting partner and route information
 							2. add confimation notice before doing deleting/confirm... operations
 							
