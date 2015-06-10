@@ -14,6 +14,7 @@ Manage partner, route information, and create tour
 			
 			----------------------------------------------------------------------
 			Development Trace
+			[2015-6-9] show "gender" in name list for hotel/guide
 			[2015-6-2] add GST No. in invoice page.
 			
 			[2015-6-1]  1. sort confirmations/invoices by no.
