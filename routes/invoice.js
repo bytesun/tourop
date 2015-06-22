@@ -2,23 +2,41 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require( 'mongoose' );
 var Invoice     = mongoose.model('Invoice');
+var Counter = mongoose.model('Counter');
 
 /**
  * create a new ROUTE
  */
 router.post('/api/invoice', function(req, res) {
-	console.log('post invoice data'+JSON.stringify(req.body));
+//	console.log('post invoice data'+JSON.stringify(req.body));
+	Counter.findOneAndUpdate(
+            {countername: 'invoiceno'},
+            {$inc: { seq: 1 } },
+            {new:true},
+            function(err,doc){
+           	 if(err){
+           		 console.log('error :'+err);
+           	 }else{
+           		var invoiceno = doc.seq;
+           		if(doc.seq<10)invoiceno='000'+doc.seq;
+           		else if(doc.seq<100)invoiceno='00'+doc.seq;
+           		else if(doc.seq<1000)invoiceno='0'+doc.seq;
+           		var invoice = new Invoice(req.body);
+           		invoice.set({'no':invoiceno});
+           		invoice.save( function( err, invoice){
+           			if(err){
+           				console.log('error : '+err);
+           				return res.send({error:err});
+           			}else{
+           				res.send(invoice);	
+           			}
+           			
+           		  });
 
-	new Invoice(req.body).save( function( err, invoice){
-		if(err){
-			return res.send({error:err});
-		}else{
-			console.log('success save invoice:'+invoice);
-			res.send(invoice);	
-		}
-		
-	  });
-});
+           	 }
+            }
+  );
+	});
 
 
 router.put('/api/invoice/:id', function(req, res) {
@@ -52,7 +70,7 @@ router.get('/api/invoices',function(req,res){
 		query.tourcode = new RegExp('^'+c, "i");
 	}
 	
-	console.log('query is '+JSON.stringify(query));
+	console.log('invoice query is '+JSON.stringify(query));
 	
 	Invoice.find(query,
 				null,
@@ -74,5 +92,7 @@ router.delete('/api/invoice/:id',function(req,res){
 		res.send({error:err,count:count});
 	});
 });
+
+
 
 module.exports = router;

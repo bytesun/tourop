@@ -224,7 +224,7 @@ define([
 		        	
 		        	var fetchingitems = app.request("entities:invoices",{c:tour.get("code")});
 		        	$.when(fetchingitems).done(function(invoices){
-		        		var inv = invoices.findWhere({no:(tour.get("code")+group.get("no"))});
+		        		var inv = invoices.findWhere({cfmno:(tour.get("code")+group.get("no"))});
 		        		console.log('fetching inv '+JSON.stringify(inv));
 		        		inv.destroy();
 		        	});	
@@ -326,6 +326,7 @@ define([
 		        	var invoice = new Invoice();
 		        	invoice.set({	        			
 	        			no:tour.get("code")+group.get("no"),
+	        			cfmno:cfm.get('no'),
 	        			tourcode:tour.get("code"),
 	        			tourname:tour.get("name"),
 	        			departuredate:tour.get("departuredate"),

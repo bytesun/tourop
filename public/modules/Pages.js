@@ -228,7 +228,7 @@ define([
  			return defer.promise();
  		},
 		getInvoices:function(query){
- 			console.log('calling API.getInvoices');
+ 			console.log('calling API.getInvoices:'+query);
  			var invoices = new Invoices();
  			var defer = $.Deferred();
  			invoices.fetch({

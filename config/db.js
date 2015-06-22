@@ -411,7 +411,10 @@ var Invoice = new Schema({
 
 	}]
 });
-
+var Counter = new Schema({
+	countername:String,
+	seq:Number
+});
 
 mongoose.model( 'Route', Route );
 mongoose.model( 'Tour', Tour );
@@ -421,7 +424,7 @@ mongoose.model( 'Bus', Bus );
 mongoose.model( 'Setting', Setting );
 mongoose.model( 'Confirmation', Confirmation );
 mongoose.model( 'Invoice', Invoice );
-
+mongoose.model( 'Counter', Counter );
 
 
 var host = process.env.OPENSHIFT_MONGODB_DB_HOST||"localhost";
