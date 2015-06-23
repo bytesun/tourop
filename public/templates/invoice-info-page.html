@@ -2,30 +2,30 @@
 <div id="invoice-info-template" class="container" style="padding-bottom: 100px;">
 	<!-- header -->
 	<div class="row">
-		<table width="100%"  > 
-			<tr>
-				<td width="10%">
-				<img src="/assets/img/logo.png">
-				</td>
-				<td width="80%">
-					<h2 class="text text-primary"><%=tourcom.name%>      </h2>
-				</td>
-				<td width="10%">
-				<h2 class="text text-primary"><small>Invoice</small></h2>
-				</td>
-		</tr>
-		</table>
+		<div class="col-xs-5">
+		<img src="/assets/img/logo.png" >
+		</div>
+		<div class="col-xs-1 text-right" style="font-size:80%;">
+			Office:
+		</div>
+		<div class="col-xs-6" style="font-size:80%;">
+					<%=tourcom.address%>, <%=tourcom.city%> <%=tourcom.province%>, <%=tourcom.country%> <%=tourcom.postcode%><br>
+					 Tel: <%=tourcom.telephone%>    Fax: <%=tourcom.fax%><br> 
+					 B.C. Reg:#<%=tourcom.regno%>     GST:#13780 3771 RT0001
+		</div>		
+
 	</div> 
 	<div class="row">
-		<table width="100%" class="table" > 	
-			<tr>
-				<td width="5%">
-				<br>
-					<B>TO</B>: <br>
-
-				</td>
-				<td  width="45%">
-					<br><br>
+		<div class="col-xs-12 text-center">
+			<hr>
+			<h3><u>INVOICE</u></h3>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-1">
+			<b>TO:</b>
+		</div>
+		<div class="col-xs-6">
 					<%=agency.name%><BR>
 					<%=agency.address%><br>
 					<%=agency.city%> <%=agency.province%><BR>
@@ -33,9 +33,8 @@
 					
 					Phone : <%=agency.telphone%> <br>
 					Fax : <%=agency.fax%>				
-				</td>	
-				<td>
-				<br>
+		</div>
+		<div class="col-xs-5">
 					<b>Date</b> : <%=issuedate%> <BR><br>
 					<b>Invoice No.</b> : <%=no%>
 					
@@ -49,11 +48,10 @@
 							<td align="center"><%=agency.contact%></td>
 							<td align="center"><%=op%></td>
 						</tr>
-					</table>
-				</td>
-	
-			</tr>
-	    </table>      
+					</table>		
+		</div>
+		
+	   
   	</div>
 	
 	<div class="row">
@@ -135,8 +133,7 @@
 	</div>
 	
 	<div class="row">
-	 	<div class="col-md-12">
-	 		<hr>
+	 	<div class="col-xs-12">
 	 		
 			<!-- remarks -->
 			<label class="row invoice_remark_label" id="invoice_remark_label">
@@ -148,20 +145,44 @@
 				<pre  style="background-color: #FFFFFF;"><%=remark%></pre>
 			<%}%>
 			</div>
+			
+			<hr>
 		</div>
 	</div>
 
+	<div class="row">
+	 	<div class="col-xs-6" style="font-size:80%;">
+			CANCELLATION POLICY<br>
+			OVER 30 DAYS:&nbsp;&nbsp; C$50.00 HANDLING CHARGE PER PERSON<br>
+			21-30 DAYS: &nbsp;&nbsp; 50% PENALTY<br>
+			8-20 DAYS: &nbsp;&nbsp;75% PENALTY<br>
+			WITHIN 7 DAYS: &nbsp;&nbsp;100% NON-REFUNDABLE<br> 
+			INSURANCE OFFERED<br>
+		</div>
+
+	 	<div class="col-xs-6" style="font-size:80%;">
+
+			E. & O.E.<br>
+			For proper credit, please specify by writing invoice numbers
+			being paid on your cheque, Receipt will be given on request.
+			This invoice is payable upon presentation. Past Due accounts
+			subject to service charge of 2% per month,plus any legal
+			fees incurred in order to obtain payment for this invoice.
+		</div>
+	</div>	
+	
 </div>
 <div id="editor"></div>
+<!-- 
    <footer class="footer" style="position: fixed;bottom: 0;">
       <div class="container">
       <hr>
              <table  width="100%">
 		     	<tr><td align="center">
-		     	<%=tourcom.address%>, <%=tourcom.city%> <%=tourcom.province%>, <%=tourcom.country%> <%=tourcom.postcode%> Tel:<%=tourcom.telephone%> Fax:<%=tourcom.fax%><br> 
+ 
 					Please verify the details and advise us of any error immediately.<br>
 					Please remit payment within 7 days, interest of 2% per month on overdue account.<br>
-					GST No. 13780 3771 RT0001 , B.C. Reg.#<%=tourcom.regno%>  
+					
 					
 		     		
 		
@@ -169,5 +190,5 @@
 		     </table>  
       </div>
     </footer>
-
+ -->
    

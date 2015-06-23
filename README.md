@@ -5,15 +5,20 @@ Manage partner, route information, and create tour
 
 			-------------------------------------------------------------------			
 			Backlog:
+				* search by route in tour list
+				* add status - canceled for invoice
 				* download invoice with pdf				
 				* result sorting and paging
-				* auto fill partner list
+				* auto fill partner list 
 				* report 
+				
 
 				
 			
 			----------------------------------------------------------------------
 			Development Trace
+			[2015-6-23] adjust invoice layout.
+			[2015-6-22] change invoice no. by sequence number.
 			[2015-6-9] show "gender" in name list for hotel/guide
 			[2015-6-2] add GST No. in invoice page.
 			
