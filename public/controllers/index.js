@@ -133,26 +133,32 @@ define([
 	    		  model:user
 	    	  }));
 	      },
-	      tour : function(code,status){
-
+	      tour : function(query){
+	    	  	if(query == null) query = {};
+	    	  	console.log('query is :'+JSON.stringify(query));
 	        	var tourView = new TourView({
 	        		model:new TourModel()
 	        	});
-	        	var fetchingitems = app.request("entities:tours",{c:code,status:status});
+	        	tourView.on('tours:search',function(q){
+	        		var fetchingitems = app.request("entities:tours",q);
 		        	$.when(fetchingitems).done(function(tours){
 		        			        		
 			        	var tourCollectionView = new TourCollectionView({
 			        		collection:tours
 			        	});
-			        	
-		        	
-			        	tourView.on("show",function(){	        		
-			        		tourView.tourListRegion.show(tourCollectionView);
-			        		
-			        	});
-			        	app.main.show(tourView);
+			        	tourView.tourListRegion.show(tourCollectionView);
+
 		        	});	
+	        	});
 	        	
+	        	tourView.on("show",function(){
+	        		tourView.trigger("tours:search",query);
+	        		//tourView.tourListRegion.show(tourCollectionView);
+	        		
+	        	});
+	        	app.main.show(tourView);
+	        	
+
 	        	
 	        },	    
 	        tour_info: function(id){

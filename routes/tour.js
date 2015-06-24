@@ -63,36 +63,41 @@ router.get('/api/tours',function(req,res){
 	var c = req.query.c;
 	var status =  req.query.status;
 	var query = {};
-	if(c != 0 && c != ''){
+	if(req.query.r != undefined && req.query.r != ''){
+		query={'route.code': new RegExp('^'+req.query.r, "i")};
+	}
+	if(c != undefined && c != 0 && c != ''){
 		query.code = new RegExp('^'+c, "i");
 	}else{
 		query.status={$in:['New','Confirmed']};
 	}
-	if(status != "ALL" && status != ''){
+	if(status!= undefined && status != "ALL" && status != ''){
 		query.status=status;
 	}
+
 	
 	console.log('query tour is ',query);
 	
 	Tour.find(query,
 				null,
 				null,function(err,tours){
+			console.log('tours result:'+JSON.stringify(tours));
 			res.send(tours);
 	});
 	
 
 });
 
-router.delete('/api/tours',function(req,res){
-	Tour.remove(function(err,count){
-		res.send({error:err,count:count});
-	});
-});
-
-router.delete('/api/tours/:id',function(req,res){
-	Tour.remove({_id:req.params.id},function(err,count){
-		res.send({error:err,count:count});
-	});
-});
+//router.delete('/api/tours',function(req,res){
+//	Tour.remove(function(err,count){
+//		res.send({error:err,count:count});
+//	});
+//});
+//
+//router.delete('/api/tours/:id',function(req,res){
+//	Tour.remove({_id:req.params.id},function(err,count){
+//		res.send({error:err,count:count});
+//	});
+//});
 
 module.exports = router;
