@@ -6,10 +6,10 @@ Manage partner, route information, and create tour
 			-------------------------------------------------------------------			
 			Backlog:
 				* search by route in tour list
-				* add status - canceled for invoice
-				* download invoice with pdf				
+				* add status - canceled for invoice				* 
+				* download invoice with pdf	/ email			
 				* result sorting and paging
-				* auto fill partner list 
+				* auto fill partner list when type partner code
 				* report 
 				
 
