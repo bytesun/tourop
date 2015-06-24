@@ -23,7 +23,9 @@ define([
 //        	"keyup .telephone":"formatTel",
         	"change .passenger_agency" :"addAgency",
         	"click .btn_confirm_group" : "confirmGroup",
-        	"click .btn_revise_group" : "reviseGroup"
+        	"click .btn_revise_group" : "reviseGroup",
+            'focus .passenger_agency': 'getAutocomplete',
+            'keydown .passenger_agency':'invokefetch'
         },
         regions:{
 			touristRegion: "#tourist_list_region",
@@ -61,6 +63,17 @@ define([
         	
         	$(e.target).val(out);
         },
+        invokefetch : function(){
+        	console.log('fetching');
+//            this.myCollection.fetch(); 
+//            $("#names").unbind( "keydown", invokefetch);
+         },    
+         getAutocomplete: function () {
+        	 console.log('autocomplete');
+//             $("#names").autocomplete({
+//                 source: JSON.stringify(this.myCollection)
+//             });
+         },        
         addAgency : function(e){
         	e.preventDefault();
         	var inputid = e.target.id;
@@ -134,6 +147,8 @@ define([
        
         	
         },
+        
+       
         _showTourists:function(){
         	var self = this;
         	var tourists = this.model.get('tourist');

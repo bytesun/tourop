@@ -76,12 +76,12 @@ router.get('/api/tours',function(req,res){
 	}
 
 	
-	console.log('query tour is ',query);
+//	console.log('query tour is ',query);
 	
 	Tour.find(query,
 				null,
 				null,function(err,tours){
-			console.log('tours result:'+JSON.stringify(tours));
+//			console.log('tours result:'+JSON.stringify(tours));
 			res.send(tours);
 	});
 	
