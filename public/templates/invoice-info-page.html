@@ -2,13 +2,13 @@
 <div id="invoice-info-template" class="container" style="padding-bottom: 100px;">
 	<!-- header -->
 	<div class="row">
-		<div class="col-xs-5">
+		<div class="col-xs-offset-1 col-xs-4">
 		<img src="/assets/img/logo.png" >
 		</div>
-		<div class="col-xs-1 text-right" style="font-size:80%;">
+		<div class="col-xs-1 text-right" style="font-size:xx-small;">
 			Office:
 		</div>
-		<div class="col-xs-6" style="font-size:80%;">
+		<div class="col-xs-5" style="font-size:xx-small;">
 					<%=tourcom.address%>, <%=tourcom.city%> <%=tourcom.province%>, <%=tourcom.country%> <%=tourcom.postcode%><br>
 					 Tel: <%=tourcom.telephone%>    Fax: <%=tourcom.fax%><br> 
 					 B.C. Reg:#<%=tourcom.regno%>     GST:#13780 3771 RT0001
@@ -16,16 +16,16 @@
 
 	</div> 
 	<div class="row">
-		<div class="col-xs-12 text-center">
+		<div class="col-xs-offset-1 col-xs-10 text-center">
 			<hr>
-			<h3><u>INVOICE</u></h3>
+			<u style="font-size:medium;">INVOICE</u>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-xs-1">
+		<div class="col-xs-offset-1 col-xs-1" style="font-size:x-small;">
 			<b>TO:</b>
 		</div>
-		<div class="col-xs-6">
+		<div class="col-xs-5" style="font-size:x-small;">
 					<%=agency.name%><BR>
 					<%=agency.address%><br>
 					<%=agency.city%> <%=agency.province%><BR>
@@ -34,7 +34,7 @@
 					Phone : <%=agency.telphone%> <br>
 					Fax : <%=agency.fax%>				
 		</div>
-		<div class="col-xs-5">
+		<div class="col-xs-4" style="font-size:x-small;">
 					<b>Date</b> : <%=issuedate%> <BR><br>
 					<b>Invoice No.</b> : <%=no%>
 					
@@ -56,17 +56,18 @@
 	
 	<div class="row">
 	<br>
+	<div class="col-xs-offset-1 col-xs-10">
 	<!-- tour info -->
-	<table width="100%" class="table" > 
+	<table width="100%" class="table"  style="font-size:x-small;"> 
 		<tr>
-			<td><b>Tour Name</b></td>
-			<td><b>Passenger Name</b></td>
-			<td align="right"><b>Price</b></td>
-			<td align="right"><b>Admission</b></td>
-			<td align="right"><b>Meal</b></td>
-			<td align="right"><b>Commission</b></td>
-			<td align="right"><b>Adjust</b></td>
-			<td align="right"><b>Amount</b></td>
+			<td><b>TOUR</b></td>
+			<td><b>PASS</b></td>
+			<td align="right"><b>PRIC</b></td>
+			<td align="right"><b>ADMI</b></td>
+			<td align="right"><b>MEAL</b></td>
+			<td align="right"><b>COMM</b></td>
+			<td align="right"><b>ADJU</b></td>
+			<td align="right"><b>AMNT</b></td>
 			
 		</tr>
 		<%for(var i=0;i<tourist.length;i++){
@@ -129,14 +130,15 @@
 		
 		</tr>
 		
-	</table>			
+	</table>
+	</div>			
 	</div>
 	
 	<div class="row">
-	 	<div class="col-xs-12">
+	 	<div class="col-xs-offset-1 col-xs-10"  style="font-size:x-small;">
 	 		
 			<!-- remarks -->
-			<label class="row invoice_remark_label" id="invoice_remark_label">
+			<label class="invoice_remark_label" id="invoice_remark_label">
 				<b id="label_remark">Remarks:</b>
 			</label>
 	
@@ -150,45 +152,38 @@
 		</div>
 	</div>
 
-	<div class="row">
-	 	<div class="col-xs-6" style="font-size:80%;">
-			CANCELLATION POLICY<br>
-			OVER 30 DAYS:&nbsp;&nbsp; C$50.00 HANDLING CHARGE PER PERSON<br>
-			21-30 DAYS: &nbsp;&nbsp; 50% PENALTY<br>
-			8-20 DAYS: &nbsp;&nbsp;75% PENALTY<br>
-			WITHIN 7 DAYS: &nbsp;&nbsp;100% NON-REFUNDABLE<br> 
-			INSURANCE OFFERED<br>
-		</div>
-
-	 	<div class="col-xs-6" style="font-size:80%;">
-
-			E. & O.E.<br>
-			For proper credit, please specify by writing invoice numbers
-			being paid on your cheque, Receipt will be given on request.
-			This invoice is payable upon presentation. Past Due accounts
-			subject to service charge of 2% per month,plus any legal
-			fees incurred in order to obtain payment for this invoice.
-		</div>
-	</div>	
+			
 	
 </div>
 <div id="editor"></div>
-<!-- 
-   <footer class="footer" style="position: fixed;bottom: 0;">
+
+   <footer style="position: relative;clear:both;bottom:0px;">
       <div class="container">
-      <hr>
-             <table  width="100%">
-		     	<tr><td align="center">
- 
-					Please verify the details and advise us of any error immediately.<br>
-					Please remit payment within 7 days, interest of 2% per month on overdue account.<br>
-					
-					
-		     		
+	<div class="row">
 		
-		     	</td></tr>
-		     </table>  
+			 	<div class="col-xs-offset-1 col-xs-5" style="font-size:xx-small;">
+			 		<p>
+					CANCELLATION POLICY<br>
+					OVER 30 DAYS:&nbsp;&nbsp; C$50.00 HANDLING CHARGE PER PERSON<br>
+					21-30 DAYS: &nbsp;&nbsp; 50% PENALTY<br>
+					8-20 DAYS: &nbsp;&nbsp;75% PENALTY<br>
+					WITHIN 7 DAYS: &nbsp;&nbsp;100% NON-REFUNDABLE<br> 
+					INSURANCE OFFERED<br>
+					</p>
+				</div>
+		
+			 	<div class="col-xs-5" style="font-size:xx-small;">
+					<p>
+					E. & O.E.<br>
+					For proper credit, please specify by writing invoice numbers
+					being paid on your cheque, Receipt will be given on request.
+					This invoice is payable upon presentation. Past Due accounts
+					subject to service charge of 2% per month,plus any legal
+					fees incurred in order to obtain payment for this invoice.
+					</p>
+				</div>
+			</div>	
       </div>
     </footer>
- -->
+
    

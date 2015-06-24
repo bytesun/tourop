@@ -1,6 +1,7 @@
 <div id="voucher-info-template" class="container" style="padding-bottom: 100px;">
 	<!-- header -->
 	<div class="row">
+		<div class="col-xs-offset-1 col-xs-10">	
 		<table width="100%"  > 
 			<tr>
 				<td width="90%">
@@ -12,10 +13,11 @@
 				</td>
 		</tr>
 		</table>
+		</div>
 	</div> 
 	<div class="row">
-
-		<table width="100%" class="table" > 
+	<div class="col-xs-offset-1 col-xs-10">	
+		<table width="100%" class="table" style="font-size:small;"> 
 	
 			<tr>
 				<td width="5%">
@@ -54,13 +56,15 @@
 				</td>
 	
 			</tr>
-	    </table>      
+	    </table>   
+	    </div>   
   	</div>
 	
 	<div class="row">
+	<div class="col-xs-offset-1 col-xs-10">	
 	<br>
 	<!-- tour info -->
-	<table width="100%" class="table" > 
+	<table width="100%" class="table" style="font-size:small;"> 
 		<tr>
 			<th>Tour Name</th>
 			<th>Passenger Name</th>
@@ -89,14 +93,14 @@
 			
 		</tr>
 		<%}%>
-	</table>			
+	</table>
+	</div>			
 	</div>
 	
-	<div class="row">
-	 	<div class="col-md-12">
+	<div class="row" >
+	 	<div class="col-xs-offset-1 col-xs-10" style="font-size:small;">	
 		<!-- remarks -->
-		<div class="row remark_label">
-		<hr>
+		<div class="remark_label">
 			<b>Remarks:</b>
 		</div>
 
@@ -106,18 +110,21 @@
 			<%}%>
 		</div>
 		</div>
+		
 	</div>
 
 </div>
 
-   <footer class="footer" style="position: fixed;bottom: 0;">
+  <footer style="position: relative;clear:both;">
       <div class="container">
-      <hr>
-             <table  width="100%">
-     	<tr><td align="center">This confirmation supersedes all previous confirmations, if any, with the same booking reference.<br>
-     		Please verify the details and advise us of any error immediately.<br>
-     		<%=tourcom.province%> Reg. #<%=tourcom.regno%>  Company Tel:<%=tourcom.telephone%>
-     	</td></tr>
-     </table>  
+	   <div class="row" >
+	      <div class="col-xs-offset-1 col-xs-10">	
+	      <hr>
+	     	<p class="text-center"  style="font-size:x-small;">This confirmation supersedes all previous confirmations, if any, with the same booking reference.<br>
+	     		Please verify the details and advise us of any error immediately.<br>
+	     		<%=tourcom.province%> Reg. #<%=tourcom.regno%>  Company Tel:<%=tourcom.telephone%>
+	     	</p>	
+	      </div>
+	    </div>      
       </div>
-    </footer>
+ </footer>      

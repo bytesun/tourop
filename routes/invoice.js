@@ -81,6 +81,38 @@ router.get('/api/invoices',function(req,res){
 
 });
 
+//update invoice status
+router.post('/api/invoice/status', function(req, res) {
+//	console.log('post invoice data'+JSON.stringify(req.body));
+	Invoice.findOneAndUpdate(
+            {countername: 'invoiceno'},
+            {$inc: { seq: 1 } },
+            {new:true},
+            function(err,doc){
+           	 if(err){
+           		 console.log('error :'+err);
+           	 }else{
+           		var invoiceno = doc.seq;
+           		if(doc.seq<10)invoiceno='000'+doc.seq;
+           		else if(doc.seq<100)invoiceno='00'+doc.seq;
+           		else if(doc.seq<1000)invoiceno='0'+doc.seq;
+           		var invoice = new Invoice(req.body);
+           		invoice.set({'no':invoiceno});
+           		invoice.save( function( err, invoice){
+           			if(err){
+           				console.log('error : '+err);
+           				return res.send({error:err});
+           			}else{
+           				res.send(invoice);	
+           			}
+           			
+           		  });
+
+           	 }
+            }
+  );
+	});
+
 //router.delete('/api/invoices',function(req,res){
 //	Invoice.remove(function(err,count){
 //		res.send({error:err,count:count});

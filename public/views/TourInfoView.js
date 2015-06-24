@@ -287,6 +287,8 @@ define([
         		},
         		confirmYes:function(){
                 	self.model.save({status:"Canceled"});
+                	//also update invoice status
+                	
                 	app.notify('','The tour has been canceled!','alert-info');
                 	app.navigate("tour",true); 	
         		}});        	

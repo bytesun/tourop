@@ -370,6 +370,7 @@ var Invoice = new Schema({
 	nontaxable:Number,
 	tax:Number,
 	total:Number,
+	status:String,
 	tourcom:{
 		name:String,
 		address:String,
