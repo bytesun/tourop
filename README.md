@@ -18,7 +18,7 @@ Manage partner, route information, and create tour
 			----------------------------------------------------------------------
 			Development Trace
 			[2015-6-23] adjust invoice layout.
-			[2015-6-22] change invoice no. by sequence number. (db.counters.insert({countername:'invoiceno',seq:'0'}))
+			[2015-6-22] change invoice no. by sequence number. (db.counters.insert({countername:'invoiceno',seq:0}))
 						
 			[2015-6-9] show "gender" in name list for hotel/guide
 			[2015-6-2] add GST No. in invoice page.

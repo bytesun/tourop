@@ -12,7 +12,7 @@ router.post('/api/invoice', function(req, res) {
 	Counter.findOneAndUpdate(
             {countername: 'invoiceno'},
             {$inc: { seq: 1 } },
-            {new:true},
+//            {new:true},
             function(err,doc){
            	 if(err){
            		 console.log('error :'+err);

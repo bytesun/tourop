@@ -250,7 +250,7 @@ define([
     	    this.model.set("bus",bus);    	    
     	    
     	    this.model.unset("routecode");
-    	    console.log("ready to save data: "+JSON.stringify(this.model));
+//    	    console.log("ready to save data: "+JSON.stringify(this.model));
 //    	    this.trigger("tour:save");
     	    this.model.save();
     	    

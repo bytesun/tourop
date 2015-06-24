@@ -225,8 +225,10 @@ define([
 		        	var fetchingitems = app.request("entities:invoices",{c:tour.get("code")});
 		        	$.when(fetchingitems).done(function(invoices){
 		        		var inv = invoices.findWhere({cfmno:(tour.get("code")+group.get("no"))});
-		        		console.log('fetching inv '+JSON.stringify(inv));
-		        		inv.destroy();
+		        		if(inv != undefined){
+		        			console.log('fetching inv '+JSON.stringify(inv));
+		        			inv.destroy();
+		        		}
 		        	});	
 	        	});
 	        	groupCollectionView.on("childview:group:confirm",function(childview,group){
@@ -256,7 +258,7 @@ define([
 	        			tourcom:app.setting.get("tourcom")
 	        			
 	        		});
-	        		console.log("save confirmation: "+JSON.stringify(cfm));
+//	        		console.log("save confirmation: "+JSON.stringify(cfm));
 	        		cfm.save();
 	        			        		
 	        		//generate invoice
@@ -325,7 +327,7 @@ define([
 	        		
 		        	var invoice = new Invoice();
 		        	invoice.set({	        			
-	        			no:tour.get("code")+group.get("no"),
+//	        			no:tour.get("code")+group.get("no"),
 	        			cfmno:cfm.get('no'),
 	        			tourcode:tour.get("code"),
 	        			tourname:tour.get("name"),
