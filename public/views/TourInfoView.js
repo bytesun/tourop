@@ -288,7 +288,14 @@ define([
         		confirmYes:function(){
                 	self.model.save({status:"Canceled"});
                 	//also update invoice status
-                	
+                	var fetchingitems = app.request("entities:invoices",{c:self.model.get("code")});
+		        	$.when(fetchingitems).done(function(invoices){
+		        		var inv = null;
+		        		while(inv = invoices.pop()){
+		        			inv.save({status:'Canceled'});
+		        			console.log('cancel invoice :'+JSON.stringify(inv));
+		        		}
+		        	});	
                 	app.notify('','The tour has been canceled!','alert-info');
                 	app.navigate("tour",true); 	
         		}});        	

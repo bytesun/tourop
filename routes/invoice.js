@@ -43,7 +43,8 @@ router.put('/api/invoice/:id', function(req, res) {
 	Invoice.findByIdAndUpdate(
 			req.params.id,
 			{$set:{		
-            	remark:req.body.remark
+            	remark:req.body.remark,
+            	status:req.body.status
 				}},
 			function( err, invoice){
 		if(err){

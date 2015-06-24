@@ -344,7 +344,7 @@ define([
 	        			tourcom:app.setting.get("tourcom")
 	        			
 	        		});
-		        	console.log("save invoice: "+JSON.stringify(invoice));
+//		        	console.log("save invoice: "+JSON.stringify(invoice));
 		        	invoice.save();
 
 		        	app.notify('','This group has been confirmed and the relative "Confirmation"/"Invoice" have been created!','alert-info');

@@ -11,12 +11,15 @@ Manage partner, route information, and create tour
 				* result sorting and paging
 				* auto fill partner list when type partner code
 				* report 
+				* calendar
 				
 
 				
 			
 			----------------------------------------------------------------------
 			Development Trace
+			
+			[2015-6-24] add status of invoice.
 			[2015-6-23] adjust invoice layout.
 			[2015-6-22] change invoice no. by sequence number. 							(db.counters.insert({countername:'invoiceno',seq:0}))
 						
