@@ -60,6 +60,7 @@ var Tour = new Schema({
 		bookdate:String,
 		pickup:String,	
 		dropoff:String,
+
 		agency:{
 			_id:Schema.Types.ObjectId,
 			code : String,
@@ -318,6 +319,7 @@ var Confirmation = new Schema({
 	pickup:String,
 	dropoff:String,
 	remark:String,
+	status:String,
 	tourcom:{
 		name:String,
 		address:String,

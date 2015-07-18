@@ -23,6 +23,7 @@ define(["jquery", "backbone"],
         		pickup:'',
         		dropoff:'',
             	remark:'',
+            	status:"New",
             	tourcom:{
             		name:'CANTOP TOUR & TRAVEL LTD',
             		address:'#202-644 S.W. Marine Drive',

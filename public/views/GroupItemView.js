@@ -135,7 +135,7 @@ define([
         			};
         			
                 	
-        			self.model.set({status:'Confirmed',
+        			self.model.set({
             			bookdate:$("#bookdate"+gn).val(),
             			pickup:$("#pickup"+gn).val(),
             			dropoff:$("#dropoff"+gn).val(),

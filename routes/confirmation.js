@@ -38,7 +38,7 @@ router.put('/api/confirmation/:id', function(req, res) {
             	remark:req.body.remark,
             	tourcom:req.body.tourcom,
             	agency:req.body.agency,
-            	passenger:req.body.passenger
+            	tourist:req.body.tourist
 				}},
 			function( err, confirmation){
 		if(err){

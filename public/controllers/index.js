@@ -225,49 +225,26 @@ define([
 		        	$.when(fetchingitems).done(function(confirmations){
 		        		var cfm = confirmations.findWhere({no:(tour.get("code")+group.get("no"))});
 		        		console.log('fetching confirmation '+JSON.stringify(cfm));
-		        		cfm.destroy();
+//		        		cfm.destroy();
+		        		cfm.set({"status":"Revised"});
+		        		cfm.save();
 		        	});	
 		        	
 		        	var fetchingitems = app.request("entities:invoices",{c:tour.get("code")});
 		        	$.when(fetchingitems).done(function(invoices){
 		        		var inv = invoices.findWhere({cfmno:(tour.get("code")+group.get("no"))});
 		        		if(inv != undefined){
-		        			console.log('fetching inv '+JSON.stringify(inv));
-		        			inv.destroy();
+		        			console.log('fetching invoice '+JSON.stringify(inv));
+//		        			inv.destroy();
+		        			inv.set({"status":"Revised"});
+		        			inv.save();		        			
 		        		}
 		        	});	
 	        	});
 	        	groupCollectionView.on("childview:group:confirm",function(childview,group){
 
-	        		//save tour information before generating confirmation and invoice
-	        		app.execute("tour:save");
 	        		
 	        		//generate confirmation and invoice
-	        		
-	        		var cfm = new Confirmation();
-	        		var date=new Date();
-	        		var issuedate = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+(date.getDate());
-	        		cfm.set({	        			
-	        			no:tour.get("code")+group.get("no"),
-	        			tourcode:tour.get("code"),
-	        			groupno:group.get("no"),
-	        			tourname:tour.get("name"),
-	        			departuredate:tour.get("departuredate"),
-	        			issuedate:issuedate,
-	        			bookdate:group.get("bookdate"),
-	        			op:tour.get("op"),
-	        			pickup:group.get("pickup"),
-	        			dropoff:group.get("dropoff"),
-	        			
-	        			agency:group.get("agency"),
-	        			tourist:group.get("tourist"),
-	        			tourcom:app.setting.get("tourcom")
-	        			
-	        		});
-//	        		console.log("save confirmation: "+JSON.stringify(cfm));
-	        		cfm.save();
-	        			        		
-	        		//generate invoice
 	        		var subtotal = 0;
 	        		
 	        		var tourists = group.get("tourist");
@@ -331,30 +308,107 @@ define([
 	        		var total = (subtotal+tax);
 	        		total= Math.round(total * 100) / 100;
 	        		
-		        	var invoice = new Invoice();
-		        	invoice.set({	        			
-//	        			no:tour.get("code")+group.get("no"),
-	        			cfmno:cfm.get('no'),
-	        			tourcode:tour.get("code"),
-	        			tourname:tour.get("name"),
-	        			departuredate:tour.get("departuredate"),
-	        			issuedate:issuedate,
-	        			bookdate:group.get("bookdate"),
-	        			op:tour.get("op"),
-	        			taxable:subtotal,
-	        	      	nontaxable:0,
-	                	tax:tax,
-	                	total:total,
-	        			agency:group.get("agency"),
-	        			tourist:passengers,
-	        			tourcom:app.setting.get("tourcom")
+	        		var cfmno = tour.get("code")+group.get("no");
+	        		////update base on status
+	        		var status = group.get("status");
+	        		console.log("group status is :"+status);
+	        		
+	        		if(status == "Revised"){
+	        			var fetchingitems = app.request("entities:confirmations",{c:tour.get("code")});
+			        	$.when(fetchingitems).done(function(confirmations){
+			        		var cfm = confirmations.findWhere({no:cfmno});
+			        		cfm.set({	        			
+			        			pickup:group.get("pickup"),
+			        			dropoff:group.get("dropoff"),
+			        			bookdate:group.get("bookdate"),
+			        			departuredate:tour.get("departuredate"),
+			        			op:tour.get("op"),
+			        			agency:group.get("agency"),
+			        			tourist:group.get("tourist"),
+			        			tourcom:app.setting.get("tourcom"),
+			        			status:"Confirmed"
+			        			
+			        		});
+//			        		console.log('save confirmation:'+JSON.stringify(cfm));
+			        		cfm.save();
+			        	});	
+			        	
+			        	var fetchingitems = app.request("entities:invoices",{c:tour.get("code")});
+			        	$.when(fetchingitems).done(function(invoices){
+			        		var invoice = invoices.findWhere({cfmno:cfmno});
+			        		if(invoice != undefined){
+			        			invoice.set({	        			
+    					        			bookdate:group.get("bookdate"),
+    					        			departuredate:tour.get("departuredate"),
+    					        			op:tour.get("op"),
+    					        			taxable:subtotal,
+    					        	      	nontaxable:0,
+    					                	tax:tax,
+    					                	total:total,
+    					        			agency:group.get("agency"),
+    					        			tourist:passengers,
+    					        			tourcom:app.setting.get("tourcom"),
+    					        			status:"Confirmed"
+    					        			
+    					        		});
+//			        			console.log('save invoice:'+JSON.stringify(invoice));
+			        			invoice.save();		        			
+			        		}
+			        	});		        			
+	        		}else{//new 
+		        		var cfm = new Confirmation();
+		        		var date=new Date();
+		        		var issuedate = date.getFullYear()+"-"+(date.getMonth()+1)+"-"+(date.getDate());
+		        		cfm.set({	        			
+		        			no:tour.get("code")+group.get("no"),
+		        			tourcode:tour.get("code"),
+		        			groupno:group.get("no"),
+		        			tourname:tour.get("name"),
+		        			departuredate:tour.get("departuredate"),
+		        			issuedate:issuedate,
+		        			bookdate:group.get("bookdate"),
+		        			op:tour.get("op"),
+		        			pickup:group.get("pickup"),
+		        			dropoff:group.get("dropoff"),
+		        			
+		        			agency:group.get("agency"),
+		        			tourist:group.get("tourist"),
+		        			tourcom:app.setting.get("tourcom")
+		        			
+		        		});
+		//	        		console.log("save confirmation: "+JSON.stringify(cfm));
+			        		cfm.save();       			        		
+	
+			        		
+				        	var invoice = new Invoice();
+				        	invoice.set({	        			
+		//	        			no:tour.get("code")+group.get("no"),
+			        			cfmno:cfm.get('no'),
+			        			tourcode:tour.get("code"),
+			        			tourname:tour.get("name"),
+			        			departuredate:tour.get("departuredate"),
+			        			issuedate:issuedate,
+			        			bookdate:group.get("bookdate"),
+			        			op:tour.get("op"),
+			        			taxable:subtotal,
+			        	      	nontaxable:0,
+			                	tax:tax,
+			                	total:total,
+			        			agency:group.get("agency"),
+			        			tourist:passengers,
+			        			tourcom:app.setting.get("tourcom")
+			        			
+			        		});
+		//		        	console.log("save invoice: "+JSON.stringify(invoice));
+				        	invoice.save();
+	        			}
+	        		
 	        			
-	        		});
-//		        	console.log("save invoice: "+JSON.stringify(invoice));
-		        	invoice.save();
-
-		        	app.notify('','This group has been confirmed and the relative "Confirmation"/"Invoice" have been created!','alert-info');
-	        	});
+		        		//save tour information before generating confirmation and invoice
+	        			group.set({status:'Confirmed'});
+		        		app.execute("tour:save");	        		
+			        	app.notify('','This group has been confirmed and the relative "Confirmation"/"Invoice" have been created!','alert-info');
+		        	});
 	        	
 
 	        	

@@ -21,6 +21,7 @@ define(["app","jquery", "backbone"],
     			agency:'',
     			commission:20,
     			adjustamount:0,
+    			
     			route:{
     				code : '',
                 	name : '',

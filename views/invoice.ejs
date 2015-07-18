@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<head>
+
+  <title>CAPTOP TOUR SYSTEM</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="keywords" content="professional, consultant,solution, expert,troubleshooting,project">
+   
+   
+   <!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="/assets/css/bootstrap.min.css">	
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="/assets/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="/assets/css/tour.css">	
+
+	
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+        <script src="./assets/lib/html5shiv.js"></script>
+        <script src="./assets/lib/respond.min.js"></script>
+        <![endif]-->
+	</head>
+<body >
+<div class="container" style="padding-top: 10px;padding-bottom: 10px;">
+	<!-- header -->
+	<div class="row">
+		<div class="col-xs-offset-1 col-xs-4">
+		<img src="/assets/img/logo.png" >
+		</div>
+		<div class="col-xs-1 text-right" style="font-size:xx-small;">
+			Office:
+		</div>
+		<div class="col-xs-5" style="font-size:xx-small;">
+					<%=tourcom.address%>, <%=tourcom.city%> <%=tourcom.province%>, <%=tourcom.country%> <%=tourcom.postcode%><br>
+					 Tel: <%=tourcom.telephone%>    Fax: <%=tourcom.fax%><br> 
+					 B.C. Reg:#<%=tourcom.regno%>     GST:#13780 3771 RT0001
+		</div>		
+
+	</div> 
+	<div class="row">
+		<div class="col-xs-offset-1 col-xs-10 text-center">
+			<hr>
+			<u style="font-size:medium;">INVOICE</u>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-offset-1 col-xs-1" style="font-size:x-small;">
+			<b>TO:</b>
+		</div>
+		<div class="col-xs-5" style="font-size:x-small;">
+					<%=agency.name%><BR>
+					<%=agency.address%><br>
+					<%=agency.city%> <%=agency.province%><BR>
+					<%=agency.countryt%>  <%=agency.postcode%> <BR><BR>
+					
+					Phone : <%=agency.telphone%> <br>
+					Fax : <%=agency.fax%>				
+		</div>
+		<div class="col-xs-4" style="font-size:x-small;">
+					<b>Date</b> : <%=issuedate%> <BR><br>
+					<b>Invoice No.</b> : <%=no%>
+					
+					<br><br>
+					<table border="1" width="100%">
+						<tr>
+							<td align="center"><b>Your Contact</b></td>
+							<td align="center"><b>Our Contact</b></td>
+						</tr>
+						<tr>
+							<td align="center"><%=agency.contact%></td>
+							<td align="center"><%=op%></td>
+						</tr>
+					</table>		
+		</div>
+		
+	   
+  	</div>
+	
+	<div class="row">
+	<br>
+	<div class="col-xs-offset-1 col-xs-10">
+	<!-- tour info -->
+	<table width="100%" class="table"  style="font-size:x-small;"> 
+		<tr>
+			<td><b>TOUR</b></td>
+			<td><b>PASS</b></td>
+			<td align="right"><b>PRIC</b></td>
+			<td align="right"><b>ADMI</b></td>
+			<td align="right"><b>MEAL</b></td>
+			<td align="right"><b>COMM</b></td>
+			<td align="right"><b>MISC</b></td>
+			<td align="right"><b>AMNT</b></td>
+			
+		</tr>
+		<%for(var i=0;i<tourist.length;i++){
+		%>
+		<tr>
+			<%if(i==0){%>
+			<td rowspan=<%=tourist.length%><b><%=tourname%></b>
+			<br>
+			<BR><b>Departure</b> :<%=departuredate%>
+			
+			</td>
+			<%}%>
+			<td>
+			  <%=tourist[i].name%>
+			</td>
+
+			<td align="right"><%=tourist[i].fare%></td>
+			<td align="right"><%=tourist[i].admission%></td>
+			<td align="right"><%=tourist[i].meal%></td>
+			<td align="right"><%=tourist[i].commission%></td>
+			<td align="right"><%=tourist[i].adjustamount%></td>
+			<td align="right"><%=tourist[i].amount%></td>
+			
+			
+		</tr>
+		<%}%>
+		
+		<tr>
+		<td colspan="8" align="right">
+			<table width="100%">
+				<tr>
+					<td width="90%" align="right">
+						<b>Taxable Subtotal:</b>
+					</td>
+					<td align="right">
+						<%=taxable%>
+					</td>
+				</tr>
+
+				<tr>
+					<td  align="right">
+						<b>GST:</b>
+					</td>
+					<td align="right">
+						<%=tax%>
+					</td>
+				</tr>
+				<tr>
+					<td  align="right">
+						<b>Total:</b>
+					</td>
+					<td align="right">
+						<%=total%>
+					</td>
+				</tr>
+
+
+			</table>
+		</td>
+		
+		</tr>
+		
+	</table>
+	</div>			
+	</div>
+	
+	<div class="row">
+	 	<div class="col-xs-offset-1 col-xs-10"  style="font-size:x-small;">
+	 		
+			<!-- remarks -->
+			<label class="invoice_remark_label" id="invoice_remark_label">
+				<b id="label_remark">Remarks:</b>
+			</label>
+	
+			<div class="remark_area" id="remark_area" >
+			<%if(remark != ''){%>
+				<pre  style="background-color: #FFFFFF;"><%=remark%></pre>
+			<%}%>
+			</div>
+			
+			<hr>
+		</div>
+	</div>
+
+			
+	
+</div>
+<div id="editor"></div>
+
+   <footer style="position: relative;clear:both;bottom:0px;">
+      <div class="container">
+	<div class="row">
+		
+			 	<div class="col-xs-offset-1 col-xs-5" style="font-size:xx-small;">
+			 		<p>
+					CANCELLATION POLICY<br>
+					OVER 30 DAYS:&nbsp;&nbsp; C$50.00 HANDLING CHARGE PER PERSON<br>
+					21-30 DAYS: &nbsp;&nbsp; 50% PENALTY<br>
+					8-20 DAYS: &nbsp;&nbsp;75% PENALTY<br>
+					WITHIN 7 DAYS: &nbsp;&nbsp;100% NON-REFUNDABLE<br> 
+					INSURANCE OFFERED<br>
+					</p>
+				</div>
+		
+			 	<div class="col-xs-5" style="font-size:xx-small;">
+					<p>
+					E. & O.E.<br>
+					For proper credit, please specify by writing invoice numbers
+					being paid on your cheque, Receipt will be given on request.
+					This invoice is payable upon presentation. Past Due accounts
+					subject to service charge of 2% per month,plus any legal
+					fees incurred in order to obtain payment for this invoice.
+					</p>
+				</div>
+			</div>	
+      </div>
+    </footer>
+
+
+
+</body>
+</html>

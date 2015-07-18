@@ -11,12 +11,15 @@ Manage partner, route information, and create tour
 				* auto fill partner list when type partner code
 				* report 
 				* calendar
+				* keep the original invoice NO+sub after revising.
+				* search by invoice no
 				
 
 				
 			
 			----------------------------------------------------------------------
 			Development Trace
+			[2015-7-17] keep original id when revise invoice.
 			
 			[2015-6-24] 1.add status of invoice.
 						  2.search by route in tour list
