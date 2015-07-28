@@ -19,7 +19,7 @@ define([
             "route_info(/:id)":"route_info",            
             "confirmation(/:code)":"confirmation",
             "confirmation_info(/:id)":"confirmation_info",
-            "invoice(/:code)":"invoice",
+            "invoice(/:tourcode)":"invoice",
             "invoice_info(/:id)":"invoice_info",
             "setting":"setting",
             "user":"user",

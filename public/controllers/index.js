@@ -156,10 +156,7 @@ define([
 	        		//tourView.tourListRegion.show(tourCollectionView);
 	        		
 	        	});
-	        	app.main.show(tourView);
-	        	
-
-	        	
+	        	app.main.show(tourView);	        	
 	        },	    
 	        tour_info: function(id){
 	        	var tour = new TourModel();
@@ -671,27 +668,49 @@ define([
 	        	
 
 	        },	        
-	        invoice : function(code){
-	        	var cfmView = new InvoiceView();
-	        	
-	        	
-	        	if(code != null){
-	        		var fetchingitems = app.request("entities:invoices",{c:code});
+	        invoice : function(tourcode){
+	        	var invView = new InvoiceView();
+	        	invView.on("invoice:search",function(tourcode,invoiceno){
+	        		var query = {};
+	        		if(tourcode != null && tourcode != '')
+	        			query.c=tourcode;
+	        		if(invoiceno!=null && invoiceno != '')
+	        			query.no=invoiceno;
+	        		
+	        		var fetchingitems = app.request("entities:invoices",query);
 		        	$.when(fetchingitems).done(function(invoices){
-		        		var cfmlistView=new InvoiceCollectionView({collection:invoices});
-		        		cfmView.on("show",function(){
-			        		cfmView.invoiceListRegion.show(cfmlistView);
-			        	});
-			        	app.main.show(cfmView);
+		        		var invlistView=new InvoiceCollectionView({collection:invoices});
+		        		invView.invoiceListRegion.show(invlistView);
 		        	});	
+	        	});
+	        	invView.on("show",function(){
+	        		if(tourcode != null){
+	        			invView.trigger('invoice:search',tourcode,null);
+	        		}else{
+	        			var invlistView = new InvoiceCollectionView();
+	        			invView.invoiceListRegion.show(invlistView);
+	        		}
+	        	});
+	        	app.main.show(invView);
 	        	
-	        	}else{
-	        		var cfmlistView = new InvoiceCollectionView();
-	        		cfmView.on("show",function(){
-		        		cfmView.invoiceListRegion.show(cfmlistView);
-		        	});
-		        	app.main.show(cfmView);
-	        	}
+//	        	if(tourcode != null){
+//	        		var query = {c:tourcode};
+//	        		var fetchingitems = app.request("entities:invoices",query);
+//		        	$.when(fetchingitems).done(function(invoices){
+//		        		var cfmlistView=new InvoiceCollectionView({collection:invoices});
+//		        		invListView.on("show",function(){
+//			        		invListView.invoiceListRegion.show(cfmlistView);
+//			        	});
+//			        	app.main.show(invView);
+//		        	});	
+//	        	
+//	        	}else{	        		
+//	        		invView.on("show",function(){
+//	        			var invlistView = new InvoiceCollectionView();
+//	        			invView.invoiceListRegion.show(invlistView);
+//		        	});
+//		        	app.main.show(invView);
+//	        	}
 	        	
 	        	
 	        	

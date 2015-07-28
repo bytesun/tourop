@@ -83,10 +83,18 @@ router.get('/api/invoices',function(req,res){
 
 	var c = req.query.c;//tour code
 	var query = {};
-	if(c != 0){
+	if(c != 0 && c!= undefined){
 		query.tourcode = new RegExp('^'+c, "i");
 	}
-	
+	var no = req.query.no;
+	if(no != undefined){
+		query.no=no;
+	}
+
+	var invoiceno = req.query.invoiceno;
+	if(invoiceno != undefined && invoiceno != null && invoiceno != ''){
+		query.no=invoiceno;
+	}
 	console.log('invoice query is '+JSON.stringify(query));
 	
 	Invoice.find(query,

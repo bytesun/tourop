@@ -18,8 +18,10 @@ define([
         	"click .btn_invoice_search":"searchByCode",
         },
         searchByCode: function(e){
-        	var query = $("#tourcode").val();
-        	app.navigate('invoice/'+query,true);
+        	var tourcode = $("#tourcode").val();
+        	var invoiceno = $("#invoiceno").val();
+        	this.trigger("invoice:search",tourcode,invoiceno);
+//        	app.navigate('invoice/'+query,true);
         },
 
 	});
