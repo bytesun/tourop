@@ -17,6 +17,8 @@ Manage partner, route information, and create tour
 			----------------------------------------------------------------------
 			Development Trace:
 			----------------------------------------------------------------------
+			[2015-8-5] change logo and favicon
+			
 			[2015-7-27] support searching invoices by no.
 			
 			[2015-7-17] keep original id when revise invoice.
