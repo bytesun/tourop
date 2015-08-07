@@ -1,4 +1,4 @@
-CANTOP LOCAL TOUR SYSTEM
+CANTOP LOCAL TOUR OP SYSTEM
 =======================
 Manage partner, route information, and create tour  
 [Live demo](http://tour.sunorth.org) (cantop/cantop)
