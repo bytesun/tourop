@@ -20,7 +20,8 @@ define([
         searchByCode: function(e){
         	var tourcode = $("#tourcode").val();
         	var invoiceno = $("#invoiceno").val();
-        	this.trigger("invoice:search",tourcode,invoiceno);
+        	var agencycode = $('#agencycode').val();
+        	this.trigger("invoice:search",tourcode,invoiceno,agencycode);
 //        	app.navigate('invoice/'+query,true);
         },
 

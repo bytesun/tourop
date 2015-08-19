@@ -670,12 +670,15 @@ define([
 	        },	        
 	        invoice : function(tourcode){
 	        	var invView = new InvoiceView();
-	        	invView.on("invoice:search",function(tourcode,invoiceno){
+	        	invView.on("invoice:search",function(tourcode,invoiceno,agencycode){
 	        		var query = {};
 	        		if(tourcode != null && tourcode != '')
 	        			query.c=tourcode;
 	        		if(invoiceno!=null && invoiceno != '')
 	        			query.no=invoiceno;
+	        		if(agencycode!=null && agencycode != '')
+	        			query.agencycode = agencycode;
+	        		   
 	        		
 	        		var fetchingitems = app.request("entities:invoices",query);
 		        	$.when(fetchingitems).done(function(invoices){

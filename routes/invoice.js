@@ -82,7 +82,12 @@ router.get('/api/invoices',function(req,res){
 	res.set('Content-Type', 'application/json');
 
 	var c = req.query.c;//tour code
+	var agencycode = req.query.agencycode;
 	var query = {};
+	if(agencycode != undefined){
+		query = {'agency.code':agencycode};
+	}
+	
 	if(c != 0 && c!= undefined){
 		query.tourcode = new RegExp('^'+c, "i");
 	}

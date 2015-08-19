@@ -17,6 +17,8 @@ Manage partner, route information, and create tour
 			----------------------------------------------------------------------
 			Development Trace:
 			----------------------------------------------------------------------
+			[2015-8-19] add searching criteria - agency code in invoice 
+			
 			[2015-8-11] change invoice font size from x-small to small
 			
 			[2015-8-5] change logo and favicon
