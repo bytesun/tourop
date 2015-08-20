@@ -240,7 +240,7 @@ define([
 	        	});
 	        	groupCollectionView.on("childview:group:confirm",function(childview,group){
 
-	        		
+	        		app.execute("tour:save");//must save it first to get input information
 	        		//generate confirmation and invoice
 	        		var subtotal = 0;
 	        		
@@ -403,7 +403,7 @@ define([
 	        			
 		        		//save tour information before generating confirmation and invoice
 	        			group.set({status:'Confirmed'});
-		        		app.execute("tour:save");	        		
+	        		
 			        	app.notify('','This group has been confirmed and the relative "Confirmation"/"Invoice" have been created!','alert-info');
 		        	});
 	        	
