@@ -326,7 +326,7 @@ define([
 			        			status:"Confirmed"
 			        			
 			        		});
-//			        		console.log('save confirmation:'+JSON.stringify(cfm));
+			        		console.log('save confirmation[revised]:'+JSON.stringify(cfm));
 			        		cfm.save();
 			        	});	
 			        	
@@ -348,7 +348,7 @@ define([
     					        			status:"Confirmed"
     					        			
     					        		});
-//			        			console.log('save invoice:'+JSON.stringify(invoice));
+			        			console.log('save invoice[revised]:'+JSON.stringify(invoice));
 			        			invoice.save();		        			
 			        		}
 			        	});		        			
@@ -373,7 +373,7 @@ define([
 		        			tourcom:app.setting.get("tourcom")
 		        			
 		        		});
-		//	        		console.log("save confirmation: "+JSON.stringify(cfm));
+			        		console.log("save confirmation[new]: "+JSON.stringify(cfm));
 			        		cfm.save();       			        		
 	
 			        		
@@ -396,7 +396,7 @@ define([
 			        			tourcom:app.setting.get("tourcom")
 			        			
 			        		});
-		//		        	console.log("save invoice: "+JSON.stringify(invoice));
+				        	console.log("save invoice[new]: "+JSON.stringify(invoice));
 				        	invoice.save();
 	        			}
 	        		
@@ -450,11 +450,11 @@ define([
 	        	
 	        
 	        	tourView.on("tour:save",function(){
-	        		console.log('groups is '+JSON.stringify(groups));
+	        		console.log('save tour with groups : '+JSON.stringify(groups));
 //	        		tour.set({
 //	        			group:groups.toJSON()
 //	        		});
-	        		console.log('tour is '+JSON.stringify(tour));
+	        		console.log('save tour : '+JSON.stringify(tour));
 	        		tour.save();
 	        	});
 	        	//showing page with regions
