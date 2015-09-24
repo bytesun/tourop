@@ -17,16 +17,24 @@ define([
         	'click .a_info_delete': 'delInfo'   
         },
         editInfo : function(e){
-        	app.navigate("info_new");
-        	var infoView = new InfoAuthorView({
-        		model:this.model
-        	});
-        	app.main.show(infoView);
+        // 	app.navigate("info_new");
+        // 	var infoView = new InfoAuthorView({
+        // 		model:this.model
+        // 	});
+        // 	app.main.show(infoView);
+        	
+
+     	var infoView = new InfoAuthorView({
+                    model: this.model,
+                })
+     	app.dialog.show(infoView);
         	 
         },
         delInfo : function(e){
         	var self = this;
-        	app.execute('app:dialog:confirm',{title:'Confirm!',message:'You will delete <b>\"'+self.model.get('name')+"\"</b>! Please confirm it first.",
+        	app.execute('app:dialog:confirm',
+                    	{title:'Confirm!',
+                    	message:'You will delete <b>\"'+self.model.get('name')+"\"</b>! Please confirm it first.",
         		confirmNo: function(){
         			console.log('cancel deleting operation');
         		},

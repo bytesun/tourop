@@ -127,5 +127,20 @@ define([
             });
     });
 
+    app.commands.setHandler("app:dialog:form", function(data,modelTpl) {
+        require(['views/DialogView', 'models/Dialog'],
+            function(DialogView, DialogModel) {
+        		console.log('calling form dialog!');
+                app.dialog.show(new DialogView({
+                    template: modelTpl,
+                    model: new DialogModel(data),
+                    events: {
+                        'click .dismiss': 'dismiss',
+                        'click .confirm_yes': data.confirmYes,
+                        'click .confirm_no': data.confirmNo
+                    }
+                }));
+            });
+    });
 	return window.app = app;
 });

@@ -1,6 +1,19 @@
-<div id="info-info-template" class="container">
-        <h3  class="text text-lg text-primary"><%=name%></h3>
-		<hr>	
+
+<div class="modal-dialog" style="width: 70%">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close dismiss" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title"  id="myModalLabel">
+            	<% if(name == ""){ %>
+            	New Partner
+            	<% }else{%>
+            	<%=name%>
+            	<% } %>
+            	</h4>
+        </div>
+        <div class="modal-body">
+
+		<div id="info-info-template" >
 
 			<form class="form-horizontal">
 			  <div class="form-group">
@@ -157,11 +170,18 @@
 			      <textarea type="textarea" class="form-control" name="note" ><%=note%></textarea>
 			    </div>
 			  </div>			  		  			  
-			  <div class="form-group">
-			    <div class="col-sm-offset-5 col-sm-11">
-			      <input type="button" class="btn btn-primary btn_info_save" value="Save" name="btn_info_save"></input>
-			    </div>
-			  </div>
+			  <!--<div class="form-group">-->
+			  <!--  <div class="col-sm-offset-5 col-sm-11">-->
+			  <!--    <input type="button" class="btn btn-primary btn_info_save" value="Save" name="btn_info_save"></input>-->
+			  <!--  </div>-->
+			  <!--</div>-->
 			</form>	    
 		    
-</div>
+			</div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default btn-sm confirm_no" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+            <button type="button" class="btn btn-primary btn-sm confirm_yes" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span> Save</button>
+        </div>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->

@@ -9,6 +9,7 @@ require.config({
         'backbone.wreqr'        : 'assets/lib/backbone.wreqr.min',
         'backbone.babysitter'   : 'assets/lib/backbone.babysitter',
         'bootstrap'             : 'assets/lib/bootstrap.min',
+        'typeahead'             : 'assets/lib/typeahead.bundle.min',
         'text'                  : 'assets/lib/text',
         'tpl'                   : 'assets/lib/tpl',
         'parsley'               : 'assets/lib/parsley',
@@ -36,11 +37,17 @@ require.config({
 		},
         bootstrap: {
             deps: ['jquery']
-        }
-
+        },
+		typeahead:{
+			deps: ['jquery'],
+			exports:'Bloodhound',
+			init: function ($) {
+            	return require.s.contexts._.registry['typeahead.js'].factory( $ );
+        	}
+		}
         
 	},
-    waitSeconds: 60
+    //waitSeconds: 60
 });
 
 require([

@@ -13,7 +13,13 @@ define([
         events: {
         	"keyup .telephone":"formatTel",
         	"keyup .postcode":"formatPostcode",
-        	"click .btn_info_save": "saveInfo"
+        	"click .confirm_yes": "saveInfo",
+        	'click .dismiss': 'dismiss'
+        },
+
+        dismiss: function(e) {
+            e.preventDefault();
+            this.trigger('dialog:close');
         },
         formatTel: function(e){
         	e.preventDefault();

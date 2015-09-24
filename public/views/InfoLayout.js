@@ -2,11 +2,15 @@ define([
 	'marionette',
 	'templates',
     'underscore',
+    'models/Information',
     'collections/Informations',
-    'views/InfoCollectionView'
+    'views/InfoCollectionView',
+    'views/InfoAuthorView'
 ], function (Marionette, templates, _,
+		Information,
 		Informations,
-		InfoCollectionView) {
+		InfoCollectionView,
+		InfoAuthorView) {
 	'use strict';
 
 	return Marionette.LayoutView.extend({
@@ -17,7 +21,7 @@ define([
 	 events: {
 //		 'change #partner_types': 'listByType',
 //     	'change .search_code' : "searchInfoByCode",
-		 'click .btn_info_search': 'searchInfo',
+		'click .btn_info_search': 'searchInfo',
      	'click .btn_info_add': 'newInfo'
      },
      listByType: function(e){
@@ -37,7 +41,12 @@ define([
 			});	
      },
      newInfo: function(e){  
-     	app.navigate("info_new",true);
+     	
+     	var infoView = new InfoAuthorView({
+                    model: new Information(),
+                })
+     	app.dialog.show(infoView);
+     	// app.navigate("info_new",true);
      },
      searchInfo : function(e){
     	var c =  $(".search_code").val();

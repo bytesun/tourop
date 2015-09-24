@@ -612,20 +612,20 @@ define([
 		        	app.main.show(infoLayout);
 	        	});
 	        },
-	        info_info : function(view,options){
-	        	var infoView = new InfoAuthorView({
-	        		model : new InfoModel()
-	        	}); 
+	        // info_info : function(view,options){
+	        // 	var infoView = new InfoAuthorView({
+	        // 		model : new InfoModel()
+	        // 	}); 
 	        	
-	        	app.main.show(infoView);
-	        },
-	        info_new : function(view,options){
-	        	var infoView = new InfoAuthorView({
-	        		model : new InfoModel()
-	        	}); 
+	        // 	app.main.show(infoView);
+	        // },
+	        // info_new : function(view,options){
+	        // 	var infoView = new InfoAuthorView({
+	        // 		model : new InfoModel()
+	        // 	}); 
 	        	
-	        	app.main.show(infoView);
-	        },
+	        // 	app.main.show(infoView);
+	        // },
 	        confirmation : function(code){
 	        	var cfmView = new ConfirmationView();
 	        	

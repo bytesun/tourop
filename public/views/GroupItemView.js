@@ -173,8 +173,9 @@ define([
          		$("#tn_"+groupno).val(tn);
         	});
         	this.touristRegion.show(touristsView);
-        }
+        },
         
-
+        
+        
 	});
 });

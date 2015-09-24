@@ -7,9 +7,14 @@ Manage partner, route information, and create tour
 			Backlog:
 			-------------------------------------------------------------------			
 
+				* Accounting :
+					1. payable
+					2. receivable
+					3. report
+				* User permission
+				
 				* result sorting and paging
 				* auto fill partner list when type partner code
-				* report 
 				* calendar
 
 				
@@ -17,6 +22,8 @@ Manage partner, route information, and create tour
 			----------------------------------------------------------------------
 			Development Trace:
 			----------------------------------------------------------------------
+			[2015-9-23] change new/edit information with dialog modal.
+			
 			[2015-8-19] add searching criteria - agency code in invoice 
 			
 			[2015-8-11] change invoice font size from x-small to small
@@ -30,7 +37,8 @@ Manage partner, route information, and create tour
 			[2015-6-24] 1.add status of invoice.
 						  2.search by route in tour list
 			[2015-6-23] adjust invoice layout.
-			[2015-6-22] change invoice no. by sequence number. 							(db.counters.insert({countername:'invoiceno',seq:0}))
+			[2015-6-22] change invoice no. by sequence number. 						
+						(db.counters.insert({countername:'invoiceno',seq:0}))
 						
 			[2015-6-9] show "gender" in name list for hotel/guide
 			[2015-6-2] add GST No. in invoice page.
