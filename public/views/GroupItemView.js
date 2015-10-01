@@ -86,17 +86,19 @@ define([
         	$.when(fetchingoitem).done(function(item){
         		if(item!=null){
         			self.model.set({agency:item.toJSON()});
-        			$("#"+inputid).val(item.get("name"));
-        			$("#agency_telphone_"+no).val(item.get("telphone"));
-        			$("#agency_payment_"+no).val(item.get("payment"));
-        			$("#agency_code_"+no).val(item.get("code"));
-        			$("#agency_address_"+no).val(item.get("address"));
-        			$("#agency_contact_"+no).val(item.get("contact"));
-        			$("#agency_fax_"+no).val(item.get("fax"));
-        			$("#agency_city_"+no).val(item.get("city"));
-        			$("#agency_province_"+no).val(item.get("province"));
-        			$("#agency_country_"+no).val(item.get("country"));
-        			$("#agency_postcode_"+no).val(item.get("postcode"));
+        			self.trigger("renderCollection");
+        			
+        // 			$("#"+inputid).val(item.get("name"));
+        // 			$("#agency_telphone_"+no).val(item.get("telphone"));
+        // 			$("#agency_payment_"+no).val(item.get("payment"));
+        // 			$("#agency_code_"+no).val(item.get("code"));
+        // 			$("#agency_address_"+no).val(item.get("address"));
+        // 			$("#agency_contact_"+no).val(item.get("contact"));
+        // 			$("#agency_fax_"+no).val(item.get("fax"));
+        // 			$("#agency_city_"+no).val(item.get("city"));
+        // 			$("#agency_province_"+no).val(item.get("province"));
+        // 			$("#agency_country_"+no).val(item.get("country"));
+        // 			$("#agency_postcode_"+no).val(item.get("postcode"));
         		}   	      		
 	        	
         	}); 

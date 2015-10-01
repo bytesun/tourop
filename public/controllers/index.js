@@ -9,6 +9,7 @@ define([
     'models/Passenger',
     'models/Group',
     'models/Bus',
+    'models/Payable',
     'models/Confirmation',
     'models/Invoice',
 	'models/Information',
@@ -67,6 +68,7 @@ define([
 		Passenger,
 		Group,
 		Bus,
+		Payable,
 		Confirmation,
 		Invoice,
 		InfoModel,
@@ -411,13 +413,11 @@ define([
 
 	        	
 	        	//itinerary list
-	        	var collection = new Schedules();
-	        	collection.reset(tour.get("schedule"));        	
-
-	        	var collectionView = new TourScheduleCollectionView({
-	    			collection:collection
+	        	var itinerariesView = new TourScheduleCollectionView({
+	    			collection:new Schedules(tour.get("schedule"))
 	    		});
-	        	
+	    		
+
 	        	//bus list
 	        	var buses = new Buses(new Bus());
 	        	var loadBuses = tour.get("bus");
@@ -449,7 +449,7 @@ define([
 	            	});       	
 	        	});	        	
 	        	
-	        
+	        	//save tour
 	        	tourView.on("tour:save",function(){
 	        		console.log('save tour with groups : '+JSON.stringify(groups));
 //	        		tour.set({
@@ -458,10 +458,98 @@ define([
 	        		console.log('save tour : '+JSON.stringify(tour));
 	        		tour.save();
 	        	});
+	        	//generate payables
+	        	tourView.on("tour:generatePayables",function(tour){
+	        		console.log("generate payables for tour :"+tour.get("name"));
+	        		var codes = new Array();
+	        		
+	        		var schedule = tour.get("schedule");
+	        		schedule.forEach(function(day){
+	        			var code = 	day.breakfast.code;
+	        			//breakfast
+	        			if(code && $.inArray(code,codes)==-1){
+			        		var payable = new Payable({
+			        			tour : tour.get("code"),
+			        			payee : day.breakfast.code,
+			        			amount:0,
+			        			tax : 0,
+			        			total: 0,
+			        		});
+			        		payable.save();
+			        		codes.push(code);
+	        			}
+	        			//lunch
+	        			code = day.lunch.code;
+	        			if(code && $.inArray(code,codes)==-1){
+			        		var payable = new Payable({
+			        			tour : tour.get("code"),
+			        			payee : day.lunch.code,
+			        			amount:0,
+			        			tax : 0,
+			        			total: 0,
+			        		});
+			        		payable.save();	
+			        		codes.push(code);
+	        			}	        			
+	        			//dinner
+	        			code = day.dinner.code;
+	        			if(code && $.inArray(code,codes)==-1){
+			        		var payable = new Payable({
+			        			tour : tour.get("code"),
+			        			payee : day.dinner.code,
+			        			amount:0,
+			        			tax : 0,
+			        			total: 0,
+			        		});
+			        		payable.save();	 
+			        		codes.push(code);
+	        			}	        			
+	        			//scenic
+	        			var scenics = day.scenic;
+	        			console.log("scenics : "+JSON.stringify(scenics));
+        				scenics.forEach(function(scenic){
+        					code = scenic.code;
+							if(code && $.inArray(code,codes)==-1){
+								console.log('scenic code:'+scenic.code);
+				        		var payable = new Payable({
+				        			tour : tour.get("code"),
+				        			payee : scenic.code,
+				        			amount:0,
+				        			tax : 0,
+				        			total: 0,
+				        		});
+				        		payable.save();	 
+				        		codes.push(code);
+	        				}	        					
+        				});
+		        			
+
+	        		});
+	        		//bus payable
+	        		var buses = tour.get("bus");
+	        		if(buses.size>0){
+	        			buses.forEach(function(bus){
+	        				code = bus.buscom.code;
+							if(code && $.inArray(code,codes)==-1){
+					        		var payable = new Payable({
+					        			tour : tour.get("code"),
+					        			payee : bus.buscom.code,
+					        			amount:0,
+					        			tax : 0,
+					        			total: 0,
+					        		});
+					        		payable.save();	 
+					        		codes.push(code);
+		        				}	        			        				
+	        			});
+	        		}
+
+	        	});
+	        	
 	        	//showing page with regions
 	        	tourView.on("show",function(){
 	        		tourView.groupRegion.show(groupCollectionView);  
-	        		tourView.scheduleRegion.show(collectionView);  
+	        		tourView.scheduleRegion.show(itinerariesView);  
 	        		tourView.busRegion.show(busCollectionView); 
 	        	});
 	        	app.main.show(tourView);

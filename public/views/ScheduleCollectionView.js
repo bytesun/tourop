@@ -26,6 +26,7 @@ define([
 		$("#days").val(this.collection.length);
 				
 	  },
+	  
 	  delSchedule: function(e){
 			var size = this.collection.length;
 			console.log('del schedule collection size: '+size);
@@ -34,6 +35,10 @@ define([
 			this.collection.remove(lastmodel);
 			$("#days").val((size-1));
 					
-		  }
+	  },
+	 // onChildviewRenderCollection: function() {
+		// this.render();
+	 // },   		  
 	});
+	
 });

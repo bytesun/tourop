@@ -13,7 +13,9 @@ define([
     'collections/Confirmations',
     'models/Invoice',
     'collections/Invoices',
-    'models/Setting'
+    'models/Setting',
+    'models/Payable',
+    'collections/Payables'
     
 
     
@@ -28,7 +30,8 @@ define([
 		Confirmations,
 		Invoice,
 		Invoices,
-		Setting){
+		Setting,
+		Payable,Payables){
  
     var PagesModule = app.module("Pages", function(Pages) {
         this.startWithParent = false;
@@ -264,7 +267,25 @@ define([
  	//		});
  			return defer.promise();
  		}, 	
- 	
+
+		getPayables:function(query){
+ 			console.log('calling API.getPayables:'+query);
+ 			var payables = new Payables();
+ 			var defer = $.Deferred();
+ 			payables.fetch({
+ 				data:$.param(query),
+ 				success:function(data){
+ 					defer.resolve(data);
+ 				}
+ 			});	
+ 			var promise = defer.promise();
+ 			$.when(promise).done(function(confirmatons){
+ 				if(confirmatons.length === 0){
+ 					
+ 				}
+ 			});
+ 			return promise;
+ 		}, 	
  	};
  	
  	app.reqres.setHandler("entities:informations", function(query){
@@ -316,7 +337,12 @@ define([
 	
  	app.reqres.setHandler("entities:invoices",function(query){
  		return API.getInvoices(query);
- 	});  	
+ 	}); 
+ 	app.reqres.setHandler("entities:payables",function(query){
+ 		return API.getPayables(query);
+ 	}); 
+ 	
+ 	
     });
 
     return PagesModule;

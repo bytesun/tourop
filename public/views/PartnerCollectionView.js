@@ -32,6 +32,6 @@ define([
       	console.log('pop : scenic collection '+JSON.stringify(this.collection));
       	this.trigger("partner:count:set",this.collection.length)
       },
-    
+     
 	});
 });

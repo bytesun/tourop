@@ -15,6 +15,8 @@ var Tour = new Schema({
 	feedback:String,
 
 	route:{
+		// type : Schema.Types.ObjectId,
+  //  	ref : 'Route'
 		_id:Schema.Types.ObjectId,
 		code : String,
 		name : String,
@@ -42,12 +44,19 @@ var Tour = new Schema({
 				via:String,
 				to:String,
 				scenic:[{
-					name:String,
-					telphone:String,
-					address:String,
-					city:String,
-					province:String,
-					payment:String
+					_id:Schema.Types.ObjectId,
+					no:Number,
+					code : String,
+					name : String,
+					payment:String, //credit card/voucher/cheque/cash
+					telphone : String,
+					fax:String,
+					contact : String,
+					address : String,
+					city: String,
+					province: String,
+					country :String,
+					postcode:String
 				}],
 				itinerary:String
 			}]
@@ -62,6 +71,8 @@ var Tour = new Schema({
 		dropoff:String,
 
 		agency:{
+			// type : Schema.Types.ObjectId,
+	  //  	ref : 'Information'
 			_id:Schema.Types.ObjectId,
 			code : String,
 			name : String,
@@ -97,6 +108,8 @@ var Tour = new Schema({
 		via:String,
 		to:String,
 		hotel:{
+			// type : Schema.Types.ObjectId,
+	  //  	ref : 'Information'
 			_id:Schema.Types.ObjectId,
 			code : String,
 			name : String,
@@ -111,6 +124,8 @@ var Tour = new Schema({
 			postcode:String
 		},
 		breakfast:{
+			// type : Schema.Types.ObjectId,
+	  //  	ref : 'Information'
 			_id:Schema.Types.ObjectId,
 			code : String,
 			name : String,
@@ -125,6 +140,8 @@ var Tour = new Schema({
 			postcode:String
 		},
 		lunch:{
+			// type : Schema.Types.ObjectId,
+	  //  	ref : 'Information'			
 			_id:Schema.Types.ObjectId,
 			code : String,
 			name : String,
@@ -139,6 +156,8 @@ var Tour = new Schema({
 			postcode:String
 		},
 		dinner:{
+			// type : Schema.Types.ObjectId,
+	  //  	ref : 'Information'			
 			_id:Schema.Types.ObjectId,
 			code : String,
 			name : String,
@@ -153,6 +172,9 @@ var Tour = new Schema({
 			postcode:String
 		},
 		scenic:[{
+			// type : Schema.Types.ObjectId,
+	  //  	ref : 'Information'
+	  		_id:Schema.Types.ObjectId,
 			no:Number,
 			code : String,
 			name : String,
@@ -179,6 +201,8 @@ var Tour = new Schema({
 		note:String,
 		buscom:
 		{
+			// type : Schema.Types.ObjectId,
+	  //  	ref : 'Information'
 			_id:Schema.Types.ObjectId,
 			code : String,
 			name : String,
@@ -223,13 +247,21 @@ var Route = new Schema({
 			via:String,
 			to:String,
 			scenic:[{
-				no:Number,
-				name:String,
-				telphone:String,
-				address:String,
-				city:String,
-				province:String,
-				payment:String
+				// type : Schema.Types.ObjectId,
+		  //  	ref : 'Information'
+			_id:Schema.Types.ObjectId,
+			no:Number,
+			code : String,
+			name : String,
+			payment:String, //credit card/voucher/cheque/cash
+			telphone : String,
+			fax:String,
+			contact : String,
+			address : String,
+			city: String,
+			province: String,
+			country :String,
+			postcode:String
 			}],
 			itinerary:String
 		}]
@@ -332,6 +364,8 @@ var Confirmation = new Schema({
 		regno:String
 	},
 	agency:{
+			// type : Schema.Types.ObjectId,
+	  //  	ref : 'Information'		
 		_id:Schema.Types.ObjectId,
 		code : String,
 		name : String,
@@ -385,6 +419,8 @@ var Invoice = new Schema({
 		regno:String
 	},
 	agency:{
+			// type : Schema.Types.ObjectId,
+	  //  	ref : 'Information'		
 		_id:Schema.Types.ObjectId,
 		code : String,
 		name : String,
@@ -414,6 +450,18 @@ var Invoice = new Schema({
 
 	}]
 });
+
+var Payable = new Schema({
+	payee:String,
+    tour :String,
+    invoice : String,
+    amount : Number,
+    tax : Number,
+    total : Number,
+    date : Date,
+    note : String
+});
+
 var Counter = new Schema({
 	countername:String,
 	seq:Number
@@ -427,6 +475,7 @@ mongoose.model( 'Bus', Bus );
 mongoose.model( 'Setting', Setting );
 mongoose.model( 'Confirmation', Confirmation );
 mongoose.model( 'Invoice', Invoice );
+mongoose.model( 'Payable', Payable );
 mongoose.model( 'Counter', Counter );
 
 

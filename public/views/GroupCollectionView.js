@@ -20,7 +20,9 @@ define([
 		  'click .btn_add_group': 'addGroup',
 		  'click .btn_del_group': 'delGroup'
 	  },
-
+	  onChildviewRenderCollection: function() {
+		this.render();
+	  },
      templateHelpers:function(){
             return {
             	//passenger number

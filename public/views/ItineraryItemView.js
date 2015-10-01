@@ -55,9 +55,6 @@ define([
 //                	$("#"+inputid).val("");
 //                	$("#admindex_"+day).val(parseInt(index)+1);
         		}
-            	
-            	
-	        	
         	});
         	
 
@@ -67,12 +64,15 @@ define([
         	var inputid = e.target.id;
         	var inputstr = $("#"+inputid).val();
         	//check admission first
+        	var self = this;
         	var fetchingoitems = app.request("entities:informations",{c:inputstr,t:'R'});
         	$.when(fetchingoitems).done(function(items){
         		if(items.length >= 1){
         			var restaurant = items.at(0);
-        			inputstr = restaurant.get("name")+"  ("+restaurant.get("telphone")+")  "+restaurant.get("address");
-        			$("#"+inputid).val(inputstr);
+        			self.model.breakfast = restaurant;
+        			console.log('the model is after adding breakfast :'+self.model);
+        // 			inputstr = restaurant.get("name")+"  ("+restaurant.get("telphone")+")  "+restaurant.get("address");
+        // 			$("#"+inputid).val(inputstr);
         		}   	
         		
 	        	

@@ -12,16 +12,22 @@ Manage partner, route information, and create tour
 					2. receivable
 					3. report
 				* User permission
+				* tour/route/info code verification unique
 				
 				* result sorting and paging
 				* auto fill partner list when type partner code
 				* calendar
 
+			----------------------
+			upgrade:
+				
 				
 			
 			----------------------------------------------------------------------
 			Development Trace:
 			----------------------------------------------------------------------
+			[2015-9-30] generate payables after confirm a tour
+						delete all payable of the tour when revise a tour.
 			[2015-9-23] change new/edit information with dialog modal.
 			
 			[2015-8-19] add searching criteria - agency code in invoice 

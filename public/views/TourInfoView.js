@@ -190,6 +190,7 @@ define([
     	    	var scenic = new Array();
     	    	for(var s=0;s<scenic_count;s++){
     	    		scenic[s]={
+    	    				code:$("#scenic_code_"+day+"_"+s).val(),
     	    				name:$("#scenic_name_"+day+"_"+s).val(),
             				telphone:$("#scenic_telphone_"+day+"_"+s).val(),
             				address:$("#scenic_address_"+day+"_"+s).val(),
@@ -271,12 +272,18 @@ define([
                 	//generate confirmation reports
                 	self.model.set({status:"Confirmed"});
                 	self.model.save();
+                	self.trigger("tour:generatePayables",self.model);
+					//generate payables
+	
                 	app.notify('','Tour information has been confirmed and no information can be changed!','alert-info');        	
                 	 app.navigate("tour",true); 	
         		}});
         	
  
         	//generate invoice reports
+        	
+        
+        	
         }, 
         cancelTour: function(e){
         	console.log('cancel a tour');
@@ -304,9 +311,31 @@ define([
         },
         reviseTour: function(e){
         	console.log('revise a tour');
-        	this.model.save({status:"New"});
-        	app.notify('','The tour has been revised!','alert-info');
-        	app.navigate("tour",true); 
+        	// this.model.save({status:"New"});
+        	var self =this;
+        	//remove payables records
+   			var fetchingitems = app.request("entities:payables",{c:self.model.get("code")});
+		        	$.when(fetchingitems).done(function(payables){
+		        		var p = null;
+		        		while(p = payables.pop()){
+		        			p.destroy({success: function(model, response) {
+  								console.log('delete payable :'+JSON.stringify(p));
+							}});
+		        			
+		        		}
+		        	});	
+			var self =this;
+			app.execute('app:dialog:confirm',{title:'Confirm!',message:'<b>\"'+self.model.get('name')+"\"</b> will be revised and all payables will be deleted! Are you sure?",
+        		confirmNo: function(){
+        			console.log('cancel revise operation');
+        		},
+        		confirmYes:function(){
+                	self.model.set({status:"New"});
+                	self.model.save();
+                	app.notify('','The tour has been revised! and all payable records have been deleted!!','alert-info');
+                	app.navigate("tour",true); 	
+        		}});      		        	
+
         },
         closeTour: function(e){
         	console.log('close tour');

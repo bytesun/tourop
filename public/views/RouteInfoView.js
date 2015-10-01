@@ -106,16 +106,17 @@ define([
     	    				payment:$("#scenic_payment_"+day+"_"+i).val(),
     	    				address:$("#scenic_address_"+day+"_"+i).val(),
     	    				
-                   			code : $("#scenic_code_"+day).val(),
-                			fax: $("#scenic_fax_"+day).val(),
-                			contact :  $("#scenic_contact_"+day).val(),
-                			city:  $("#scenic_city_"+day).val(),
-                			province:  $("#scenic_province_"+day).val(),
-                			country : $("#scenic_country_"+day).val(),
-                			postcode: $("#scenic_postcode_"+day).val()    	    				
+                   			code : $("#scenic_code_"+day+"_"+i).val(),
+                			fax: $("#scenic_fax_"+day+"_"+i).val(),
+                			contact :  $("#scenic_contact_"+day+"_"+i).val(),
+                			city:  $("#scenic_city_"+day+"_"+i).val(),
+                			province:  $("#scenic_province_"+day+"_"+i).val(),
+                			country : $("#scenic_country_"+day+"_"+i).val(),
+                			postcode: $("#scenic_postcode_"+day+"_"+i).val()    	    				
     	    		}
 
     	    	}
+
     	    	schedule[day-1]={
     	    			day:$("#day"+day).val(),
     	    			from:$("#from"+day).val(),
