@@ -246,7 +246,6 @@ define([
     	    	}
 
 
-
     	    }
     	    this.model.set("bus",bus);    	    
     	    
