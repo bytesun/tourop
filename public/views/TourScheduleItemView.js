@@ -2,156 +2,109 @@ define([
 	'marionette',
 	'templates',
     'underscore',
+    'typeahead',
+    'bloodhound',    
     'models/Schedule',
     'models/Partner',
     'collections/Partners',
     'views/PartnerCollectionView'
-], function (Marionette, templates, _,Model,
+
+], function (Marionette, templates, _,
+                Typeahead, Bloodhound,
+                Model,
 		Scenic,
 		Scenics,
 		ScenicCollectionView) {
 	'use strict';
 
-	return Marionette.ItemView.extend({
+	return Marionette.LayoutView.extend({
 		template: templates.tour_schedule_item,
 		model:Model,
 		tagName:'div',
+// 		regions:{
+// 			scenicListRegion:"#scenic_list_region"
+// 		},		
         events: {
-
-        	'change .schedule_breakfast':'addBreakfast',
-        	'change .schedule_lunch':'addLunch',
-        	'change .schedule_dinner':'addDinner',
-        	'change .schedule_hotel':'addHotel'
+        	'mouseenter .typeahead':'fetchPartners',
         },
 
-		initialize : function() {
-			 // this.listenTo(this.model, 'change', this.render);
-			 // this.model.on('change', this.render, this);
-			  
-		},	
+	initialize : function() {
+		    this.partners = {};
+		 // this.listenTo(this.model, 'change', this.render);
+		 // this.model.on('change', this.render, this);
+		  
+	},	
    
-
-        addBreakfast: function(e){
+        onShow: function(e){
+            this.partners = new Bloodhound({
+                  datumTokenizer: function (datum) {
+                      return Bloodhound.tokenizers.whitespace(datum.value);
+                  },
+                  queryTokenizer: Bloodhound.tokenizers.whitespace,
+                  remote: {
+                      url: '/api/infos?c=%QUERY&t=ALL',
+                      wildcard: '%QUERY',
+                      filter: function (infos) {
+                          return $.map(infos, function (info) {
+                              return {
+                                  type : info.type,
+                                  code: info.code,
+                                  name: info.name,
+                                  address: info.address,
+                                  telphone : info.telphone,
+                                  payment : info.payment,
+                                  fax : info.fax,
+                                  contact :info.contact,
+                                  cellphone : info.cellphone,
+                                  email : info.email,
+                                  city : info.city,
+                                  province : info.province,
+                                  country : info.country,
+                                  postcode : info.postcode
+                                
+                              };
+                          });
+                      }
+                  }
+              });
+              
+              // Initialize the Bloodhound suggestion engine
+              this.partners.initialize();
+	
+        },
+       fetchPartners: function(e){
         	e.preventDefault();
+        	delete this.events[e];
         	var inputid = e.target.id;
         	var inputstr = $("#"+inputid).val();
-        	var self = this;
-        	var no = this.model.get('day');
-  
-        	var fetchingoitem = app.request("information:entity:fetch",inputstr);
-        	$.when(fetchingoitem).done(function(item){
-        		if(item!=null){
-//        			self.model.set({agency:item.toJSON()});
-					self.model.set("breakfast",item.toJSON());
-        			self.trigger("renderCollection");
-        // 			$("#"+inputid).val(item.get("name"));
-        // 			$("#breakfast_telphone_"+no).val(item.get("telphone"));
-        // 			$("#breakfast_payment_"+no).val(item.get("payment"));
-        // 			$("#breakfast_code_"+no).val(item.get("code"));
-        // 			$("#breakfast_address_"+no).val(item.get("address"));
-        // 			$("#breakfast_contact_"+no).val(item.get("contact"));
-        // 			$("#breakfast_fax_"+no).val(item.get("fax"));
-        // 			$("#breakfast_city_"+no).val(item.get("city"));
-        // 			$("#breakfast_province_"+no).val(item.get("province"));
-        // 			$("#breakfast_country_"+no).val(item.get("country"));
-        // 			$("#breakfast_postcode_"+no).val(item.get("postcode"));
-        		}   	      		
-	        	
-        	});   
-        },
-        addLunch: function(e){
-        	e.preventDefault();
-        	var inputid = e.target.id;
-        	var inputstr = $("#"+inputid).val();
-        	var self = this;
-        	var no = this.model.get('day');
-  
-//        	this.trigger("group:addagency",this.model,inputstr);
-        	var fetchingoitem = app.request("information:entity:fetch",inputstr);
-        	$.when(fetchingoitem).done(function(item){
-        		if(item!=null){
-//        			self.model.set({agency:item.toJSON()});
-					self.model.set("lunch",item.toJSON());
-        			self.trigger("renderCollection");
 
-        // 			$("#"+inputid).val(item.get("name"));
-        // 			$("#lunch_telphone_"+no).val(item.get("telphone"));
-        // 			$("#lunch_payment_"+no).val(item.get("payment"));
-        // 			$("#lunch_code_"+no).val(item.get("code"));
-        // 			$("#lunch_address_"+no).val(item.get("address"));
-        // 			$("#lunch_contact_"+no).val(item.get("contact"));
-        // 			$("#lunch_fax_"+no).val(item.get("fax"));
-        // 			$("#lunch_city_"+no).val(item.get("city"));
-        // 			$("#lunch_province_"+no).val(item.get("province"));
-        // 			$("#lunch_country_"+no).val(item.get("country"));
-        // 			$("#lunch_postcode_"+no).val(item.get("postcode"));
-        		}   	      		
-	        	
-        	});
-        },
-        addDinner: function(e){
-        	e.preventDefault();
-        	var inputid = e.target.id;
-        	var inputstr = $("#"+inputid).val();
         	var self = this;
-        	var no = this.model.get('day');
-  
-//        	this.trigger("group:addagency",this.model,inputstr);
-        	var fetchingoitem = app.request("information:entity:fetch",inputstr);
-        	$.when(fetchingoitem).done(function(item){
-        		if(item!=null){
-//        			self.model.set({agency:item.toJSON()});
-					self.model.set("dinner",item.toJSON());
-        			self.trigger("renderCollection");
+        	
+              $("#"+inputid).typeahead({
+                    hint: true,
+                    highlight: true,
+                    minLength: 1
+                  }, {
+                  displayKey: 'code',
+                  valueKey: 'name',
+                  source: self.partners,
+              });   
+    
+              $("#"+inputid).on('typeahead:selected typeahead:autocompleted', function(event, datum) {
+                        if(("_"+inputid).indexOf("breakfast")>0){
+            			    self.model.set({"breakfast":datum});
+                        }else if(("_"+inputid).indexOf("lunch")>0){
+                            self.model.set({"lunch":datum});
+                        }else if(("_"+inputid).indexOf("dinner")>0){
+                            self.model.set({"dinner":datum});
+                        }else if(("_"+inputid).indexOf("hotel")>0){
+                            self.model.set({"hotel":datum});                            
+                        }            
+            			self.trigger("renderCollection");
+              });         	
+ 
+        },        
 
-        // 			$("#"+inputid).val(item.get("name"));
-        // 			$("#dinner_telphone_"+no).val(item.get("telphone"));
-        // 			$("#dinner_payment_"+no).val(item.get("payment"));
-        // 			$("#dinner_code_"+no).val(item.get("code"));
-        // 			$("#dinner_address_"+no).val(item.get("address"));
-        // 			$("#dinner_contact_"+no).val(item.get("contact"));
-        // 			$("#dinner_fax_"+no).val(item.get("fax"));
-        // 			$("#dinner_city_"+no).val(item.get("city"));
-        // 			$("#dinner_province_"+no).val(item.get("province"));
-        // 			$("#dinner_country_"+no).val(item.get("country"));
-        // 			$("#dinner_postcode_"+no).val(item.get("postcode"));
-        		}   	      		
-	        	
-        	});
-        },
-        addHotel: function(e){
-        	e.preventDefault();
-        	var inputid = e.target.id;
-        	var inputstr = $("#"+inputid).val();
-        	var self = this;
-        	var no = this.model.get('day');
-  
-//        	this.trigger("group:addagency",this.model,inputstr);
-        	var fetchingoitem = app.request("information:entity:fetch",inputstr);
-        	$.when(fetchingoitem).done(function(item){
-        		if(item!=null){
-        // 			console.log('fetching hotel: '+JSON.stringify(item));
-					self.model.set("hotel",item.toJSON());
-        			self.trigger("renderCollection");
-        			
-//        			self.model.set({agency:item.toJSON()});
-        // 			$("#"+inputid).val(item.get("name"));
-        // 			$("#hotel_telphone_"+no).val(item.get("telphone"));
-        // 			$("#hotel_payment_"+no).val(item.get("payment"));
-        // 			$("#hotel_code_"+no).val(item.get("code"));
-        // 			$("#hotel_address_"+no).val(item.get("address"));
-        // 			$("#hotel_contact_"+no).val(item.get("contact"));
-        // 			$("#hotel_fax_"+no).val(item.get("fax"));
-        // 			$("#hotel_city_"+no).val(item.get("city"));
-        // 			$("#hotel_province_"+no).val(item.get("province"));
-        // 			$("#hotel_country_"+no).val(item.get("country"));
-        // 			$("#hotel_postcode_"+no).val(item.get("postcode"));
-        		}   	      		
-	        	
-        	});
-        },
-
-        
-
+      
 	});
 });

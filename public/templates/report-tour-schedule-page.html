@@ -1,17 +1,18 @@
+<div  class="container printpage">
 <div class="row">
-	<div class="col-md-offset-2 col-md-10">
-	<h1>CANTOP TOURS & TRAVEL LTD.</h1>
+	<div class="col-xs-12">
+	<h3 class="text text-center">CANTOP TOURS & TRAVEL LTD.</h3>
 	</div>
 	        
 </div>
 <div class="row">
-	<div class="col-md-2">
+	<div class="col-xs-4">
 	<B>Tour Code:</B>  <%=code%> 
 	</div>
-	<div class="col-md-3">
+	<div class="col-xs-4">
 	<B>Departure Date:</B>  <%=departuredate%> 
 	</div>		
-	<div class="col-md-2">
+	<div class="col-xs-4">
 	<B>Guide:</B>  <%=guide%> 
 	</div>	
          
@@ -29,7 +30,7 @@ for(var day=1;day<=days;day++){
 %>
 	
 <div class="row">
-	<div class="col-md-12">
+	<div class="col-xs-12">
 		<div class="panel panel-default">
 		  <div class="panel-heading">
 		  <h4>
@@ -40,8 +41,7 @@ for(var day=1;day<=days;day++){
 			</h4>
 		  </div>
 		  <div class="panel-body">
-			<h4>Itinerary:</h4>
-			<pre style="background-color: #FFFFFF;"><%=schedule[day-1].itinerary%></pre>				
+			<pre><%=schedule[day-1].itinerary%></pre>				
 		  
 			<table class="table">
 				<tr>
@@ -109,3 +109,4 @@ for(var day=1;day<=days;day++){
 ddate.setDate(ddate.getDate()+1);
 
 }%>
+</div>

@@ -3,8 +3,10 @@
 		<hr>	
 			<form class="form-inline">
 			  <div class="form-group">
-
-			  <input type="text" class="form-control search_code"  placeholder="Code" autofocus>
+				<div class="col-sm-3">
+			  		<input type="text" class="form-control search_code typeahead" id="search_code"  placeholder="Code" autofocus>
+			  	</div>	
+			  	<div class="col-sm-3">
 		      		<select class="form-control partner_types" id="partner_types">
 		      		  <option value="ALL">--Select Type--</option>
 					  <option value="A">Agency</option>
@@ -12,12 +14,12 @@
 					  <option value="R">Restaurant</option>
 					  <option value="S">Admission</option>
 					  <option value="B">Bus Company</option>
-					</select>			    
+					</select>
+			  	</div>	
+
 			  </div>
-			  
-			  <button type="button" class="btn btn-primary btn_info_search">Search</button>
-			  <button type="button" class="btn btn-primary btn_info_add">Add New</button>
-			  
+			  		 <button type="button" class="form-control btn btn-primary btn_info_search">Search</button>
+	 		  	 	<button type="button" class="form-control btn btn-primary btn_info_add">Add New</button>			  
 			</form>		
 		
 			<br> 

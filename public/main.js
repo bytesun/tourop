@@ -9,11 +9,12 @@ require.config({
         'backbone.wreqr'        : 'assets/lib/backbone.wreqr.min',
         'backbone.babysitter'   : 'assets/lib/backbone.babysitter',
         'bootstrap'             : 'assets/lib/bootstrap.min',
-        'typeahead'             : 'assets/lib/typeahead.bundle.min',
         'text'                  : 'assets/lib/text',
         'tpl'                   : 'assets/lib/tpl',
         'parsley'               : 'assets/lib/parsley',
-        'js-cookie'             : 'assets/lib/js.cookie',        
+        'js-cookie'             : 'assets/lib/js.cookie',  
+		'typeahead'             : 'assets/lib/typeahead.jquery',
+        'bloodhound'            : 'assets/lib/bloodhound',        
         
 	},
 
@@ -40,12 +41,14 @@ require.config({
         },
 		typeahead:{
 			deps: ['jquery'],
-			exports:'Bloodhound',
 			init: function ($) {
             	return require.s.contexts._.registry['typeahead.js'].factory( $ );
         	}
-		}
-        
+		} ,
+		bloodhound: {
+		        deps: ["jquery"],
+		        exports: "Bloodhound"
+		}		
 	},
     //waitSeconds: 60
 });

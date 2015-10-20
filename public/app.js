@@ -23,7 +23,8 @@ define([
 	
 	app.addRegions({
 		top: 'body',
-		main: '#main',
+		sidebar:'#sidebar-left',
+		main: '#content',
 		footer: '#footer',
         notification: {
             selector: "#notification",

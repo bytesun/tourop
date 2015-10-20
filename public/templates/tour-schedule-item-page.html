@@ -43,24 +43,24 @@
 			<input type="hidden" id="breakfast_contact_<%=day%>" value="<%=breakfast.contact%>">
 	
 						
-		   <div class="col-lg-3">
+		   <div class="col-sm-2">
 		  <label>Breakfast</label>
-			<input  class="form-control schedule_breakfast" type="text" id="breakfast_name_<%=day%>" value="<%=breakfast.name%>">	
+			<input  class="form-control typeahead" type="text" id="breakfast_name_<%=day%>" value="<%=breakfast.name%>">	
 		  </div>  
  
- 		   <div class="col-lg-2">
+ 		   <div class="col-sm-2">
  			   <label>Tel</label>
 			  <input  class="form-control " type="tel" id="breakfast_telphone_<%=day%>" value="<%=breakfast.telphone%>" >
 			</div>
 
- 		   <div class="col-lg-2">
+ 		   <div class="col-sm-2">
  			   <label>Payment</label>
 			  <input  class="form-control " type="text" id="breakfast_payment_<%=day%>" value="<%=breakfast.payment%>" >
 			</div>
 			
-	  	 <div class="col-lg-5">
-	  	 <label>Address</label>
-		  <input  class="form-control " type="text" id="breakfast_address_<%=day%>" value="<%=breakfast.address%>" >
+	  	 <div class="col-sm-6">
+	  		 <label>Address</label>
+		  	<input  class="form-control " type="text" id="breakfast_address_<%=day%>" value="<%=breakfast.address%>" >
 		  </div>
 	  </div>
 	  <!-- lunch -->
@@ -74,21 +74,20 @@
 			<input type="hidden" id="lunch_contact_<%=day%>" value="<%=lunch.contact%>">
 	
 						
-		   <div class="col-lg-3">
-		  <label>Lunch</label>
-			<input  class="form-control schedule_lunch" type="text" id="lunch_name_<%=day%>" value="<%=lunch.name%>">	
-
+		   <div class="col-sm-2">
+		  		<label>Lunch</label>
+				<input  class="form-control typeahead" type="text" id="lunch_name_<%=day%>" value="<%=lunch.name%>">	
 		  </div>  
  
- 		   <div class="col-lg-2">
- 		   <label>Tel</label>
-		  <input  class="form-control " type="text" id="lunch_telphone_<%=day%>" value="<%=lunch.telphone%>" >
+ 		   <div class="col-sm-2">
+ 		  	 <label>Tel</label>
+		 	 <input  class="form-control " type="text" id="lunch_telphone_<%=day%>" value="<%=lunch.telphone%>" >
 			</div>
- 		   <div class="col-lg-2">
+ 		   <div class="col-sm-2">
  			   <label>Payment</label>
 			  <input  class="form-control " type="text" id="lunch_payment_<%=day%>" value="<%=lunch.payment%>" >
 			</div>
-	  	 <div class="col-lg-5">
+	  	 <div class="col-sm-6">
 	  	 <label>Address</label>
 		  <input  class="form-control " type="text" id="lunch_address_<%=day%>" value="<%=lunch.address%>" >
 		  </div>
@@ -104,21 +103,21 @@
 			<input type="hidden" id="dinner_contact_<%=day%>" value="<%=dinner.contact%>">
 	
 						
-		   <div class="col-lg-3">
+		   <div class="col-sm-2">
 		  <label>Dinner</label>
-			<input  class="form-control schedule_dinner" type="text" id="dinner_name_<%=day%>" value="<%=dinner.name%>">	
+			<input  class="form-control  typeahead" type="text" id="dinner_name_<%=day%>" value="<%=dinner.name%>">	
 
 		  </div>  
  
- 		   <div class="col-lg-2">
+ 		   <div class="col-sm-2">
  		   <label>Tel</label>
 		  <input  class="form-control " type="text" id="dinner_telphone_<%=day%>" value="<%=dinner.telphone%>" >
 			</div>
- 		   <div class="col-lg-2">
+ 		   <div class="col-sm-2">
  			   <label>Payment</label>
 			  <input  class="form-control " type="text" id="dinner_payment_<%=day%>" value="<%=dinner.payment%>" >
 			</div>
-	  	 <div class="col-lg-5">
+	  	 <div class="col-sm-6">
 	  	 <label>Address</label>
 		  <input  class="form-control " type="text" id="dinner_address_<%=day%>" value="<%=dinner.address%>" >
 		  </div>
@@ -135,25 +134,26 @@
 			<input type="hidden" id="hotel_contact_<%=day%>" value="<%=hotel.contact%>">
 	
 						
-		   <div class="col-lg-3">
+		   <div class="col-sm-2">
 		  <label>Hotel</label>
-			<input  class="form-control schedule_hotel" type="text" id="hotel_name_<%=day%>" value="<%=hotel.name%>">	
+			<input  class="form-control  typeahead" type="text" id="hotel_name_<%=day%>" value="<%=hotel.name%>">	
 		  </div>  
  
- 		   <div class="col-lg-2">
+ 		   <div class="col-sm-2">
  		   <label>Tel</label>
 		  <input  class="form-control " type="text" id="hotel_telphone_<%=day%>" value="<%=hotel.telphone%>" >
 			</div>
- 		   <div class="col-lg-2">
+ 		   <div class="col-sm-2">
  			   <label>Payment</label>
 			  <input  class="form-control " type="text" id="hotel_payment_<%=day%>" value="<%=hotel.payment%>" >
 			</div>
-	  	 <div class="col-lg-5">
+	  	 <div class="col-sm-6">
 	  	 <label>Address</label>
 		  <input  class="form-control " type="text" id="hotel_address_<%=day%>" value="<%=hotel.address%>" >
 		  </div>
 	  </div>		      
 	
+	  <!--<div id="scenic_list_region"></div>	-->
 	  <!-- Scenic -->
 	  <input type="hidden" id="scenic_count_<%=day%>" value="<%=scenic.length%>">
 	  <%for(var i=0;i<scenic.length;i++){%>	
@@ -167,22 +167,22 @@
 			<input type="hidden" id="scenic_contact_<%=day%>_<%=i%>" value="<%=scenic[i].contact%>">
 	
 						
-		   <div class="col-lg-3">
+		   <div class="col-sm-2">
 		  <label>Admission_<%=i+1%></label>
-			<input  class="form-control schedule_scenic" type="text" id="scenic_name_<%=day%>_<%=i%>" value="<%=scenic[i].name%>">	
+			<input  class="form-control  typeahead" type="text" id="scenic_name_<%=day%>_<%=i%>" value="<%=scenic[i].name%>"  >	
 		  </div>  
  
- 		   <div class="col-lg-2">
+ 		   <div class="col-sm-2">
  		   <label>Tel</label>
-		  <input  class="form-control " type="tel" id="scenic_telphone_<%=day%>_<%=i%>" value="<%=scenic[i].telphone%>" >
+		  <input  class="form-control " type="tel" id="scenic_telphone_<%=day%>_<%=i%>" value="<%=scenic[i].telphone%>"  >
 			</div>
- 		   <div class="col-lg-2">
+ 		   <div class="col-sm-2">
  			   <label>Payment</label>
-			  <input  class="form-control " type="text" id="scenic_payment_<%=day%>_<%=i%>" value="<%=scenic[i].payment%>" >
+			  <input  class="form-control " type="text" id="scenic_payment_<%=day%>_<%=i%>" value="<%=scenic[i].payment%>"  >
 			</div>
-	  	 <div class="col-lg-5">
+	  	 <div class="col-sm-6">
 	  	 <label>Address</label>
-		  <input  class="form-control " type="text" id="scenic_address_<%=day%>_<%=i%>" value="<%=scenic[i].address%>" >
+		  <input  class="form-control " type="text" id="scenic_address_<%=day%>_<%=i%>" value="<%=scenic[i].address%>"  >
 		  </div>
 	  </div>			
 	  	 <%}%> 

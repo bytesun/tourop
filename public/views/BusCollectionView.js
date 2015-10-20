@@ -19,6 +19,9 @@ define([
 		  'click .btn_add_bus': 'addBus',
 		  'click .btn_del_bus': 'delBus'
 	  },
+	 onChildviewRenderCollection: function() {
+		this.render();
+	  },	  
      templateHelpers:function(){
             return {
             	//bus number

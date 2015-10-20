@@ -32,6 +32,9 @@ define([
       	console.log('pop : scenic collection '+JSON.stringify(this.collection));
       	this.trigger("partner:count:set",this.collection.length)
       },
-     
+	  onChildviewRenderCollection: function() {
+	  	console.log('re-render admission collection :'+JSON.stringify(this.collection));
+			this.render();
+	  },     
 	});
 });

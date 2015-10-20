@@ -1,34 +1,48 @@
 <div id="tour-list-template" class="container">
-       <h3  class="text text-lg text-primary">Tour List</h3>
-		<hr>	
-
+		<div class="row">
+			<div class="col-md-12">
+				<h3  class="text text-lg text-primary">Tour List</h3>		
+				<hr>
+			</div>
+		</div>
+       
+		<div class="row">
 			<form class="form-inline">
 		  		<div class="form-group">
-				  <input type="text" class="form-control search_code" id="search_code" placeholder="Code" autofocus >
-				  <input type="text" class="form-control route_code" id="route_code" placeholder="Route"  >
-				     <select class="form-control tour_search_status" id="tour_search_status">
-		      		  <option value="ALL">--Select status--</option>
-					  <option >New</option>
-					  <option>Confirmed</option>
-					  <option>Canceled</option>
-					  <option>Closed</option>
-
-					</select>	
-			 	 </div>			  
-			  	<a type="button" id="search_input" name="search_input" class="btn btn-primary btn_route_search">Search</a>
-			  	<a type="button"  name="tour_new" class="btn btn-primary btn_tour_new">New</a>
-			  <!-- 
-			  OR 
-			  <div class="form-group">
-
-			    <input type="text" class="form-control" id="route_code" placeholder="Route code">
-			  </div>			  
-			  <button type="button" class="btn btn-primary btn_tour_add">Add New</button>
-			   -->
-			</form>		
+					<div class="col-md-3">
+						<input type="text" class="form-control " id="search_code" placeholder="Code" autofocus >
+					</div>		  			
+					<div class="col-md-3">
+						 <input type="text" class="form-control typeahead" size="20" id="route_code" placeholder="Route"  >
+					</div>					  
+					<div class="col-md-3">
+					     <select class="form-control tour_search_status" id="tour_search_status">
+			      		  <option value="ALL">--Select status--</option>
+						  <option >New</option>
+						  <option>Confirmed</option>
+						  <option>Canceled</option>
+						  <option>Closed</option>
 		
+						</select>
+					</div>					 
+					<div class="col-md-3">
+					  	<a type="button" id="search_input" name="search_input" class="btn btn-primary btn_route_search">Search</a>
+					  	<a type="button"  name="tour_new" class="btn btn-primary btn_tour_new">New</a>
+					</div>		
+			 	 </div>			  
+
+	
+			</form>				
+
+			
+		</div>	
+		<div class="row">
+			<div class="col-md-12">
 			<br> 		    
 			<div id="tour-list-region"></div>	
-			</div>    	
+			</div>  				
+			</div>
+		</div>
+  	
 
 </div>

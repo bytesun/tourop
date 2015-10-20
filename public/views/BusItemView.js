@@ -16,9 +16,47 @@ define([
      
 		  events: {
 			  "keyup .telephone":"formatTel",
-	        	'change .buscom_input' :'addBuscom'
+	          'mouseenter .typeahead' :'addBuscom'
 	        	
 	        },
+		onShow: function(){
+			this.partners = new Bloodhound({
+	                  datumTokenizer: function (datum) {
+	                      return Bloodhound.tokenizers.whitespace(datum.value);
+	                  },
+	                  queryTokenizer: Bloodhound.tokenizers.whitespace,
+	                  remote: {
+	                      url: '/api/infos?c=%QUERY&t=B',
+	                      wildcard: '%QUERY',
+	                      filter: function (infos) {
+	                          return $.map(infos, function (info) {
+	                              return {
+	                                  type : info.type,
+	                                  code: info.code,
+	                                  name: info.name,
+	                                  address: info.address,
+	                                  telphone : info.telphone,
+	                                  payment : info.payment,
+	                                  fax : info.fax,
+	                                  contact :info.contact,
+	                                  cellphone : info.cellphone,
+	                                  email : info.email,
+	                                  city : info.city,
+	                                  province : info.province,
+	                                  country : info.country,
+	                                  postcode : info.postcode
+	                                };
+	                          });
+	                      }
+	                  }
+	              });
+	              
+	              // Initialize the Bloodhound suggestion engine
+	              this.partners.initialize();			
+				
+	              
+ 
+		},    	        
 	        formatTel: function(e){
 	        	e.preventDefault();
 	        	
@@ -42,9 +80,26 @@ define([
 	        },
 	        addBuscom : function(e){
 	        	e.preventDefault();
+	        	delete this.events[e];
 	        	var inputid = e.target.id;
 	        	var inputstr = $("#"+inputid).val();
-	        	
+	        	var self = this;
+	              $("#"+inputid).typeahead({
+	                    hint: true,
+	                    highlight: true,
+	                    minLength: 1
+	                  }, {
+	                  displayKey: 'code',
+	                  valueKey: 'name',
+	                  source: self.partners,
+	              });   
+	    
+	              $("#"+inputid).on('typeahead:selected typeahead:autocompleted', function(event, datum) {
+	                   //$(".typeahead").val(datum.code);
+	                   self.model.set({buscom:datum});
+	                   console.log('current model of bus :'+JSON.stringify(self.model));
+	                   self.trigger("renderCollection");
+	              });  	        	
 	        	
 	        	//check admission first
 //	        	var fetchingoitems = app.request("entities:informations",{c:inputstr,t:'B'});
@@ -58,7 +113,7 @@ define([
 //	        		
 //		        	
 //	        	});       	
-	        	this.trigger("bus:addbuscom",this.model,inputstr);
+	        	// this.trigger("bus:addbuscom",this.model,inputstr);
 	        }        
        
 	});

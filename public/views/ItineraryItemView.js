@@ -11,12 +11,9 @@ define([
 		model:Model,
 		tagName:'div',
         events: {
-        	'change .scenic_input' :'fetchScenic',
+        	'mouseenter .typeahead' :'fetchScenic',
         	'click .btn_add_scenic' :'addScenic',
-        	'change .breakfast_input':'addBreakfast',
-        	'change .lunch_input':'addLunch',
-        	'change .dinner_input':'addDinner',
-        	'change .hotel_input':'addHotel'
+
         },
 		initialize : function() {
 			  this.listenTo(this.model, 'change', this.render);
@@ -59,73 +56,7 @@ define([
         	
 
         },
-        addBreakfast: function(e){
-        	e.preventDefault();
-        	var inputid = e.target.id;
-        	var inputstr = $("#"+inputid).val();
-        	//check admission first
-        	var self = this;
-        	var fetchingoitems = app.request("entities:informations",{c:inputstr,t:'R'});
-        	$.when(fetchingoitems).done(function(items){
-        		if(items.length >= 1){
-        			var restaurant = items.at(0);
-        			self.model.breakfast = restaurant;
-        			console.log('the model is after adding breakfast :'+self.model);
-        // 			inputstr = restaurant.get("name")+"  ("+restaurant.get("telphone")+")  "+restaurant.get("address");
-        // 			$("#"+inputid).val(inputstr);
-        		}   	
-        		
-	        	
-        	});    
-        },
-        addLunch: function(e){
-        	e.preventDefault();
-        	var inputid = e.target.id;
-        	var inputstr = $("#"+inputid).val();
-        	//check admission first
-        	var fetchingoitems = app.request("entities:informations",{c:inputstr,t:'R'});
-        	$.when(fetchingoitems).done(function(items){
-        		if(items.length >= 1){
-        			var restaurant = items.at(0);
-        			inputstr = restaurant.get("name")+"  ("+restaurant.get("telphone")+")  "+restaurant.get("address");
-        			$("#"+inputid).val(inputstr);
-        		}   	
-        		
-	        	
-        	}); 
-        },
-        addDinner: function(e){
-        	e.preventDefault();
-        	var inputid = e.target.id;
-        	var inputstr = $("#"+inputid).val();
-        	//check admission first
-        	var fetchingoitems = app.request("entities:informations",{c:inputstr,t:'R'});
-        	$.when(fetchingoitems).done(function(items){
-        		if(items.length >= 1){
-        			var restaurant = items.at(0);
-        			inputstr = restaurant.get("name")+"  ("+restaurant.get("telphone")+")  "+restaurant.get("address");
-        			$("#"+inputid).val(inputstr);
-        		}   	
-        		
-	        	
-        	}); 
-        },
-        addHotel: function(e){
-        	e.preventDefault();
-        	var inputid = e.target.id;
-        	var inputstr = $("#"+inputid).val();
-        	//check admission first
-        	var fetchingoitems = app.request("entities:informations",{c:inputstr,t:'H'});
-        	$.when(fetchingoitems).done(function(items){
-        		if(items.length >= 1){
-        			var hotel = items.at(0);
-        			inputstr = hotel.get("name")+"  ("+hotel.get("telphone")+")  "+hotel.get("address");
-        			$("#"+inputid).val(inputstr);
-        		}   	
-        		
-	        	
-        	}); 
-        },
+     
 
         
 

@@ -3,8 +3,10 @@ define([
 	'marionette',
 	'templates',
     'underscore',
-    'typeahead'
-], function ($,Marionette, templates, _,Bloodhound) {
+        'typeahead',
+    'bloodhound'
+], function ($,Marionette, templates, _,
+        Typeahead, Bloodhound) {
 	'use strict';
 
 	return Marionette.LayoutView.extend({
@@ -15,35 +17,44 @@ define([
         events: {
         	"click .btn_route_search":"searchByCode",
         },
-        onShow:function(){
-            // var tours = new Bloodhound({
-            //       datumTokenizer: function (datum) {
-            //           return Bloodhound.tokenizers.whitespace(datum.value);
-            //       },
-            //       queryTokenizer: Bloodhound.tokenizers.whitespace,
-            //       remote: {
-            //           url: '/api/infos?t=ALL',
-            //           filter: function (tours) {
-            //               return $.map(tours, function (movie) {
-            //                   return {
-            //                       value: tours[0]
+    		onShow : function(options) {
 
-
-            //                   };
-            //               });
-            //           }
-            //       }
-            //   });
+            this.routes = new Bloodhound({
+                  datumTokenizer: function (datum) {
+                      return Bloodhound.tokenizers.whitespace(datum.value);
+                  },
+                  queryTokenizer: Bloodhound.tokenizers.whitespace,
+                  remote: {
+                      url: '/api/routes?c=%QUERY',
+                      wildcard: '%QUERY',
+                      filter: function (routes) {
+                          return $.map(routes, function (route) {
+                              return {
+                                  code: route.code,
+                              };
+                          });
+                      }
+                  }
+              });
               
-            //   // Initialize the Bloodhound suggestion engine
-            //   tours.initialize();
-            //   // Instantiate the Typeahead UI
-            //   $('.typeahead').typeahead(null, {
-            //       displayKey: 'value',
-            //       source: tours.ttAdapter()
-            //   });
+              // Initialize the Bloodhound suggestion engine
+              this.routes.initialize();
               
-        },
+              $(".typeahead").typeahead({
+                    hint: true,
+                    highlight: true,
+                    minLength: 1
+                  }, {
+                  displayKey: 'code',
+                  valueKey: 'name',
+                  source: this.routes,
+              });   
+    
+              $(".typeahead").on('typeahead:selected typeahead:autocompleted', function(event, datum) {
+                   $("#route_code").val(datum.code);
+              });               
+              // Instantiate the Typeahead UI
+    		},      
         searchByCode: function(e){
         	var code = $("#search_code").val();
         	var route = $("#route_code").val();

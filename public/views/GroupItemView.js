@@ -6,13 +6,16 @@ define([
     'collections/Tourists',
     'models/Tourist',
     'views/TourTouristCollectionView',
-    'models/Confirmation'
+    'models/Confirmation',
+        'typeahead',
+    'bloodhound'
 ], function (Marionette, templates, _,
 		Group,
 		Tourists,
 		Tourist,
 		TourTouristCollectionView,
-		Confirmation) {
+		Confirmation,
+		Typeahead, Bloodhound) {
 	'use strict';
 
 	return Marionette.LayoutView.extend({
@@ -20,17 +23,16 @@ define([
 		model:Group,
 		tagName:'div',
         events: {
-//        	"keyup .telephone":"formatTel",
-        	"change .passenger_agency" :"addAgency",
         	"click .btn_confirm_group" : "confirmGroup",
         	"click .btn_revise_group" : "reviseGroup",
-            'focus .passenger_agency': 'getAutocomplete',
-            'keydown .passenger_agency':'invokefetch'
+            'mouseenter .typeahead': 'addAgency',
+
         },
         regions:{
 			touristRegion: "#tourist_list_region",
 		},
 		initialize : function(options) {
+		    this.partners = {};
 			this.model.set({route: options.route,
 				tourstatus:options.tourstatus});
 			this.listenTo(this.model, 'change', this.render);
@@ -39,6 +41,42 @@ define([
 			this._showTourists();
 		},
         onShow: function(e){
+            this.partners = new Bloodhound({
+                  datumTokenizer: function (datum) {
+                      return Bloodhound.tokenizers.whitespace(datum.value);
+                  },
+                  queryTokenizer: Bloodhound.tokenizers.whitespace,
+                  remote: {
+                      url: '/api/infos?c=%QUERY&t=A',
+                      wildcard: '%QUERY',
+                      filter: function (infos) {
+                          return $.map(infos, function (info) {
+                              return {
+                                  type : info.type,
+                                  code: info.code,
+                                  name: info.name,
+                                  address: info.address,
+                                  telphone : info.telphone,
+                                  payment : info.payment,
+                                  fax : info.fax,
+                                  contact :info.contact,
+                                  cellphone : info.cellphone,
+                                  email : info.email,
+                                  city : info.city,
+                                  province : info.province,
+                                  country : info.country,
+                                  postcode : info.postcode
+                                
+                              };
+                          });
+                      }
+                  }
+              });
+              
+              // Initialize the Bloodhound suggestion engine
+              this.partners.initialize();
+              // Instantiate the Typeahead UI
+         
         	this._showTourists();
         },
         
@@ -63,45 +101,39 @@ define([
         	
         	$(e.target).val(out);
         },
-        invokefetch : function(){
-        	console.log('fetching');
-//            this.myCollection.fetch(); 
-//            $("#names").unbind( "keydown", invokefetch);
-         },    
-         getAutocomplete: function () {
-        	 console.log('autocomplete');
-//             $("#names").autocomplete({
-//                 source: JSON.stringify(this.myCollection)
-//             });
-         },        
+     
         addAgency : function(e){
         	e.preventDefault();
+        	delete this.events[e];
         	var inputid = e.target.id;
-        	var inputstr = $("#"+inputid).val();
-        	var self = this;
-        	var no = this.model.get('no');
-  
-//        	this.trigger("group:addagency",this.model,inputstr);
-        	var fetchingoitem = app.request("information:entity:fetch",inputstr);
-        	$.when(fetchingoitem).done(function(item){
-        		if(item!=null){
-        			self.model.set({agency:item.toJSON()});
+        	var inputstr = $("#"+inputid).val();            
+        	var self = this;            
+          $("#"+inputid).typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 1
+              }, {
+              displayKey: 'code',
+              valueKey: 'name',
+              source: self.partners,
+          });   
+
+          $("#"+inputid).on('typeahead:selected typeahead:autocompleted', function(event, datum) {
+        			self.model.set({agency:datum});
         			self.trigger("renderCollection");
-        			
-        // 			$("#"+inputid).val(item.get("name"));
-        // 			$("#agency_telphone_"+no).val(item.get("telphone"));
-        // 			$("#agency_payment_"+no).val(item.get("payment"));
-        // 			$("#agency_code_"+no).val(item.get("code"));
-        // 			$("#agency_address_"+no).val(item.get("address"));
-        // 			$("#agency_contact_"+no).val(item.get("contact"));
-        // 			$("#agency_fax_"+no).val(item.get("fax"));
-        // 			$("#agency_city_"+no).val(item.get("city"));
-        // 			$("#agency_province_"+no).val(item.get("province"));
-        // 			$("#agency_country_"+no).val(item.get("country"));
-        // 			$("#agency_postcode_"+no).val(item.get("postcode"));
-        		}   	      		
+          });              
+        // 	var no = this.model.get('no');
+  
+
+        // 	var fetchingoitem = app.request("information:entity:fetch",inputstr);
+        // 	$.when(fetchingoitem).done(function(item){
+        // 		if(item!=null){
+        // 			self.model.set({agency:item.toJSON()});
+        // 			self.trigger("renderCollection");
+
+        // 		}   	      		
 	        	
-        	}); 
+        // 	}); 
 
         },
         reviseGroup : function(e){

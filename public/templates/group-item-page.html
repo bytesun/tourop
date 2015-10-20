@@ -26,24 +26,24 @@
 				<input type="hidden" id="agency_payment_<%=no%>" value="<%=agency.payment%>">	
 							
 						
-			   <div class="col-lg-2">
-			  <label>Agency</label>
-				<input  class="form-control passenger_agency" type="text" id="agency_name_<%=no%>" value="<%=agency.name%>">	
+			   <div class="col-sm-2">
+			  	<label>Agency</label>
+				<input  class="form-control typeahead" type="text" id="agency_name_<%=no%>" value="<%=agency.name%>">	
 				
 			    <br>
 			  </div>  
 	 
-	 		   <div class="col-lg-2">
+	 		   <div class="col-sm-2">
 	 		   <label>Tel</label>
-			  <input  class="form-control passenger_agency" type="text" id="agency_telphone_<%=no%>" value="<%=agency.telphone%>" disabled>
+			  <input  class="form-control " type="text" id="agency_telphone_<%=no%>" value="<%=agency.telphone%>" disabled>
 				</div>
 
-		  	 <div class="col-lg-6">
+		  	 <div class="col-sm-6">
 		  	 <label>Address</label>
-			  <input  class="form-control passenger_agency" type="text" id="agency_address_<%=no%>" value="<%=agency.address%>" disabled>
+			  <input  class="form-control " type="text" id="agency_address_<%=no%>" value="<%=agency.address%>" disabled>
 			  </div>
 			  
-			  <div class="col-lg-2">
+			  <div class="col-sm-2">
 			  <label>Booking Date</label>
 			    <input type="date" class="form-control" value="<%=bookdate%>" id="bookdate<%=no%>" >
 			    <br>
@@ -52,12 +52,12 @@
 		 	
 		   <div  id="tourist_list_region"></div>			   
 		   <div class="row">	
-			   <div class="col-lg-12">
+			   <div class="col-sm-12">
 			  <label>Pick Up</label>
 			    <input class="form-control" value="<%=pickup%>" id="pickup<%=no%>">
 			    <br>
 			  </div>  
-			   <div class="col-lg-12">
+			   <div class="col-sm-12">
 			  <label>Drop Off</label>
 			    <input class="form-control" value="<%=dropoff%>" id="dropoff<%=no%>">
 			    <br>
@@ -68,12 +68,12 @@
 		   <div class="row">		
 
 			  <%if((status == 'New' || status=='Revised') && tourstatus == 'New'){%>
-			  <div class="col-lg-offset-10 col-lg-2">	
+			  <div class="col-sm-offset-10 col-sm-2">	
 			    <input type="button" class="form-control btn btn-default btn_confirm_group" value="Confirm" >
 			    <br>
 			  </div>
 			  <%}else if(status == 'Confirmed' && tourstatus == 'New'){%>
-			  <div class="col-lg-offset-10 col-lg-2">	
+			  <div class="col-sm-offset-10 col-sm-2">	
 			    <input type="button" class="form-control btn btn-default btn_revise_group" value="Revise" >
 			    <br>
 			  </div>			  	

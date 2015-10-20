@@ -4,6 +4,8 @@ define([
 	'app',
 	'js-cookie',
 	'templates',
+     'typeahead',
+    'bloodhound',    	
 	'models/Route',
 	'models/Tour',
     'models/Passenger',
@@ -63,6 +65,7 @@ define([
 ], function (app,
 		Cookie,
 		templates,
+		Typeahead, Bloodhound,
 		RouteModel,
 		TourModel,
 		Passenger,
@@ -700,20 +703,7 @@ define([
 		        	app.main.show(infoLayout);
 	        	});
 	        },
-	        // info_info : function(view,options){
-	        // 	var infoView = new InfoAuthorView({
-	        // 		model : new InfoModel()
-	        // 	}); 
-	        	
-	        // 	app.main.show(infoView);
-	        // },
-	        // info_new : function(view,options){
-	        // 	var infoView = new InfoAuthorView({
-	        // 		model : new InfoModel()
-	        // 	}); 
-	        	
-	        // 	app.main.show(infoView);
-	        // },
+
 	        confirmation : function(code){
 	        	var cfmView = new ConfirmationView();
 	        	
@@ -784,28 +774,7 @@ define([
 	        		}
 	        	});
 	        	app.main.show(invView);
-	        	
-//	        	if(tourcode != null){
-//	        		var query = {c:tourcode};
-//	        		var fetchingitems = app.request("entities:invoices",query);
-//		        	$.when(fetchingitems).done(function(invoices){
-//		        		var cfmlistView=new InvoiceCollectionView({collection:invoices});
-//		        		invListView.on("show",function(){
-//			        		invListView.invoiceListRegion.show(cfmlistView);
-//			        	});
-//			        	app.main.show(invView);
-//		        	});	
-//	        	
-//	        	}else{	        		
-//	        		invView.on("show",function(){
-//	        			var invlistView = new InvoiceCollectionView();
-//	        			invView.invoiceListRegion.show(invlistView);
-//		        	});
-//		        	app.main.show(invView);
-//	        	}
-	        	
-	        	
-	        	
+
 	        },
 	        invoice_info : function(id){
 	        	if(id == null){

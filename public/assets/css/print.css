@@ -1,0 +1,18 @@
+.printpage {
+    height: 280mm;
+    width: 210mm;
+    padding: 10mm;
+}
+
+.printfooter{
+  width:210mm;
+  position: relative;clear:both;
+}
+
+.invoicetitle{
+  padding: 5mm;
+}
+
+pre{
+   border-style:none;
+}

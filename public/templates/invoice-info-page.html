@@ -1,11 +1,11 @@
 
-<div id="invoice-info-template" class="container" style="padding-bottom: 100px;">
+<div id="invoice-info-template" class="container printpage"  >
 	<!-- header -->
 	<div class="row">
-		<div class="col-xs-offset-1 col-xs-4">
-		<img src="/assets/img/logo.png" >
+		<div class="col-xs-5">
+			<img src="/assets/img/logo.png" >
 		</div>
-		<div class="col-xs-1 text-right" style="font-size:xx-small;">
+		<div class="col-xs-2 text-right" style="font-size:xx-small;">
 			Office:
 		</div>
 		<div class="col-xs-5" style="font-size:xx-small;">
@@ -16,17 +16,16 @@
 
 	</div> 
 	<div class="row">
-		<div class="col-xs-offset-1 col-xs-10 text-center">
+		<div class="col-xs-12 text-center invoicetitle" >
 			<hr>
-			<u style="font-size:large;">INVOICE</u>
-			<div><br><br></div>
+			<u style="font-size:medium;">INVOICE</u>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-xs-offset-1 col-xs-1" style="font-size:small;">
+		<div class="col-xs-1" style="font-size:x-small;">
 			<b>TO:</b>
 		</div>
-		<div class="col-xs-5" style="font-size:small;">
+		<div class="col-xs-5" style="font-size:x-small;">
 					<%=agency.name%><BR>
 					<%=agency.address%><br>
 					<%=agency.city%> <%=agency.province%><BR>
@@ -35,7 +34,7 @@
 					Phone : <%=agency.telphone%> <br>
 					Fax : <%=agency.fax%>				
 		</div>
-		<div class="col-xs-4" style="font-size:small;">
+		<div class="col-xs-6" style="font-size:x-small;">
 					<b>Date</b> : <%=issuedate%> <BR><br>
 					<b>Invoice No.</b> : <%=no%>
 					
@@ -57,9 +56,9 @@
 	
 	<div class="row">
 	<br>
-	<div class="col-xs-offset-1 col-xs-10">
+	<div class="col-xs-12">
 	<!-- tour info -->
-	<table width="100%" class="table"  style="font-size:small;"> 
+	<table width="100%" class="table"  style="font-size:x-small;"> 
 		<tr>
 			<td><b>TOUR</b></td>
 			<td><b>PASS</b></td>
@@ -136,7 +135,7 @@
 	</div>
 	
 	<div class="row">
-	 	<div class="col-xs-offset-1 col-xs-10"  style="font-size:small;">
+	 	<div class="col-xs-12"  style="font-size:x-small;">
 	 		
 			<!-- remarks -->
 			<label class="invoice_remark_label" id="invoice_remark_label">
@@ -158,11 +157,11 @@
 </div>
 <div id="editor"></div>
 
-   <footer style="position: relative;clear:both;bottom:0px;">
+   <footer class="printfooter">
       <div class="container">
 	<div class="row">
 		
-			 	<div class="col-xs-offset-1 col-xs-5" style="font-size:xx-small;">
+			 	<div class="col-xs-6" style="font-size:xx-small;">
 			 		<p>
 					CANCELLATION POLICY<br>
 					OVER 30 DAYS:&nbsp;&nbsp; C$50.00 HANDLING CHARGE PER PERSON<br>
@@ -173,7 +172,7 @@
 					</p>
 				</div>
 		
-			 	<div class="col-xs-5" style="font-size:xx-small;">
+			 	<div class="col-xs-6" style="font-size:xx-small;">
 					<p>
 					E. & O.E.<br>
 					For proper credit, please specify by writing invoice numbers
