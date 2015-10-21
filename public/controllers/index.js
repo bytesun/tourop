@@ -23,6 +23,7 @@ define([
     'collections/Passengers',
     'collections/Groups',
     'collections/Buses', 
+    'collections/Payables',
     'collections/Confirmations',
     'collections/Invoices',
 	'collections/Informations',
@@ -45,6 +46,8 @@ define([
 	'views/InvoiceCollectionView',
 	'views/InvoiceListItemView',
 	'views/InvoiceInfoView',
+	'views/PayableView',
+	
 
 	'views/TourInfoView',
     'views/ScheduleItemView',
@@ -83,6 +86,7 @@ define([
 		Passengers,
 		Groups,
 		Buses,	
+		Payables,
 		Confirmations,
 		Invoices,
 		InfoCollection,
@@ -105,6 +109,7 @@ define([
 		InvoiceCollectionView,
 		InvoiceListItemView,
 		InvoiceInfoView,
+		PayableView,
 		TourInfoView,
 		
 		ScheduleItemView,
@@ -463,17 +468,18 @@ define([
 	        	});
 	        	//generate payables
 	        	tourView.on("tour:generatePayables",function(tour){
-	        		console.log("generate payables for tour :"+tour.get("name"));
+	        		// console.log("generate payables for tour :"+JSON.stringify(tour));
 	        		var codes = new Array();
 	        		
 	        		var schedule = tour.get("schedule");
 	        		schedule.forEach(function(day){
 	        			var code = 	day.breakfast.code;
+	        			console.log('save payable : breakfast code:'+code);
 	        			//breakfast
 	        			if(code && $.inArray(code,codes)==-1){
 			        		var payable = new Payable({
 			        			tour : tour.get("code"),
-			        			payee : day.breakfast.code,
+			        			payee : code,
 			        			amount:0,
 			        			tax : 0,
 			        			total: 0,
@@ -483,10 +489,11 @@ define([
 	        			}
 	        			//lunch
 	        			code = day.lunch.code;
+	        			console.log('save payable : lunch code:'+code);
 	        			if(code && $.inArray(code,codes)==-1){
 			        		var payable = new Payable({
 			        			tour : tour.get("code"),
-			        			payee : day.lunch.code,
+			        			payee : code,
 			        			amount:0,
 			        			tax : 0,
 			        			total: 0,
@@ -496,22 +503,38 @@ define([
 	        			}	        			
 	        			//dinner
 	        			code = day.dinner.code;
+	        			console.log('save payable : dinner code:'+code);
 	        			if(code && $.inArray(code,codes)==-1){
 			        		var payable = new Payable({
 			        			tour : tour.get("code"),
-			        			payee : day.dinner.code,
+			        			payee : code,
 			        			amount:0,
 			        			tax : 0,
 			        			total: 0,
 			        		});
 			        		payable.save();	 
 			        		codes.push(code);
-	        			}	        			
+	        			}
+	        			//hotel
+	        			code = day.hotel.code;
+	        			console.log('save payable : hotel code:'+code);
+	        			if(code && $.inArray(code,codes)==-1){
+			        		var payable = new Payable({
+			        			tour : tour.get("code"),
+			        			payee : code,
+			        			amount:0,
+			        			tax : 0,
+			        			total: 0,
+			        		});
+			        		payable.save();	 
+			        		codes.push(code);
+	        			}		        			
 	        			//scenic
 	        			var scenics = day.scenic;
 	        			console.log("scenics : "+JSON.stringify(scenics));
         				scenics.forEach(function(scenic){
         					code = scenic.code;
+        					console.log('save payable : scenic code:'+code);
 							if(code && $.inArray(code,codes)==-1){
 								console.log('scenic code:'+scenic.code);
 				        		var payable = new Payable({
@@ -525,6 +548,7 @@ define([
 				        		codes.push(code);
 	        				}	        					
         				});
+        				console.log('save payable : all codes:'+codes);
 		        			
 
 	        		});
@@ -794,6 +818,11 @@ define([
 	        	
 
 	        },	 
+	        payable : function(code){
+	        	console.log('query payables...');
+	        	var payableView = new PayableView();
+	        	app.main.show(payableView);
+	        },
 	        setting: function(){
 
 	        	var fetchingitem = app.request("setting:entity");

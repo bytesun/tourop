@@ -279,8 +279,8 @@ define([
  				}
  			});	
  			var promise = defer.promise();
- 			$.when(promise).done(function(confirmatons){
- 				if(confirmatons.length === 0){
+ 			$.when(promise).done(function(payables){
+ 				if(payables.length === 0){
  					
  				}
  			});

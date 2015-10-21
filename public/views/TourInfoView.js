@@ -313,7 +313,7 @@ define([
         	// this.model.save({status:"New"});
         	var self =this;
         	//remove payables records
-   			var fetchingitems = app.request("entities:payables",{c:self.model.get("code")});
+   			var fetchingitems = app.request("entities:payables",{tourcode:self.model.get("code")});
 		        	$.when(fetchingitems).done(function(payables){
 		        		var p = null;
 		        		while(p = payables.pop()){

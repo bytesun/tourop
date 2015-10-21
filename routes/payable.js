@@ -12,6 +12,7 @@ router.post('/api/payable', function(req, res) {
 
 	new Payable(req.body).save( function( err, payable){
 		if(err){
+			console.error('failed to save payable with error :'+err);
 			return res.send({error:err});
 		}else{
 			console.log('success save payable:'+payable);
@@ -29,10 +30,11 @@ router.get('/api/payables',function(req,res){
 	if(c != undefined){
 		query = {'tour':c};
 	}
-	
+	console.log('fetch payables query :'+JSON.stringify(query));
 	Payable.find(query,
 				null,
 				null,function(err,payables){
+			console.log('fetch payables :'+payables);
 			res.send(payables);
 	});
 	

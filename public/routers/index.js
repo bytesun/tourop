@@ -21,6 +21,7 @@ define([
             "confirmation_info(/:id)":"confirmation_info",
             "invoice(/:tourcode)":"invoice",
             "invoice_info(/:id)":"invoice_info",
+            "payable(/:query)":"payable",
             "setting":"setting",
             "user":"user",
             "logout" : "logout",
