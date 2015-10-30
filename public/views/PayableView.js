@@ -30,41 +30,41 @@ define([
         		
         },
         onShow: function(){
-			// this.partners = new Bloodhound({
-   //               datumTokenizer: function (datum) {
-   //                   return Bloodhound.tokenizers.whitespace(datum.value);
-   //               },
-   //               queryTokenizer: Bloodhound.tokenizers.whitespace,
-   //               remote: {
-   //                   url: '/api/infos?c=%QUERY&t=A',
-   //                   wildcard: '%QUERY',
-   //                   filter: function (infos) {
-   //                       return $.map(infos, function (info) {
-   //                           return {
-   //                               code: info.code,
-   //                             };
-   //                       });
-   //                   }
-   //               }
-   //           });
-              
-   //           // Initialize the Bloodhound suggestion engine
-   //           this.partners.initialize();			
-			
-              
-   //           $("#agencycode").typeahead({
-   //                 hint: true,
-   //                 highlight: true,
-   //                 minLength: 1
-   //               }, {
-   //               displayKey: 'code',
-   //               valueKey: 'name',
-   //               source: this.partners,
-   //           });   
-    
-   //           $("#agencycode").on('typeahead:selected typeahead:autocompleted', function(event, datum) {
-   //                $("#agencycode").val(datum.code);
-   //           });           	
+            			this.tours = new Bloodhound({
+                             datumTokenizer: function (datum) {
+                                 return Bloodhound.tokenizers.whitespace(datum.value);
+                             },
+                             queryTokenizer: Bloodhound.tokenizers.whitespace,
+                             remote: {
+                                 url: '/api/tours?c=%QUERY&status=Closed',
+                                 wildcard: '%QUERY',
+                                 filter: function (tours) {
+                                     return $.map(tours, function (tour) {
+                                         return {
+                                             code: tour.code,
+                                           };
+                                     });
+                                 }
+                             }
+                         });
+                          
+                         // Initialize the Bloodhound suggestion engine
+                         this.tours.initialize();			
+            			
+                          
+                         $("#tourcode").typeahead({
+                               hint: true,
+                               highlight: true,
+                               minLength: 1
+                             }, {
+                             displayKey: 'code',
+                             valueKey: 'name',
+                             source: this.tours,
+                         });   
+                
+                         $("#tourcode").on('typeahead:selected typeahead:autocompleted', function(event, datum) {
+                              $("#tourcode").val(datum.code);
+                         });           	
         },
 		searchPayables: function(){
 			var code = $("#tourcode").val();

@@ -21,14 +21,32 @@ router.post('/api/payable', function(req, res) {
 		
 	  });
 });
-
+router.put('/api/payable/:id', function(req, res) {
+	Payable.findByIdAndUpdate(
+			req.params.id,
+			{$set:{
+				invoice : req.body.invoice,
+				amount:req.body.amount,
+				tax:req.body.tax,
+				total:req.body.total,
+				date:new Date()
+				}},
+			function( err, payable){
+		if(err){
+			return res.send({error:err});
+		}
+		res.send(payable);
+	  });
+});
 router.get('/api/payables',function(req,res){
 	res.set('Content-Type', 'application/json');
 
 	var c = req.query.tourcode;//tour code
 	var query = {};
-	if(c != undefined){
+	if(c != undefined && c != ''){
 		query = {'tour':c};
+	}else{
+		query = {'total':0} //only show unpayed
 	}
 	console.log('fetch payables query :'+JSON.stringify(query));
 	Payable.find(query,

@@ -261,6 +261,7 @@ define([
 
         },
         confirmTour: function(e){
+
         	console.log('confirm a tour');
 			var self =this;
 			app.execute('app:dialog:confirm',{title:'Confirm!',message:'You will confirm TOUR : <b>\"'+self.model.get('name')+"\"</b>! Are you sure?",
@@ -268,9 +269,11 @@ define([
         			console.log('cancel deleting operation');
         		},
         		confirmYes:function(){
+
                 	//generate confirmation reports
                 	self.model.set({status:"Confirmed"});
-                	self.model.save();
+                	self._saveTour(e);
+                	// self.model.save();
                 	self.trigger("tour:generatePayables",self.model);
 					//generate payables
 	

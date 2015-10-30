@@ -1,0 +1,64 @@
+
+<div class="modal-dialog" style="width: 50%">
+    <div class="modal-content">
+        <div class="modal-header">
+            <button type="button" class="close dismiss" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h4 class="modal-title"  id="myModalLabel">
+				Make payment
+            	</h4>
+        </div>
+        <div class="modal-body">
+
+		<div id="payable-info-template" >
+
+			<form class="form-horizontal">
+
+			  <div class="form-group">
+			    <label for="inputEmail3" class="col-sm-2 control-label">Payee:</label>
+			    <div class="col-sm-2">
+			     <%=payee%>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="inputPassword3" class="col-sm-2 control-label">Tour:</label>
+			    <div class="col-sm-8">
+			      <%=tour%>
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="inputPassword3" class="col-sm-2 control-label">Invoice:</label>
+			    <div class="col-sm-8">
+			       <input type="text" id="payable_invoice" class="form-control invoice" name="invoice" value="<%=invoice%>">
+			    </div>
+			  </div>			  
+			  <div class="form-group">
+			    <label for="inputPassword3" class="col-sm-2 control-label">Amount:</label>
+			    <div class="col-sm-5">
+			      <input type="number" id="payable_amount" class="form-control amount" name="amount" value="<%=amount%>">
+			    </div>
+			  </div>
+			  <div class="form-group">
+			    <label for="inputPassword3" class="col-sm-2 control-label">Tax:</label>
+			    <div class="col-sm-5">
+			      <input type="number"  id="payable_tax" class="form-control tax" name="tax" value="<%=tax%>">
+			    </div>
+			  </div>			  
+			  
+			  <div class="form-group">
+			    <label for="inputPassword3" class="col-sm-2 control-label">Total:</label>
+			    <div class="col-sm-5">
+			      <input type="number"  id="payable_total" class="form-control total" name="total" value="<%=total%>">
+			    </div>
+			  </div>
+					  		  			  
+
+			</form>	    
+		    
+			</div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default btn-sm confirm_no" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancel</button>
+            <button type="button" class="btn btn-primary btn-sm confirm_yes" data-dismiss="modal"><span class="glyphicon glyphicon-ok"></span> Pay</button>
+        </div>
+    </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->

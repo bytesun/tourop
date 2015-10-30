@@ -1,8 +1,13 @@
 
 <td><%=payee%></td>
 <td><%=tour%></td>
+<td><%=invoice%></td>
+<td><%=amount%></td>
+<td><%=tax%></td>
 <td><%=total%></td>
-
-<td><a class="glyphicon glyphicon-eye-open" href="#payable_info/<%=_id%>"></a>
+<td>
+    <% if (total == 0){%>
+    <a class="btn btn-primary btn_pay">Pay</a>
+    <% } %>
 </td>	
 <!-- <td><a class="glyphicon glyphicon-remove a_route_delete"></a></td> -->

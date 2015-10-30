@@ -476,10 +476,11 @@ define([
 	        			var code = 	day.breakfast.code;
 	        			console.log('save payable : breakfast code:'+code);
 	        			//breakfast
-	        			if(code && $.inArray(code,codes)==-1){
+	        			if(code && day.breakfast.payment == 'VOUC' && $.inArray(code,codes)==-1){
 			        		var payable = new Payable({
 			        			tour : tour.get("code"),
 			        			payee : code,
+			        			invoice:'',
 			        			amount:0,
 			        			tax : 0,
 			        			total: 0,
@@ -490,10 +491,11 @@ define([
 	        			//lunch
 	        			code = day.lunch.code;
 	        			console.log('save payable : lunch code:'+code);
-	        			if(code && $.inArray(code,codes)==-1){
+	        			if(code && day.lunch.payment == 'VOUC' && $.inArray(code,codes)==-1){
 			        		var payable = new Payable({
 			        			tour : tour.get("code"),
 			        			payee : code,
+			        			invoice:'',
 			        			amount:0,
 			        			tax : 0,
 			        			total: 0,
@@ -504,10 +506,11 @@ define([
 	        			//dinner
 	        			code = day.dinner.code;
 	        			console.log('save payable : dinner code:'+code);
-	        			if(code && $.inArray(code,codes)==-1){
+	        			if(code && day.dinner.payment == 'VOUC' && $.inArray(code,codes)==-1){
 			        		var payable = new Payable({
 			        			tour : tour.get("code"),
 			        			payee : code,
+			        			invoice:'',
 			        			amount:0,
 			        			tax : 0,
 			        			total: 0,
@@ -518,10 +521,11 @@ define([
 	        			//hotel
 	        			code = day.hotel.code;
 	        			console.log('save payable : hotel code:'+code);
-	        			if(code && $.inArray(code,codes)==-1){
+	        			if(code && day.hotel.payment == 'VOUC' && $.inArray(code,codes)==-1){
 			        		var payable = new Payable({
 			        			tour : tour.get("code"),
 			        			payee : code,
+			        			invoice:'',
 			        			amount:0,
 			        			tax : 0,
 			        			total: 0,
@@ -535,11 +539,12 @@ define([
         				scenics.forEach(function(scenic){
         					code = scenic.code;
         					console.log('save payable : scenic code:'+code);
-							if(code && $.inArray(code,codes)==-1){
+							if(code && scenic.payment == 'VOUC' && $.inArray(code,codes)==-1){
 								console.log('scenic code:'+scenic.code);
 				        		var payable = new Payable({
 				        			tour : tour.get("code"),
 				        			payee : scenic.code,
+				        			invoice:'',
 				        			amount:0,
 				        			tax : 0,
 				        			total: 0,
@@ -557,10 +562,11 @@ define([
 	        		if(buses.size>0){
 	        			buses.forEach(function(bus){
 	        				code = bus.buscom.code;
-							if(code && $.inArray(code,codes)==-1){
+							if(code && bus.buscom.payment == 'VOUC' && $.inArray(code,codes)==-1){
 					        		var payable = new Payable({
 					        			tour : tour.get("code"),
 					        			payee : bus.buscom.code,
+					        			invoice:'',
 					        			amount:0,
 					        			tax : 0,
 					        			total: 0,

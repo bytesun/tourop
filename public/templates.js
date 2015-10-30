@@ -53,6 +53,7 @@ define(function (require) {
 		 payable: require('tpl!templates/payable-page.html'),
 		 payable_list: require('tpl!templates/payable-list-page.html'),
 		 payable_item: require('tpl!templates/payable-item-page.html'),
+		 payable_info: require('tpl!templates/payable-info-page.html'),
 		 
 		 partner_list_scenic: require('tpl!templates/partner-list-scenic-page.html'),
 		 partner_item_scenic: require('tpl!templates/partner-item-scenic-page.html'),
