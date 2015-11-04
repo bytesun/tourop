@@ -58,7 +58,8 @@ app.use(csrf());
 //config files
 var db = require('./config/db');
 var index = require('./routes/index')(passport);
-var information = require('./routes/information');
+// var information = require('./routes/information');
+var partner = require('./routes/partner');
 var route = require('./routes/route');
 var tour = require('./routes/tour');
 var setting = require('./routes/setting');
@@ -69,7 +70,8 @@ var user = require('./routes/user');
 
 
 app.use('/', index);
-app.use('/', information);
+// app.use('/', information);
+app.use('/', partner);
 app.use('/', route);
 app.use('/', tour);
 app.use('/', setting);

@@ -14,7 +14,7 @@ define(["jquery", "backbone"],
 
             // Default values for all of the Model attributes
             defaults: {
-            	
+            // 	_id: '',
             	code : '',
             	name : '',
             	days: 1,
@@ -41,6 +41,7 @@ define(["jquery", "backbone"],
             			via:'',
             			to:'',
             			scenic:[{
+            			    _id: '',
             				no:1,
             				name:'',
             				telphone:'',

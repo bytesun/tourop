@@ -49,8 +49,11 @@ router.put('/api/routes/:id', function(req, res) {
  * get a case by id
  */
 router.get('/api/routes/:id',function(req,res){
-	Route.findById(req.params.id,function(err,route){
-		res.send(route);
+	Route.findById(req.params.id)
+		.populate('schedule.scenic')
+		.exec(function(err,route){
+			console.log('fetch route:'+JSON.stringify(route));
+			res.send(route);
 	});
 });
 
@@ -62,9 +65,10 @@ router.get('/api/routes',function(req,res){
 	if(c != 0)query.code = new RegExp('^'+c, "i");
 //	else query=null,
 	console.log("query route: ",query);
-	Route.find(query,
-				null,
-				null,function(err,routes){
+	Route.find(query)
+			.populate('schedule.scenic')
+			.exec(function(err,routes){
+			console.log('fetch routes:'+JSON.stringify(routes));
 			res.send(routes);
 	});
 	

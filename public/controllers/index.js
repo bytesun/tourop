@@ -186,6 +186,7 @@ define([
 				$.when(fetchingRoute).done(function(route){
 					var tour = new TourModel({
 	        			route:route.toJSON(),
+	        			// route:route._id,//as a reference , will will be populated when retreiving.
 	        			name:route.get("name"),
 	        			days:route.get("days"),
 	        			op:Cookie.get("user.displayname"),
@@ -470,7 +471,8 @@ define([
 	        	tourView.on("tour:generatePayables",function(tour){
 	        		// console.log("generate payables for tour :"+JSON.stringify(tour));
 	        		var codes = new Array();
-	        		
+	        		var tourid=  tour.get("_id");
+	        		var tourcode = tour.get("code");
 	        		var schedule = tour.get("schedule");
 	        		schedule.forEach(function(day){
 	        			var code = 	day.breakfast.code;
@@ -478,12 +480,11 @@ define([
 	        			//breakfast
 	        			if(code && day.breakfast.payment == 'VOUC' && $.inArray(code,codes)==-1){
 			        		var payable = new Payable({
-			        			tour : tour.get("code"),
-			        			payee : code,
-			        			invoice:'',
-			        			amount:0,
-			        			tax : 0,
-			        			total: 0,
+			        			tour : tourid,
+			        			tourcode : tourcode,
+			        			payee : day.breakfast._id,
+			        			payeecode : day.breakfast.code,
+
 			        		});
 			        		payable.save();
 			        		codes.push(code);
@@ -493,12 +494,11 @@ define([
 	        			console.log('save payable : lunch code:'+code);
 	        			if(code && day.lunch.payment == 'VOUC' && $.inArray(code,codes)==-1){
 			        		var payable = new Payable({
-			        			tour : tour.get("code"),
-			        			payee : code,
-			        			invoice:'',
-			        			amount:0,
-			        			tax : 0,
-			        			total: 0,
+			        			tour : tourid,
+			        			tourcode : tourcode,
+			        			payee : day.lunch._id,
+			        			payeecode : day.lunch.code,
+
 			        		});
 			        		payable.save();	
 			        		codes.push(code);
@@ -508,12 +508,11 @@ define([
 	        			console.log('save payable : dinner code:'+code);
 	        			if(code && day.dinner.payment == 'VOUC' && $.inArray(code,codes)==-1){
 			        		var payable = new Payable({
-			        			tour : tour.get("code"),
-			        			payee : code,
-			        			invoice:'',
-			        			amount:0,
-			        			tax : 0,
-			        			total: 0,
+			        			tour : tourid,
+			        			tourcode : tourcode,
+			        			payee : day.dinner._id,
+			        			payeecode : day.dinner.code,
+
 			        		});
 			        		payable.save();	 
 			        		codes.push(code);
@@ -523,12 +522,11 @@ define([
 	        			console.log('save payable : hotel code:'+code);
 	        			if(code && day.hotel.payment == 'VOUC' && $.inArray(code,codes)==-1){
 			        		var payable = new Payable({
-			        			tour : tour.get("code"),
-			        			payee : code,
-			        			invoice:'',
-			        			amount:0,
-			        			tax : 0,
-			        			total: 0,
+			        			tour : tourid,
+			        			tourcode : tourcode,
+			        			payee : day.hotel._id,
+			        			payeecode : day.hotel.code,
+
 			        		});
 			        		payable.save();	 
 			        		codes.push(code);
@@ -542,12 +540,11 @@ define([
 							if(code && scenic.payment == 'VOUC' && $.inArray(code,codes)==-1){
 								console.log('scenic code:'+scenic.code);
 				        		var payable = new Payable({
-				        			tour : tour.get("code"),
-				        			payee : scenic.code,
-				        			invoice:'',
-				        			amount:0,
-				        			tax : 0,
-				        			total: 0,
+				        			tour : tourid,
+				        			tourcode : tourcode,
+				        			payee : scenic._id,
+				        			payeecode : scenic.code,
+
 				        		});
 				        		payable.save();	 
 				        		codes.push(code);
@@ -564,12 +561,11 @@ define([
 	        				code = bus.buscom.code;
 							if(code && bus.buscom.payment == 'VOUC' && $.inArray(code,codes)==-1){
 					        		var payable = new Payable({
-					        			tour : tour.get("code"),
-					        			payee : bus.buscom.code,
-					        			invoice:'',
-					        			amount:0,
-					        			tax : 0,
-					        			total: 0,
+					        			tour : tourid,
+					        			tourcode : tourcode,
+					        			payee :bus.buscom._id,
+					        			payeecode : bus.buscom.code,
+
 					        		});
 					        		payable.save();	 
 					        		codes.push(code);

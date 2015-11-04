@@ -96,10 +96,19 @@ define([
     	   
     	    var schedule = new Array();
     	    for(var day=1;day<=days;day++){
+    	    	schedule[day-1]={
+    	    			day:$("#day"+day).val(),
+    	    			from:$("#from"+day).val(),
+    	    			via:$("#via"+day).val(),
+    	    			to:$("#to"+day).val(),
+    	    			scenic:[],// scenic:scenic,
+    	    			itinerary:$("#itinerary"+day).val(),
+    	    	}    	    	
     	    	var sn= $("#partner_count_"+day).val();
     	    	var scenic = new Array();
     	    	for(var i=1;i<=sn;i++){
-    	    		scenic[i-1]={
+    	    		var scenic={
+    	    			_id:$("#scenic_id_"+day+"_"+i).val(),
     	    				no:$("#scenic_no_"+day+"_"+i).val(),
     	    				name:$("#scenic_name_"+day+"_"+i).val(),
     	    				telphone:$("#scenic_telphone_"+day+"_"+i).val(),
@@ -112,20 +121,10 @@ define([
                 			city:  $("#scenic_city_"+day+"_"+i).val(),
                 			province:  $("#scenic_province_"+day+"_"+i).val(),
                 			country : $("#scenic_country_"+day+"_"+i).val(),
-                			postcode: $("#scenic_postcode_"+day+"_"+i).val()    	    				
+                			postcode: $("#scenic_postcode_"+day+"_"+i).val()      	    			
     	    		}
-
+    	    		schedule[day-1].scenic.push(scenic);
     	    	}
-
-    	    	schedule[day-1]={
-    	    			day:$("#day"+day).val(),
-    	    			from:$("#from"+day).val(),
-    	    			via:$("#via"+day).val(),
-    	    			to:$("#to"+day).val(),
-    	    			scenic:scenic,
-    	    			itinerary:$("#itinerary"+day).val(),
-    	    	}
-
     	    }
     	    this.model.set({
     	    	fare:fare,
@@ -133,7 +132,7 @@ define([
     	    	admission:admission,
     	    	schedule:schedule
     	    },{validate: true});
-    	    console.log("ready to save route data: "+JSON.stringify(this.model));
+    	    	console.log("ready to save route data: "+JSON.stringify(this.model));
     	    if (!this.model.isValid()) {
         		app.notify('Error',this.model.validationError,'alert-danger');
         	}else{

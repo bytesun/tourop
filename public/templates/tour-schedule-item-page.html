@@ -34,6 +34,7 @@
 	  
 	  <!-- breakfast -->
 	  <div class="row">
+	  	   	<input type="hidden" id="breakfast_id_<%=day%>" value="<%=breakfast._id%>">
 		   	<input type="hidden" id="breakfast_code_<%=day%>" value="<%=breakfast.code%>">
 		   	<input type="hidden" id="breakfast_city_<%=day%>" value="<%=breakfast.city%>">
 			<input type="hidden" id="breakfast_province_<%=day%>" value="<%=breakfast.province%>">
@@ -65,6 +66,7 @@
 	  </div>
 	  <!-- lunch -->
 	  <div class="row">
+	  	   	<input type="hidden" id="lunch_id_<%=day%>" value="<%=lunch._id%>">
 		   	<input type="hidden" id="lunch_code_<%=day%>" value="<%=lunch.code%>">
 		   	<input type="hidden" id="lunch_city_<%=day%>" value="<%=lunch.city%>">
 			<input type="hidden" id="lunch_province_<%=day%>" value="<%=lunch.province%>">
@@ -94,6 +96,7 @@
 	  </div>	
  		<!-- Dinner -->
 	  <div class="row">
+	  		<input type="hidden" id="dinner_id_<%=day%>" value="<%=dinner._id%>">
 		   	<input type="hidden" id="dinner_code_<%=day%>" value="<%=dinner.code%>">
 		   	<input type="hidden" id="dinner_city_<%=day%>" value="<%=dinner.city%>">
 			<input type="hidden" id="dinner_province_<%=day%>" value="<%=dinner.province%>">
@@ -125,6 +128,7 @@
 	  
  		<!-- Hotel -->
 	  <div class="row">
+	  		<input type="hidden" id="hotel_id_<%=day%>" value="<%=hotel._id%>">
 		   	<input type="hidden" id="hotel_code_<%=day%>" value="<%=hotel.code%>">
 		   	<input type="hidden" id="hotel_city_<%=day%>" value="<%=hotel.city%>">
 			<input type="hidden" id="hotel_province_<%=day%>" value="<%=hotel.province%>">
@@ -158,6 +162,7 @@
 	  <input type="hidden" id="scenic_count_<%=day%>" value="<%=scenic.length%>">
 	  <%for(var i=0;i<scenic.length;i++){%>	
 	  <div class="row">
+	  		<input type="hidden" id="scenic_id_<%=day%>_<%=i%>" value="<%=scenic[i]._id%>">
 		   	<input type="hidden" id="scenic_code_<%=day%>_<%=i%>" value="<%=scenic[i].code%>">
 		   	<input type="hidden" id="scenic_city_<%=day%>_<%=i%>" value="<%=scenic[i].city%>">
 			<input type="hidden" id="scenic_province_<%=day%>_<%=i%>" value="<%=scenic[i].province%>">

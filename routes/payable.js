@@ -29,13 +29,18 @@ router.put('/api/payable/:id', function(req, res) {
 				amount:req.body.amount,
 				tax:req.body.tax,
 				total:req.body.total,
+				status:req.body.stat,
+				note : req.body.note,
 				date:new Date()
 				}},
 			function( err, payable){
-		if(err){
-			return res.send({error:err});
-		}
-		res.send(payable);
+				if(err){
+					console.error('failed to pay it:'+err);
+					return res.send({error:err});
+				}else{
+					console.log('successfully pay it:'+JSON.stringify(payable));
+				}
+				res.send(payable);
 	  });
 });
 router.get('/api/payables',function(req,res){
@@ -43,16 +48,17 @@ router.get('/api/payables',function(req,res){
 
 	var c = req.query.tourcode;//tour code
 	var query = {};
-	if(c != undefined && c != ''){
-		query = {'tour':c};
+
+	if(c == undefined || c == ''){
+		query = {'status':0};
 	}else{
-		query = {'total':0} //only show unpayed
+		query = {'tourcode':c};
 	}
-	console.log('fetch payables query :'+JSON.stringify(query));
-	Payable.find(query,
-				null,
-				null,function(err,payables){
-			console.log('fetch payables :'+payables);
+	// console.log('fetch payables query :'+JSON.stringify(query));
+	Payable.find(query)
+		.populate('tour payee')
+		.exec(function(err,payables){
+			// console.log('fetch payables :'+payables);
 			res.send(payables);
 	});
 	

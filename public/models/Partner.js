@@ -12,6 +12,7 @@ define(["jquery", "backbone"],
 
             // Default values for all of the Model attributes
             defaults: {
+                 _id:'',
             	 no:1,
     	    	 code:"",
     	    	 name:"",

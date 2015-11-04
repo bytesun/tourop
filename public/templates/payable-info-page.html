@@ -15,19 +15,19 @@
 
 			  <div class="form-group">
 			    <label for="inputEmail3" class="col-sm-2 control-label">Payee:</label>
-			    <div class="col-sm-2">
-			     <%=payee%>
+			    <div class="col-sm-8">
+			     <%=payee.code%> - <%=payee.name%>
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="inputPassword3" class="col-sm-2 control-label">Tour:</label>
 			    <div class="col-sm-8">
-			      <%=tour%>
+			      <%=tour.code%> - <%=tour.name%>
 			    </div>
 			  </div>
 			  <div class="form-group">
 			    <label for="inputPassword3" class="col-sm-2 control-label">Invoice:</label>
-			    <div class="col-sm-8">
+			    <div class="col-sm-5">
 			       <input type="text" id="payable_invoice" class="form-control invoice" name="invoice" value="<%=invoice%>">
 			    </div>
 			  </div>			  
@@ -48,9 +48,16 @@
 			    <label for="inputPassword3" class="col-sm-2 control-label">Total:</label>
 			    <div class="col-sm-5">
 			      <input type="number"  id="payable_total" class="form-control total" name="total" value="<%=total%>">
+			      
 			    </div>
 			  </div>
-					  		  			  
+		
+			  <div class="form-group">
+			    <label for="inputPassword3" class="col-sm-2 control-label">Note:</label>
+			    <div class="col-sm-8">
+			      <textarea  id="payable_note" class="form-control note" name="note" ><%=note%></textarea>
+			    </div>
+			  </div>					  		  			  
 
 			</form>	    
 		    

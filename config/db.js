@@ -15,8 +15,7 @@ var Tour = new Schema({
 	feedback:String,
 
 	route:{
-		// type : Schema.Types.ObjectId,
-  //  	ref : 'Route'
+
 		_id:Schema.Types.ObjectId,
 		code : String,
 		name : String,
@@ -71,8 +70,7 @@ var Tour = new Schema({
 		dropoff:String,
 
 		agency:{
-			// type : Schema.Types.ObjectId,
-	  //  	ref : 'Information'
+
 			_id:Schema.Types.ObjectId,
 			code : String,
 			name : String,
@@ -108,8 +106,6 @@ var Tour = new Schema({
 		via:String,
 		to:String,
 		hotel:{
-			// type : Schema.Types.ObjectId,
-	  //  	ref : 'Information'
 			_id:Schema.Types.ObjectId,
 			code : String,
 			name : String,
@@ -124,8 +120,6 @@ var Tour = new Schema({
 			postcode:String
 		},
 		breakfast:{
-			// type : Schema.Types.ObjectId,
-	  //  	ref : 'Information'
 			_id:Schema.Types.ObjectId,
 			code : String,
 			name : String,
@@ -140,8 +134,7 @@ var Tour = new Schema({
 			postcode:String
 		},
 		lunch:{
-			// type : Schema.Types.ObjectId,
-	  //  	ref : 'Information'			
+		
 			_id:Schema.Types.ObjectId,
 			code : String,
 			name : String,
@@ -156,8 +149,7 @@ var Tour = new Schema({
 			postcode:String
 		},
 		dinner:{
-			// type : Schema.Types.ObjectId,
-	  //  	ref : 'Information'			
+		
 			_id:Schema.Types.ObjectId,
 			code : String,
 			name : String,
@@ -172,8 +164,6 @@ var Tour = new Schema({
 			postcode:String
 		},
 		scenic:[{
-			// type : Schema.Types.ObjectId,
-	  //  	ref : 'Information'
 	  		_id:Schema.Types.ObjectId,
 			no:Number,
 			code : String,
@@ -201,8 +191,7 @@ var Tour = new Schema({
 		note:String,
 		buscom:
 		{
-			// type : Schema.Types.ObjectId,
-	  //  	ref : 'Information'
+
 			_id:Schema.Types.ObjectId,
 			code : String,
 			name : String,
@@ -247,44 +236,14 @@ var Route = new Schema({
 			via:String,
 			to:String,
 			scenic:[{
-				// type : Schema.Types.ObjectId,
-		  //  	ref : 'Information'
-			_id:Schema.Types.ObjectId,
-			no:Number,
-			code : String,
-			name : String,
-			payment:String, //credit card/voucher/cheque/cash
-			telphone : String,
-			fax:String,
-			contact : String,
-			address : String,
-			city: String,
-			province: String,
-			country :String,
-			postcode:String
+				type : Schema.Types.ObjectId,
+		    	ref : 'Partner'
 			}],
 			itinerary:String
 		}]
 });
 
-var Information = new Schema({
-	type : String, //1-agency/2-hotel/3-restaurant/4-admission
-	code : String,
-	name : String,
-	name_cn:String,
-	payment:String, //credit card/voucher/cheque/cash
-	telphone : String,
-	fax:String,
-	contact : String,
-	cellphone: String,
-	email:String,
-	address : String,
-	city: String,
-	province: String,
-	country :String,
-	postcode:String,
-	note: String
-});
+
 
 var Passenger = new Schema({
 	no:Number,
@@ -452,9 +411,13 @@ var Invoice = new Schema({
 });
 
 var Payable = new Schema({
-	payee:String,
-    tour :String,
-    invoice : String,
+	paytype : Number, //0-voucher,1-cash,2-creditcard...
+	status : Number, //0-new,1-printed,9-paied...
+	payee:{ type: Schema.Types.ObjectId, ref: 'Partner' },
+	payeecode : String, //duplicated data for query
+    tour :{ type: Schema.Types.ObjectId, ref: 'Tour' },
+    tourcode : String, //duplicated data for query
+    invoice : String, //invoice NO.
     amount : Number,
     tax : Number,
     total : Number,
@@ -462,14 +425,34 @@ var Payable = new Schema({
     note : String
 });
 
+
+var Partner = new Schema({
+	type : String, //A-agency/H-hotel/R-restaurant/S-admission,B-BUS
+	code : String,
+	name : String,
+	name_cn:String,
+	payment:String, //credit card/voucher/cheque/cash
+	telphone : String,
+	fax:String,
+	contact : String,
+	cellphone: String,
+	email:String,
+	address : String,
+	city: String,
+	province: String,
+	country :String,
+	postcode:String,
+	note: String
+});
 var Counter = new Schema({
 	countername:String,
 	seq:Number
 });
 
+mongoose.model( 'Partner', Partner );
 mongoose.model( 'Route', Route );
 mongoose.model( 'Tour', Tour );
-mongoose.model( 'Information', Information );
+
 mongoose.model( 'Passenger', Passenger );
 mongoose.model( 'Bus', Bus );
 mongoose.model( 'Setting', Setting );

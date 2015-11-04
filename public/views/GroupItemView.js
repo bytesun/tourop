@@ -47,11 +47,12 @@ define([
                   },
                   queryTokenizer: Bloodhound.tokenizers.whitespace,
                   remote: {
-                      url: '/api/infos?c=%QUERY&t=A',
+                      url: '/api/partners?c=%QUERY&t=A',
                       wildcard: '%QUERY',
                       filter: function (infos) {
                           return $.map(infos, function (info) {
                               return {
+                                  _id:info._id,
                                   type : info.type,
                                   code: info.code,
                                   name: info.name,

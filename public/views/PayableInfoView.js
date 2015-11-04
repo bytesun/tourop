@@ -31,8 +31,10 @@ define([
     	    if (!this.model.isValid()) {
         		app.notify('Error',this.model.validationError,'alert-danger');
         	}else{
+        	     this.model.set({'stat':9});
+        	     console.log('ready to save payable data:'+JSON.stringify(this.model));
         		 this.model.save();
-        		 console.log('trigger payit event !');
+        		 
         		 this.trigger("payable:payit");
         	}
         },

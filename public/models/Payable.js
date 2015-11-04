@@ -15,7 +15,13 @@ define(["jquery", "backbone"],
 
             // Default values for all of the Model attributes
             defaults: {
-
+                paytype:0,
+                status:0,
+                invoice:'',
+                amount:0,
+                tax:0,
+                total:0,
+                note:''
             },
 
             // Gets called automatically by Backbone when the set and/or save methods are called (Add your own logic)

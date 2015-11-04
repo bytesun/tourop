@@ -95,6 +95,7 @@ define([
         	    	
     			};
     			var agency={
+    					_id:$("#agency_id_"+i).val(),
     					code:$("#agency_code_"+i).val(),
             			name : $("#agency_name_"+i).val(),
             			payment:$("#agency_payment_"+i).val(), //credit card/voucher/cheque/cash
@@ -128,22 +129,32 @@ define([
     	    var schedule = new Array();
     	    for(var day=1;day<=days;day++){
     	    	//breakfast
-    	    	var breakfast={
-               			code : $("#breakfast_code_"+day).val(),
-            			name :  $("#breakfast_name_"+day).val(),
-            			payment: $("#breakfast_payment_"+day).val(), //credit card/voucher/cheque/cash
-            			telphone :  $("#breakfast_telphone_"+day).val(),
-            			fax: $("#breakfast_fax_"+day).val(),
-            			contact :  $("#breakfast_contact_"+day).val(),
-            			address :  $("#breakfast_address_"+day).val(),
-            			city:  $("#breakfast_city_"+day).val(),
-            			province:  $("#breakfast_province_"+day).val(),
-            			country : $("#breakfast_country_"+day).val(),
-            			postcode: $("#breakfast_postcode_"+day).val()
+    	    	var id = $("#breakfast_id_"+day).val();
+    	    	var breakfast={};
+    	    	if(id != ''){
+	    	    	breakfast={
+	    	    			_id :id,
+	               			code : $("#breakfast_code_"+day).val(),
+	            			name :  $("#breakfast_name_"+day).val(),
+	            			payment: $("#breakfast_payment_"+day).val(), //credit card/voucher/cheque/cash
+	            			telphone :  $("#breakfast_telphone_"+day).val(),
+	            			fax: $("#breakfast_fax_"+day).val(),
+	            			contact :  $("#breakfast_contact_"+day).val(),
+	            			address :  $("#breakfast_address_"+day).val(),
+	            			city:  $("#breakfast_city_"+day).val(),
+	            			province:  $("#breakfast_province_"+day).val(),
+	            			country : $("#breakfast_country_"+day).val(),
+	            			postcode: $("#breakfast_postcode_"+day).val()
+	    	    	};
     	    	};
     	    	
     	    	//lunch
-    	    	var lunch = {
+    	    	var lunch = {}
+    	    	var id = $("#lunch_id_"+day).val();
+    	    	if( id != '' ){
+    	    		lunch = {
+
+    	    			_id : id,
                			code : $("#lunch_code_"+day).val(),
             			name :  $("#lunch_name_"+day).val(),
             			payment: $("#lunch_payment_"+day).val(), //credit card/voucher/cheque/cash
@@ -155,9 +166,14 @@ define([
             			province:  $("#lunch_province_"+day).val(),
             			country : $("#lunch_country_"+day).val(),
             			postcode: $("#lunch_postcode_"+day).val()
+    	    		};
     	    	};
     	    	//dinner
-    	    	var dinner = {
+    	    	var dinner = {}
+    	    	var id = $("#dinner_id_"+day).val();
+    	    	if (id != ''){
+    	    		dinner = {
+    	    			_id : id,
                			code : $("#dinner_code_"+day).val(),
             			name :  $("#dinner_name_"+day).val(),
             			payment: $("#dinner_payment_"+day).val(), //credit card/voucher/cheque/cash
@@ -169,10 +185,16 @@ define([
             			province:  $("#dinner_province_"+day).val(),
             			country : $("#dinner_country_"+day).val(),
             			postcode: $("#dinner_postcode_"+day).val()
+    	    		};
     	    	};
     	    	
     	    	//hotel
-    	    	var hotel = {
+    	    	var hotel = {}
+    	    	var id = $("#hotel_id_"+day).val();
+    	    	if(id != ''){
+    	    		hotel = {
+
+    	    			_id : id,
                			code : $("#hotel_code_"+day).val(),
             			name :  $("#hotel_name_"+day).val(),
             			payment: $("#hotel_payment_"+day).val(), //credit card/voucher/cheque/cash
@@ -184,12 +206,16 @@ define([
             			province:  $("#hotel_province_"+day).val(),
             			country : $("#hotel_country_"+day).val(),
             			postcode: $("#hotel_postcode_"+day).val()
+    	    		};
     	    	};
     	    	
     	    	var scenic_count = $("#scenic_count_"+day).val();
     	    	var scenic = new Array();
     	    	for(var s=0;s<scenic_count;s++){
+    	    		var id = $("#scenic_id_"+day+"_"+s).val();
+    	    		if(id == '') break;
     	    		scenic[s]={
+    	    				_id:id,
     	    				code:$("#scenic_code_"+day+"_"+s).val(),
     	    				name:$("#scenic_name_"+day+"_"+s).val(),
             				telphone:$("#scenic_telphone_"+day+"_"+s).val(),
@@ -221,8 +247,10 @@ define([
     	    console.log('bn is '+bn);
     	    var bus = new Array();
     	    for(var i=1;i<=bn;i++){
-    	    	
+    	    	var id = $("#buscom_id_"+i).val();
+    	    	if(id == '')break;
     			var buscom={
+    					_id:id,
     					code:$("#buscom_code_"+i).val(),
             			name : $("#buscom_name_"+i).val(),
             			payment:$("#buscom_payment_"+i).val(), //credit card/voucher/cheque/cash
