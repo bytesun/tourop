@@ -17,12 +17,17 @@ Manage partner, route information, and create tour
 				* result sorting and paging
 				* auto fill partner list when type partner code
 				* calendar
-
+			
 			----------------------
 			upgrade:
 				mongoexport -d tour -c information | mongoimport -d tour -c partners --drop
 				
-			
+			Note:
+				Role :
+					1. Operation
+					2. Manager - (accounting -- payable, configuration--user management)
+				default password : 111111
+				
 			----------------------------------------------------------------------
 			Development Trace:
 			----------------------------------------------------------------------
