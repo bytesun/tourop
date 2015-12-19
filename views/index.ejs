@@ -78,13 +78,13 @@
 									</div>
 									<i class="fa fa-angle-down pull-right"></i>
 									<div class="user-mini pull-right">
-										<span class="welcome"><%=user.username%></span>
-										<span>Operation</span>
+										<span class="welcome"><%=user.displayname%></span>
+										<span><%=user.role%></span>
 									</div>
 								</a>
 								<ul class="dropdown-menu">
 									<li>
-										<a href="#user">
+										<a href="#profile">
 											<i class="fa fa-user"></i>
 											<span>Profile</span>
 										</a>
@@ -121,7 +121,7 @@
 				<li class="dropdown">
 					<a href="#tour" class="dropdown-toggle">
 						<i class="fa fa-bar-chart-o"></i>
-						<span class="hidden-xs glyphicon glyphicon-leaf"> Tours</span>
+						<span class="hidden-xs glyphicon glyphicon-plane"> Tours</span>
 					</a>
 					<ul class="dropdown-menu">
 						<li><a class="ajax-link" href="#tour">Tour</a></li>
@@ -133,21 +133,22 @@
 				<li class="dropdown">
 					<a href="#route" class="dropdown-toggle">
 						<i class="fa fa-table"></i>
-						 <span class="hidden-xs glyphicon glyphicon-star-empty"> Route</span>
+						 <span class="hidden-xs glyphicon glyphicon-list"> Itinerary</span>
 					</a>
 
 				</li>
 				<li class="dropdown">
 					<a href="#info" class="dropdown-toggle">
 						<i class="fa fa-table"></i>
-						 <span class="hidden-xs glyphicon glyphicon-option-vertical"> Partner</span>
+						 <span class="hidden-xs glyphicon glyphicon-transfer"> Partner</span>
 					</a>
 					<!--<ul class="dropdown-menu">-->
 					<!--	<li><a class="ajax-link" href="#info">New</a></li>-->
 					<!--	<li><a class="ajax-link" href="#info">Search</a></li>-->
 						
 					<!--</ul>-->
-				</li>				
+				</li>
+				<% if (user.role == 'Manager'){%>
 				<li class="dropdown">
 					<a href="#" class="dropdown-toggle">
 						<i class="fa fa-pencil-square-o"></i>
@@ -163,11 +164,14 @@
 					<a href="#setting" class="dropdown-toggle">
 						<i class="fa fa-desktop"></i>
 						 <span class="hidden-xs glyphicon glyphicon-cog"> Configuration</span>
+						 
 					</a>
-					<!--<ul class="dropdown-menu">-->
-					<!--	<li><a class="ajax-link" href="#setting">Information</a></li>-->
-					<!--</ul>-->
+					
+					<ul class="dropdown-menu">
+						<li><a class="ajax-link" href="#users">User Management</a></li>
+					</ul>
 				</li>
+				<%}%>
 			
 			</ul>
 		</div>

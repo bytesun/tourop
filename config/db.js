@@ -1,5 +1,6 @@
-var mongoose = require( 'mongoose' );
-var Schema   = mongoose.Schema;
+var mongoose = require( 'mongoose' ),
+
+ Schema   = mongoose.Schema;
 
 
 
@@ -411,7 +412,7 @@ var Invoice = new Schema({
 });
 
 var Payable = new Schema({
-	paytype : Number, //0-voucher,1-cash,2-creditcard...
+	paytype : Number, //0-voucher,1-cash,2-creditcard, 3-cheque...
 	status : Number, //0-new,1-printed,9-paied...
 	payee:{ type: Schema.Types.ObjectId, ref: 'Partner' },
 	payeecode : String, //duplicated data for query
@@ -468,3 +469,4 @@ var username = process.env.OPENSHIFT_MONGODB_DB_USERNAME||'';
 var password = process.env.OPENSHIFT_MONGODB_DB_PASSWORD||'';
  
 mongoose.connect( 'mongodb://'+username+':'+password+'@'+host+':'+port+'/tour' );
+

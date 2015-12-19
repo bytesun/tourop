@@ -64,11 +64,13 @@ define([
 
 	'views/InfoLayout',
 	'views/SettingView',
-	'views/UserView'
+	'views/UserView',
+	'views/UserListView',
 ], function (app,
 		Cookie,
 		templates,
-		Typeahead, Bloodhound,
+		Typeahead, 
+		Bloodhound,
 		RouteModel,
 		TourModel,
 		Passenger,
@@ -125,14 +127,15 @@ define([
 		LoginView,
 		InfoLayout,
 		SettingView,
-		UserView) {
+		UserView,
+		UserListView) {
 	'use strict';
 
 	return {
 	      home : function(view,options){
 	        	app.main.show(new HomeView());
 	        },
-	      user: function(){
+	      profile: function(){
 	    	  var user = new User({
 	    		  username:Cookie.get("user.uname"),
 	    		  _id:Cookie.get("user.id"),
@@ -476,7 +479,7 @@ define([
 	        		var schedule = tour.get("schedule");
 	        		schedule.forEach(function(day){
 	        			var code = 	day.breakfast.code;
-	        			console.log('save payable : breakfast code:'+code);
+	        			
 	        			//breakfast
 	        			if(code && day.breakfast.payment == 'VOUC' && $.inArray(code,codes)==-1){
 			        		var payable = new Payable({
@@ -486,12 +489,13 @@ define([
 			        			payeecode : day.breakfast.code,
 
 			        		});
+			        		console.log('save payable : breakfast code:'+JSON.stringify(payable));
 			        		payable.save();
 			        		codes.push(code);
 	        			}
 	        			//lunch
 	        			code = day.lunch.code;
-	        			console.log('save payable : lunch code:'+code);
+	        			
 	        			if(code && day.lunch.payment == 'VOUC' && $.inArray(code,codes)==-1){
 			        		var payable = new Payable({
 			        			tour : tourid,
@@ -500,12 +504,13 @@ define([
 			        			payeecode : day.lunch.code,
 
 			        		});
+			        		console.log('save payable : lunch code:'+code);
 			        		payable.save();	
 			        		codes.push(code);
 	        			}	        			
 	        			//dinner
 	        			code = day.dinner.code;
-	        			console.log('save payable : dinner code:'+code);
+	        			
 	        			if(code && day.dinner.payment == 'VOUC' && $.inArray(code,codes)==-1){
 			        		var payable = new Payable({
 			        			tour : tourid,
@@ -514,12 +519,13 @@ define([
 			        			payeecode : day.dinner.code,
 
 			        		});
+			        		console.log('save payable : dinner code:'+code);
 			        		payable.save();	 
 			        		codes.push(code);
 	        			}
 	        			//hotel
 	        			code = day.hotel.code;
-	        			console.log('save payable : hotel code:'+code);
+	        			
 	        			if(code && day.hotel.payment == 'VOUC' && $.inArray(code,codes)==-1){
 			        		var payable = new Payable({
 			        			tour : tourid,
@@ -528,12 +534,13 @@ define([
 			        			payeecode : day.hotel.code,
 
 			        		});
+			        		console.log('save payable : hotel code:'+code);
 			        		payable.save();	 
 			        		codes.push(code);
 	        			}		        			
 	        			//scenic
 	        			var scenics = day.scenic;
-	        			console.log("scenics : "+JSON.stringify(scenics));
+	        			
         				scenics.forEach(function(scenic){
         					code = scenic.code;
         					console.log('save payable : scenic code:'+code);
@@ -546,6 +553,7 @@ define([
 				        			payeecode : scenic.code,
 
 				        		});
+				        		console.log("scenics : "+JSON.stringify(scenics));
 				        		payable.save();	 
 				        		codes.push(code);
 	        				}	        					
@@ -843,6 +851,11 @@ define([
 	        	});	        	
         	
 	        },
+	        listusers: function(view,options){
+	        	
+	        	app.main.show(new UserListView());
+	        },
+       
 	        logout: function(view,options){
 	        	app.main.show(new LoginView());
 	        },

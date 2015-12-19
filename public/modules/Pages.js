@@ -15,7 +15,9 @@ define([
     'collections/Invoices',
     'models/Setting',
     'models/Payable',
-    'collections/Payables'
+    'collections/Payables',
+    'models/User',
+    'collections/Users'
     
 
     
@@ -31,7 +33,8 @@ define([
 		Invoice,
 		Invoices,
 		Setting,
-		Payable,Payables){
+		Payable,Payables,
+		User,Users){
  
     var PagesModule = app.module("Pages", function(Pages) {
         this.startWithParent = false;
@@ -285,7 +288,25 @@ define([
  				}
  			});
  			return promise;
- 		}, 	
+ 		}, 
+        getUsers:function(query){
+ 			console.log('calling API.getUsers:'+query);
+ 			var users = new Users();
+ 			var defer = $.Deferred();
+ 			users.fetch({
+ 				data:$.param(query),
+ 				success:function(data){
+ 					defer.resolve(data);
+ 				}
+ 			});	
+ 			var promise = defer.promise();
+ 			$.when(promise).done(function(users){
+ 				if(users.length === 0){
+ 					
+ 				}
+ 			});
+ 			return promise;
+ 		},  		
  	};
  	
  	app.reqres.setHandler("entities:informations", function(query){
@@ -342,7 +363,9 @@ define([
  		return API.getPayables(query);
  	}); 
  	
- 	
+ 	app.reqres.setHandler("entities:users",function(query){
+ 		return API.getUsers(query);
+ 	});  	
     });
 
     return PagesModule;

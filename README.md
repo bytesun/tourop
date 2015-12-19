@@ -20,7 +20,7 @@ Manage partner, route information, and create tour
 
 			----------------------
 			upgrade:
-				
+				mongoexport -d tour -c information | mongoimport -d tour -c partners --drop
 				
 			
 			----------------------------------------------------------------------

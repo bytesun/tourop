@@ -14,46 +14,89 @@
 			<form class="form-horizontal">
 
 			  <div class="form-group">
-			    <label for="inputEmail3" class="col-sm-2 control-label">Payee:</label>
+			    <label for="payee" class="col-sm-2 control-label">Payee:</label>
 			    <div class="col-sm-8">
-			     <%=payee.code%> - <%=payee.name%>
+			     <input type="text" id="payeecode" class="form-control typeahead" name="payeecode" value="<%=payee.code%>" placeholder="type code to search...">
+			     <input type="text" id="payeename" class="form-control " name="payeename" value="<%=payee.name%>" disabled>
+
+			    </div>
+			  </div>
+			  <div class="form-group"> 
+			    <label for="tour" class="col-sm-2 control-label">Tour:</label>
+			    <div class="col-sm-8">
+			     <input type="text" id="tcode" class="form-control typeahead" name="tcode" value="<%=tour.code%>" placeholder="type code to search...">
+			     <input type="text" id="tname" class="form-control " name="tname" value="<%=tour.name%>" disabled>
+
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="inputPassword3" class="col-sm-2 control-label">Tour:</label>
-			    <div class="col-sm-8">
-			      <%=tour.code%> - <%=tour.name%>
-			    </div>
-			  </div>
-			  <div class="form-group">
-			    <label for="inputPassword3" class="col-sm-2 control-label">Invoice:</label>
+			    <label for="invoice" class="col-sm-2 control-label">Invoice:</label>
 			    <div class="col-sm-5">
 			       <input type="text" id="payable_invoice" class="form-control invoice" name="invoice" value="<%=invoice%>">
 			    </div>
-			  </div>			  
+			  </div>
 			  <div class="form-group">
-			    <label for="inputPassword3" class="col-sm-2 control-label">Amount:</label>
+			    <label for="paytype" class="col-sm-2 control-label">Pay Type:</label>
+			    <div class="col-sm-5">
+		      		<select class="form-control" name="paytype">
+		      			<% if(paytype == '2'){ %>
+					  	<option value="2" selected>Credit Card</option>
+					  	<option value="0" >Voucher</option>
+					  	<option value="3">Cheque</option>
+					  	<option value="1">Cash</option>
+					  	<option value="4">Other</option>
+					  	<%}else  if(paytype == '0'){ %>
+					  	<option value="2" >Credit Card</option>
+					  	<option value="0" selected>Voucher</option>
+					  	<option value="3">Cheque</option>
+					  	<option value="1">Cash</option>
+					  	<option value="4">Other</option>					  	
+					  	<%}else  if(paytype == '1'){ %>
+					  	<option value="2" >Credit Card</option>
+					  	<option value="0" >Voucher</option>
+					  	<option value="3">Cheque</option>
+					  	<option value="1" selected>Cash</option>
+					  	<option value="4">Other</option>					  	
+					  	<%}else  if(paytype == '3'){ %>
+					  	<option value="2" >Credit Card</option>
+					  	<option value="0" >Voucher</option>
+					  	<option value="3" selected>Cheque</option>
+					  	<option value="1">Cash</option>
+					  	<option value="4">Other</option>					  	
+					  	<%}else  if(paytype == '4'){ %>
+					  	<option value="2" >Credit Card</option>
+					  	<option value="0" >Voucher</option>
+					  	<option value="3">Cheque</option>
+					  	<option value="1">Cash</option>
+					  	<option value="4" selected>Other</option>					  	
+					  	<%}%>
+					</select>  	
+			    </div>
+			  </div>			  
+			  
+			  <div class="form-group">
+			    <label for="amount" class="col-sm-2 control-label">Amount:</label>
 			    <div class="col-sm-5">
 			      <input type="number" id="payable_amount" class="form-control amount" name="amount" value="<%=amount%>">
 			    </div>
 			  </div>
 			  <div class="form-group">
-			    <label for="inputPassword3" class="col-sm-2 control-label">Tax:</label>
+			    <label for="tax" class="col-sm-2 control-label">Tax:</label>
 			    <div class="col-sm-5">
 			      <input type="number"  id="payable_tax" class="form-control tax" name="tax" value="<%=tax%>">
 			    </div>
 			  </div>			  
 			  
 			  <div class="form-group">
-			    <label for="inputPassword3" class="col-sm-2 control-label">Total:</label>
+			    <label for="total" class="col-sm-2 control-label">Total:</label>
 			    <div class="col-sm-5">
-			      <input type="number"  id="payable_total" class="form-control total" name="total" value="<%=total%>">
+			      <input type="number"  id="payable_total" class="form-control total" name="total" value="<%=total%>"> 
 			      
 			    </div>
 			  </div>
 		
 			  <div class="form-group">
-			    <label for="inputPassword3" class="col-sm-2 control-label">Note:</label>
+			    <label for="note" class="col-sm-2 control-label">Note:</label>
 			    <div class="col-sm-8">
 			      <textarea  id="payable_note" class="form-control note" name="note" ><%=note%></textarea>
 			    </div>

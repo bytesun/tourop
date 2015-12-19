@@ -6,12 +6,16 @@ define([
      'typeahead',
     'bloodhound', 
 	'views/PayableCollectionView',
-	'views/PayableListItemView',    
+	'views/PayableListItemView',  
+    'models/Payable',
+    'views/PayableInfoView'	
 ], function (Marionette, templates, _,
 		Syphon,
 		Typeahead, Bloodhound,
 		PayableCollectionView,
-		PayableListItemView		) {
+		PayableListItemView	,
+				PayableModel,
+		PayableInfoView) {
 	'use strict';
 
 	return Marionette.LayoutView.extend({
@@ -26,8 +30,8 @@ define([
 	    },
         events: {
         	// 'click .remark_label' : "showRemarkInput",
-        	'click .btn_payable_search' : "searchPayables"
-        		
+        	'click .btn_payable_search' : "searchPayables",
+        	'click .btn_payable_pay' : "newPay"	
         },
         onShow: function(){
             			this.tours = new Bloodhound({
@@ -74,7 +78,21 @@ define([
         		var payablelistView=new PayableCollectionView({collection:payables});
         		self.payablesRegion.show(payablelistView);
         	});				
-		}
+		},
+		newPay : function(e){
+			e.preventDefault();
+// 			var self = this;
+			console.log('make payment by non-voucher ');
+			
+	     	var infoView = new PayableInfoView({
+	                    model: new PayableModel(),
+	                })
+	       // infoView.on('payable:payit',function(){
+	       // 	console.log('payable:payit event is triggered!'+JSON.stringify(self.model));
+	       // 	self.trigger("renderCollection");
+	       // });
+	     	app.dialog.show(infoView);
+		},		
         
 	});
 });

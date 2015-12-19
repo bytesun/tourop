@@ -23,7 +23,9 @@ define([
             "invoice_info(/:id)":"invoice_info",
             "payable(/:query)":"payable",
             "setting":"setting",
-            "user":"user",
+            "profile":"profile",
+            "users":"listusers",
+
             "logout" : "logout",
             
             "report/tour/namelist4guide/:tour_id" : "report_tour_namelist4guide",

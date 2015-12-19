@@ -8,14 +8,14 @@ define(["jquery", "backbone"],
         var Model = Backbone.Model.extend({
        	   urlRoot: '/api/payable',
 	       idAttribute: '_id',
-            // Model Constructor
-            initialize: function() {
-
-            },
 
             // Default values for all of the Model attributes
             defaults: {
-                paytype:0,
+                payee:'',
+                payeecode:'',
+                tour:'',
+                tourcode:'',
+                paytype:0,//0-voucher,1-cash,2-creditcard, 3-cheque...
                 status:0,
                 invoice:'',
                 amount:0,
@@ -24,8 +24,13 @@ define(["jquery", "backbone"],
                 note:''
             },
 
-            // Gets called automatically by Backbone when the set and/or save methods are called (Add your own logic)
-            validate: function(attrs) {
+            validate: function(attrs, options) {
+            // 	console.log('valdate payable model code ');
+            // 	if(attrs.payeecode == '' || attrs.payeecode == undefined){
+            // 		return "payee code is required!";
+            // 	}else  if(attrs.payeename == '' || attrs.payeename == undefined){
+            // 		return "payee name is required!";
+            // 	}
 
             }
 

@@ -16,7 +16,8 @@ define([
         	
         	username: '',
         	email: '',
-        	displayname: ''
+        	displayname: '',
+        	role:'Operation'
         }
 
     });

@@ -10,19 +10,19 @@ define([
 	'use strict';
 
 	return Marionette.ItemView.extend({
-		template: templates.user_profile,
+		template: templates.user_info,
 	
         events: {
-        	"click .btn_user_save": "saveUser"
+        	"click .confirm_yes": "saveUser"
         },
         
         saveUser: function(e){
         	e.preventDefault();
     	    var data = Syphon.serialize(this);
     	    this.model.set(data);
-    	    console.log('save user info :'+JSON.stringify(this.model));
     	    this.model.save();
     	    app.notify('','New user information has been saved!','alert-info');
+    	    app.navigate("users/",true);
         }
 	});
 });
