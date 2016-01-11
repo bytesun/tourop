@@ -20,7 +20,7 @@ define(["jquery", "backbone"],
             	days: 1,
             	fare:[{
             		no:1,
-            		name:'',
+            		name:'Adult',
             		price:0
             	}],
             	meal:[{

@@ -14,8 +14,8 @@ define(["jquery", "backbone"],
             // Default values for all of the Model attributes
 	    	  defaults: {
 	    		  no:1,
-	    			name:'',
-          		price:0
+	    		  name:'Adult',
+          		  price:0
 	    	  },
 
             // Gets called automatically by Backbone when the set and/or save methods are called (Add your own logic)
