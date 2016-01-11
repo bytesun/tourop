@@ -1,16 +1,11 @@
-
-<td><%=code%></td>
-<td><%=name%></td>
-<td><%=departuredate%></td>
-<td><%=days%></td>
 <td><%=status%></td>
-<td><%=route.code%></td>
+<td><a href="#tour_info/<%=_id%>"><%=code%></a> </td>
+<td><%=name%></td>
 
-<td>
-	<a class="glyphicon glyphicon-edit a_route_edit" href="#tour_info/<%=_id%>"></a> 
-	|  
-	<a class="glyphicon glyphicon-eye-open a_route_edit" href="#report/tour/schedule/<%=_id%>"></a>
-</td>
+<td><%=days%></td>
+<td><%=departuredate%></td>
+
+
 <td>
  	<a href="#confirmation/<%=code%>">Confirmation</a> 
 |  <a href="#invoice/<%=code%>">Invoice</a>
@@ -19,5 +14,8 @@
 <td>
 	<a href="#report/tour/namelist4guide/<%=_id%>">Guide</a> |  
 	<a href="#report/tour/namelist4hotel/<%=_id%>" >Hotel</a>
-</td>	
+</td>
+<td>
+	<a class="glyphicon glyphicon-print" href="#report/tour/schedule/<%=_id%>"></a>
+</td>
 <!-- <td><a class="glyphicon glyphicon-remove a_route_delete"></a></td> -->

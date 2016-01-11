@@ -15,7 +15,7 @@ define(["jquery", "backbone"],
                 payeecode:'',
                 tour:'',
                 tourcode:'',
-                paytype:0,//0-voucher,1-cash,2-creditcard, 3-cheque...
+                paytype:2,//1-cash,2-creditcard, 3-cheque...
                 status:0,
                 invoice:'',
                 amount:0,
